@@ -106,3 +106,15 @@
 *.mm filter=lfs diff=lfs merge=lfs -text
 *.c filter=lfs diff=lfs merge=lfs -text
 /tests/MultiplayerTest/Assets/Photon/PhotonVoice/PhotonVoiceLibs/opus-COPYING filter=lfs diff=lfs merge=lfs -text
+*.preset filter=lfs diff=lfs merge=lfs -text
+*.inputactions filter=lfs diff=lfs merge=lfs -text
+*.shadergraph filter=lfs diff=lfs merge=lfs -text
+*.cmd filter=lfs diff=lfs merge=lfs -text
+*.hlsl filter=lfs diff=lfs merge=lfs -text
+*.hdr filter=lfs diff=lfs merge=lfs -text
+*.dds filter=lfs diff=lfs merge=lfs -text
+*.bzl filter=lfs diff=lfs merge=lfs -text
+*.XML filter=lfs diff=lfs merge=lfs -text
+*.compute filter=lfs diff=lfs merge=lfs -text
+*.html filter=lfs diff=lfs merge=lfs -text
+*.index filter=lfs diff=lfs merge=lfs -text
