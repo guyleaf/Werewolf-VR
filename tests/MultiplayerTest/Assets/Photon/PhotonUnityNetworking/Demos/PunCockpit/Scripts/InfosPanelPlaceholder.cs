@@ -1,3 +1,24 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d0465be3ff18357dd978e377db6e8d0b3cce8bada474a9e01dc0f981ba976370
-size 783
+﻿// <copyright file="PlayerDetailsController.cs" company="Exit Games GmbH">
+//   Part of: Pun Cockpit
+// </copyright>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine;
+
+namespace Photon.Pun.Demo.Cockpit
+{
+    /// <summary>
+    /// Infos panel placeholder. Defines the place where the infos panel should go. It will request InfoPanel when Component is enabled.
+    /// </summary>
+    public class InfosPanelPlaceholder : MonoBehaviour
+    {
+        public PunCockpit Manager;
+
+        // Use this for initialization
+        void OnEnable()
+        {
+            Manager.RequestInfosPanel(this.gameObject);
+        }
+    }
+}

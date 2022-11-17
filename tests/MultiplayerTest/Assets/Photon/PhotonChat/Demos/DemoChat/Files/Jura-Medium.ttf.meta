@@ -1,3 +1,24 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:26647a71b5d9a7b209f2d6ec20d5bf7b5f2e5b96d6dfd612b1f6ff34cb77eed5
-size 651
+fileFormatVersion: 2
+guid: 5abfb0a229c98b3499cffa6c59c2ffb4
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Jura
+  fontNames:
+  - Jura
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: e00995507c2406448b4c8429136104dd, type: 3}
+  - {fileID: 12800000, guid: 4a4df204c321f9c40b0dbfb1baaffb4c, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

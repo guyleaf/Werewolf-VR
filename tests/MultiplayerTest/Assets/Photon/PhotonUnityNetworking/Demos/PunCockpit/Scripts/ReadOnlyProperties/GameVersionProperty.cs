@@ -1,3 +1,30 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e74d7438cc74fb8c5ce583ed9e14411a217e22562fc7076510733325c1497d75
-size 815
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="RoomListView.cs" company="Exit Games GmbH">
+//   Part of: Pun Cockpit
+// </copyright>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace Photon.Pun.Demo.Cockpit
+{
+	/// <summary>
+	/// PhotonNetwork.GameVersion UI property.
+	/// </summary>
+	public class GameVersionProperty : MonoBehaviour 
+    {
+		public Text Text;
+
+		string _cache;
+
+		void Update()
+		{
+			if (PhotonNetwork.GameVersion != _cache) {
+				_cache = PhotonNetwork.GameVersion;
+				Text.text = _cache;
+			}
+		}
+	}
+}
