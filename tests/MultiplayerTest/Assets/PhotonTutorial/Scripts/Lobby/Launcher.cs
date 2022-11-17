@@ -8,6 +8,8 @@ namespace Leaf.PhotonTutorial
     public class Launcher : MonoBehaviourPunCallbacks
     {
         #region public functions and properties
+
+        // UI trigger
         public void Connect()
         {
             progressLabel.SetActive(true);
@@ -20,17 +22,31 @@ namespace Leaf.PhotonTutorial
             else
             {
                 Debug.Log("Connect to the master server...");
-                PhotonNetwork.ConnectUsingSettings();
+                this.isConnecting = PhotonNetwork.ConnectUsingSettings();
                 PhotonNetwork.GameVersion = this.gameVersion;
             }
         }
         #endregion
 
         #region photon functions
+
+        // we don't want to do anything if we are not attempting to join a room.
+        // this case where isConnecting is false is typically when you lost or quit the game, when this level is loaded, OnConnectedToMaster will be called, in that case
+        // we don't want to do anything.
         public override void OnConnectedToMaster()
         {
             Debug.Log("PUN Basics Tutorial/Launcher: OnConnectedToMaster() was called by PUN");
-            JoinRoom();
+
+            if (this.isConnecting)
+            {
+                this.JoinRoom();
+                this.isConnecting = false;
+            }
+        }
+
+        public override void OnJoinedLobby()
+        {
+            Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedLobby() was called by PUN");
         }
 
         public override void OnDisconnected(DisconnectCause cause)
@@ -53,6 +69,15 @@ namespace Leaf.PhotonTutorial
         public override void OnJoinedRoom()
         {
             Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
+
+            if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
+            {
+                Debug.Log("We load the 'Room for 1' ");
+
+                // #Critical
+                // Load the Room Level.
+                PhotonNetwork.LoadLevel("Room for 1");
+            }
         }
 
         #endregion
@@ -76,6 +101,13 @@ namespace Leaf.PhotonTutorial
             Debug.Log("Join the room...");
             PhotonNetwork.JoinRandomRoom();
         }
+
+        /// <summary>
+        /// Keep track of the current process. Since connection is asynchronous and is based on several callbacks from Photon,
+        /// we need to keep track of this to properly adjust the behavior when we receive call back by Photon.
+        /// Typically this is used for the OnConnectedToMaster() callback.
+        /// </summary>
+        private bool isConnecting = false;
 
         [SerializeField]
         private string gameVersion = "1";
