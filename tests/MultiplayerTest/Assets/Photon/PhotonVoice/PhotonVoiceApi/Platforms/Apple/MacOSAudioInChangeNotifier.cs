@@ -1,3 +1,77 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:27c605173a4599c7550f23c551f7ab98ac6a39a654ff95eadb98ebe8f8a1f2ee
-size 2641
+#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+
+namespace Photon.Voice.MacOS
+{
+    public class AudioInChangeNotifier : IAudioInChangeNotifier
+    {
+        public bool IsSupported => true;
+
+        const string lib_name = "AudioIn";
+        [DllImport(lib_name)]
+        private static extern IntPtr Photon_Audio_In_CreateChangeNotifier(int instanceID, Action<int> callback);
+        [DllImport(lib_name)]
+        private static extern IntPtr Photon_Audio_In_DestroyChangeNotifier(IntPtr handle);
+
+        private delegate void CallbackDelegate(int instanceID);
+
+        IntPtr handle;
+        int instanceID;
+        Action callback;
+
+        public AudioInChangeNotifier(Action callback, ILogger logger)
+        {
+            this.callback = callback;
+            //nativeCallback(8888);
+            var handle = Photon_Audio_In_CreateChangeNotifier(instanceCnt, nativeCallback);
+            lock (instancePerHandle)
+            {
+                this.handle = handle;
+                this.instanceID = instanceCnt;
+                instancePerHandle.Add(instanceCnt++, this);
+            }
+        }
+
+        // IL2CPP does not support marshaling delegates that point to instance methods to native code.
+        // Using static method and per instance table.
+        static int instanceCnt;
+        private static Dictionary<int, AudioInChangeNotifier> instancePerHandle = new Dictionary<int, AudioInChangeNotifier>();
+        [MonoPInvokeCallbackAttribute(typeof(CallbackDelegate))]
+        private static void nativeCallback(int instanceID)
+        {
+            AudioInChangeNotifier instance;
+            bool ok;
+            lock (instancePerHandle)
+            {
+                ok = instancePerHandle.TryGetValue(instanceID, out instance);
+            }
+            if (ok)
+            {
+                instance.callback();
+            }
+        }
+
+        /// <summary>If not null, the enumerator is in invalid state.</summary>
+        public string Error { get; private set; }
+
+        /// <summary>Disposes enumerator.
+        /// Call it to free native resources.
+        /// </summary>
+        public void Dispose()
+        {
+            lock (instancePerHandle)
+            {
+                instancePerHandle.Remove(instanceID);
+            }
+            if (handle != IntPtr.Zero)
+            {
+                Photon_Audio_In_DestroyChangeNotifier(handle);
+                handle = IntPtr.Zero;
+            }
+        }
+    }
+}
+#endif

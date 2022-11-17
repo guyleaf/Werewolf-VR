@@ -1,3 +1,35 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5e9c8bd3a776a3741ead02dd25f86e0e1a90cfb480fbce48a1466f20b8b1c6e3
-size 947
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="IsConnectedProperty.cs" company="Exit Games GmbH">
+//   Part of: Pun Cockpit
+// </copyright>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine.UI;
+using Photon.Realtime;
+
+namespace Photon.Pun.Demo.Cockpit
+{
+    /// <summary>
+	/// PhotonNetwork.Server UI property
+    /// </summary>
+	public class ServerProperty : PropertyListenerBase
+    {
+
+        public Text Text;
+
+		ServerConnection _cache;
+
+
+        void Update()
+        {
+
+			if (PhotonNetwork.Server != _cache)
+            {
+				_cache = PhotonNetwork.Server;
+				Text.text = PhotonNetwork.Server.ToString();
+                this.OnValueChanged();
+            }
+        }
+    }
+}

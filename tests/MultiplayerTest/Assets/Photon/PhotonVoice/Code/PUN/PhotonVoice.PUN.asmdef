@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0ca0579c2a4309cee1907a954e90915bf3cf4d13195245cee3b3c1c4b9187a92
-size 234
+{
+    "name": "PhotonVoice.PUN",
+    "references": [
+        "PhotonVoice",
+        "PhotonUnityNetworking",
+        "PhotonRealtime",
+        "PhotonVoice.API"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": []
+}

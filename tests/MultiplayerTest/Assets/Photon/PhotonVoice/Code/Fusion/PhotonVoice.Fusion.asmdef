@@ -1,3 +1,20 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:54d5c22fbe2b4126fcbad677b6885c7498a608097426e0604645c7a472d11bd8
-size 479
+{
+    "name": "PhotonVoice.Fusion",
+    "rootNamespace": "",
+    "references": [
+        "PhotonVoice",
+        "PhotonRealtime",
+        "PhotonVoice.API"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FUSION_WEAVER"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

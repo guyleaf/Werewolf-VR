@@ -1,3 +1,12 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:fc5f466ab5a7934791e32a4954b06f3fd6cdf68a4eb0308f15907851dd49effd
-size 213
+fileFormatVersion: 2
+guid: 166dfe22956ef0341b28e18d0499e363
+labels:
+- ExitGames
+- PUN
+- Photon
+- Networking
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}

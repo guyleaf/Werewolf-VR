@@ -1,3 +1,18 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0c1ae6379603e943cb69ecddc828e84c0e5e08d2aac2b79a6093fb6a834dc36f
-size 509
+{
+    "name": "Oculus.Interaction.Samples",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f64c9ebcd7899c3448a08dc9f9ddbe30",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:2a230cb87a1d3ba4a98bdc0ddae76e6c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
