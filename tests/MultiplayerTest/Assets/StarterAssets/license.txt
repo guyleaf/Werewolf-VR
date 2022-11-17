@@ -1,3 +1,2 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:63b73338cdaae12b1cc8043f43d8b32f7a058f8d4d5ca8edc5b2709399f5439f
-size 155
+This package is licensed under the Unity Companion License. 
+For full license terms, please see: https://unity3d.com/legal/licenses/Unity_Companion_License

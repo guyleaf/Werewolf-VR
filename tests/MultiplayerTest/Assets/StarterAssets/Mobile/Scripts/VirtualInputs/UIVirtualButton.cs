@@ -1,3 +1,41 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e6432bc955a031817cbf2dc91be3156918d69abbc6ce7dd3ba90763b58975784
-size 972
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
+
+public class UIVirtualButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler
+{
+    [System.Serializable]
+    public class BoolEvent : UnityEvent<bool> { }
+    [System.Serializable]
+    public class Event : UnityEvent { }
+
+    [Header("Output")]
+    public BoolEvent buttonStateOutputEvent;
+    public Event buttonClickOutputEvent;
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        OutputButtonStateValue(true);
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        OutputButtonStateValue(false);
+    }
+    
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        OutputButtonClickEvent();
+    }
+
+    void OutputButtonStateValue(bool buttonState)
+    {
+        buttonStateOutputEvent.Invoke(buttonState);
+    }
+
+    void OutputButtonClickEvent()
+    {
+        buttonClickOutputEvent.Invoke();
+    }
+
+}

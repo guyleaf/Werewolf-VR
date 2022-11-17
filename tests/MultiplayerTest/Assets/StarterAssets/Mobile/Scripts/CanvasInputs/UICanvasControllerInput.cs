@@ -1,3 +1,33 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c6fd7f42302acc763953e46ba1af5067c856cb647b5dbbdf9d45ac8425614f70
-size 809
+using UnityEngine;
+
+namespace StarterAssets
+{
+    public class UICanvasControllerInput : MonoBehaviour
+    {
+
+        [Header("Output")]
+        public StarterAssetsInputs starterAssetsInputs;
+
+        public void VirtualMoveInput(Vector2 virtualMoveDirection)
+        {
+            starterAssetsInputs.MoveInput(virtualMoveDirection);
+        }
+
+        public void VirtualLookInput(Vector2 virtualLookDirection)
+        {
+            starterAssetsInputs.LookInput(virtualLookDirection);
+        }
+
+        public void VirtualJumpInput(bool virtualJumpState)
+        {
+            starterAssetsInputs.JumpInput(virtualJumpState);
+        }
+
+        public void VirtualSprintInput(bool virtualSprintState)
+        {
+            starterAssetsInputs.SprintInput(virtualSprintState);
+        }
+        
+    }
+
+}
