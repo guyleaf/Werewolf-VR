@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d40299fd37e4294a5cc385d0679244f87c66c2619ea14debc68d66b7bf0c260d
-size 296
+{
+    "name": "PhotonVoice.PUN.Editor",
+    "references": [
+        "PhotonVoice.PUN",
+        "PhotonVoice.Editor",
+        "PhotonVoice",
+        "PhotonRealtime",
+        "PhotonUnityNetworking"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

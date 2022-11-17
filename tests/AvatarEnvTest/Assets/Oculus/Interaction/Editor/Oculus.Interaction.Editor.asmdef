@@ -1,3 +1,19 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:3fa95033be8e68d9a74a3bdc84fe1df18961c7a29294dfe277b85473426a8e62
-size 481
+{
+    "name": "Oculus.Interaction.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:2a230cb87a1d3ba4a98bdc0ddae76e6c",
+        "GUID:f64c9ebcd7899c3448a08dc9f9ddbe30"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
