@@ -1,3 +1,12 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e6237c863fa68e2287f8d61fa5f5a292c24185ca65f5157c53a69302c2763c29
-size 287
+{
+    "name": "PhotonUnityNetworking.Utilities.Culling.Editor",
+    "references": [
+        "PhotonUnityNetworking.Utilities"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

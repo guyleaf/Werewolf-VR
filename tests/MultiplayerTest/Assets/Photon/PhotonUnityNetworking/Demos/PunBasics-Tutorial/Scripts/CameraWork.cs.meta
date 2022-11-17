@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f1b02bb8dde101f38fb10738f8174446af06cf5a4a8bc253e9661740fc7570d2
-size 215
+fileFormatVersion: 2
+guid: fd08475b23aa548b7b9d28397d430b32
+labels:
+- ExitGames
+- PUN
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

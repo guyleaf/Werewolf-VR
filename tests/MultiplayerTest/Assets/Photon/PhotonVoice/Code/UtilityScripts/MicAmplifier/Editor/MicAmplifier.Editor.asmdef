@@ -1,3 +1,12 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ea041085965c9cead90520adead0c316aa5823ef1ee5930c728bb7a778c2206f
-size 246
+{
+    "name": "MicAmplifierEditor.Editor",
+    "references": [
+        "PhotonVoice"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

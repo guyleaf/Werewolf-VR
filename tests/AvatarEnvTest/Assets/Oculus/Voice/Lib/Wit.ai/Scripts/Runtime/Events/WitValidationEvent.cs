@@ -1,3 +1,20 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c57086ddb954f93e20e3b14dfcdd0bb57df1372832dcef244afc7fe8eb26365c
-size 438
+﻿/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * This source code is licensed under the license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+using System;
+using Facebook.WitAi.Lib;
+using Facebook.WitAi.Data;
+using UnityEngine.Events;
+
+namespace Facebook.WitAi.Events
+{
+    [Serializable]
+    public class WitValidationEvent : UnityEvent<VoiceSession>
+    {
+    }
+}

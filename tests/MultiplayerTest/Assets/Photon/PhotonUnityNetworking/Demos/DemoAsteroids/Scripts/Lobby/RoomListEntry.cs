@@ -1,3 +1,35 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:6588e2851d88e2fc40c782ed0b16d2a0c1e8d23d40b463cdb315705ef608d13d
-size 873
+﻿using UnityEngine;
+using UnityEngine.UI;
+
+namespace Photon.Pun.Demo.Asteroids
+{
+    public class RoomListEntry : MonoBehaviour
+    {
+        public Text RoomNameText;
+        public Text RoomPlayersText;
+        public Button JoinRoomButton;
+
+        private string roomName;
+
+        public void Start()
+        {
+            JoinRoomButton.onClick.AddListener(() =>
+            {
+                if (PhotonNetwork.InLobby)
+                {
+                    PhotonNetwork.LeaveLobby();
+                }
+
+                PhotonNetwork.JoinRoom(roomName);
+            });
+        }
+
+        public void Initialize(string name, byte currentPlayers, byte maxPlayers)
+        {
+            roomName = name;
+
+            RoomNameText.text = name;
+            RoomPlayersText.text = currentPlayers + " / " + maxPlayers;
+        }
+    }
+}

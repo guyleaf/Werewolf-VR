@@ -1,3 +1,32 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:05b9baa318b525ee3fa036e47f38db602f0b016bbaed8e4c851716ff1e435f50
-size 1026
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright company="Exit Games GmbH"/>
+// <summary>Demo code for Photon Chat in Unity.</summary>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+
+namespace Photon.Chat.Demo
+{
+    public class ChannelSelector : MonoBehaviour, IPointerClickHandler
+    {
+        public string Channel;
+
+        public void SetChannel(string channel)
+        {
+            this.Channel = channel;
+            Text t = this.GetComponentInChildren<Text>();
+            t.text = this.Channel;
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            ChatGui handler = FindObjectOfType<ChatGui>();
+            handler.ShowChannel(this.Channel);
+        }
+    }
+}

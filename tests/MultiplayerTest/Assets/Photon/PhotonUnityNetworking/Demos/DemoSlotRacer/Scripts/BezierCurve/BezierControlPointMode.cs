@@ -1,3 +1,19 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5f7107806504d06517a7d1a26cb0464fe9b895b59f751bb826386315c5f6d64c
-size 685
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BezierControlPointMode.cs" company="Exit Games GmbH">
+//   Part of: Photon Unity Networking Demos
+// </copyright>
+// <summary>
+//  Original: http://catlikecoding.com/unity/tutorials/curves-and-splines/
+//  Used in SlotRacer Demo
+// </summary>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Photon.Pun.Demo.SlotRacer.Utils
+{
+	public enum BezierControlPointMode {
+		Free,
+		Aligned,
+		Mirrored
+	}
+}

@@ -1,3 +1,33 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:dab2b7855002d6f1e4e97586bd7a410a6efa36c7a1796d1ab1b02191f844f5b2
-size 1062
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="IsConnectedAndReady.cs" company="Exit Games GmbH">
+//   Part of: Pun Cockpit
+// </copyright>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine.UI;
+
+namespace Photon.Pun.Demo.Cockpit
+{
+    /// <summary>
+	/// PhotonNetwork.IsConnectedAndReady UI property
+    /// </summary>
+	public class IsConnectedAndReadyProperty : PropertyListenerBase
+    {
+
+        public Text Text;
+
+        int _cache = -1;
+
+        void Update()
+        {
+
+			if ((PhotonNetwork.IsConnectedAndReady && _cache != 1) || (!PhotonNetwork.IsConnectedAndReady && _cache != 0))
+            {
+				_cache = PhotonNetwork.IsConnectedAndReady ? 1 : 0;
+				Text.text = PhotonNetwork.IsConnectedAndReady ? "true" : "false";
+                this.OnValueChanged();
+            }
+        }
+    }
+}

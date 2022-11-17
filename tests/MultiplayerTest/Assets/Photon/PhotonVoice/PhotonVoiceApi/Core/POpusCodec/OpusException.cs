@@ -1,3 +1,27 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:20bf4ee4e91f0699d5abf8e17f23876e6b3daaf3df734a6b559c4a05d6615200
-size 612
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using POpusCodec.Enums;
+
+namespace POpusCodec
+{
+    public class OpusException : Exception
+    {
+        private OpusStatusCode _statusCode = OpusStatusCode.OK;
+
+        public OpusStatusCode StatusCode
+        {
+            get
+            {
+                return _statusCode;
+            }
+        }
+
+        public OpusException(OpusStatusCode statusCode, string message)
+            : base(message + " (" + statusCode + ")")
+        {
+            _statusCode = statusCode;
+        }
+    }
+}

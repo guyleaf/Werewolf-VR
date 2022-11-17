@@ -1,3 +1,4 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:fde94f73f962ce0e5036e95a5e426ff64ce0e0c489c05fe48d40ac50411c0eba
-size 93
+fileFormatVersion: 2
+guid: cecd4a32eba31cd4393c185e20824bfc
+TextScriptImporter:
+  userData: 

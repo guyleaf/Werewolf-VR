@@ -1,3 +1,44 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f5310919f53ffac2328b68f3bb7f104f710dd8f5c869b2d95f301e65d17fd004
-size 1478
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CurrentRoomAutoCleanupProperty.cs" company="Exit Games GmbH">
+//   Part of: Pun Cockpit
+// </copyright>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine.UI;
+
+namespace Photon.Pun.Demo.Cockpit
+{
+    /// <summary>
+    /// PhotonNetwork.CurrentRoom.AutoCleanUp UI property.
+    /// </summary>
+    public class CurrentRoomAutoCleanupProperty : PropertyListenerBase
+    {
+
+        public Text Text;
+
+        int _cache = -1;
+
+        void Update()
+        {
+
+            if (PhotonNetwork.CurrentRoom != null && PhotonNetwork.CurrentRoom.AutoCleanUp)
+            {
+                if ((PhotonNetwork.CurrentRoom.AutoCleanUp && _cache != 1) || (!PhotonNetwork.CurrentRoom.AutoCleanUp && _cache != 0))
+                {
+                    _cache = PhotonNetwork.CurrentRoom.AutoCleanUp ? 1 : 0;
+                    Text.text = PhotonNetwork.CurrentRoom.AutoCleanUp ? "true" : "false";
+                    this.OnValueChanged();
+                }
+            }
+            else
+            {
+                if (_cache != -1)
+                {
+                    _cache = -1;
+                    Text.text = "n/a";
+                }
+            }
+        }
+    }
+}
