@@ -1,3 +1,12 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:902aa9dd0495448c3ec4408f1c773a064967ba4e9e110c89fc553fdc03ec85cf
-size 256
+﻿#ifndef AVATAR_TEXTURED_ALBEDO_CGINC
+#define AVATAR_TEXTURED_ALBEDO_CGINC
+
+half3 TexturedAlbedo(half4 mainTex, half3 vertColor, half3 color) {
+#ifdef MATERIAL_MODE_TEXTURE
+  return mainTex.rgb * color;
+#else
+  return vertColor * color;
+#endif
+}
+
+#endif

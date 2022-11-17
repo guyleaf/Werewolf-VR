@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1bdbb0531eb94ed2e59d69e734d368e4131b246ff5aab9f4945b864106900103
-size 310
+﻿#ifndef AVATAR_TEXTURED_PROPERTIES_CGINC
+#define AVATAR_TEXTURED_PROPERTIES_CGINC
+
+#include "../AvatarCommon/AvatarCommonProperties.cginc"
+#include "../AvatarCommon/AvatarPrimaryColorProperty.cginc"
+#include "../AvatarCommon/AvatarMainTex.cginc"
+#include "../AvatarCommon/AvatarPropertiesMap.cginc"
+
+#endif

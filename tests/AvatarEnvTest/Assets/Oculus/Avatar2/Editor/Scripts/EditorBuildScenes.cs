@@ -1,3 +1,30 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e77fc373893726a30658442e90ad7ffc9af2626bb9b06094d9fd2bee98205074
-size 765
+using System.Collections.Generic;
+using UnityEditor;
+
+namespace Oculus.Avatar2
+{
+    public static class EditorBuildScenes
+    {
+        public static List<string> OverrideScenes { get; } = new List<string>();
+
+        public static string[] GetBuildScenes()
+        {
+            if (OverrideScenes.Count > 0)
+            {
+                return OverrideScenes.ToArray();
+            }
+
+            // Fall back to scenes from build settings
+            var buildScenes = new List<string>();
+            foreach (var scene in EditorBuildSettings.scenes)
+            {
+                if (scene.enabled)
+                {
+                    buildScenes.Add(scene.path);
+                }
+            }
+
+            return buildScenes.ToArray();
+        }
+    }
+}

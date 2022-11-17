@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4762222beee0ef062de49ef72a9f298ced59ebcfb0a9226095cdfba7681ea507
-size 370
+﻿#ifndef AVATAR_SKIN_SURFACE_FUNCTIONS_CGINC
+#define AVATAR_SKIN_SURFACE_FUNCTIONS_CGINC
+
+#if defined(_LIGHTING_SYSTEM_VERTEX_GI) || defined (_LIGHTING_SYSTEM_UNITY)
+
+    // Utilities
+    #define SURFACE_ADDITIONAL_FIELDS_SKIN \
+        half Thickness; \
+        half BacklightScale; \
+        half3 TranslucencyColor; \
+        half3 BacklightColor;
+
+#endif
+
+
+#endif

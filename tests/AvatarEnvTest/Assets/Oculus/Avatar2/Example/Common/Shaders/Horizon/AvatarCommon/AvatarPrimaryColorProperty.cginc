@@ -1,3 +1,22 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5aff773368ec4fcf33cdb1b2f38df8173b598cb522ccebacef1c64ca3f7ca69b
-size 434
+﻿#ifndef AVATAR_PRIMARY_COLOR_PROPERTY_CGINC
+#define AVATAR_PRIMARY_COLOR_PROPERTY_CGINC
+
+// A color parameter as individual color or array of colors
+
+#if defined(AVATAR_SHADER_COLOR_ARRAY)
+  half3 _ColorArray[16];
+
+  half3 GetPrimaryColor(uint index) {
+    return _ColorArray[index];
+  }
+#else
+  #if !defined(_LIGHTING_SYSTEM_VERTEX_GI)
+    half3 _Color;
+  #endif
+
+  half3 GetPrimaryColor() {
+    return _Color;
+  }
+#endif
+
+#endif

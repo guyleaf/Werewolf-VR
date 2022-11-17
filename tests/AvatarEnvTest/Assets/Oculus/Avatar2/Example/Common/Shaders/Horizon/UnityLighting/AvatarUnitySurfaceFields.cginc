@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:35560d1dc2ae28275b2ce060b7708be97737744ee98868d7dbb3ee0ca993fe0c
-size 601
+﻿#ifndef AVATAR_UNITY_SURFACE_FIELDS_CGINC
+#define AVATAR_UNITY_SURFACE_FIELDS_CGINC
+
+#include "../AvatarCommon/AvatarShaderMacros.cginc"
+
+// These are all fields which are required by the Unity lighting scheme, NOT ones
+// that are required by different shaders.
+
+#define AVATAR_SHADER_UNITY_SURFACE_REQUIRED_FIELDS \
+    AVATAR_SHADER_SURFACE_SMOOTHNESS_FIELD_DECLARATION \
+    AVATAR_SHADER_SURFACE_NORMAL_FIELD_DECLARATION \
+    AVATAR_SHADER_SURFACE_ALBEDO_FIELD_DECLARATION \
+    AVATAR_SHADER_SURFACE_METALLIC_FIELD_DECLARATION \
+    AVATAR_SHADER_SURFACE_OCCLUSION_FIELD_DECLARATION
+
+#endif

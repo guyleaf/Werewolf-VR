@@ -1,3 +1,33 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:6f6b6e4d797f277446f7da8d7b5060e0e1465483f319d6e5fc98dee8c49ea898
-size 803
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+namespace Oculus.Skinning
+{
+    public class OvrHandleGenerator
+    {
+        public OvrHandleGenerator()
+        {
+            _freeHandles = new HashSet<OvrSkinningTypes.Handle>();
+            _maxHandleValSeen = -1;
+        }
+
+        public OvrSkinningTypes.Handle GetHandle()
+        {
+            if (_freeHandles.Count == 0)
+            {
+                return new OvrSkinningTypes.Handle(++_maxHandleValSeen);
+            }
+
+            return _freeHandles.First();
+        }
+
+        public void ReleaseHandle(OvrSkinningTypes.Handle handle)
+        {
+            _freeHandles.Add(handle);
+        }
+
+        private readonly HashSet<OvrSkinningTypes.Handle> _freeHandles;
+        private int _maxHandleValSeen;
+    }
+}

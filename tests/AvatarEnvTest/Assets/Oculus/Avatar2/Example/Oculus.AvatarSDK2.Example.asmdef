@@ -1,3 +1,29 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:11d8d9d688855c22f6a5e6248ff3add4232cf214d7d7ce644efb0a193cc63512
-size 723
+{
+    "name": "Oculus.AvatarSDK2.Example",
+    "rootNamespace": "",
+    "references": [
+        "Oculus.AvatarSDK2",
+        "Oculus.Platform",
+        "Oculus.VR"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.xr.management",
+            "expression": "",
+            "define": "USING_XR_MANAGEMENT"
+        },
+        {
+            "name": "com.unity.xr.oculus",
+            "expression": "",
+            "define": "USING_XR_SDK_OCULUS"
+        }
+    ],
+    "noEngineReferences": false
+}

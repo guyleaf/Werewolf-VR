@@ -1,3 +1,8 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7b12f0252d8bffbab6110fafa982f55b4029cf893f36acf7a8f1ffffc1adfc19
-size 206
+﻿#ifndef AVATAR_HAIR_ALBEDO_CGINC
+#define AVATAR_HAIR_ALBEDO_CGINC
+
+half3 HairAlbedo(half4 mainTex, half3 color, half3 secondaryColor) {
+  return lerp(color.rgb, secondaryColor.rgb, mainTex.r);
+}
+
+#endif

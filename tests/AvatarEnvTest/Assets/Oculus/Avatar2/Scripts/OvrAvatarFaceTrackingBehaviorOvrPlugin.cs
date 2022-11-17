@@ -1,3 +1,42 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:55d6fd132f5d9c8658cf8d4706d6a3512840ca4b970c092126782031d9298a16
-size 1311
+using Oculus.Avatar2;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Android;
+
+namespace Oculus.Avatar2
+{
+    /// <summary>
+    /// FaceTracking behavior that enables face tracking through OVRPlugin.
+    /// </summary>
+    public class OvrAvatarFaceTrackingBehaviorOvrPlugin : OvrAvatarFacePoseBehavior
+    {
+        private OvrAvatarFacePoseProviderBase _facePoseProvider;
+
+        public override OvrAvatarFacePoseProviderBase FacePoseProvider
+        {
+            get
+            {
+                InitializeFacePoseProvider();
+
+                return _facePoseProvider;
+            }
+        }
+
+        private void InitializeFacePoseProvider()
+        {
+            if (_facePoseProvider == null && OvrAvatarManager.Instance != null)
+            {
+                OvrAvatarManager.Instance.RequestFaceTrackingPermission();
+                if (OvrAvatarManager.Instance.OvrPluginFacePoseProvider != null)
+                {
+                    OvrAvatarLog.LogInfo("Face tracking service available");
+                    _facePoseProvider = OvrAvatarManager.Instance.OvrPluginFacePoseProvider;
+                }
+                else
+                {
+                    OvrAvatarLog.LogWarning("Face tracking service unavailable");
+                }
+            }
+        }
+    }
+}

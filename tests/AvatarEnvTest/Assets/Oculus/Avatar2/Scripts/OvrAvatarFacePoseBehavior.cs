@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:82a439ff7ee5d406e60eb4da8b6b46d87689619a920bd6faa033b95661d952b3
-size 366
+using Oculus.Avatar2;
+using UnityEngine;
+
+namespace Oculus.Avatar2
+{
+    /// <summary>
+    /// MonoBehavior which holds a face tracking context so it can be referenced in the inspector
+    /// </summary>
+    public abstract class OvrAvatarFacePoseBehavior : MonoBehaviour
+    {
+        public abstract OvrAvatarFacePoseProviderBase FacePoseProvider { get; }
+    }
+}

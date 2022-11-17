@@ -1,3 +1,21 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c0cdfb3d1166f9eb86720d93fa50579e484a70aba4e06b6975c8ddcabd31f608
-size 660
+﻿#ifndef AVATAR_SKIN_PROPERTIES_CGINC
+#define AVATAR_SKIN_PROPERTIES_CGINC
+
+#include "../AvatarCommon/AvatarCommonProperties.cginc"
+#include "../AvatarCommon/AvatarPrimaryColorProperty.cginc"
+#include "../AvatarCommon/AvatarSecondaryColorProperty.cginc"
+#include "../AvatarCommon/AvatarTertiaryColorProperty.cginc"
+#include "../AvatarCommon/AvatarMainTex.cginc"
+#include "../AvatarCommon/AvatarPropertiesMap.cginc"
+#include "../AvatarCommon/AvatarEffectsMap.cginc"
+
+//////////////////////////////
+// Skin Specific Properties //
+//////////////////////////////
+
+half _Distortion;
+half _TranslucencyPower;
+half _TranslucencyScale;
+half _BacklightScale;
+
+#endif

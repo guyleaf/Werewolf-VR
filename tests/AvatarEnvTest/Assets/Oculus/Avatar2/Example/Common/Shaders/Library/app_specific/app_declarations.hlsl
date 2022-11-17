@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:cad551447898fe9cb0fea614c99ec9506847d2aa450a9680a64be8d28d176996
-size 301
+// App specific declarations that have to happen before the exported Library shader
+// If your app needs its own declarations, rename this file with your app's name and place them here.
+// This file should persist across succesive integrations.
+
+// Keyword Definitions
+
+// Scoped Variables (Uniforms)

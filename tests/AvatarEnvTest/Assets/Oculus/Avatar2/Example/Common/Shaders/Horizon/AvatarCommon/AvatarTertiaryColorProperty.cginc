@@ -1,3 +1,18 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0198f66b25f6eb559129773232f8a68ae2d2703fa3bbf8647b9e5d6fdb327239
-size 383
+﻿#ifndef AVATAR_TERTIARY_COLOR_PROPERTY_CGINC
+#define AVATAR_TERTIARY_COLOR_PROPERTY_CGINC
+
+#if defined(AVATAR_SHADER_TERTIARY_COLOR_ARRAY)
+    half4 _TertiaryColorArray[16];
+
+    half4 GetTertiaryColor(int index) {
+        return _TertiaryColorArray[index];
+    }
+#else
+    half4 _TertiaryColor;
+
+    half4 GetTertiaryColor() {
+        return _TertiaryColor;
+    }
+#endif
+
+#endif

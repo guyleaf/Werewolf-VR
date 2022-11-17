@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2b0a3fcf39cc0bc6473e9bb5b5e6a3c67eda287b7171f0cf1006fb56196364e0
-size 358
+using Oculus.Avatar2;
+using UnityEngine;
+
+namespace Oculus.Avatar2
+{
+    /// <summary>
+    /// MonoBehavior which holds a eye pose context so it can be referenced in the inspector
+    /// </summary>
+    public abstract class OvrAvatarEyePoseBehavior : MonoBehaviour
+    {
+        public abstract OvrAvatarEyePoseProviderBase EyePoseProvider { get; }
+    }
+}

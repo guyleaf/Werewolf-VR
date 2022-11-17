@@ -1,3 +1,12 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a5df1ccf6b1428dd0d99a03e0003ee7ce9db4f1c04e4f873fd9cdb57fa46e5a6
-size 372
+﻿#ifndef AVATAR_EYE_ALBEDO_CGINC
+#define AVATAR_EYE_ALBEDO_CGINC
+
+// Albedo function for eyes is the same as for textured component, so
+// just import that file here and call the function
+#include "../AvatarTextured/AvatarTexturedAlbedo.cginc"
+
+half3 EyeAlbedo(half4 mainTex, half3 vertColor, half3 color) {
+  return TexturedAlbedo(mainTex, vertColor, color);
+}
+
+#endif

@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f00eb9b68f24f7eeb8fdcd13f7d4f1e1d711939704354d7bceff3afac76d9edb
-size 933
+
+      #ifdef SUN_LIGHT_MODE1
+        #define DIRECTIONAL_LIGHT 1    // directional light activates three components: ability to have shader, color of diffuse light, specualar highlight
+      #endif
+      #ifdef SUN_LIGHT_MODE2
+        #define DIRECTIONAL_LIGHT 1    // directional light activates three components: ability to have shader, color of diffuse light, specualar highlight
+        #define SHADOWMAP_STATIC_VSM 1 // use variance shadow mapping for the environment/static shadow
+      #endif
+      #ifdef SUN_LIGHT_MODE3
+        #define DIRECTIONAL_LIGHT 1    // directional light activates three components: ability to have shader, color of diffuse light, specualar highlight
+        #define SHADOWMAP_STATIC_VSM 1 // use variance shadow mapping for the environment/static shadow
+        #define DYNAMIC_SHADOWS 1      // take a seperate sample to combine the shadows of dynamic objects with the static shadows
+      #endif

@@ -1,3 +1,20 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c26170b77609ff1b99587038ca886215d26e45e8d6acbae6ebb5e73ce2bc5c20
-size 655
+namespace Oculus.Avatar2
+{
+    /**
+     * Base class for setting input controls on an avatar entity.
+     */
+    public abstract class OvrAvatarInputControlDelegate : IOvrAvatarInputControlDelegate
+    {
+        public abstract bool GetInputControlState(out OvrAvatarInputControlState inputControlState);
+
+        /**
+         * Gets the controller type.
+         * @returns which type of controller being used (Rift, Touch, etc._)
+         * @see CAPI.ovrAvatar2ControllerType
+         */
+        protected virtual CAPI.ovrAvatar2ControllerType GetControllerType()
+        {
+            return OvrAvatarManager.Instance.ControllerType;
+        }
+    }
+}

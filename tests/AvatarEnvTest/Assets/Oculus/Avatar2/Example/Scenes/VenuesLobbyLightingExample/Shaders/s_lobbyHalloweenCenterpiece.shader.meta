@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:407e7689b2a73b91a3ceb2541beecc5b1d03e1a5404385eba641795af0905ef7
-size 311
+fileFormatVersion: 2
+guid: f652a252ca50345e68c98404003292fc
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _hallwayCenterpieceHalloween_bc: {fileID: 2800000, guid: 765eb242ebe51234f85fcf1ce015d038,
+      type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

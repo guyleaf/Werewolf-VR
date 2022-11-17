@@ -1,3 +1,27 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2268042ea62f73beb1e6af5268cc0c1b23c7b979e90d008d5e29e8a94964d975
-size 878
+﻿#ifndef AVATAR_EYE_INTERPOLATORS_CGINC
+#define AVATAR_EYE_INTERPOLATORS_CGINC
+
+#include "AvatarEyeProperties.cginc"
+
+////////////////////////////////
+// Eye Specific Interpolators //
+////////////////////////////////
+
+float2 GetNormalizedUVForEye(float2 origNormalizedUVs, float right, float up) {
+    float2 center = float2(0.5f, 0.5f);
+    float2 newUVs = (origNormalizedUVs - center) * _UVScale + center + float2(right, up);
+
+    // Explicitly do a a clamp here in case of atlassed textures, textured mode of clamp
+    // will be insufficient
+    return saturate(newUVs);
+}
+
+float2 GetNormalizedUVForLeftEye(float2 origNormalizedUVs) {
+    return GetNormalizedUVForEye(origNormalizedUVs, _LeftEyeRight, _LeftEyeUp);
+}
+
+float2 GetNormalizedUVForRightEye(float2 origNormalizedUVs) {
+    return GetNormalizedUVForEye(origNormalizedUVs, _RightEyeRight, _RightEyeUp);
+}
+
+#endif

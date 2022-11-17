@@ -1,3 +1,42 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9d8fe9598d0d59fd92642d9f38b983406ff0576c38c5ec7eb45f1a257fb2a053
-size 936
+using System;
+using System.Collections.Generic;
+
+
+namespace Oculus.Avatar2 {
+  public class AvatarLODActionGroup : AvatarLODGroup {
+    private List<Action> actions_ = new List<Action>();
+
+    public Action outOfRangeAction = null;
+
+    public List<Action> Actions {
+      //Lambdas
+      set {
+        this.actions_ = value;
+        count = actions_.Count;
+        ResetLODGroup();
+      }
+    }
+
+    public void AddAction(Action action) {
+      this.actions_.Add(action);
+      count = actions_.Count;
+      ResetLODGroup();
+    }
+
+    public override void ResetLODGroup() {
+      UpdateAdjustedLevel();
+      UpdateLODGroup();
+    }
+
+    public override void UpdateLODGroup() {
+      if (adjustedLevel_ == -1) {
+        outOfRangeAction?.Invoke();
+      } else if(adjustedLevel_ < actions_.Count) {
+        actions_[adjustedLevel_]?.Invoke();
+      }
+
+      prevLevel_ = Level;
+      prevAdjustedLevel_ = adjustedLevel_;
+    }
+  }
+}
