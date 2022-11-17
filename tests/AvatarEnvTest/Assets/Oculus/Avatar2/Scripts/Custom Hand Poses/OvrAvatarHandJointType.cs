@@ -1,3 +1,38 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:efcd49f4a0f8b153d753339d4676f8c2db1cea298e72335440fdf0594bc79534
-size 776
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Oculus.Avatar2;
+using UnityEngine;
+
+public class OvrAvatarHandJointType : MonoBehaviour
+{
+    public enum HandJointType : Int32 {
+        Invalid = -1,
+            
+        Wrist = 0,
+        ThumbTrapezium,
+        ThumbMeta,
+        ThumbProximal,
+        ThumbDistal,
+        IndexMeta,
+        IndexProximal,
+        IndexIntermediate,
+        IndexDistal,
+        MiddleMeta,
+        MiddleProximal,
+        MiddleIntermediate,
+        MiddleDistal,
+        RingMeta,
+        RingProximal,
+        RingIntermediate,
+        RingDistal,
+        PinkyMeta,
+        PinkyProximal,
+        PinkyIntermediate,
+        PinkyDistal,
+
+        Count,
+    }
+    
+    public HandJointType jointType;
+}

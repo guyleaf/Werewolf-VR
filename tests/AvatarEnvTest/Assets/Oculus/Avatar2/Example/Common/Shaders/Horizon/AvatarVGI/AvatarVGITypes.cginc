@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:105d2f3e57f00026fed5cedcd4c1ce110e64aa384440970ad2e7c386b5e5c9cd
-size 455
+#ifndef AVATAR_VGI_TYPES_CGINC
+#define AVATAR_VGI_TYPES_CGINC
+
+#define ALPHA_MATERIAL 1
+
+#include "Horizon/VertexGI/Interface.cginc"
+
+#define AVATAR_VGI_V2F_ADDITIONAL_SEMANTICS(idx1, idx2) \
+    float4 propertiesMapUV : TEXCOORD##idx1; \
+    float4 effectsMapUV : TEXCOORD##idx2;
+
+struct v2f {
+    VGI_V2F_ATTRIBUTES
+    AVATAR_VGI_V2F_ADDITIONAL_SEMANTICS(VGI_V2F_NEXT_AVAILABLE_TEXCOORD_SEMANTIC, VGI_V2F_SECOND_AVAILABLE_TEXCOORD_SEMANTIC)
+};
+
+#endif

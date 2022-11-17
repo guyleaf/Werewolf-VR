@@ -1,3 +1,27 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:01ebf037298a152c1527660ea4151138434ac55303185a3357ff8e5bb9ca511e
-size 616
+﻿#ifndef AVATAR_PROPERTIES_MAP_CGINC
+#define AVATAR_PROPERTIES_MAP_CGINC
+
+#include "UnityCG.cginc"
+
+
+#ifdef MATERIAL_MODE_TEXTURE
+#if defined(AVATAR_SHADER_PROPERTIES_MAP_ARRAY)
+  UNITY_DECLARE_TEX2DARRAY(_PropertiesMapArray);
+
+  half4 SamplePropertiesMap(float3 coords, half4 vertORMT) {
+    return UNITY_SAMPLE_TEX2DARRAY(_PropertiesMapArray, coords);
+  }
+#else
+  sampler2D _PropertiesMap;
+
+  half4 SamplePropertiesMap(float2 coords, half4 vertORMT) {
+    return tex2D(_PropertiesMap, coords);
+  }
+#endif
+#else
+  half4 SamplePropertiesMap(float2 coords, half4 vertORMT) {
+    return vertORMT;
+  }
+#endif
+
+#endif

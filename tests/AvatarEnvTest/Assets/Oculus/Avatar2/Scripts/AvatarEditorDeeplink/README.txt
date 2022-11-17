@@ -1,3 +1,4 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d8de25cab1522eb4bde83ede887410d77bff582b36fd87c4b9acd682f059afd6
-size 370
+The DLLs in this folder are only used for Avatar Editor Deeplinking. If you do not plan to open the avatar editor from your app, follow these steps to remove the dlls from your builds:
+1) Add DISABLE_IPC_CONNECTOR to your Scripting Define Symbols
+2) Remove all calls to AvatarEditorDeeplink.LaunchAvatarEditor()
+3) Delete the AvatarEditorDeeplink folder and its contents

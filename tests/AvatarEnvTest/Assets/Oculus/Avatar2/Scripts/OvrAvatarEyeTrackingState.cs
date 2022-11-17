@@ -1,3 +1,30 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:33d02bf6c32fa2f90610fe603b310aa6460f3886d741774bda329f5e4066d068
-size 760
+using System;
+using UnityEngine;
+
+namespace Oculus.Avatar2
+{
+    /// <summary>
+    /// Data needed to drive eye tracking of an avatar.
+    /// </summary>
+    public sealed class OvrAvatarEyesPose
+    {
+        public CAPI.ovrAvatar2EyePose leftEye;
+        public CAPI.ovrAvatar2EyePose rightEye;
+
+        #region Native Conversions
+        internal CAPI.ovrAvatar2EyesPose ToNative()
+        {
+            var native = new CAPI.ovrAvatar2EyesPose();
+            native.leftEye = leftEye;
+            native.rightEye = rightEye;
+            return native;
+        }
+
+        internal void FromNative(in CAPI.ovrAvatar2EyesPose native)
+        {
+            leftEye = native.leftEye;
+            rightEye = native.rightEye;
+        }
+        #endregion
+    }
+}

@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c88f7604160fc4b048637c186c49f3d7768d525169d1c8a1ea4ad195c8fc34d3
-size 243
+fileFormatVersion: 2
+guid: 15f572e349a760b40ada55f6fbea376d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,3 +1,24 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:85169e9202801e60de05a8645796ab85aeb1d94d584a67975efe7b78761dcc40
-size 887
+using System;
+
+using Oculus.Avatar2;
+
+using Unity.Collections;
+
+using UnityEngine;
+using UnityEngine.Experimental.Rendering;
+
+namespace Oculus.Skinning.GpuSkinning
+{
+    internal abstract class IOvrGpuSkinner
+    {
+        public abstract GraphicsFormat GetOutputTexGraphicFormat();
+        public abstract RenderTexture GetOutputTex();
+        public abstract CAPI.ovrTextureLayoutResult GetLayoutInOutputTex(OvrSkinningTypes.Handle handle);
+        public abstract void EnableBlockToRender(OvrSkinningTypes.Handle handle, SkinningOutputFrame outputFrame);
+        public abstract void UpdateOutputTexture();
+        public abstract bool HasJoints { get; }
+        public abstract OvrAvatarGpuSkinningController ParentController { get; set; }
+        public abstract IntPtr GetJointTransformMatricesArray(OvrSkinningTypes.Handle handle);
+        public abstract void Destroy();
+    }
+}

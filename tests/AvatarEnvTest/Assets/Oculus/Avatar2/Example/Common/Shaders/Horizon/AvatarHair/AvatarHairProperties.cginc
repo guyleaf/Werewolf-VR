@@ -1,3 +1,10 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:928514d7ab48e461250d924f1d9882e91753de27a22e6ac40df11dc81e1f801c
-size 367
+﻿#ifndef AVATAR_HAIR_PROPERTIES_CGINC
+#define AVATAR_HAIR_PROPERTIES_CGINC
+
+#include "../AvatarCommon/AvatarCommonProperties.cginc"
+#include "../AvatarCommon/AvatarPrimaryColorProperty.cginc"
+#include "../AvatarCommon/AvatarSecondaryColorProperty.cginc"
+#include "../AvatarCommon/AvatarEffectsMap.cginc"
+#include "../AvatarCommon/AvatarPropertiesMap.cginc"
+
+#endif

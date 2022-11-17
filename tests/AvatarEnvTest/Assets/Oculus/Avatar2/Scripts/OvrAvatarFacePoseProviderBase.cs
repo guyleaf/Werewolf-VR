@@ -1,3 +1,52 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:85d0f4388b30524c1d54c8811847a8dc7a90d02043df3d787e4793957d7e25b0
-size 1651
+using System;
+using AOT;
+
+namespace Oculus.Avatar2
+{
+    /// <summary>
+    /// Base class for C# code to supply face pose data for avatar entities
+    /// </summary>
+    public abstract class OvrAvatarFacePoseProviderBase : OvrAvatarCallbackContextBase
+    {
+        private readonly OvrAvatarFacePose _facePose = new OvrAvatarFacePose();
+        internal CAPI.ovrAvatar2FacePoseProvider Provider { get; }
+
+        protected OvrAvatarFacePoseProviderBase()
+        {
+            var provider = new CAPI.ovrAvatar2FacePoseProvider
+            {
+                provider = new IntPtr(id),
+                facePoseCallback = FacePoseCallback
+            };
+            Provider = provider;
+        }
+
+        protected abstract bool GetFacePose(OvrAvatarFacePose facePose);
+
+        [MonoPInvokeCallback(typeof(CAPI.FacePoseCallback))]
+        private static bool FacePoseCallback(out CAPI.ovrAvatar2FacePose facePose, IntPtr userContext)
+        {
+            try
+            {
+                var provider = GetInstance<OvrAvatarFacePoseProviderBase>(userContext);
+                if (provider != null)
+                {
+                    if (provider.GetFacePose(provider._facePose))
+                    {
+                        facePose = provider._facePose.ToNative();
+                        return true;
+                    }
+                    facePose = new CAPI.ovrAvatar2FacePose();
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                OvrAvatarLog.LogError(e.ToString());
+            }
+
+            facePose = default;
+            return false;
+        }
+    }
+}

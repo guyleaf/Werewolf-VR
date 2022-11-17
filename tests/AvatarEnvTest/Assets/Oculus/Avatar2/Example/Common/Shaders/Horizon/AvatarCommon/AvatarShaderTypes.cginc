@@ -1,3 +1,36 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:6cb1a201aab8c267043d77a521c68f7499d9d4aff61ec25e5139f092e1607b71
-size 672
+﻿#ifndef AVATAR_SHADER_TYPES_CGINC
+#define AVATAR_SHADER_TYPES_CGINC
+
+#include "UnityInstancing.cginc"
+#include "UnityCG.cginc"
+
+struct AvatarShaderLight {
+    half3 direction;
+    half3 color;
+};
+
+struct AvatarShaderIndirect {
+    half3 diffuse;
+    half3 specular;
+};
+
+struct AvatarShaderGlobalIllumination {
+    AvatarShaderLight light;
+    AvatarShaderIndirect indirect;
+};
+
+#if defined(_LIGHTING_SYSTEM_VERTEX_GI)
+
+    #include "../AvatarVGI/AvatarVGITypes.cginc"
+
+#elif defined(_LIGHTING_SYSTEM_UNITY)
+
+    #include "../UnityLighting/AvatarUnityLightingTypes.cginc"
+
+#elif defined(_LIGHTING_SYSTEM_UNLIT)
+
+     #include "../Unlit/UnlitTypes.cginc"
+
+#endif
+
+#endif

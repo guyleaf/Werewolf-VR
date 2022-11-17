@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7516358d43ce1bf8a770f45f0d1968e6893171cec71c8188ab1c85787ebd98b9
-size 486
+using System.Collections.Generic;
+
+namespace Oculus.Skinning.GpuSkinning
+{
+    internal enum SkinningOutputFrame { FrameZero, FrameOne, FrameTwo }
+
+    internal interface IOvrGpuSkinnerDrawCall
+    {
+        bool EnableBlock(OvrSkinningTypes.Handle handle, SkinningOutputFrame writeDest);
+        void RemoveBlock(OvrSkinningTypes.Handle handle);
+
+        bool NeedsDraw(SkinningOutputFrame writeDest);
+        void Draw(SkinningOutputFrame writeDest);
+
+        void Destroy();
+    }
+}

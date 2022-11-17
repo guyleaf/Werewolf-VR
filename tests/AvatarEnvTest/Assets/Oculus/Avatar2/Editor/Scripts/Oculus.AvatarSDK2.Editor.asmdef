@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a3fccb3bcdbb3cbb8e9e72ed9852e85c780258736394bd15443f6945979e8ba4
-size 400
+{
+    "name": "Oculus.AvatarSDK2.Editor",
+    "references": [
+        "Oculus.AvatarSDK2",
+        "Oculus.AvatarSDK2.Example"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
