@@ -1,3 +1,38 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2c7198ade8c11126532406b30d6bfca62dd7c792b5b16757887885e45ea03855
-size 997
+using Photon.Pun;
+
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+namespace Leaf.PhotonTutorial
+{
+    public class GameManager : MonoBehaviourPunCallbacks
+    {
+        #region public functions
+        public void LeaveRoom()
+        {
+            PhotonNetwork.LeaveRoom();
+        }
+        #endregion
+
+        #region photon functions
+        public override void OnLeftRoom()
+        {
+            SceneManager.LoadScene(0);
+        }
+        #endregion
+
+        #region private functions & variables
+        private void LoadArena()
+        {
+            if (!PhotonNetwork.IsMasterClient)
+            {
+                Debug.LogError("PhotonNetwork : Trying to Load a level but we are not the master Client");
+                return;
+            }
+
+            Debug.LogFormat("PhotonNetwork : Loading Level : {0}", PhotonNetwork.CurrentRoom.PlayerCount);
+            PhotonNetwork.LoadLevel("Room for " + PhotonNetwork.CurrentRoom.PlayerCount);
+        }
+        #endregion
+    }
+}
