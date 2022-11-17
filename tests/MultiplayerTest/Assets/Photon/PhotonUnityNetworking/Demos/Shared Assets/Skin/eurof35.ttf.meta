@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0dfb6c8a4626efc1564ee9c84fe53789e979001cd4c6f111e08499ca9c6053c9
-size 286
+fileFormatVersion: 2
+guid: 954746d370bc8934299c8c8267543f4f
+TrueTypeFontImporter:
+  serializedVersion: 2
+  fontSize: 16
+  fontColor: {r: 1, g: 1, b: 1, a: 1}
+  forceTextureCase: -2
+  renderMode: 0
+  style: 0
+  includeFontData: 1
+  use2xBehaviour: 0
+  fontNames: []
+  customCharacters: 

@@ -1,3 +1,31 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7fd7a413fbd9c28b8efc11846b46d7e2c79d6ab68d19481b077dabdb6d436024
-size 1016
+﻿// --------------------------------------------------------------------------------
+// <copyright file="TestTone.cs" company="Exit Games GmbH">
+//   Part of: Photon Voice Utilities for Unity - Copyright (C) 2018 Exit Games GmbH
+// </copyright>
+// <summary>
+// This MonoBehaviour is a sample demo of how to use AudioSource.Factory
+// by implementing IAudioReader.
+// </summary>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------
+
+using System;
+using UnityEngine;
+
+namespace Photon.Voice.Unity.UtilityScripts
+{
+    [RequireComponent(typeof(Recorder))]
+    public class TestTone : MonoBehaviour
+    {
+        private void Start()
+        {
+            Recorder rec = this.gameObject.GetComponent<Recorder>();
+            rec.SourceType = Recorder.InputSourceType.Factory;
+            rec.InputFactory = () =>
+            {
+                return new AudioUtil.ToneAudioReader<float>(null, 440, 24000, 1);
+            };
+        }
+    }
+}
+

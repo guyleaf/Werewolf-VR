@@ -1,3 +1,47 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9d498c3d9001b650914f2e59a6f554f9f3d4a544d282e5164092ce1fcb09d07a
-size 1356
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SetRoomCustomPropertyUIForm.cs" company="Exit Games GmbH">
+//   Part of: Pun Cockpit Demo
+// </copyright>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System.Collections;
+
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
+
+namespace Photon.Pun.Demo.Cockpit.Forms
+{
+    /// <summary>
+    /// Room custom properties UI Form.
+    /// </summary>
+    public class SetRoomCustomPropertyUIForm : MonoBehaviour
+    {
+        public InputField PropertyValueInput;
+
+        [System.Serializable]
+        public class OnSubmitEvent : UnityEvent<string> { }
+
+        public OnSubmitEvent OnSubmit;
+
+        public void Start()
+        {
+
+        }
+
+        // new UI will fire "EndEdit" event also when loosing focus. So check "enter" key and only then StartChat.
+        public void EndEditOnEnter()
+        {
+            if (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter))
+            {
+                this.SubmitForm();
+            }
+        }
+
+        public void SubmitForm()
+        {
+            OnSubmit.Invoke(PropertyValueInput.text);
+        }
+    }
+}

@@ -1,3 +1,32 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ff299a1be4d8e242950d6be76cb3f3d48e290c33e239c9c64cf1ad6bc4a6419a
-size 1105
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="OnJoinedInstantiate.cs" company="Exit Games GmbH">
+//   Part of: Photon Unity Utilities, 
+// </copyright>
+// <summary>
+//  This component will quit the application when escape key is pressed
+// </summary>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine;
+using System.Collections;
+using System.Diagnostics;
+
+namespace Photon.Pun.UtilityScripts
+{
+    /// <summary>
+    /// This component will quit the application when escape key is pressed
+    /// </summary>
+    public class OnEscapeQuit : MonoBehaviour
+    {
+        [Conditional("UNITY_ANDROID"), Conditional("UNITY_IOS")]
+        public void Update()
+        {
+            // "back" button of phone equals "Escape". quit app if that's pressed
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+        }
+    }
+}

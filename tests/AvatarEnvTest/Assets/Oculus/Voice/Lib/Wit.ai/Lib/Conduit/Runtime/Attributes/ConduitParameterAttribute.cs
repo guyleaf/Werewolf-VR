@@ -1,3 +1,33 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f47609a25cf318e72263de91b9af7256a9d576a1a903d5ce9f89d93e6d601d70
-size 1011
+﻿/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * This source code is licensed under the license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Meta.Conduit
+{
+    /// <summary>
+    /// Marks a parameter as a Conduit parameter to be supplied when the callback method is called.
+    /// This is not required, but allows the addition of more information about parameters to improve the quality of
+    /// intent recognition and entity resolution. 
+    /// </summary>
+    [AttributeUsage(System.AttributeTargets.Parameter)]
+    public class ConduitParameterAttribute : Attribute
+    {
+        public ConduitParameterAttribute(params string[] aliases)
+        {
+            this.Aliases = aliases.ToList();
+        }
+
+        /// <summary>
+        /// The names that refer to this parameter.
+        /// </summary>
+        public List<string> Aliases { get; }
+    }
+}

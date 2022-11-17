@@ -1,3 +1,22 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:404d8c840c0999af999bcc2479aa4509daa2aee76fe9727ccbbea240324358c5
-size 575
+/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * This source code is licensed under the license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+using System;
+using UnityEngine.Events;
+
+namespace Facebook.WitAi.CallbackHandlers
+{
+    [Serializable]
+    public class ConfidenceRange
+    {
+        public float minConfidence;
+        public float maxConfidence;
+        public UnityEvent onWithinConfidenceRange = new UnityEvent();
+        public UnityEvent onOutsideConfidenceRange = new UnityEvent();
+    }
+}

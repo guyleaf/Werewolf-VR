@@ -1,3 +1,18 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4573a9f2577e18e52cc1de5494da04807894a3e4bf3bfd4584c0741ba86a5f8e
-size 428
+Shader "GUI/3D Text Shader" { 
+	Properties {
+		_MainTex ("Font Texture", 2D) = "white" {}
+		_Color ("Text Color", Color) = (1,1,1,1)
+	}
+ 
+	SubShader {
+		Tags { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" }
+		Lighting Off Cull Off ZWrite Off Fog { Mode Off }
+		Blend SrcAlpha OneMinusSrcAlpha
+		Pass {
+			Color [_Color]
+			SetTexture [_MainTex] {
+				combine primary, texture * primary
+			}
+		}
+	}
+}

@@ -1,3 +1,70 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d3c023add98c624edd8fbaf28b926dbd369061465ac4bab0951c75f8f5f469ce
-size 1983
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SendRateField.cs" company="Exit Games GmbH">
+//   Part of: Pun Cockpit Demo
+// </copyright>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace Photon.Pun.Demo.Cockpit
+{
+    /// <summary>
+    /// PhotonNetwork.SendRate InputField.
+    /// </summary>
+    public class SendRateField : MonoBehaviour
+    {
+
+        public InputField PropertyValueInput;
+
+        int _cache;
+
+        bool registered;
+
+        void OnEnable()
+        {
+            if (!registered)
+            {
+                registered = true;
+                PropertyValueInput.onEndEdit.AddListener(OnEndEdit);
+            }
+        }
+
+        void OnDisable()
+        {
+            registered = false;
+            PropertyValueInput.onEndEdit.RemoveListener(OnEndEdit);
+        }
+
+        void Update()
+        {
+            if (PhotonNetwork.SendRate != _cache)
+            {
+                _cache = PhotonNetwork.SendRate;
+                PropertyValueInput.text = _cache.ToString();
+            }
+        }
+
+        // new UI will fire "EndEdit" event also when loosing focus. So check "enter" key and only then StartChat.
+        public void OnEndEdit(string value)
+        {
+            if (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetKey(KeyCode.Tab))
+            {
+                this.SubmitForm(value.Trim());
+            }
+            else
+            {
+                this.SubmitForm(value);
+            }
+
+        }
+
+        public void SubmitForm(string value)
+        {
+            _cache = int.Parse(value);
+            PhotonNetwork.SendRate = _cache;
+            //Debug.Log("PhotonNetwork.SendRate = " + PhotonNetwork.SendRate, this);
+        }
+    }
+}

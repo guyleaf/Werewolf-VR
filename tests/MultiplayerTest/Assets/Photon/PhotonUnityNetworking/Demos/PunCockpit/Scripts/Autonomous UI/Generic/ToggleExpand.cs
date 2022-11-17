@@ -1,3 +1,45 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9d5f23f4da6a9e17f149c6f252daed491fb47f2aed63fee57680eaa82c77e05c
-size 1121
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ToggleExpand.cs" company="Exit Games GmbH">
+//   Part of: Pun Cockpit Demo
+// </copyright>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace Photon.Pun.Demo.Cockpit
+{
+    /// <summary>
+    /// UI toggle to activate GameObject.
+    /// </summary>
+    public class ToggleExpand : MonoBehaviour
+    {
+        public GameObject Content;
+
+        public Toggle Toggle;
+
+        bool _init;
+
+        void OnEnable()
+        {
+            Content.SetActive(Toggle.isOn);
+
+            if (!_init)
+            {
+                _init = true;
+                Toggle.onValueChanged.AddListener(HandleToggleOnValudChanged);
+            }
+
+            HandleToggleOnValudChanged(Toggle.isOn);
+
+        }
+
+
+        void HandleToggleOnValudChanged(bool value)
+        {
+            Content.SetActive(value);
+        }
+
+    }
+}

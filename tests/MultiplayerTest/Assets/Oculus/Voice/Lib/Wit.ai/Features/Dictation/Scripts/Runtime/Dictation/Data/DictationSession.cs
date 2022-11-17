@@ -1,3 +1,30 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:44ee164e10b8f09457e732a00513a8e0e49b8001ecde219ecd03ddb92c1ef551
-size 818
+﻿/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * This source code is licensed under the license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+using System;
+using Facebook.WitAi.Data;
+
+namespace Facebook.WitAi.Dictation.Data
+{
+    [Serializable]
+    public class DictationSession : VoiceSession
+    {
+        /// <summary>
+        /// Dictation service being used
+        /// </summary>
+        public IDictationService dictationService;
+        /// <summary>
+        /// Collection of Request IDs generated from client for Wit requests
+        /// </summary>
+        public string[] clientRequestId;
+        /// <summary>
+        /// An identifier for the current dictation session
+        /// </summary>
+        public string sessionId;
+    }
+}

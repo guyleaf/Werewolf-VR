@@ -1,3 +1,12 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:39cf5e9c2d24e763d1eb9bdfa158ec157f1413b3d743621cd41a9a67b5398565
-size 495
+﻿using UnityEngine;
+
+namespace Photon.Voice.Unity
+{
+    public class Logger : ILogger
+    {
+        public void LogError(string fmt, params object[] args) { Debug.LogErrorFormat(fmt, args); }
+        public void LogWarning(string fmt, params object[] args) { Debug.LogWarningFormat(fmt, args); }
+        public void LogInfo(string fmt, params object[] args) { Debug.LogFormat(fmt, args); }
+        public void LogDebug(string fmt, params object[] args) { Debug.LogFormat(fmt, args); }
+    }
+}

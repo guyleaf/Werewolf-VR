@@ -1,3 +1,40 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:89ef6eeff17f80179eab45df88107067ecc5b27b51c1849f8fccd92c46ece235
-size 1121
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="LayoutElementMatchSize.cs" company="Exit Games GmbH">
+//   Part of: Pun Cockpit Demo
+// </copyright>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace Photon.Pun.Demo.Cockpit
+{
+    /// <summary>
+    /// Force a LayoutElement to march a RectTransform sizeDelta. Useful for complex child content 
+    /// </summary>
+    public class LayoutElementMatchSize : MonoBehaviour
+    {
+
+        public LayoutElement layoutElement;
+        public RectTransform Target;
+
+
+        public bool MatchHeight = true;
+        public bool MatchWidth;
+
+
+        void Update()
+        {
+
+            if (MatchHeight)
+            {
+                if (layoutElement.minHeight != Target.sizeDelta.y)
+                {
+                    layoutElement.minHeight = Target.sizeDelta.y;
+                }
+            }
+
+        }
+    }
+}

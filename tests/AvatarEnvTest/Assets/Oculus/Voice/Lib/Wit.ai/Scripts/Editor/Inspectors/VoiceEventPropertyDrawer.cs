@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a8dca35b8d4bacd2a8dbb444131231859a4f2113525124182f4dad0937dd923e
-size 411
+/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * This source code is licensed under the license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+using UnityEditor;
+
+namespace Facebook.WitAi.Events.Editor
+{
+    [CustomPropertyDrawer(typeof(VoiceEvents))]
+    public class VoiceEventPropertyDrawer : EventPropertyDrawer<VoiceEvents>
+    {
+    }
+}

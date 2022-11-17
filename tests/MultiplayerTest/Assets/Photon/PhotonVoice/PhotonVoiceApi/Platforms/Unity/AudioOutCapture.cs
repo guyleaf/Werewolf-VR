@@ -1,3 +1,18 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:eea803d35dd338fc8db85c5d716ac0e25a399948b668ff078d7cfc68e59567ce
-size 380
+﻿using UnityEngine;
+using System;
+
+namespace Photon.Voice.Unity
+{
+    public class AudioOutCapture : MonoBehaviour
+    {
+        public event Action<float[], int> OnAudioFrame;
+
+        void OnAudioFilterRead(float[] frame, int channels)
+        {
+            if (OnAudioFrame != null)
+            {
+                OnAudioFrame(frame, channels);
+            }
+        }
+    }
+}

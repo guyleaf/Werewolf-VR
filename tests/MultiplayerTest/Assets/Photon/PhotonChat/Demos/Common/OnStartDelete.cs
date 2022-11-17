@@ -1,3 +1,24 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7442135beb9993e83b777c9c712d006719ac617a3bdcc1ea461f2579bd6bc906
-size 858
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="OnStartDelete.cs" company="Exit Games GmbH">
+//   Part of: Photon Unity Utilities, 
+// </copyright>
+// <summary>
+//  This component will destroy the GameObject it is attached to (in Start()).
+// </summary>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine;
+
+namespace Photon.Chat.UtilityScripts
+{
+    /// <summary>This component will destroy the GameObject it is attached to (in Start()).</summary>
+    public class OnStartDelete : MonoBehaviour
+    {
+        // Use this for initialization
+        private void Start()
+        {
+            Destroy(this.gameObject);
+        }
+    }
+}

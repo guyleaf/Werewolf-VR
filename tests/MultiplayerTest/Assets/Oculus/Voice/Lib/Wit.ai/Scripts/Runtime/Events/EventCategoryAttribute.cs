@@ -1,3 +1,22 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:9a96ea33e2431df951a9ffd91cf52cebb2682a1cfa0c5e1de58443e298db5d28
-size 494
+/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * This source code is licensed under the license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+using UnityEngine;
+
+namespace Facebook.WitAi.Events
+{
+    public class EventCategoryAttribute : PropertyAttribute
+    {
+        public readonly string Category;
+
+        public EventCategoryAttribute(string category = "")
+        {
+            Category = category;
+        }
+    }
+}

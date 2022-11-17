@@ -1,3 +1,21 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a54a4655c99a29110508125050d7a56bb73c7906728991690ababefc22a3a7a3
-size 530
+/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * This source code is licensed under the license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+namespace Facebook.WitAi.TTS.Data
+{
+    public abstract class TTSVoiceSettings
+    {
+        // Used for initial value
+        public const string DEFAULT_ID = "Default Voice";
+
+        /// <summary>
+        /// The unique voice settings id
+        /// </summary>
+        public string settingsID = DEFAULT_ID;
+    }
+}

@@ -1,3 +1,18 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d45bfe2115b1a884d77af90d0c77880bfb823516ae2e3ff19c9bea32ed1edf64
-size 424
+/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * This source code is licensed under the license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+namespace Facebook.WitAi.TTS.Editor.Voices
+{
+    public struct TTSWitVoiceData
+    {
+        public string name;
+        public string locale;
+        public string gender;
+        public string[] styles;
+    }
+}

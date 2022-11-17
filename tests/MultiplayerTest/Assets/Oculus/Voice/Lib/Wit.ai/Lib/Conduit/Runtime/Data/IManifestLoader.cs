@@ -1,3 +1,20 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:59c0c0ac52dcfd02fdffa19563b392ddcc3dc4f9e480ebf4b7426480536bfb34
-size 604
+﻿/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * This source code is licensed under the license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+namespace Meta.Conduit
+{
+    internal interface IManifestLoader
+    {
+        /// <summary>
+        /// Loads the manifest from file and into a <see cref="Manifest"/> structure.
+        /// </summary>
+        /// <param name="filePath">The path to the manifest file.</param>
+        /// <returns>The loaded manifest object.</returns>
+        Manifest LoadManifest(string filePath);
+    }
+}

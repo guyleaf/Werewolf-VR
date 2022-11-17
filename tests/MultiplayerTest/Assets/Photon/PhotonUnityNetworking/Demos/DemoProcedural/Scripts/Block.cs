@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7a05b926088598296efed016c43bc4104b0eaf1bb04162c05ffc69e39c7341ec
-size 415
+﻿using UnityEngine;
+
+namespace Photon.Pun.Demo.Procedural
+{
+    /// <summary>
+    /// The Block component is attach to each instantiated Block at runtime.
+    /// It provides the Block's ID as well as the parent's Cluster ID in order to apply modifications.
+    /// </summary>
+    public class Block : MonoBehaviour
+    {
+        public int BlockId { get; set; }
+        public int ClusterId { get; set; }
+    }
+}

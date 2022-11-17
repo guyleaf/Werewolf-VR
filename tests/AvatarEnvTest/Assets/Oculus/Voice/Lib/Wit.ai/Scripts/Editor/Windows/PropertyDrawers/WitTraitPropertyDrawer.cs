@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:11557d089c92c757b7f39266a034f55a638cb4faa15e8dabfb8cbed21cfd8340
-size 1533
+﻿/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * This source code is licensed under the license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+using UnityEditor;
+using System.Reflection;
+
+namespace Facebook.WitAi.Windows
+{
+    public class WitTraitPropertyDrawer : WitPropertyDrawer
+    {
+        // Use name value for title if possible
+        protected override string GetLocalizedText(SerializedProperty property, string key)
+        {
+            // Determine by ids
+            switch (key)
+            {
+                case LocalizedTitleKey:
+                    string title = GetFieldStringValue(property, "name");
+                    if (!string.IsNullOrEmpty(title))
+                    {
+                        return title;
+                    }
+                    break;
+                case "id":
+                    return WitTexts.Texts.ConfigurationTraitsIdLabel;
+                case "values":
+                    return WitTexts.Texts.ConfigurationTraitsValuesLabel;
+            }
+
+            // Default to base
+            return base.GetLocalizedText(property, key);
+        }
+        // Determine if should layout field
+        protected override bool ShouldLayoutField(SerializedProperty property, FieldInfo subfield)
+        {
+            switch (subfield.Name)
+            {
+                case "name":
+                    return false;
+            }
+            return base.ShouldLayoutField(property, subfield);
+        }
+    }
+}

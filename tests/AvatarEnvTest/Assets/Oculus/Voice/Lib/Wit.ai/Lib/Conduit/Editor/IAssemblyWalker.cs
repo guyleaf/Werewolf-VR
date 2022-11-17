@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a8e55838e76c191693eaabd54878badfa6e5fbecd143e8f4b52ee711c8aaab90
-size 395
+﻿/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * This source code is licensed under the license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+using System.Collections.Generic;
+
+namespace Meta.Conduit.Editor
+{
+    internal interface IAssemblyWalker
+    {
+        IEnumerable<IConduitAssembly> GetTargetAssemblies();
+    }
+}

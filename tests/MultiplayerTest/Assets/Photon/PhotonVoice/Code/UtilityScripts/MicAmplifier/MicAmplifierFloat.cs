@@ -1,3 +1,32 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:32e13688b1e9fcc2a4cb51c52e80bece5b999fd4a603e6067cfb022eb891740d
-size 714
+﻿namespace Photon.Voice.Unity.UtilityScripts
+{
+
+    public class MicAmplifierFloat : IProcessor<float>
+    {
+        public float AmplificationFactor { get; set; }
+
+        public bool Disabled { get; set; }
+
+        public MicAmplifierFloat(float amplificationFactor)
+        {
+            this.AmplificationFactor = amplificationFactor;
+        }
+
+        public float[] Process(float[] buf)
+        {
+            if (this.Disabled)
+            {
+                return buf;
+            }
+            for (int i = 0; i < buf.Length; i++)
+            {
+                buf[i] *= this.AmplificationFactor;
+            }
+            return buf;
+        }
+
+        public void Dispose()
+        {
+        }
+    }
+}

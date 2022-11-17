@@ -1,3 +1,18 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d4a43f5bf134cbd19e34e5498e2650aede1e867a653adaf920e264a168061d84
-size 400
+﻿/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * This source code is licensed under the license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+using System;
+using System.Collections.Generic;
+
+namespace Meta.Conduit
+{
+    internal interface IInstanceResolver
+    {
+        IEnumerable<object> GetObjectsOfType(Type type);
+    }
+}

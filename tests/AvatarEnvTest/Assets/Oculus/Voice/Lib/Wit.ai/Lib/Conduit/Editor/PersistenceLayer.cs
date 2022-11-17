@@ -1,3 +1,41 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:37b2118e88c8b2a39a71b1881f35de510888098a02cf692bcd619c99de5810d0
-size 915
+﻿/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * This source code is licensed under the license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+using UnityEditor;
+
+namespace Meta.Conduit.Editor
+{
+    /// <inheritdoc/>
+    internal class PersistenceLayer : IPersistenceLayer
+    {
+        public bool HasKey(string key)
+        {
+            return EditorPrefs.HasKey(key);
+        }
+
+        public void SetInt(string key, int value)
+        {
+            EditorPrefs.SetInt(key, value);
+        }
+
+        public void SetString(string key, string value)
+        {
+            EditorPrefs.SetString(key, value);
+        }
+
+        public string GetString(string key)
+        {
+            return EditorPrefs.GetString(key);
+        }
+
+        public int GetInt(string key)
+        {
+            return EditorPrefs.GetInt(key);
+        }
+    }
+}

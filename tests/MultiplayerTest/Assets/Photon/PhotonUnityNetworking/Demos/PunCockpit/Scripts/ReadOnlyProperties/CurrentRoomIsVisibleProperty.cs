@@ -1,3 +1,44 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:589bb371bbc09c9211ade6595bcb6bd858e3ded288b280faa0b8f2a0b0db7f9c
-size 1379
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CurrentRoomIsVisibleProperty.cs" company="Exit Games GmbH">
+//   Part of: Pun Cockpit
+// </copyright>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine.UI;
+
+namespace Photon.Pun.Demo.Cockpit
+{
+    /// <summary>
+    /// PhotonNetwork.CurrentRoom.IsVisible UI property
+    /// </summary>
+    public class CurrentRoomIsVisibleProperty : PropertyListenerBase
+    {
+
+        public Text Text;
+
+        int _cache = -1;
+
+        void Update()
+        {
+
+            if (PhotonNetwork.CurrentRoom != null)
+            {
+                if ((PhotonNetwork.CurrentRoom.IsVisible && _cache != 1) || (!PhotonNetwork.CurrentRoom.IsVisible && _cache != 0))
+                {
+                    _cache = PhotonNetwork.CurrentRoom.IsVisible ? 1 : 0;
+                    Text.text = PhotonNetwork.CurrentRoom.IsVisible ? "true" : "false";
+                    this.OnValueChanged();
+                }
+            }
+            else
+            {
+                if (_cache != -1)
+                {
+                    _cache = -1;
+                    Text.text = "n/a";
+                }
+            }
+        }
+    }
+}

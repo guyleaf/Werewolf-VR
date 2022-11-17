@@ -1,3 +1,43 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5c4529ef9b66dd6f7ddc5a99ab76bf7c0a0b61be2d40ddd8cda4aaa2c7e6c5f6
-size 1256
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CurrentRoomNameProperty.cs" company="Exit Games GmbH">
+//   Part of: Pun Cockpit
+// </copyright>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine.UI;
+
+namespace Photon.Pun.Demo.Cockpit
+{
+    /// <summary>
+    /// PhotonNetwork.CurrentRoom.Name UI property.
+    /// </summary>
+    public class CurrentRoomNameProperty : PropertyListenerBase
+    {
+        public Text Text;
+
+        string _cache = null;
+
+        void Update()
+        {
+
+            if (PhotonNetwork.CurrentRoom != null)
+            {
+                if ((PhotonNetwork.CurrentRoom.Name != _cache))
+                {
+                    _cache = PhotonNetwork.CurrentRoom.Name;
+                    Text.text = _cache.ToString();
+                    this.OnValueChanged();
+                }
+            }
+            else
+            {
+                if (_cache == null)
+                {
+                    _cache = null;
+                    Text.text = "n/a";
+                }
+            }
+        }
+    }
+}

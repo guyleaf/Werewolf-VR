@@ -1,3 +1,45 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a02dbe8c91b58f7b1a52746122d8dfe34c79a31b9b836a9bebcdb50d9f29c4b1
-size 1352
+/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * Licensed under the Oculus SDK License Agreement (the "License");
+ * you may not use the Oculus SDK except in compliance with the License,
+ * which is provided at the time of installation or download, or which
+ * otherwise accompanies this software in either electronic or hard copy form.
+ *
+ * You may obtain a copy of the License at
+ *
+ * https://developer.oculus.com/licenses/oculussdk/
+ *
+ * Unless required by applicable law or agreed to in writing, the Oculus SDK
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace OculusSampleFramework
+{
+    public class PauseOnInputLoss : MonoBehaviour
+    {
+        void Start()
+        {
+            OVRManager.InputFocusAcquired += OnInputFocusAcquired;
+            OVRManager.InputFocusLost += OnInputFocusLost;
+        }
+
+        private void OnInputFocusLost()
+        {
+            Time.timeScale = 0.0f;
+        }
+
+        private void OnInputFocusAcquired()
+        {
+            Time.timeScale = 1.0f;
+        }
+    }
+}

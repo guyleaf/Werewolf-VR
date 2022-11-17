@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ff5c555b647f1c21373ee03eaa2ccb60df544089283b98c7bbc1fd75705febdc
-size 234
+﻿namespace POpusCodec.Enums
+{
+    public enum SamplingRate : int
+    {
+        Sampling08000 = 8000,
+        Sampling12000 = 12000,
+        Sampling16000 = 16000,
+        Sampling24000 = 24000,
+        Sampling48000 = 48000
+    }
+}

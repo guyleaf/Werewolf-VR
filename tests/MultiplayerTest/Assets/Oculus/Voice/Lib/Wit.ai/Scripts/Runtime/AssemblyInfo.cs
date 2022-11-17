@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:819425d020ee79213324095dea4243f4685535d43c2124e8d57c53ed4bea42dc
-size 306
+﻿/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * This source code is licensed under the license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+using System.Runtime.CompilerServices;
+
+[assembly:InternalsVisibleTo("Facebook.Wit.Tests")]

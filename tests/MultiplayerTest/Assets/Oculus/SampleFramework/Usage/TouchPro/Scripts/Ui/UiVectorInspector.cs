@@ -1,3 +1,21 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:08ff3f75eac3052f73a4a60481ca01db71206af93a281bd8243357113063ae19
-size 512
+﻿// (c) Meta Platforms, Inc. and affiliates. Confidential and proprietary.
+
+using TMPro;
+using UnityEngine;
+
+public class UiVectorInspector : MonoBehaviour
+{
+    [Header("Components")]
+    [SerializeField] private TextMeshProUGUI m_nameLabel = null;
+    [SerializeField] private TextMeshProUGUI m_valueLabel = null;
+
+    public void SetName(string name)
+    {
+        m_nameLabel.text = name;
+    }
+
+    public void SetValue(bool value)
+    {
+        m_valueLabel.text = string.Format("[{0}]", value);
+    }
+}

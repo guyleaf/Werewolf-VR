@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7df52cf8797c1f90e49407d1607a84d49207f3c3fdd62ee7f6b41ceda7415efc
-size 558
+
+This is the readme for the Photon Voice API.
+(C) Exit Games GmbH 2022
+
+
+Overview
+----------------------------------------------------------------------------------------------------
+Photon Voice API is designed to implement clients for room-based media streaming applications. Each client can broadcast multiple media streams to a room where other connected clients can receive these streams.
+Bundled with Photon Realtime API, Photon Voice extends it with streaming capabilities while retaining all Realtime features: lobbies, rooms, players, etc.

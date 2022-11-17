@@ -1,3 +1,57 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:29454e5f39f992f8403026d3f9768b7cc8e7d313e2c4f88f186f174c19d0cf15
-size 1391
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ConnectToRegionUIForm.cs" company="Exit Games GmbH">
+//   Part of: Pun Cockpit Demo
+// </copyright>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
+
+namespace Photon.Pun.Demo.Cockpit.Forms
+{
+    /// <summary>
+    /// Manager for ConnectToRegion UI Form
+    /// </summary>
+	public class ConnectToRegionUIForm : MonoBehaviour
+    {
+		public InputField RegionInput;
+		public Dropdown RegionListInput;
+
+		[System.Serializable]
+		public class OnSubmitEvent : UnityEvent<string>{}
+
+		public OnSubmitEvent OnSubmit;
+
+		public void Start()
+		{
+			
+		}
+
+		// new UI will fire "EndEdit" event also when loosing focus. So check "enter" key and only then StartChat.
+		public void EndEditOnEnter()
+		{
+			if (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter))
+			{
+				this.SubmitForm();
+			}
+		}
+
+		public void SetRegionFromDropDown(int index)
+		{
+			if (index == 0) {
+				return;
+			}
+
+			RegionInput.text =	RegionListInput.options[index].text;
+			RegionListInput.value = 0;
+
+		}
+
+		public void SubmitForm()
+		{
+			OnSubmit.Invoke (RegionInput.text);
+		}
+	}
+}

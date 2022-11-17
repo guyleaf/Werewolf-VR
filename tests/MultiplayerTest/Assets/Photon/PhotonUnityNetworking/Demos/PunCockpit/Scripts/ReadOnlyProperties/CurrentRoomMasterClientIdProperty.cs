@@ -1,3 +1,42 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1f3f5e1420846ab0478752021cb625ee7fede57277949e8a7816b9ff7c82f365
-size 1273
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CurrentRoomMasterClientIdProperty.cs" company="Exit Games GmbH">
+//   Part of: Pun Cockpit
+// </copyright>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine.UI;
+
+namespace Photon.Pun.Demo.Cockpit
+{
+    /// <summary>
+	/// PhotonNetwork.CurrentRoom.MasterClientId UI property.
+    /// </summary>
+	public class CurrentRoomMasterClientIdProperty : PropertyListenerBase
+    {
+        public Text Text;
+
+        int _cache = -1;
+
+        void Update()
+        {
+            if (PhotonNetwork.CurrentRoom != null)
+            {
+                if (PhotonNetwork.CurrentRoom.MasterClientId != _cache)
+                {
+					_cache = PhotonNetwork.CurrentRoom.MasterClientId;
+                    Text.text = _cache.ToString();
+                    this.OnValueChanged();
+                }
+            }
+            else
+            {
+                if (_cache != -1)
+                {
+                    _cache = -1;
+                    Text.text = "n/a";
+                }
+            }
+        }
+    }
+}

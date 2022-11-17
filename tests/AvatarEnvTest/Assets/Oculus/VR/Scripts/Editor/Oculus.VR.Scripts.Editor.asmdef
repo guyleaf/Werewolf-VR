@@ -1,3 +1,57 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:b473b0b45e45ec3b362be3e4bc0fce12a00d2ce5e8a5386f0fa512b77195ff12
-size 1560
+{
+    "name": "Oculus.VR.Scripts.Editor",
+    "rootNamespace": "",
+    "references": [
+        "Oculus.VR",
+        "Oculus.VR.Editor",
+        "Unity.XR.OpenXR",
+        "Unity.XR.OpenXR.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.xr.management",
+            "expression": "",
+            "define": "USING_XR_MANAGEMENT"
+        },
+        {
+            "name": "com.unity.xr.oculus",
+            "expression": "",
+            "define": "USING_XR_SDK_OCULUS"
+        },
+        {
+            "name": "com.unity.xr.openxr",
+            "expression": "",
+            "define": "USING_XR_SDK_OPENXR"
+        },
+        {
+            "name": "com.unity.xr.oculus",
+            "expression": "1.7.0",
+            "define": "PRIORITIZE_OCULUS_XR_SETTINGS"
+        },
+        {
+            "name": "com.unity.xr.oculus",
+            "expression": "[2.2-pre,3.0-pre)",
+            "define": "USING_QUEST_PRO_COMPATIBLE_OCULUS_XR_PLUGIN_VERSION"
+        },
+        {
+            "name": "com.unity.xr.oculus",
+            "expression": "3.2.1-pre",
+            "define": "USING_QUEST_PRO_COMPATIBLE_OCULUS_XR_PLUGIN_VERSION"
+        },
+        {
+            "name": "Unity",
+            "expression": "",
+            "define": "OVR_UNITY_ASSET_STORE"
+        }
+    ],
+    "noEngineReferences": false
+}

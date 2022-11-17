@@ -1,3 +1,42 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1bd41f0ce1b24b4282208034d0622ef6e5dfa71e6ea44f28720da8bb83bd6aa1
-size 1209
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="RoomListView.cs" company="Exit Games GmbH">
+//   Part of: Pun Cockpit
+// </copyright>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine.UI;
+
+namespace Photon.Pun.Demo.Cockpit
+{
+    /// <summary>
+    /// PhotonNetwork.GetPing() UI property.
+    /// </summary>
+    public class PingProperty : PropertyListenerBase
+    {
+        public Text Text;
+
+        int _cache = -1;
+
+        void Update()
+        {
+            if (PhotonNetwork.IsConnectedAndReady)
+            {
+                if (PhotonNetwork.GetPing() != _cache)
+                {
+                    _cache = PhotonNetwork.GetPing();
+                    Text.text = _cache.ToString() + " ms";
+                    this.OnValueChanged();
+                }
+            }
+            else
+            {
+                if (_cache != -1)
+                {
+                    _cache = -1;
+                    Text.text = "n/a";
+                }
+            }
+        }
+    }
+}

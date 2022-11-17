@@ -1,3 +1,28 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1b421b2f514629606f10c0c4eff6ffb8f3c57493d49eb9dfc392db661d3c416e
-size 835
+﻿using UnityEngine;
+using UnityEditor;
+
+namespace Photon.Voice.Unity.UtilityScripts
+{
+    [CustomEditor(typeof(MicAmplifier))]
+    public class MicAmplifierEditor : Editor
+    {
+        private MicAmplifier simpleAmplifier;
+
+        private void OnEnable()
+        {
+            this.simpleAmplifier = this.target as MicAmplifier;
+        }
+
+        public override void OnInspectorGUI()
+        {
+            EditorGUI.BeginChangeCheck();
+            this.simpleAmplifier.AmplificationFactor = EditorGUILayout.FloatField(
+                new GUIContent("Amplification Factor", "Amplification Factor (Multiplication)"),
+                this.simpleAmplifier.AmplificationFactor);
+            if (EditorGUI.EndChangeCheck())
+            {
+                this.serializedObject.ApplyModifiedProperties();
+            }
+        }
+    }
+}

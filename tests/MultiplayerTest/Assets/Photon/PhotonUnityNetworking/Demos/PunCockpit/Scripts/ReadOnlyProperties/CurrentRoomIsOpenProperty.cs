@@ -1,3 +1,42 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:eda8122cd9ef27f8b6b702ec532c3871a6ce2b2dce9557d4e9f4c1edf8a0f0e9
-size 1357
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CurrentRoomIsOpenProperty.cs" company="Exit Games GmbH">
+//   Part of: Pun Cockpit
+// </copyright>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine.UI;
+
+namespace Photon.Pun.Demo.Cockpit
+{
+    /// <summary>
+    /// PhotonNetwork.CurrentRoom.IsOpen UI property.
+    /// </summary>
+    public class CurrentRoomIsOpenProperty : PropertyListenerBase
+    {
+        public Text Text;
+
+        int _cache = -1;
+
+        void Update()
+        {
+            if (PhotonNetwork.CurrentRoom != null)
+            {
+                if ((PhotonNetwork.CurrentRoom.IsOpen && _cache != 1) || (!PhotonNetwork.CurrentRoom.IsOpen && _cache != 0))
+                {
+                    _cache = PhotonNetwork.CurrentRoom.IsOpen ? 1 : 0;
+                    Text.text = PhotonNetwork.CurrentRoom.IsOpen ? "true" : "false";
+                    this.OnValueChanged();
+                }
+            }
+            else
+            {
+                if (_cache != -1)
+                {
+                    _cache = -1;
+                    Text.text = "n/a";
+                }
+            }
+        }
+    }
+}

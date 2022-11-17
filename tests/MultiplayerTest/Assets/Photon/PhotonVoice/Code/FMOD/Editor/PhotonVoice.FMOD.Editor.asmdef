@@ -1,3 +1,24 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:70ca9f28d4ac5383421ad4303370030bc1398be65fd891462caa66aa64f37dfe
-size 579
+{
+    "name": "Voice.FMOD.Editor",
+    "references": [
+        "PhotonVoice.Editor",
+        "PhotonRealtime",
+        "PhotonVoice.FMOD",
+        "PhotonVoiceApi.FMOD",
+        "PhotonVoice.API",
+        "PhotonVoice"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "PHOTON_VOICE_FMOD_ENABLE"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

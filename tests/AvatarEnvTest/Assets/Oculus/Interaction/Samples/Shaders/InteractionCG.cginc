@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ac90b2307d7437990344b1a0b61250b7cb2508daf21b2b51220603b8ba60d701
-size 303
+uniform half _DitherStrength;
+
+inline half DitherAnimatedNoise(half2 screenPos) {
+	half noise = frac(
+		dot(uint3(screenPos, floor(fmod(_Time.y * 10, 4))), uint3(2, 7, 23) / 17.0f));
+	noise -= 0.5; // remap from [0..1[ to [-0.5..0.5[
+	half noiseScaled = (noise / _DitherStrength);
+	return noiseScaled;
+}

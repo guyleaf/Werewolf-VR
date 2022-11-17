@@ -1,3 +1,27 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:27d8178ad1add58f1349bd0acae7c0a075f84bd828360cd246cc29c5eea7d486
-size 913
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="OnlineDocButton.cs" company="Exit Games GmbH">
+//   Part of: Pun Cockpit Demo
+// </copyright>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+namespace Photon.Pun.Demo.Cockpit
+{
+    /// <summary>
+    /// Open an Url on Pointer Click.
+    /// </summary>
+    public class OnlineDocButton : MonoBehaviour, IPointerClickHandler
+    {
+        public string Url = "https://doc.photonengine.com/en-us/pun/v2/getting-started/pun-intro";
+
+        //Detect if a click occurs
+        public void OnPointerClick(PointerEventData pointerEventData)
+        {
+            Application.OpenURL(Url);
+        }
+
+    }
+}

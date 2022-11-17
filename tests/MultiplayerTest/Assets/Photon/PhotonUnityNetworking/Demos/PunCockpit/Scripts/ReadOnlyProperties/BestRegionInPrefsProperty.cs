@@ -1,3 +1,40 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7d5ee0a35ab601cf38bfeb07e9f5e74d74caff5a9d684ed92ed34ea1260392e0
-size 1136
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BestRegionInPrefsProperty.cs" company="Exit Games GmbH">
+//   Part of: Pun Cockpit
+// </copyright>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine.UI;
+
+namespace Photon.Pun.Demo.Cockpit
+{
+    /// <summary>
+	/// PhotonNetwork.BestRegionSummaryInPreferences UI property.
+    /// </summary>
+	public class BestRegionInPrefsProperty : PropertyListenerBase
+    {
+        public Text Text;
+
+        string _cache;
+
+        void Update()
+        {
+			if (PhotonNetwork.BestRegionSummaryInPreferences != _cache)
+            {
+				_cache = PhotonNetwork.BestRegionSummaryInPreferences;
+
+				this.OnValueChanged();
+
+                if (string.IsNullOrEmpty(_cache))
+                {
+                    Text.text = "n/a";
+                }
+                else
+                {
+                    Text.text = _cache;
+                }
+            }
+        }
+    }
+}

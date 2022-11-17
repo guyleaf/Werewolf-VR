@@ -1,3 +1,44 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:df1ac632297e05384a6dbf204390b70c133627e43cd1e0e2689da8d6d776fceb
-size 1334
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CurrentRoomIsOfflineProperty.cs" company="Exit Games GmbH">
+//   Part of: Pun Cockpit
+// </copyright>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine.UI;
+
+namespace Photon.Pun.Demo.Cockpit
+{
+    /// <summary>
+    /// PhotonNetwork.CurrentRoom.IsOffline UI property
+    /// </summary>
+	public class CurrentRoomIsOfflineProperty : PropertyListenerBase
+    {
+
+        public Text Text;
+
+        int _cache = -1;
+
+        void Update()
+        {
+
+            if (PhotonNetwork.CurrentRoom != null)
+            {
+				if ((PhotonNetwork.CurrentRoom.IsOffline && _cache != 1) || (!PhotonNetwork.CurrentRoom.IsOffline && _cache != 0))
+                {
+					_cache = PhotonNetwork.CurrentRoom.IsOffline ? 1 : 0;
+					Text.text = PhotonNetwork.CurrentRoom.IsOffline ? "true" : "false";
+                    this.OnValueChanged();
+                }
+            }
+            else
+            {
+                if (_cache != -1)
+                {
+                    _cache = -1;
+                    Text.text = "n/a";
+                }
+            }
+        }
+    }
+}

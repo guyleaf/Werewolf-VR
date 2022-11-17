@@ -1,3 +1,41 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ef0d85d04252584091d72a4def6330510c92b3f442ec01efcce76eed6700a519
-size 852
+﻿// <copyright file="ScoreHelper.cs" company="Exit Games GmbH">
+//   Part of: Pun Cockpit
+// </copyright>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine;
+using Photon.Pun.UtilityScripts;
+
+
+namespace Photon.Pun.Demo.Cockpit
+{
+
+    public class ScoreHelper : MonoBehaviour
+    {
+        public int Score;
+
+        int _currentScore;
+
+
+        // Use this for initialization
+        void Start()
+        {
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+
+            if (PhotonNetwork.LocalPlayer != null && Score != _currentScore)
+            {
+                _currentScore = Score;
+                PhotonNetwork.LocalPlayer.SetScore(Score);
+            }
+
+        }
+    }
+
+}

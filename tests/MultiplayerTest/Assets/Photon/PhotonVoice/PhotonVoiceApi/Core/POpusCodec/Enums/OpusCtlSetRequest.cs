@@ -1,3 +1,20 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ebbe5e13f579b19620cd3a019bac3a2cfe6e84d38ff023bb147d29b64551c0ba
-size 453
+﻿namespace POpusCodec.Enums
+{
+    internal enum OpusCtlSetRequest : int
+    {
+        Application = 4000,
+        Bitrate = 4002,
+        MaxBandwidth = 4004,
+        VBR = 4006,
+        Bandwidth = 4008,
+        Complexity = 4010,
+        InbandFec = 4012,
+        PacketLossPercentage = 4014,
+        Dtx = 4016,
+        VBRConstraint = 4020,
+        ForceChannels = 4022,
+        Signal = 4024,
+        Gain = 4034,
+        LsbDepth = 4036
+    }
+}
