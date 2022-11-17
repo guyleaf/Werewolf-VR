@@ -8,11 +8,30 @@ namespace Leaf.PhotonTutorial
 {
     public class GameManager : MonoBehaviourPunCallbacks
     {
-        #region public functions
+        #region public functions & variables
+
+        public static GameManager Instance { get; private set; }
+
         public void LeaveRoom()
         {
             PhotonNetwork.LeaveRoom();
         }
+
+        #endregion
+
+        #region MonoBehavior Callbacks
+
+        private void Start()
+        {
+            Instance = this;
+            Debug.Log("Start");
+        }
+
+        private void Awake()
+        {
+            Debug.Log("Awake");
+        }
+
         #endregion
 
         #region photon functions
@@ -26,7 +45,7 @@ namespace Leaf.PhotonTutorial
             Debug.Log("OnJoinedRoom()");
         }
 
-        public override void OnPlayerEnteredRoom(Player newPlayer)
+        public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
         {
             Debug.LogFormat("OnPlayerEnteredRoom() {0}", newPlayer.NickName); // not seen if you're the player connecting
 
@@ -39,7 +58,7 @@ namespace Leaf.PhotonTutorial
             }
         }
 
-        public override void OnPlayerLeftRoom(Player otherPlayer)
+        public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
         {
             Debug.LogFormat("OnPlayerLeftRoom() {0}", otherPlayer.NickName); // seen when other disconnects
 

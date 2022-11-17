@@ -87,11 +87,13 @@ namespace Leaf.PhotonTutorial
         {
             progressLabel.SetActive(false);
             controlPanel.SetActive(true);
+            Debug.Log("Start");
         }
 
         private void Awake()
         {
             PhotonNetwork.AutomaticallySyncScene = true;
+            Debug.Log("Awake");
         }
         #endregion
 
