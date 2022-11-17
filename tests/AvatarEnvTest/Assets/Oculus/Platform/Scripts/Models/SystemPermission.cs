@@ -1,3 +1,2 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:95800fe10adbf27804354684ac3c44d811b58ebac75a76e6e522ca0797027992
-size 161
+// This stub exists to mark a removed file, so additive update tools (such as Unity's package importer)
+// remove all the data that used to exist in this file.

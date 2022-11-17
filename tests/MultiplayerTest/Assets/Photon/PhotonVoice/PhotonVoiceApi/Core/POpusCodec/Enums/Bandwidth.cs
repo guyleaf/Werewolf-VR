@@ -1,3 +1,26 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:21e31e44dec44f47c16efc608f212c6a9650fc1f9f08bf23f2780a2eada1c424
-size 597
+﻿namespace POpusCodec.Enums
+{
+    public enum Bandwidth : int
+    {
+        /// <summary>
+        /// Up to 4Khz
+        /// </summary>
+        Narrowband = 1101,
+        /// <summary>
+        /// Up to 6Khz
+        /// </summary>
+        Mediumband = 1102,
+        /// <summary>
+        /// Up to 8Khz
+        /// </summary>
+        Wideband = 1103,
+        /// <summary>
+        /// Up to 12Khz
+        /// </summary>
+        SuperWideband = 1104,
+        /// <summary>
+        /// Up to 20Khz (High Definition)
+        /// </summary>
+        Fullband = 1105
+    }
+}

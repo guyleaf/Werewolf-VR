@@ -1,3 +1,56 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:6d09f358f7aaf43a539e65cfcc813f16e4a2a06437f4ecfb84165ff97274799e
-size 2157
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="OnClickInstantiate.cs" company="Exit Games GmbH">
+// Part of: Photon Unity Utilities
+// </copyright>
+// <summary>A compact script for prototyping.</summary>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+
+namespace Photon.Pun.UtilityScripts
+{
+    using UnityEngine;
+    using UnityEngine.EventSystems;
+
+
+    /// <summary>
+    /// Instantiates a networked GameObject on click.
+    /// </summary>
+    /// <remarks>
+    /// Gets OnClick() calls by Unity's IPointerClickHandler. Needs a PhysicsRaycaster on the camera.
+    /// See: https://docs.unity3d.com/ScriptReference/EventSystems.IPointerClickHandler.html
+    /// </remarks>
+    public class OnClickInstantiate : MonoBehaviour, IPointerClickHandler
+    {
+        public enum InstantiateOption { Mine, Scene }
+
+
+        public PointerEventData.InputButton Button;
+        public KeyCode ModifierKey;
+
+        public GameObject Prefab;
+
+        [SerializeField]
+		private InstantiateOption InstantiateType = InstantiateOption.Mine;
+
+
+        void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
+        {
+            if (!PhotonNetwork.InRoom || (this.ModifierKey != KeyCode.None && !Input.GetKey(this.ModifierKey)) || eventData.button != this.Button)
+            {
+                return;
+            }
+
+
+            switch (this.InstantiateType)
+            {
+                case InstantiateOption.Mine:
+                    PhotonNetwork.Instantiate(this.Prefab.name, eventData.pointerCurrentRaycast.worldPosition + new Vector3(0, 0.5f, 0), Quaternion.identity, 0);
+                    break;
+                case InstantiateOption.Scene:
+                    PhotonNetwork.InstantiateRoomObject(this.Prefab.name, eventData.pointerCurrentRaycast.worldPosition + new Vector3(0, 0.5f, 0), Quaternion.identity, 0, null);
+                    break;
+            }
+        }
+    }
+}

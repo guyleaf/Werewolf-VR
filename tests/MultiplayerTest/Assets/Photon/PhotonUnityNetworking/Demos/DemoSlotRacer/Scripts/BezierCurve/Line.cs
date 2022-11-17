@@ -1,3 +1,19 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:aee97c6689a9790dd5fe75426edf06a95ff94d2e93547e8688f14b3a8d08aec3
-size 681
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Line.cs" company="Exit Games GmbH">
+//   Part of: Photon Unity Networking Demos
+// </copyright>
+// <summary>
+//  Original: http://catlikecoding.com/unity/tutorials/curves-and-splines/
+//  Used in SlotRacer Demo
+// </summary>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine;
+
+namespace Photon.Pun.Demo.SlotRacer.Utils
+{
+	public class Line : MonoBehaviour {
+		public Vector3 p0, p1;
+	}
+}

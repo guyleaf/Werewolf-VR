@@ -1,3 +1,44 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f41c476ecb37912918c91b84f52a99ac3201c6b02143566f1175ccb54eabf75d
-size 1380
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CountOfPlayersOnMasterProperty.cs" company="Exit Games GmbH">
+//   Part of: Pun Cockpit
+// </copyright>
+// <author>developer@exitgames.com</author>
+// --------------------------------------------------------------------------------------------------------------------
+
+using UnityEngine.UI;
+
+using Photon.Realtime;
+
+namespace Photon.Pun.Demo.Cockpit
+{
+    /// <summary>
+    /// PhotonNetwork.CountOfPlayersOnMaster UI property.
+    /// </summary>
+    public class CountOfPlayersOnMasterProperty : PropertyListenerBase
+    {
+        public Text Text;
+
+        int _cache = -1;
+
+        void Update()
+        {
+            if (PhotonNetwork.NetworkingClient.Server == ServerConnection.MasterServer)
+            {
+                if (PhotonNetwork.CountOfPlayersOnMaster != _cache)
+                {
+                    _cache = PhotonNetwork.CountOfPlayersOnMaster;
+                    Text.text = _cache.ToString();
+                    this.OnValueChanged();
+                }
+            }
+            else
+            {
+                if (_cache != -1)
+                {
+                    _cache = -1;
+                    Text.text = "n/a";
+                }
+            }
+        }
+    }
+}
