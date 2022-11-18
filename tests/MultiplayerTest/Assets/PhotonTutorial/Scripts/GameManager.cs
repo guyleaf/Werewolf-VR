@@ -2,6 +2,7 @@ using Photon.Pun;
 using Photon.Realtime;
 
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
 namespace Leaf.PhotonTutorial
@@ -23,13 +24,23 @@ namespace Leaf.PhotonTutorial
 
         private void Start()
         {
+            Assert.IsNotNull(this.playerPrefab, "<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'");
             Instance = this;
-            Debug.Log("Start");
+            
+            if (Player.PlayerManager.LocalPlayerInstance == null)
+            {
+                Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
+                // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
+                PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+            }
+            else
+            {
+                Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
+            }
         }
 
         private void Awake()
         {
-            Debug.Log("Awake");
         }
 
         #endregion
@@ -37,6 +48,7 @@ namespace Leaf.PhotonTutorial
         #region photon functions
         public override void OnLeftRoom()
         {
+            Debug.Log("OnLeftRoom()");
             SceneManager.LoadScene(0);
         }
 
@@ -73,6 +85,7 @@ namespace Leaf.PhotonTutorial
         #endregion
 
         #region private functions & variables
+
         private void LoadArena()
         {
             if (!PhotonNetwork.IsMasterClient)
@@ -84,6 +97,11 @@ namespace Leaf.PhotonTutorial
             Debug.LogFormat("PhotonNetwork : Loading Level : {0}", PhotonNetwork.CurrentRoom.PlayerCount);
             PhotonNetwork.LoadLevel("Room for " + PhotonNetwork.CurrentRoom.PlayerCount);
         }
+
+        [Tooltip("The prefab to use for representing the player")]
+        [SerializeField]
+        private GameObject playerPrefab;
+
         #endregion
     }
 }

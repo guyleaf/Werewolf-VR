@@ -1,3 +1,5 @@
+using Photon.Pun;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +9,7 @@ using UnityEngine.Assertions;
 namespace Leaf.PhotonTutorial.Player
 {
     // Notice: this sample code is not the best implementation
-    public class PlayerAnimatorManager : MonoBehaviour
+    public class PlayerAnimatorManager : MonoBehaviourPun
     {
         // Start is called before the first frame update
         private void Start()
@@ -19,6 +21,18 @@ namespace Leaf.PhotonTutorial.Player
         // Update is called once per frame
         private void Update()
         {
+#if UNITY_EDITOR
+            if (!this.photonView.IsMine && PhotonNetwork.IsConnected)
+            {
+                return;
+            }
+#else
+            if (!this.photonView.IsMine)
+            {
+                return;
+            }
+#endif
+
             this.UpdateMovingRelatedParameters();
             this.UpdateJumpingRelatedParameters();
         }
