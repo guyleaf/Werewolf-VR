@@ -135,7 +135,11 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 0.1
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 0}
+  - {fileID: -3067587050387033310, guid: 0ee2708d41d94764fa290cf8c229f59d, type: 2}
+  - {fileID: 11400000, guid: 352c2c49da7f90740b4a26e126b812d0, type: 2}
+  - {fileID: 0}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -702,7 +706,23 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    EmbeddedLinux: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
+    GameCoreScarlett: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
+    GameCoreXboxOne: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
+    LinuxHeadlessSimulation: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
+    Lumin: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
+    Nintendo Switch: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
+    PS4: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
+    PS5: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
+    Stadia: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
+    Standalone: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;CROSS_PLATFORM_INPUT
+    WebGL: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
+    Windows Store Apps: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;MOBILE_INPUT
+    XboxOne: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
+    iPhone: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER;CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    tvOS: PHOTON_UNITY_NETWORKING;PUN_2_0_OR_NEWER;PUN_2_OR_NEWER;PUN_2_19_OR_NEWER
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
@@ -790,7 +810,7 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 0
+  activeInputHandler: 2
   cloudProjectId: 
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
