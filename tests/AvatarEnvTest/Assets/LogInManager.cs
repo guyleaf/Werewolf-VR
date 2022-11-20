@@ -142,7 +142,8 @@ public class LogInManager : MonoBehaviourPunCallbacks
         Int64 userId = Convert.ToInt64(m_userId);
         object[] objects = new object[1] { userId };
         myAvatar = PhotonNetwork.Instantiate("NetworkPlayer", _spawnPoint.transform.position, Quaternion.identity, 0, objects);  //_spawnPoint.transform.position
-        //m_camera.transform.SetParent(myAvatar.transform);
+        myAvatar.transform.SetParent(m_camera.transform);
+        //m_camera.transform.SetParent(myAvatar.transform);+
     }
 
     public override void OnLeftRoom()
