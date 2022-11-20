@@ -52,7 +52,7 @@ public class LogInManager : MonoBehaviourPunCallbacks
             if (OvrPlatformInit.status == OvrPlatformInitStatus.Failed)
             {
                 Debug.LogError("OVR Platform failed to initialise");
-                m_screenText.text = "OVR Platform failed to initialise";
+                //m_screenText.text = "OVR Platform failed to initialise";
                 yield break;
             }
             yield return null;
@@ -84,27 +84,27 @@ public class LogInManager : MonoBehaviourPunCallbacks
     void ConnectToPhotonRoom()
     {
         PhotonNetwork.ConnectUsingSettings();
-        m_screenText.text = "Connecting to Server";
+        //m_screenText.text = "Connecting to Server";
     }
 
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.JoinLobby();
-        m_screenText.text = "Connecting to Lobby";
+        //m_screenText.text = "Connecting to Lobby";
     }
 
     public override void OnJoinedLobby()
     {
-        m_screenText.text = "Creating Room";
+        //m_screenText.text = "Creating Room";
         PhotonNetwork.JoinOrCreateRoom("room", null, null);
     }
-
+    
     public override void OnJoinedRoom()
     {
         string roomName = PhotonNetwork.CurrentRoom.Name;
-        m_screenText.text = "Joined room with name " + roomName;
+        //m_screenText.text = "Joined room with name " + roomName;
     }
-
+    
     IEnumerator InstantiateNetworkedAvatarOnceInRoom()
     {
         while (PhotonNetwork.InRoom == false)
