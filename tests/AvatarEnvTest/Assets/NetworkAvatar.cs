@@ -39,10 +39,6 @@ public class NetworkAvatar : OvrAvatarEntity
         {
             SetIsLocal(false);
             _creationInfo.features = Oculus.Avatar2.CAPI.ovrAvatar2EntityFeatures.Preset_Remote;
-            SampleInputManager sampleInputManager = OvrAvatarManager.Instance.gameObject.GetComponent<SampleInputManager>();
-            SetBodyTracking(sampleInputManager);
-            OvrAvatarLipSyncContext lipSyncInput = GameObject.FindObjectOfType<OvrAvatarLipSyncContext>();
-            SetLipSync(lipSyncInput);
             gameObject.name = "OtherAvatar";
         }
     }
@@ -112,6 +108,7 @@ public class NetworkAvatar : OvrAvatarEntity
         PhotonView photonView = GetComponent<PhotonView>();
         object[] instantiationData = photonView.InstantiationData;
         Int64 data_as_int = (Int64)instantiationData[0];
+        Debug.Log("NetworkAvatar: " + Convert.ToUInt64(data_as_int));
         return Convert.ToUInt64(data_as_int);
     }
 }

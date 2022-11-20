@@ -1,9 +1,13 @@
 using System.Collections;
-using UnityEngine;
-using Photon.Pun;
-using Oculus.Platform;
+using System.Collections.Generic;
 using System;
+using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
+using Photon;
+using Oculus.Platform;
+
 
 public class LogInManager : MonoBehaviourPunCallbacks
 {
@@ -14,6 +18,7 @@ public class LogInManager : MonoBehaviourPunCallbacks
 
     //Singleton implementation
     private static LogInManager m_instance;
+    private GameObject myAvatar;
     public static LogInManager Instance
     {
         get
@@ -57,7 +62,7 @@ public class LogInManager : MonoBehaviourPunCallbacks
             }
             yield return null;
         }
-
+        
         Users.GetLoggedInUser().OnComplete(message =>
         {
             if (message.IsError)
@@ -67,6 +72,7 @@ public class LogInManager : MonoBehaviourPunCallbacks
             else
             {
                 m_userId = message.Data.ID;
+                Debug.Log("m_userId: " + m_userId);
             }
         });
     }
@@ -85,26 +91,42 @@ public class LogInManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.ConnectUsingSettings();
         //m_screenText.text = "Connecting to Server";
+        Debug.Log("Try Connect To Server...");
     }
 
     public override void OnConnectedToMaster()
     {
-        PhotonNetwork.JoinLobby();
+        /*PhotonNetwork.JoinLobby();
         //m_screenText.text = "Connecting to Lobby";
     }
 
     public override void OnJoinedLobby()
-    {
+    {*/
         //m_screenText.text = "Creating Room";
-        PhotonNetwork.JoinOrCreateRoom("room", null, null);
+        //PhotonNetwork.JoinOrCreateRoom("room", null, null);
+        Debug.Log("Connected To Server.");
+        base.OnConnectedToMaster();
+        Photon.Realtime.RoomOptions roomOptions = new Photon.Realtime.RoomOptions();
+        roomOptions.MaxPlayers = 10;
+        roomOptions.IsVisible = true;
+        roomOptions.IsOpen = true;
+
+        PhotonNetwork.JoinOrCreateRoom("Room 1", roomOptions, TypedLobby.Default);  
     }
-    
+
     public override void OnJoinedRoom()
     {
         string roomName = PhotonNetwork.CurrentRoom.Name;
+        Debug.Log("Joined a Room" + roomName);
         //m_screenText.text = "Joined room with name " + roomName;
     }
-    
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        Debug.Log("A new player joined the room");
+        base.OnPlayerEnteredRoom(newPlayer);
+    }
+
     IEnumerator InstantiateNetworkedAvatarOnceInRoom()
     {
         while (PhotonNetwork.InRoom == false)
@@ -119,6 +141,12 @@ public class LogInManager : MonoBehaviourPunCallbacks
     {
         Int64 userId = Convert.ToInt64(m_userId);
         object[] objects = new object[1] { userId };
-        GameObject myAvatar = PhotonNetwork.Instantiate("NetworkPlayer", _spawnPoint.transform.position, Quaternion.identity, 0, objects);
+        myAvatar = PhotonNetwork.Instantiate("NetworkPlayer", _spawnPoint.transform.position, Quaternion.identity, 0, objects);  //_spawnPoint.transform.position
+    }
+
+    public override void OnLeftRoom()
+    {
+        base.OnLeftRoom();
+        PhotonNetwork.Destroy(myAvatar);
     }
 }
