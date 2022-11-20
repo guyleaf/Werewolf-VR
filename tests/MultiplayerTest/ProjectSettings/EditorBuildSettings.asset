@@ -6,20 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/PhotonTutorial/Lobby.unity
-    guid: 55d4f9920f2bba049873422e56a4f012
-  - enabled: 1
-    path: Assets/PhotonTutorial/Room for 1.unity
-    guid: b21cf4ede6edca04ea70a769879b25bb
-  - enabled: 1
-    path: Assets/PhotonTutorial/Room for 2.unity
-    guid: 9f84781db6956b3488f7b67c9ebd6a9b
-  - enabled: 1
-    path: Assets/PhotonTutorial/Room for 3.unity
-    guid: 52102c7d055afcc49befcb6353e940a7
-  - enabled: 1
-    path: Assets/PhotonTutorial/Room for 4.unity
-    guid: 7e733c4d0222dd2408d437e6b65d9d5b
+    path: Assets/Werewolf/Map1.unity
+    guid: 29b378afa5fa7bd4fbc0e370cce0426c
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 3593fc4ccbadf9940bb0e7e1d561759d, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1203839905691e84f8fec6ffb4eea21e, type: 2}
