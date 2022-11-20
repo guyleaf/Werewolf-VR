@@ -7,7 +7,13 @@ using System;
 
 public class NetworkAvatar : OvrAvatarEntity
 {
-    [SerializeField] int m_avatarToUseInZipFolder = 2; PhotonView m_photonView; List<byte[]> m_streamedDataList = new List<byte[]>(); int m_maxBytesToLog = 15;[SerializeField] ulong m_instantiationData; float m_cycleStartTime = 0; float m_intervalToSendData = 0.08f;
+    [SerializeField] int m_avatarToUseInZipFolder = 2; 
+    PhotonView m_photonView; 
+    List<byte[]> m_streamedDataList = new List<byte[]>(); 
+    int m_maxBytesToLog = 15;
+    [SerializeField] ulong m_instantiationData; 
+    float m_cycleStartTime = 0;  //0
+    float m_intervalToSendData = 0.08f;
 
     protected override void Awake()
     {
@@ -108,7 +114,7 @@ public class NetworkAvatar : OvrAvatarEntity
         PhotonView photonView = GetComponent<PhotonView>();
         object[] instantiationData = photonView.InstantiationData;
         Int64 data_as_int = (Int64)instantiationData[0];
-        Debug.Log("NetworkAvatar: " + Convert.ToUInt64(data_as_int));
+        Debug.Log("NetworkAvatar userId: " + Convert.ToUInt64(data_as_int));
         return Convert.ToUInt64(data_as_int);
     }
 }

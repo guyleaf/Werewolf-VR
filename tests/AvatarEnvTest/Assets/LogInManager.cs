@@ -12,7 +12,7 @@ using Oculus.Platform;
 public class LogInManager : MonoBehaviourPunCallbacks
 {
     public GameObject _spawnPoint;
-
+    [SerializeField] OVRCameraRig m_camera;
     [SerializeField] Text m_screenText; //Text
     [SerializeField] ulong m_userId;
 
@@ -142,6 +142,7 @@ public class LogInManager : MonoBehaviourPunCallbacks
         Int64 userId = Convert.ToInt64(m_userId);
         object[] objects = new object[1] { userId };
         myAvatar = PhotonNetwork.Instantiate("NetworkPlayer", _spawnPoint.transform.position, Quaternion.identity, 0, objects);  //_spawnPoint.transform.position
+        //m_camera.transform.SetParent(myAvatar.transform);
     }
 
     public override void OnLeftRoom()
