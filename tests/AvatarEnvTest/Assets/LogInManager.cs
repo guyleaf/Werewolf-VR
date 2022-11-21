@@ -13,6 +13,9 @@ public class LogInManager : MonoBehaviourPunCallbacks
 {
     public GameObject _spawnPoint;
     [SerializeField] OVRCameraRig m_camera;
+    [SerializeField] OVRSceneSampleController m_controller;
+    [SerializeField] OVRScreenFade m_eye;
+    [SerializeField] GameObject m_chair;
     [SerializeField] Text m_screenText; //Text
     [SerializeField] ulong m_userId;
 
@@ -43,6 +46,7 @@ public class LogInManager : MonoBehaviourPunCallbacks
         StartCoroutine(SetUserIdFromLoggedInUser());
         StartCoroutine(ConnectToPhotonRoomOnceUserIdIsFound());
         StartCoroutine(InstantiateNetworkedAvatarOnceInRoom());
+        //m_controller = GameObject.FindObjectOfType<OVRSceneSampleController>();
     }
 
     IEnumerator SetUserIdFromLoggedInUser()
@@ -118,12 +122,14 @@ public class LogInManager : MonoBehaviourPunCallbacks
     {
         string roomName = PhotonNetwork.CurrentRoom.Name;
         Debug.Log("Joined a Room" + roomName);
+        Debug.Log("Number of Player:" + PhotonNetwork.CurrentRoom.Players.Count);
         //m_screenText.text = "Joined room with name " + roomName;
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.Log("A new player joined the room");
+        Debug.Log("Number of Player:" + PhotonNetwork.CurrentRoom.Players.Count);
         base.OnPlayerEnteredRoom(newPlayer);
     }
 
@@ -141,9 +147,12 @@ public class LogInManager : MonoBehaviourPunCallbacks
     {
         Int64 userId = Convert.ToInt64(m_userId);
         object[] objects = new object[1] { userId };
-        myAvatar = PhotonNetwork.Instantiate("NetworkPlayer", _spawnPoint.transform.position, Quaternion.identity, 0, objects);  //_spawnPoint.transform.position
-        myAvatar.transform.SetParent(m_camera.transform);
-        //m_camera.transform.SetParent(myAvatar.transform);+
+        //myAvatar = PhotonNetwork.Instantiate("NetworkPlayer", _spawnPoint.transform.position, Quaternion.identity, 0, objects);  //_spawnPoint.transform.position
+        //myAvatar.transform.SetParent(m_camera.transform);
+        //myAvatar.transform.SetParent(m_controller.transform);
+        int chairIndex = PhotonNetwork.CurrentRoom.Players.Count - 1;
+        myAvatar = PhotonNetwork.Instantiate("NetworkPlayer", m_chair.transform.GetChild(chairIndex).position, m_chair.transform.GetChild(chairIndex).rotation, 0, objects);
+        myAvatar.transform.SetParent(m_eye.transform); 
     }
 
     public override void OnLeftRoom()

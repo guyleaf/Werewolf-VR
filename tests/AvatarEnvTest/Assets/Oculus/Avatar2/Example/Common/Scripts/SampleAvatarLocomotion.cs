@@ -14,7 +14,9 @@ public class SampleAvatarLocomotion : MonoBehaviour
 
     // (1, 0, -1)
     private Vector3 mirrorVector = Vector3.right + Vector3.back;
+    public Transform centerEye;
 
+    [System.Obsolete]
     void Update()
     {
 #if USING_XR_SDK
@@ -22,6 +24,11 @@ public class SampleAvatarLocomotion : MonoBehaviour
         var primaryThumbstickVector = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
         var translationVector = new Vector3(primaryThumbstickVector.x, 0.0f, primaryThumbstickVector.y);
         transform.Translate(translationVector * Time.deltaTime * movementSpeed);
+        //Debug.Log("centerEye rotation: " + centerEye.rotation);
+        /*transform.rotation = centerEye.rotation;
+        centerEye.rotation = Quaternion.identity;
+        Debug.Log("transform rotation: " + transform.rotation);
+        Debug.Log("centerEye rotation after: " + centerEye.rotation);*/
 #endif
     }
 }

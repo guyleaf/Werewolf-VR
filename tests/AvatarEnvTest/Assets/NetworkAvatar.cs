@@ -34,6 +34,7 @@ public class NetworkAvatar : OvrAvatarEntity
         if (m_photonView.IsMine)
         {
             SetIsLocal(true);
+            //SetActiveView(CAPI.ovrAvatar2EntityViewFlags.FirstPerson);
             _creationInfo.features = Oculus.Avatar2.CAPI.ovrAvatar2EntityFeatures.Preset_Default;
             SampleInputManager sampleInputManager = OvrAvatarManager.Instance.gameObject.GetComponent<SampleInputManager>();
             SetBodyTracking(sampleInputManager);
@@ -44,6 +45,7 @@ public class NetworkAvatar : OvrAvatarEntity
         else
         {
             SetIsLocal(false);
+            //SetActiveView(CAPI.ovrAvatar2EntityViewFlags.ThirdPerson);
             _creationInfo.features = Oculus.Avatar2.CAPI.ovrAvatar2EntityFeatures.Preset_Remote;
             gameObject.name = "OtherAvatar";
         }
