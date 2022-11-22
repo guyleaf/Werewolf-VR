@@ -9,13 +9,17 @@ using UnityEngine;
 using CAPI = Oculus.Avatar2.CAPI;
 using Photon.Pun;
 using UnityEngine.Assertions;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using System.Linq;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 namespace Werewolf.Player
 {
-    public class PlayerAvatarEntity : OvrAvatarEntity
+    [RequireComponent(typeof(PhotonView))]
+    public class PlayerAvatarEntity : OvrAvatarEntity, IPunObservable
     {
         private const string logScope = "playerAvatar";
         public enum AssetSource
@@ -38,14 +42,6 @@ namespace Werewolf.Player
         [Tooltip("A version of the avatar with additional textures will be loaded to portray more accurate human materials (requiring shader support).")]
         [SerializeField]
         private bool _highQuality = false;
-
-        [Tooltip("Attempt to load the Avatar model file from the Content Delivery Network (CDN) based on a userID, as opposed to loading from disc.")]
-        [SerializeField]
-        private bool _loadUserFromCdn = true;
-
-        [Tooltip("Make initial requests for avatar and then defer loading until other avatars can make their requests.")]
-        [SerializeField]
-        private bool _deferLoading = false;
 
         [Header("Assets")]
         [Tooltip("Asset paths to load, and whether each asset comes from a preloaded zip file or directly from StreamingAssets. See Preset Asset settings on OvrAvatarManager for how this maps to the real file name.")]
@@ -85,31 +81,17 @@ namespace Werewolf.Player
         private Color _debugDrawGazePosColor = Color.magenta;
 #pragma warning restore CS0414
 
-        private enum OverrideStreamLOD
-        {
-            Default,
-            ForceHigh,
-            ForceMedium,
-            ForceLow,
-        }
-
-        [Header("Sample Networking")]
-        [Tooltip("Streaming quality override, default will not override")]
-        [SerializeField]
-        private OverrideStreamLOD _overrideStreamLod = OverrideStreamLOD.Default;
-
         private static readonly int DESAT_AMOUNT_ID = Shader.PropertyToID("_DesatAmount");
         private static readonly int DESAT_TINT_ID = Shader.PropertyToID("_DesatTint");
         private static readonly int DESAT_LERP_ID = Shader.PropertyToID("_DesatLerp");
 
         private bool HasLocalAvatarConfigured => _assets.Count > 0;
 
-        private readonly Stopwatch _loadTime = new();
-
-        [Header("Optional")]
-        [Tooltip("Streaming quality override, default will not override")]
-        [SerializeField]
         private PhotonView _photonView;
+
+        private readonly BinaryFormatter _binaryFormatter = new();
+
+        private List<byte[]> _streamedDataList = new();
 
         protected override void Awake()
         {
@@ -121,36 +103,23 @@ namespace Werewolf.Player
             OVRPlugin.StartEyeTracking();
             OVRPlugin.StartFaceTracking();
             // We use reflection here so that there are not compiler errors when using Oculus SDK v45 or below.
-            //typeof(OVRPlugin).GetMethod("StartFaceTracking", BindingFlags.Public | BindingFlags.Static)?.Invoke(null, null);
-            //typeof(OVRPlugin).GetMethod("StartEyeTracking", BindingFlags.Public | BindingFlags.Static)?.Invoke(null, null);
+            // typeof(OVRPlugin).GetMethod("StartFaceTracking", BindingFlags.Public | BindingFlags.Static)?.Invoke(null, null);
+            // typeof(OVRPlugin).GetMethod("StartEyeTracking", BindingFlags.Public | BindingFlags.Static)?.Invoke(null, null);
         }
 
         protected virtual IEnumerator Start()
         {
-            if (!_deferLoading)
+            // preserve local test ability
+            if (PhotonNetwork.IsConnected)
             {
-                if (_loadUserFromCdn)
-                {
-                    yield return LoadCdnAvatar();
-                }
-                else
-                {
-                    LoadLocalAvatar();
-                }
+                _userId = GetUserIdFromPhotonInstantiationData();
+            }
+            else
+            {
+                yield return GetUserIdFromOculus();
             }
 
-            switch (_overrideStreamLod)
-            {
-                case OverrideStreamLOD.ForceHigh:
-                    ForceStreamLod(StreamLOD.High);
-                    break;
-                case OverrideStreamLOD.ForceMedium:
-                    ForceStreamLod(StreamLOD.Medium);
-                    break;
-                case OverrideStreamLOD.ForceLow:
-                    ForceStreamLod(StreamLOD.Low);
-                    break;
-            }
+            yield return LoadUserAvatar();
 
 #if UNITY_EDITOR
 #if UNITY_2019_3_OR_NEWER
@@ -173,63 +142,33 @@ namespace Werewolf.Player
         }
 
         #region Loading
-        private IEnumerator LoadCdnAvatar()
+
+        private void InitializeAvatarEntity()
         {
-            // Ensure OvrPlatform is Initialized
-            if (OvrPlatformInit.status == OvrPlatformInitStatus.NotStarted)
+            _photonView = GetComponent<PhotonView>();
+            Assert.IsNotNull(_photonView, "The PhotonView script is not attached to the player.");
+
+            // preserve offline mode if photon network is not connected.
+            if (_photonView.IsMine || !PhotonNetwork.IsConnected)
             {
-                OvrPlatformInit.InitializeOvrPlatform();
+                SetIsLocal(true);
+                _creationInfo.features = CAPI.ovrAvatar2EntityFeatures.Preset_Default | CAPI.ovrAvatar2EntityFeatures.Rendering_ObjectSpaceTransforms;
+                var playerInputManager = OvrAvatarManager.Instance.GetComponent<PlayerInputManager>();
+                SetBodyTracking(playerInputManager);
+                var lipSyncInput = FindObjectOfType<OvrAvatarLipSyncContext>();
+                SetLipSync(lipSyncInput);
+                // SetActiveView(CAPI.ovrAvatar2EntityViewFlags.FirstPerson);
+                gameObject.name = $"{_photonView.ViewID}_LocalAvatar";
+            }
+            else
+            {
+                SetIsLocal(false);
+                _creationInfo.features = CAPI.ovrAvatar2EntityFeatures.Preset_Remote | CAPI.ovrAvatar2EntityFeatures.Rendering_ObjectSpaceTransforms;
+                // SetActiveView(CAPI.ovrAvatar2EntityViewFlags.ThirdPerson);
+                gameObject.name = $"{_photonView.ViewID}_RemoteAvatar";
             }
 
-            while (OvrPlatformInit.status != OvrPlatformInitStatus.Succeeded)
-            {
-                if (OvrPlatformInit.status == OvrPlatformInitStatus.Failed)
-                {
-                    OvrAvatarLog.LogError($"Error initializing OvrPlatform. Falling back to local avatar", logScope);
-                    LoadLocalAvatar();
-                    yield break;
-                }
-
-                yield return null;
-            }
-
-            // user ID == 0 means we want to load logged in user avatar from CDN
-            if (_userId == 0)
-            {
-                // Get User ID
-                bool getUserIdComplete = false;
-                Users.GetLoggedInUser().OnComplete(message =>
-                {
-                    if (!message.IsError)
-                    {
-                        _userId = message.Data.ID;
-                    }
-                    else
-                    {
-                        var e = message.GetError();
-                        OvrAvatarLog.LogError($"Error loading CDN avatar: {e.Message}. Falling back to local avatar", logScope);
-                    }
-
-                    getUserIdComplete = true;
-                });
-
-                while (!getUserIdComplete) { yield return null; }
-            }
-            yield return LoadUserAvatar();
-        }
-
-        public void LoadRemoteUserCdnAvatar(ulong userId)
-        {
-            StartLoadTimeCounter();
-            _userId = userId;
-            StartCoroutine(LoadCdnAvatar());
-        }
-
-        public void LoadLoggedInUserCdnAvatar()
-        {
-            StartLoadTimeCounter();
-            _userId = 0;
-            StartCoroutine(LoadCdnAvatar());
+            ForceStreamLod(StreamLOD.Medium);
         }
 
         private IEnumerator LoadUserAvatar()
@@ -240,7 +179,7 @@ namespace Werewolf.Player
                 yield break;
             }
 
-            yield return Retry_HasAvatarRequest();
+            yield return LoadCdnAvatar();
         }
 
         private void LoadLocalAvatar()
@@ -280,81 +219,145 @@ namespace Werewolf.Player
             }
         }
 
-        private void InitializeAvatarEntity()
+        private IEnumerator LoadCdnAvatar()
         {
-            _photonView = GetComponent<PhotonView>();
-            Assert.IsNotNull(_photonView, "The PhotonView of player is not found.");
+            const float HAS_AVATAR_RETRY_WAIT_TIME = 4.0f;
+            const int HAS_AVATAR_RETRY_ATTEMPTS = 12;
 
-            // preserve offline mode if photon network is not connected.
-            if (_photonView.IsMine || !PhotonNetwork.IsConnected)
+            int totalAttempts = _autoCdnRetry ? HAS_AVATAR_RETRY_ATTEMPTS : 1;
+            bool continueRetries = _autoCdnRetry;
+            int retriesRemaining = totalAttempts;
+            bool hasFoundAvatar = false;
+            bool requestComplete = false;
+            do
             {
-                SetIsLocal(true);
-                _creationInfo.features = CAPI.ovrAvatar2EntityFeatures.Preset_Default;
-                var playerInputManager = OvrAvatarManager.Instance.GetComponent<PlayerInputManager>();
-                SetBodyTracking(playerInputManager);
-                var lipSyncInput = FindObjectOfType<OvrAvatarLipSyncContext>();
-                SetLipSync(lipSyncInput);
-                gameObject.name = "LocalAvatar";
+                var hasAvatarRequest = OvrAvatarManager.Instance.UserHasAvatarAsync(_userId);
+                while (!hasAvatarRequest.IsCompleted) { yield return null; }
+
+                switch (hasAvatarRequest.Result)
+                {
+                    case OvrAvatarManager.HasAvatarRequestResultCode.HasAvatar:
+                        hasFoundAvatar = true;
+                        requestComplete = true;
+                        continueRetries = false;
+
+                        // Now attempt download
+                        yield return LoadUser(true);
+                        // End coroutine - do not load default
+                        break;
+
+                    case OvrAvatarManager.HasAvatarRequestResultCode.HasNoAvatar:
+                        requestComplete = true;
+                        continueRetries = false;
+
+                        OvrAvatarLog.LogDebug(
+                            "User has no avatar. Falling back to local avatar."
+                            , logScope, this);
+                        break;
+
+                    case OvrAvatarManager.HasAvatarRequestResultCode.SendFailed:
+                        OvrAvatarLog.LogError(
+                            "Unable to send avatar status request."
+                            , logScope, this);
+                        break;
+
+                    case OvrAvatarManager.HasAvatarRequestResultCode.RequestFailed:
+                        OvrAvatarLog.LogError(
+                            "An error occurred while querying avatar status."
+                            , logScope, this);
+                        break;
+
+                    case OvrAvatarManager.HasAvatarRequestResultCode.BadParameter:
+                        continueRetries = false;
+
+                        OvrAvatarLog.LogError(
+                            "Attempted to load invalid userId."
+                            , logScope, this);
+                        break;
+
+                    case OvrAvatarManager.HasAvatarRequestResultCode.RequestCancelled:
+                        continueRetries = false;
+
+                        OvrAvatarLog.LogInfo(
+                            "HasAvatar request cancelled."
+                            , logScope, this);
+                        break;
+
+                    case OvrAvatarManager.HasAvatarRequestResultCode.UnknownError:
+                    default:
+                        OvrAvatarLog.LogError(
+                            $"An unknown error occurred {hasAvatarRequest.Result}. Falling back to local avatar."
+                            , logScope, this);
+                        break;
+                }
+
+                continueRetries &= --retriesRemaining > 0;
+                if (continueRetries)
+                {
+                    yield return new WaitForSecondsRealtime(HAS_AVATAR_RETRY_WAIT_TIME);
+                }
+            } while (continueRetries);
+
+            if (!requestComplete)
+            {
+                OvrAvatarLog.LogError(
+                    $"Unable to query UserHasAvatar {totalAttempts} attempts"
+                    , logScope, this);
             }
-            else
+
+            if (!hasFoundAvatar)
             {
-                SetIsLocal(false);
-                _creationInfo.features = CAPI.ovrAvatar2EntityFeatures.Preset_Remote;
-                gameObject.name = "RemoteAvatar";
+                // We cannot find an avatar, use local fallback
+                UserHasNoAvatarFallback();
+            }
+
+            // Check for changes unless a local asset is configured, user could create one later
+            // If a local asset is loaded, it will currently conflict w/ the CDN asset
+            if (_autoCheckChanges && (hasFoundAvatar || !HasLocalAvatarConfigured))
+            {
+                yield return PollForAvatarChange();
             }
         }
+
+        private IEnumerator GetUserIdFromOculus()
+        {
+            if (OvrPlatformInit.status == OvrPlatformInitStatus.NotStarted)
+            {
+                OvrPlatformInit.InitializeOvrPlatform();
+            }
+
+            while (OvrPlatformInit.status != OvrPlatformInitStatus.Succeeded)
+            {
+                if (OvrPlatformInit.status == OvrPlatformInitStatus.Failed)
+                {
+                    OvrAvatarLog.LogError("OVR Platform failed to initialise");
+                    yield break;
+                }
+                yield return null;
+            }
+
+            bool getUserIdComplete = false;
+            Users.GetLoggedInUser().OnComplete(message =>
+            {
+                if (message.IsError)
+                {
+                    OvrAvatarLog.LogError("Getting Logged in user error " + message.GetError());
+                }
+                else
+                {
+                    _userId = message.Data.ID;
+                }
+                getUserIdComplete = true;
+            });
+
+            while (!getUserIdComplete) { yield return null; }
+        }
+
         #endregion
-
-        public void ReloadAvatarManually(string newAssetPaths, AssetSource newAssetSource)
-        {
-            string[] tempStringArray = new string[1];
-            tempStringArray[0] = newAssetPaths;
-            ReloadAvatarManually(tempStringArray, newAssetSource);
-        }
-
-        public void ReloadAvatarManually(string[] newAssetPaths, AssetSource newAssetSource)
-        {
-            Teardown();
-            CreateEntity();
-
-            bool isFromZip = (newAssetSource == AssetSource.Zip);
-            string assetPostfix = (_underscorePostfix ? "_" : "")
-                + OvrAvatarManager.Instance.GetPlatformGLBPostfix(isFromZip)
-                + OvrAvatarManager.Instance.GetPlatformGLBVersion(_highQuality, isFromZip)
-                + OvrAvatarManager.Instance.GetPlatformGLBExtension(isFromZip);
-
-            string[] combinedPaths = new string[newAssetPaths.Length];
-            for (var index = 0; index < newAssetPaths.Length; index++)
-            {
-                combinedPaths[index] = $"{newAssetPaths[index]}{assetPostfix}";
-            }
-
-            if (isFromZip)
-            {
-                LoadAssetsFromZipSource(combinedPaths);
-            }
-            else
-            {
-                LoadAssetsFromStreamingAssets(combinedPaths);
-            }
-        }
-
-        public bool LoadPreset(int preset, string namePrefix = "")
-        {
-            StartLoadTimeCounter();
-            bool isFromZip = true;
-            string assetPostfix = (_underscorePostfix ? "_" : "")
-                + OvrAvatarManager.Instance.GetPlatformGLBPostfix(isFromZip)
-                + OvrAvatarManager.Instance.GetPlatformGLBVersion(_highQuality, isFromZip)
-                + OvrAvatarManager.Instance.GetPlatformGLBExtension(isFromZip);
-
-            var assetPath = $"{namePrefix}{preset}{assetPostfix}";
-            return LoadAssetsFromZipSource(new string[] { assetPath });
-        }
 
         #region Fade/Desat
 
-        private static readonly Color AVATAR_FADE_DEFAULT_COLOR = new Color(33 / 255f, 50 / 255f, 99 / 255f, 0f); // "#213263"
+        private static readonly Color AVATAR_FADE_DEFAULT_COLOR = new(33 / 255f, 50 / 255f, 99 / 255f, 0f); // "#213263"
         private static readonly float AVATAR_FADE_DEFAULT_COLOR_BLEND = 0.7f; // "#213263"
         private static readonly float AVATAR_FADE_DEFAULT_GRAYSCALE_BLEND = 0;
 
@@ -468,107 +471,7 @@ namespace Werewolf.Player
             LoadLocalAvatar();
         }
 
-        private IEnumerator Retry_HasAvatarRequest()
-        {
-            const float HAS_AVATAR_RETRY_WAIT_TIME = 4.0f;
-            const int HAS_AVATAR_RETRY_ATTEMPTS = 12;
-
-            int totalAttempts = _autoCdnRetry ? HAS_AVATAR_RETRY_ATTEMPTS : 1;
-            bool continueRetries = _autoCdnRetry;
-            int retriesRemaining = totalAttempts;
-            bool hasFoundAvatar = false;
-            bool requestComplete = false;
-            do
-            {
-                var hasAvatarRequest = OvrAvatarManager.Instance.UserHasAvatarAsync(_userId);
-                while (!hasAvatarRequest.IsCompleted) { yield return null; }
-
-                switch (hasAvatarRequest.Result)
-                {
-                    case OvrAvatarManager.HasAvatarRequestResultCode.HasAvatar:
-                        hasFoundAvatar = true;
-                        requestComplete = true;
-                        continueRetries = false;
-
-                        // Now attempt download
-                        yield return AutoRetry_LoadUser(true);
-                        // End coroutine - do not load default
-                        break;
-
-                    case OvrAvatarManager.HasAvatarRequestResultCode.HasNoAvatar:
-                        requestComplete = true;
-                        continueRetries = false;
-
-                        OvrAvatarLog.LogDebug(
-                            "User has no avatar. Falling back to local avatar."
-                            , logScope, this);
-                        break;
-
-                    case OvrAvatarManager.HasAvatarRequestResultCode.SendFailed:
-                        OvrAvatarLog.LogError(
-                            "Unable to send avatar status request."
-                            , logScope, this);
-                        break;
-
-                    case OvrAvatarManager.HasAvatarRequestResultCode.RequestFailed:
-                        OvrAvatarLog.LogError(
-                            "An error occurred while querying avatar status."
-                            , logScope, this);
-                        break;
-
-                    case OvrAvatarManager.HasAvatarRequestResultCode.BadParameter:
-                        continueRetries = false;
-
-                        OvrAvatarLog.LogError(
-                            "Attempted to load invalid userId."
-                            , logScope, this);
-                        break;
-
-                    case OvrAvatarManager.HasAvatarRequestResultCode.RequestCancelled:
-                        continueRetries = false;
-
-                        OvrAvatarLog.LogInfo(
-                            "HasAvatar request cancelled."
-                            , logScope, this);
-                        break;
-
-                    case OvrAvatarManager.HasAvatarRequestResultCode.UnknownError:
-                    default:
-                        OvrAvatarLog.LogError(
-                            $"An unknown error occurred {hasAvatarRequest.Result}. Falling back to local avatar."
-                            , logScope, this);
-                        break;
-                }
-
-                continueRetries &= --retriesRemaining > 0;
-                if (continueRetries)
-                {
-                    yield return new WaitForSecondsRealtime(HAS_AVATAR_RETRY_WAIT_TIME);
-                }
-            } while (continueRetries);
-
-            if (!requestComplete)
-            {
-                OvrAvatarLog.LogError(
-                    $"Unable to query UserHasAvatar {totalAttempts} attempts"
-                    , logScope, this);
-            }
-
-            if (!hasFoundAvatar)
-            {
-                // We cannot find an avatar, use local fallback
-                UserHasNoAvatarFallback();
-            }
-
-            // Check for changes unless a local asset is configured, user could create one later
-            // If a local asset is loaded, it will currently conflict w/ the CDN asset
-            if (_autoCheckChanges && (hasFoundAvatar || !HasLocalAvatarConfigured))
-            {
-                yield return PollForAvatarChange();
-            }
-        }
-
-        private IEnumerator AutoRetry_LoadUser(bool loadFallbackOnFailure)
+        private IEnumerator LoadUser(bool loadFallbackOnFailure)
         {
             const float LOAD_USER_POLLING_INTERVAL = 4.0f;
             const float LOAD_USER_BACKOFF_FACTOR = 1.618033988f;
@@ -615,21 +518,6 @@ namespace Werewolf.Player
                 // We cannot download an avatar, use local fallback
                 UserHasNoAvatarFallback();
             }
-        }
-
-        private void StartLoadTimeCounter()
-        {
-            _loadTime.Start();
-
-            OnUserAvatarLoadedEvent.AddListener((OvrAvatarEntity entity) =>
-            {
-                _loadTime.Stop();
-            });
-        }
-
-        public long GetLoadTimeMs()
-        {
-            return _loadTime.ElapsedMilliseconds;
         }
 
         #endregion // Retry
@@ -700,7 +588,7 @@ namespace Werewolf.Player
                             "Avatar has changed, loading new spec."
                             , logScope, this);
 
-                        yield return AutoRetry_LoadUser(false);
+                        yield return LoadUser(false);
                         break;
                 }
             } while (continueChecking);
@@ -710,15 +598,50 @@ namespace Werewolf.Player
 
         #region Photon Callbacks
 
-        private void GetUserIdFromPhotonInstantiationData()
+        private ulong GetUserIdFromPhotonInstantiationData()
         {
             object[] instantiationData = _photonView.InstantiationData;
-            Int64 data_as_int = (Int64)instantiationData[0];
-            return Convert.ToUInt64(data_as_int);
+            return Convert.ToUInt64(instantiationData[0]);
+        }
+
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            if (CurrentState == AvatarState.UserAvatar)
+            {
+                // using var memStream = new MemoryStream();
+                if (stream.IsWriting)
+                {
+                    var data = RecordStreamData(activeStreamLod);
+                    // memStream.Write(data, 0, data.Length);
+                    stream.SendNext(data);
+                }
+                else
+                {
+                    // _binaryFormatter.Serialize(memStream, stream.ReceiveNext());
+                    _streamedDataList.Add((byte[])stream.ReceiveNext());
+                    // ApplyStreamData(memStream.ToArray());
+                }
+            }
         }
 
         #endregion
 
+        #region Unity Callbacks
+
+        private void Update()
+        {
+            if (_streamedDataList.Count > 0)
+            {
+                byte[] firstBytesInList = _streamedDataList.First();
+                if (firstBytesInList != null)
+                {
+                    ApplyStreamData(firstBytesInList);
+                }
+                _streamedDataList.RemoveAt(0);
+            }
+        }
+
+        #endregion
         // Debug
         #region Debug
 

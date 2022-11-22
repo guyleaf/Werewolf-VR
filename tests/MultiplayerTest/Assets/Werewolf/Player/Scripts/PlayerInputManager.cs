@@ -48,14 +48,14 @@ namespace Werewolf.Player
             // If OVRCameraRig doesn't exist, we should set tracking origin ourselves
             if (_useOvrCameraRig)
             {
+                Assert.IsNotNull(OVRManager.instance, "The OVRManager instance is not created.");
                 if (_ovrCameraRig == null)
                 {
-                    Assert.IsTrue(OVRManager.instance.TryGetComponent(out _ovrCameraRig), "The OVRManager should be initialized.");
+                    Assert.IsTrue(OVRManager.instance.TryGetComponent(out _ovrCameraRig), "The OVRCameraRig component is not found.");
                 }
             }
             else
             {
-
                 if (OVRManager.instance == null)
                 {
                     OvrAvatarLog.LogDebug("Creating OVRManager, as one doesn't exist yet.", logScope, this);
