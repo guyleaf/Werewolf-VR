@@ -56,11 +56,10 @@ namespace Werewolf.Player
 		/// </summary>
 		private void Start()
 		{
-			Assert.IsNotNull(OVRManager.instance, "The OVRManager instance is not created.");
-
             // Start following the target if wanted.
             if (_followOnStart || photonView.IsMine)
 			{
+                Assert.IsNotNull(OVRManager.instance, "The OVRManager instance is not created.");
                 OnStartFollowing();
             }
 		}
