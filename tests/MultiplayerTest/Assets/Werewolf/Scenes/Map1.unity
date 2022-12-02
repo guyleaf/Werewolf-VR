@@ -389,7 +389,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3364325394453186254, guid: 3940a4795f91c674fb48d6d4e299297a, type: 3}
       propertyPath: TimeOfDay
-      value: 1024
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3364325394453186254, guid: 3940a4795f91c674fb48d6d4e299297a, type: 3}
       propertyPath: SunDirection
@@ -518,6 +518,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7b47e36715521d4e8a30d2c5b6e83e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &963815406 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 484185666568157151, guid: c3f8e460355fb70479efe924004a5033, type: 3}
+  m_PrefabInstance: {fileID: 1762331867713484151}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c6b6d170253ad146a74856b1fc7fbd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &967078833
@@ -1252,6 +1263,14 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1762331867713484158, guid: c3f8e460355fb70479efe924004a5033, type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1762331867713484158, guid: c3f8e460355fb70479efe924004a5033, type: 3}
+      propertyPath: ObservedComponents.Array.data[0]
+      value: 
+      objectReference: {fileID: 963815406}
     - target: {fileID: 7535442053085370741, guid: c3f8e460355fb70479efe924004a5033, type: 3}
       propertyPath: m_RootOrder
       value: 1

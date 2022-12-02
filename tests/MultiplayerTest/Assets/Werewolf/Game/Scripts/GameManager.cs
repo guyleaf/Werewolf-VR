@@ -57,6 +57,8 @@ namespace Werewolf.Game
         {
             string roomName = PhotonNetwork.CurrentRoom.Name;
             Debug.Log("Joined room with name " + roomName);
+            Debug.Log("Number of Player:" + PhotonNetwork.CurrentRoom.Players.Count);
+            Debug.Log("Master Client: " + PhotonNetwork.IsMasterClient);
         }
 
         #endregion

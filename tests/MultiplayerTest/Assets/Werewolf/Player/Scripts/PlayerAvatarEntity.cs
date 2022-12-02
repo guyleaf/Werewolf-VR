@@ -21,7 +21,16 @@ namespace Werewolf.Player
     [RequireComponent(typeof(PhotonView))]
     public class PlayerAvatarEntity : OvrAvatarEntity, IPunObservable
     {
+        public static float deltaTime;  // get time consume of a frame
+        private float timer = 0;
+        private float recTimer = 0;
+        private bool _sync = false;
+        private bool _recSync = false;
+        private LightManager dayTimer;
+        private bool _isMasterClient;
+        
         private const string logScope = "playerAvatar";
+
         public enum AssetSource
         {
             /// Load from one of the preloaded .zip files
@@ -92,9 +101,11 @@ namespace Werewolf.Player
         private readonly BinaryFormatter _binaryFormatter = new();
 
         private List<byte[]> _streamedDataList = new();
-
+        private List<float> _streamedTimeList = new();
+        
         protected override void Awake()
         {
+            
             InitializeAvatarEntity();
             base.Awake();
             // OvrAvatarEntity.Awake calls OvrAvatarEntity.CreateEntity sets eye and face tracking contexts (which asks user permission).
@@ -109,6 +120,9 @@ namespace Werewolf.Player
 
         protected virtual IEnumerator Start()
         {
+            OvrAvatarLog.LogError("Force the build console open...");
+            dayTimer = GameObject.FindObjectOfType<LightManager>();
+            _isMasterClient = PhotonNetwork.IsMasterClient;
             // preserve local test ability
             if (PhotonNetwork.IsConnected)
             {
@@ -159,6 +173,7 @@ namespace Werewolf.Player
                 SetLipSync(lipSyncInput);
                 // SetActiveView(CAPI.ovrAvatar2EntityViewFlags.FirstPerson);
                 gameObject.name = $"{_photonView.ViewID}_LocalAvatar";
+
             }
             else
             {
@@ -614,14 +629,45 @@ namespace Werewolf.Player
                     var data = RecordStreamData(activeStreamLod);
                     // memStream.Write(data, 0, data.Length);
                     stream.SendNext(data);
+                    if (_isMasterClient)
+                    {
+                        //stream.SendNext(timer);
+                        //OvrAvatarLog.LogError("Send timer: " + timer.ToString("0.00"));
+                        stream.SendNext(_sync);
+                        OvrAvatarLog.LogError("Send sync: " + _sync);
+                        if (_sync)
+                        {
+                            dayTimer.TimeOfDay = 0;
+                            _sync = false;
+                        }
+                    }
+/*                    stream.SendNext(timer);
+                    OvrAvatarLog.LogError("Send timer: " + timer.ToString("0.00"));*/
                 }
                 else
                 {
                     // _binaryFormatter.Serialize(memStream, stream.ReceiveNext());
                     _streamedDataList.Add((byte[])stream.ReceiveNext());
                     // ApplyStreamData(memStream.ToArray());
+                    /*                    timer = (float)stream.ReceiveNext();
+                                        OvrAvatarLog.LogError("Received timer: " + timer.ToString("0.00"));*/
+                    //recTimer = (float)stream.ReceiveNext();
+                    //OvrAvatarLog.LogError("Received timer: " + recTimer.ToString("0.00"));
+                    _recSync = (bool)stream.ReceiveNext();
+                    OvrAvatarLog.LogError("Received sync: " + _recSync);
                 }
             }
+            // using var memStream = new MemoryStream();
+/*            if (stream.IsWriting)
+            {
+                stream.SendNext(timer);
+                OvrAvatarLog.LogError("Send timer: " + timer.ToString("0.00"));
+            }
+            else
+            {
+                this.timer = (float)stream.ReceiveNext();
+                OvrAvatarLog.LogError("Received timer: " + this.timer.ToString("0.00"));
+            }*/
         }
 
         #endregion
@@ -638,6 +684,29 @@ namespace Werewolf.Player
                     ApplyStreamData(firstBytesInList);
                 }
                 _streamedDataList.RemoveAt(0);
+            }
+            if (_photonView.IsMine)
+            {
+                timer += Time.deltaTime;
+                OvrAvatarLog.LogError("Timer: " + timer.ToString("0.00"));  //LogInfo, LogError
+                if (timer > 30)
+                {
+                    timer = 0;
+                    _sync = true;
+                }
+            }
+            else
+            {
+                //timer = recTimer;
+                //OvrAvatarLog.LogError("recTimer: " + recTimer.ToString("0.00"));  //LogInfo, LogError
+                if (_recSync)
+                {
+                    timer = 0;
+                    dayTimer.TimeOfDay = 0;
+                    OvrAvatarLog.LogError("reset Timer: " + timer.ToString("0.00"));  //LogInfo, LogError
+                    OvrAvatarLog.LogError("reset sync: " + _recSync);
+                }
+
             }
         }
 
