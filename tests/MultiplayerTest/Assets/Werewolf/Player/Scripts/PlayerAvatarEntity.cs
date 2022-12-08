@@ -653,8 +653,10 @@ namespace Werewolf.Player
                                         OvrAvatarLog.LogError("Received timer: " + timer.ToString("0.00"));*/
                     //recTimer = (float)stream.ReceiveNext();
                     //OvrAvatarLog.LogError("Received timer: " + recTimer.ToString("0.00"));
-                    _recSync = (bool)stream.ReceiveNext();
-                    OvrAvatarLog.LogError("Received sync: " + _recSync);
+                    if (!_isMasterClient) { 
+                        _recSync = (bool)stream.ReceiveNext();
+                        OvrAvatarLog.LogError("Received sync: " + _recSync);
+                    }
                 }
             }
             // using var memStream = new MemoryStream();
