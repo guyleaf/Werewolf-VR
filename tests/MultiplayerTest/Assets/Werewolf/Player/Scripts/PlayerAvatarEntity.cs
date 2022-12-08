@@ -12,6 +12,7 @@ using UnityEngine.Assertions;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Linq;
+using Werewolf.Game;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -21,6 +22,7 @@ namespace Werewolf.Player
     [RequireComponent(typeof(PhotonView))]
     public class PlayerAvatarEntity : OvrAvatarEntity, IPunObservable
     {
+        public GameManager _gm;
         public static float deltaTime;  // get time consume of a frame
         private float timer = 0;
         private float recTimer = 0;
@@ -120,6 +122,7 @@ namespace Werewolf.Player
 
         protected virtual IEnumerator Start()
         {
+            _gm = gameObject.GetComponent<GameManager>();
             OvrAvatarLog.LogError("Force the build console open...");
             dayTimer = GameObject.FindObjectOfType<LightManager>();
             _isMasterClient = PhotonNetwork.IsMasterClient;
@@ -629,19 +632,19 @@ namespace Werewolf.Player
                     var data = RecordStreamData(activeStreamLod);
                     // memStream.Write(data, 0, data.Length);
                     stream.SendNext(data);
-                    if (_isMasterClient)
+/*                    if (_isMasterClient)
                     {
                         //stream.SendNext(timer);
                         //OvrAvatarLog.LogError("Send timer: " + timer.ToString("0.00"));
                         stream.SendNext(_sync);
-                        OvrAvatarLog.LogError("Send sync: " + _sync);
-                        if (_sync)
-                        {
-                            dayTimer.TimeOfDay = 0;
-                            _sync = false;
-                        }
+                        //OvrAvatarLog.LogError("Send sync: " + _sync);
+                        //if (_sync)
+                        //{
+                        //    dayTimer.TimeOfDay = 0;
+                        //    _sync = false;
+                        //}
                     }
-/*                    stream.SendNext(timer);
+                    stream.SendNext(timer);
                     OvrAvatarLog.LogError("Send timer: " + timer.ToString("0.00"));*/
                 }
                 else
@@ -653,10 +656,10 @@ namespace Werewolf.Player
                                         OvrAvatarLog.LogError("Received timer: " + timer.ToString("0.00"));*/
                     //recTimer = (float)stream.ReceiveNext();
                     //OvrAvatarLog.LogError("Received timer: " + recTimer.ToString("0.00"));
-                    if (!_isMasterClient) { 
-                        _recSync = (bool)stream.ReceiveNext();
-                        OvrAvatarLog.LogError("Received sync: " + _recSync);
-                    }
+                    //if (!_isMasterClient) { 
+                    //    _recSync = (bool)stream.ReceiveNext();
+                    //    OvrAvatarLog.LogError("Received sync: " + _recSync);
+                    //}
                 }
             }
             // using var memStream = new MemoryStream();
@@ -687,7 +690,14 @@ namespace Werewolf.Player
                 }
                 _streamedDataList.RemoveAt(0);
             }
-            if (_photonView.IsMine)
+            if (_isMasterClient && timer > 30)
+            {
+                timer = 0;
+                _gm.CallRpcSendMessageToAll(timer);
+            }
+            timer += Time.deltaTime;
+
+            /*if (_photonView.IsMine)
             {
                 timer += Time.deltaTime;
                 OvrAvatarLog.LogError("Timer: " + timer.ToString("0.00"));  //LogInfo, LogError
@@ -709,7 +719,7 @@ namespace Werewolf.Player
                     OvrAvatarLog.LogError("reset sync: " + _recSync);
                 }
 
-            }
+            }*/
         }
 
         #endregion

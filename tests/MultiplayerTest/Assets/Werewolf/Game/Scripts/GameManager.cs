@@ -11,6 +11,12 @@ namespace Werewolf.Game
     public class GameManager : MonoBehaviourPunCallbacks
     {
         #region Public Methods & Properties
+        [SerializeField]
+        List<string> messageList;
+        [SerializeField]
+        TextAlignment messageText;
+
+        PhotonView _pv;
 
         public static GameManager Instance { get; private set; }
 
@@ -26,6 +32,7 @@ namespace Werewolf.Game
         private void Awake()
         {
             Instance = this;
+            _pv = this.gameObject.GetComponent<PhotonView>();
         }
 
         // Start is called before the first frame update
@@ -60,7 +67,29 @@ namespace Werewolf.Game
             Debug.Log("Number of Player:" + PhotonNetwork.CurrentRoom.Players.Count);
             Debug.Log("Master Client: " + PhotonNetwork.IsMasterClient);
         }
-
         #endregion
+
+        public void CallRpcSendMessageToAll(float timer)
+        {
+            _pv.RPC("RpcSendMessage", RpcTarget.All, timer);
+        }
+
+        [PunRPC]
+        void RpcSendMessage(float timer, PhotonMessageInfo info)
+        {
+            Debug.LogError("received: " + timer.ToString("0.00"));
+            //messageList.Add(timer.ToString("0.00"));
+/*            if(messageList.Count >= 10)
+            {
+                messageList.RemoveAt(0);
+            }
+            messageList.Add(message);
+            UpdateMessage();*/
+        }
+
+/*        void UpdateMessage()
+        {
+            messageText.text = string.Join("\n", messageList);
+        }*/
     }
 }

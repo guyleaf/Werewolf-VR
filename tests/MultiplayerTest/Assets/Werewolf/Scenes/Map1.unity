@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 511051343}
   - component: {fileID: 511051345}
   - component: {fileID: 511051346}
+  - component: {fileID: 511051347}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -244,6 +245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9525bea3bf3cd0e4997af78af3b05cea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  messageList: []
+  messageText: 0
 --- !u!114 &511051346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,6 +262,28 @@ MonoBehaviour:
   _playerPrefab: {fileID: 1483079080672437652, guid: c3f8e460355fb70479efe924004a5033, type: 3}
   _spawnPointOffsets: {x: 0, y: 0, z: 0}
   _spawnPoints: []
+--- !u!114 &511051347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511051342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 2
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &784356993
 PrefabInstance:
   m_ObjectHideFlags: 0
