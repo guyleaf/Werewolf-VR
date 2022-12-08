@@ -1,17 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
+
 using Oculus.Avatar2;
-using System.Reflection;
 using Oculus.Platform;
+
 using UnityEngine;
+
 using CAPI = Oculus.Avatar2.CAPI;
+
 using Photon.Pun;
+
 using UnityEngine.Assertions;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
+
 using System.Linq;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -89,12 +92,13 @@ namespace Werewolf.Player
 
         private PhotonView _photonView;
 
-        private readonly BinaryFormatter _binaryFormatter = new();
-
-        private List<byte[]> _streamedDataList = new();
+        private readonly List<byte[]> _streamedDataList = new();
 
         protected override void Awake()
         {
+            _photonView = GetComponent<PhotonView>();
+            Assert.IsNotNull(_photonView, "The PhotonView script is not attached to the player.");
+
             InitializeAvatarEntity();
             base.Awake();
             // OvrAvatarEntity.Awake calls OvrAvatarEntity.CreateEntity sets eye and face tracking contexts (which asks user permission).
@@ -145,11 +149,8 @@ namespace Werewolf.Player
 
         private void InitializeAvatarEntity()
         {
-            _photonView = GetComponent<PhotonView>();
-            Assert.IsNotNull(_photonView, "The PhotonView script is not attached to the player.");
-
             // preserve offline mode if photon network is not connected.
-            if (_photonView.IsMine || !PhotonNetwork.IsConnected)
+            if (!PhotonNetwork.IsConnected || _photonView.IsMine)
             {
                 SetIsLocal(true);
                 _creationInfo.features = CAPI.ovrAvatar2EntityFeatures.Preset_Default | CAPI.ovrAvatar2EntityFeatures.Rendering_ObjectSpaceTransforms;
@@ -157,14 +158,12 @@ namespace Werewolf.Player
                 SetBodyTracking(playerInputManager);
                 var lipSyncInput = FindObjectOfType<OvrAvatarLipSyncContext>();
                 SetLipSync(lipSyncInput);
-                // SetActiveView(CAPI.ovrAvatar2EntityViewFlags.FirstPerson);
                 gameObject.name = $"{_photonView.ViewID}_LocalAvatar";
             }
             else
             {
                 SetIsLocal(false);
                 _creationInfo.features = CAPI.ovrAvatar2EntityFeatures.Preset_Remote | CAPI.ovrAvatar2EntityFeatures.Rendering_ObjectSpaceTransforms;
-                // SetActiveView(CAPI.ovrAvatar2EntityViewFlags.ThirdPerson);
                 gameObject.name = $"{_photonView.ViewID}_RemoteAvatar";
             }
 
@@ -608,18 +607,14 @@ namespace Werewolf.Player
         {
             if (CurrentState == AvatarState.UserAvatar)
             {
-                // using var memStream = new MemoryStream();
                 if (stream.IsWriting)
                 {
                     var data = RecordStreamData(activeStreamLod);
-                    // memStream.Write(data, 0, data.Length);
                     stream.SendNext(data);
                 }
                 else
                 {
-                    // _binaryFormatter.Serialize(memStream, stream.ReceiveNext());
                     _streamedDataList.Add((byte[])stream.ReceiveNext());
-                    // ApplyStreamData(memStream.ToArray());
                 }
             }
         }
@@ -630,13 +625,10 @@ namespace Werewolf.Player
 
         private void Update()
         {
-            if (_streamedDataList.Count > 0)
+            byte[] firstBytesInList = _streamedDataList.FirstOrDefault();
+            if (firstBytesInList != null)
             {
-                byte[] firstBytesInList = _streamedDataList.First();
-                if (firstBytesInList != null)
-                {
-                    ApplyStreamData(firstBytesInList);
-                }
+                ApplyStreamData(firstBytesInList);
                 _streamedDataList.RemoveAt(0);
             }
         }
