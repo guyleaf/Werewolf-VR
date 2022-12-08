@@ -122,8 +122,8 @@ namespace Werewolf.Player
 
         protected virtual IEnumerator Start()
         {
-            _gm = gameObject.GetComponent<GameManager>();
             OvrAvatarLog.LogError("Force the build console open...");
+            _gm = GameObject.FindObjectOfType<GameManager>();
             dayTimer = GameObject.FindObjectOfType<LightManager>();
             _isMasterClient = PhotonNetwork.IsMasterClient;
             // preserve local test ability
@@ -690,13 +690,15 @@ namespace Werewolf.Player
                 }
                 _streamedDataList.RemoveAt(0);
             }
-            if (_isMasterClient && timer > 30)
+            if (_isMasterClient && timer > 30  && PhotonNetwork.CurrentRoom.Players.Count > 1)
             {
                 timer = 0;
-                _gm.CallRpcSendMessageToAll(timer);
+                _gm.CallRpcSendMessageToAll(true);  //timer
+                //dayTimer.TimeOfDay = 0;
+                //timer = 0;
             }
             timer += Time.deltaTime;
-
+            
             /*if (_photonView.IsMine)
             {
                 timer += Time.deltaTime;
