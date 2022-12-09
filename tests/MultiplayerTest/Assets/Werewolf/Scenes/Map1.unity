@@ -322,6 +322,10 @@ PrefabInstance:
       propertyPath: _enablePhysicsCapsules
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114925265787909616, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 137619227449585070, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -429,7 +433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3364325395352328148, guid: 3940a4795f91c674fb48d6d4e299297a, type: 3}
       propertyPath: m_Shadows.m_Type
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3364325395352328148, guid: 3940a4795f91c674fb48d6d4e299297a, type: 3}
       propertyPath: m_Shadows.m_Strength
@@ -810,6 +814,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114925265787909616, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
       propertyPath: _meshType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114925265787909616, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 137619227449585070, guid: 835e735ca71bf78459fb2cababd74112, type: 3}
@@ -1195,10 +1203,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 556442078097807419, guid: 4d091d63edf286740a3060674189b974, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2141925874909242545, guid: 4d091d63edf286740a3060674189b974, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1247,26 +1251,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map
       objectReference: {fileID: 0}
-    - target: {fileID: 2451159765168764401, guid: 4d091d63edf286740a3060674189b974, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5674211877657841964, guid: 4d091d63edf286740a3060674189b974, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6206510115165763785, guid: 4d091d63edf286740a3060674189b974, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8044234859029852826, guid: 4d091d63edf286740a3060674189b974, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8091819216305676566, guid: 4d091d63edf286740a3060674189b974, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d091d63edf286740a3060674189b974, type: 3}
 --- !u!1001 &1762331867713484151
@@ -1280,9 +1264,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerForTest
       objectReference: {fileID: 0}
-    - target: {fileID: 1762331867713484158, guid: c3f8e460355fb70479efe924004a5033, type: 3}
-      propertyPath: sceneViewId
-      value: 1
+    - target: {fileID: 1483079080672437652, guid: c3f8e460355fb70479efe924004a5033, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7535442053085370741, guid: c3f8e460355fb70479efe924004a5033, type: 3}
       propertyPath: m_RootOrder
@@ -1386,12 +1370,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1474498448357671615, guid: af8cdc6c9942373488f06604ec01e7be, type: 3}
+      propertyPath: _enableDevTools
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1474498448357671615, guid: af8cdc6c9942373488f06604ec01e7be, type: 3}
       propertyPath: UseFastLoadAvatar
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1474498448357671615, guid: af8cdc6c9942373488f06604ec01e7be, type: 3}
       propertyPath: _useCriticalJointJobs
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1474498448357671615, guid: af8cdc6c9942373488f06604ec01e7be, type: 3}
+      propertyPath: _skinQualityPerLOD.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3889874673273223832, guid: af8cdc6c9942373488f06604ec01e7be, type: 3}
       propertyPath: _useAsyncBodySolver

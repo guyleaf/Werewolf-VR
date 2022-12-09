@@ -80,7 +80,7 @@ namespace Werewolf.Player
 
             if (BodyTracking != null)
             {
-                BodyTracking.InputTrackingDelegate = new PlayerInputTrackingDelegate(_ovrCameraRig);
+                BodyTracking.InputTrackingDelegate = new SampleInputTrackingDelegate(_ovrCameraRig);
                 BodyTracking.InputControlDelegate = new SampleInputControlDelegate();
             }
         }
