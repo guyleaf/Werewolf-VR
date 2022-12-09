@@ -1,11 +1,7 @@
+using Oculus.Avatar2;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-
-using Oculus.Avatar2;
-
-using Unity.Collections;
-
 using UnityEngine;
 
 namespace Oculus.Skinning.GpuSkinning

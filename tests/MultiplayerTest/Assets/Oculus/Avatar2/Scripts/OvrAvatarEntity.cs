@@ -59,8 +59,6 @@ namespace Oculus.Avatar2
      */
     public partial class OvrAvatarEntity : MonoBehaviour
     {
-
-
         // If any variable is used across these files, it should be placed in this file
 
         //:: Constants
@@ -212,7 +210,8 @@ namespace Oculus.Avatar2
                 lodFlags = CAPI.ovrAvatar2EntityLODFlags.All,
                 manifestationFlags = CAPI.ovrAvatar2EntityManifestationFlags.Half,
                 viewFlags = CAPI.ovrAvatar2EntityViewFlags.All,
-                subMeshInclusionFlags = CAPI.ovrAvatar2EntitySubMeshInclusionFlags.All
+                subMeshInclusionFlags = CAPI.ovrAvatar2EntitySubMeshInclusionFlags.All,
+                highQualityFlags = CAPI.ovrAvatar2EntityHighQualityFlags.None
             }
         };
 
@@ -228,6 +227,9 @@ namespace Oculus.Avatar2
         [Tooltip("If new sub-mesh types are introduced after this version of the SDK, theis flag determines if they are visible by default. If excluding only one mesh it's best to heep this on. If including ony one mesh it's best to keep this off.")]
         [SerializeField]
         private bool _activeSubMeshesIncludeUntyped = true;
+
+        [SerializeField]
+        private CAPI.ovrAvatar2EntityHighQualityFlags _activeHighQuality = CAPI.ovrAvatar2EntityHighQualityFlags.None;
 
         // Tracking
         [Header("Tracking Input")]
@@ -251,12 +253,22 @@ namespace Oculus.Avatar2
         [SerializeField]
         protected CAPI.ovrAvatar2JointType[] _criticalJointTypes = Array.Empty<CAPI.ovrAvatar2JointType>();
 
+        [Header("Experimental Features",order=30)]
+        [SerializeField]
+        [Tooltip("Enable experimental features on this Entity")]
+        private DefaultableBool _useExperimentalFeatures = DefaultableBool.Default;
+
+        // TODO: Decouple experimental systems from features once bugs are resolved
+        protected bool UseExperimentalFeatures => _useExperimentalFeatures.GetValue(OvrAvatarManager.Instance.UseExperimentalSystems);
+
         private uint[] _unityUpdateJointIndices = Array.Empty<uint>(); // names with missing/inactive joints removed
 
         //:: Protected Variables
         protected internal virtual Transform _baseTransform => transform;
 
         protected CAPI.ovrAvatar2EntityId entityId { get; private set; } = CAPI.ovrAvatar2EntityId.Invalid;
+
+        internal CAPI.ovrAvatar2EntityId internalEntityId => entityId;
 
         protected UInt64 _userId = 0;
 
@@ -315,6 +327,8 @@ namespace Oculus.Avatar2
             public bool drawCriticalJoints;
             public Color skeletonColor;
         }
+
+        [Header("Debug")]
 
         [SerializeField]
         private DebugDrawing _debugDrawing = new DebugDrawing
@@ -380,19 +394,12 @@ namespace Oculus.Avatar2
             Profiler.EndSample();
         }
 
-        // TODO: This should only be called from one place
-        private bool getEntityActive(out bool isActive)
-        {
-            return CAPI.ovrAvatar2Entity_GetActive(entityId, out isActive)
-                    .EnsureSuccess("ovrAvatar2Entity_GetActive", logScope, this);
-        }
-
         // Non-virtual update run before virtual method
-        internal void PreSDKUpdateInternal()
+        internal void PreSDKUpdateInternal(bool active, ref NativeArray<CAPI.ovrAvatar2Transform> transforms, uint nextTransformIndex)
         {
             // State validation
             // Validate sync of tracked state
-            OvrAvatarLog.AssertConstMessage(getEntityActive(out var queryActive) && queryActive == _lastActive
+            OvrAvatarLog.AssertConstMessage(active == _lastActive
                 , "Inconsistent activity state", logScope, this);
 
             // Apply C# active/inactive state to nativeSDK
@@ -406,20 +413,17 @@ namespace Oculus.Avatar2
             }
 
             // If active, apply C# state changes to nativeSDK
-            if (_nextActive)
+            unsafe
             {
-                CAPI.ovrAvatar2Entity_SetRoot(entityId, _baseTransform.ToWorldOvrTransform().ConvertSpace());
+                void* transformsPtr = NativeArrayUnsafeUtility.GetUnsafeBufferPointerWithoutChecks(transforms);
+                UnsafeUtility.WriteArrayElement<CAPI.ovrAvatar2Transform>(transformsPtr, (int)nextTransformIndex, _baseTransform.ToWorldOvrTransform().ConvertSpace());
             }
         }
 
-        internal void PostSDKUpdateInternal()
+        internal void PostSDKUpdateInternal(bool active)
         {
-            // Apply nativeSDK active state changes
-            if (getEntityActive(out var queryActive))
-            {
-                // TODO: Notify other systems of state change?
-                _lastActive = _nextActive = queryActive;
-            }
+            // TODO: Notify other systems of state change?
+            _lastActive = _nextActive = active;
         }
 
         // This behaviour is manually updated at a specific time during OvrAvatarManager::Update()
@@ -438,6 +442,8 @@ namespace Oculus.Avatar2
 
                 // Occurs when spec download fails
                 if (result == CAPI.ovrAvatar2Result.DataNotAvailable
+                // Occurs when failing to parse glb asset
+                    || result == CAPI.ovrAvatar2Result.InvalidData
                 // Occurs when CDN download fails
                     || result == CAPI.ovrAvatar2Result.Unknown)
                 {
@@ -486,9 +492,15 @@ namespace Oculus.Avatar2
             Profiler.EndSample(); // "OvrAvatarEntity::UpdateInternal"
         }
 
-        protected virtual void OnDestroy()
+        protected void OnDestroy()
         {
-            Teardown();
+            bool shouldTearDown = IsCreated || CurrentState != AvatarState.None || _skeleton.Length > 0 ||
+                                  IsApplyingModels || _loadingRoutine != null || _jointMonitor != null ||
+                                  !(_avatarLOD is null);
+            if (shouldTearDown)
+            {
+                Teardown();
+            }
             OnDestroyCalled();
 
 #if UNITY_EDITOR
@@ -521,6 +533,7 @@ namespace Oculus.Avatar2
                 SetActiveManifestation(_activeManifestation);
                 SetActiveView(_activeView);
                 SetActiveSubMeshInclusion(_activeSubMeshes);
+                SetActiveHighQuality(_activeHighQuality);
                 Hidden = Hidden;
             }
         }
@@ -561,9 +574,14 @@ namespace Oculus.Avatar2
             }
 
             var createInfoOverride = ConfigureCreationInfo();
-            if (createInfoOverride != null)
+            if (createInfoOverride.HasValue)
             {
-                _creationInfo = (CAPI.ovrAvatar2EntityCreateInfo)createInfoOverride;
+                _creationInfo = createInfoOverride.Value;
+            }
+
+            if (UseExperimentalFeatures)
+            {
+                AddExperimentalFeatureFlags(ref _creationInfo.features);
             }
 
             IsPendingDefaultModel = HasAllFeatures(CAPI.ovrAvatar2EntityFeatures.UseDefaultModel);
@@ -591,8 +609,13 @@ namespace Oculus.Avatar2
             SetActiveView(_activeView);
             SetActiveManifestation(_activeManifestation);
             SetActiveSubMeshInclusion(_activeSubMeshes);
+            SetActiveHighQuality(_activeHighQuality);
 
-            if (!IsLocal)
+            if (IsLocal)
+            {
+                ConfigureLocalAvatarSettings();
+            }
+            else
             {
                 SetStreamingPlayback(true);
             }
@@ -631,6 +654,11 @@ namespace Oculus.Avatar2
                 {
                     _jointMonitor = new OvrAvatarEntityJointMonitor(this);
                 }
+            }
+            else
+            {
+                // Only GpuSkinning supports MotionSmoothing, if we didn't/can't use that - indicate that it is off
+                MotionSmoothingSettings = MotionSmoothingOptions.FORCE_OFF;
             }
         }
 
@@ -689,6 +717,12 @@ namespace Oculus.Avatar2
         {
             OvrAvatarLog.LogDebug("Base ConfigureCreationInfo Invoked", logScope, this);
             return null;
+        }
+
+        protected static void AddExperimentalFeatureFlags(ref CAPI.ovrAvatar2EntityFeatures featureFlags)
+        {
+            const CAPI.ovrAvatar2EntityFeatures reservedBit = (CAPI.ovrAvatar2EntityFeatures)1;
+            featureFlags |= ~(CAPI.ovrAvatar2EntityFeatures.All | reservedBit);
         }
 
         public class GPUInstancedAvatar : MonoBehaviour
@@ -995,6 +1029,8 @@ namespace Oculus.Avatar2
          */
         public void Teardown()
         {
+            System.Diagnostics.Debug.Assert(entityId != CAPI.ovrAvatar2EntityId.Invalid);
+
             if (CurrentState != AvatarState.None)
             {
                 InvokePreTeardown();
@@ -1003,7 +1039,7 @@ namespace Oculus.Avatar2
             // If not, we are shutting down and will skip some steps
             bool hasManagerInstance = OvrAvatarManager.hasInstance;
 
-            OvrAvatarLog.LogDebug($"Tearing down entity {entityId} ", logScope, this);
+            OvrAvatarLog.LogDebug($"Tearing down entity {entityId}", logScope, this);
             if (_loadingRoutine != null)
             {
                 StopCoroutine(_loadingRoutine);
@@ -1050,9 +1086,13 @@ namespace Oculus.Avatar2
             CurrentState = AvatarState.None;
 
             ResetLODRange();
-            TeardownLodCullingPoints();
 
-            ShutdownAvatarLOD();
+            if (!(_avatarLOD is null))
+            {
+                TeardownLodCullingPoints();
+                ShutdownAvatarLOD();
+                _avatarLOD = null;
+            }
 
             // TODO: These will get destroyed w/ LODObjects - though being explicit would be nice
             // This trips an error in Unity currently,
@@ -1310,6 +1350,72 @@ namespace Oculus.Avatar2
                         }
                     }
                 }
+            }
+        }
+
+        /**
+         * Gets the current avatar high quality flags (normal map, hair map).
+         * It is possible for multiple flags to be true at once.
+         * @returns CAPI.ovrAvatar2EntityHighQualityFlags designating avatar choices.
+         * @see CAPI.ovrAvatar2EntityHighQualityFlags
+         * @see SetActiveHighQualityFlags
+         */
+        protected CAPI.ovrAvatar2EntityHighQualityFlags GetActiveHighQuality() => _activeHighQuality;
+
+        /**
+         * Selects the high quality flags (normal map, hair map).
+         * @param CAPI.ovrAvatar2EntityHighQualityFlags designating avatar viewpoint.
+         * @see CAPI.ovrAvatar2EntityViewFlags
+         * @see GetActiveHighQualityFlags
+         */
+        protected void SetActiveHighQuality(CAPI.ovrAvatar2EntityHighQualityFlags highQuality)
+        {
+            var result = CAPI.ovrAvatar2Entity_SetHighQualityFlags(entityId, highQuality);
+            if (result.IsSuccess())
+            {
+                _activeHighQuality = highQuality;
+
+                // TODO: Should we iterate over all the renderers here the way the submeshes do?
+                // TODO: change this to a class member with a mx number of meshes
+                List<UnityEngine.Rendering.SubMeshDescriptor> subMeshDescriptors = new List<UnityEngine.Rendering.SubMeshDescriptor>(64);
+                foreach (PrimitiveRenderData[] renderDatas in _visiblePrimitiveRenderers)
+                {
+                    foreach (PrimitiveRenderData renderData in renderDatas)
+                    {
+                        OvrAvatarRenderable renderable = renderData.renderable;
+                        MeshRenderer renderer = renderable.rendererComponent as MeshRenderer;
+                        if (renderer != null)
+                        {
+                            bool enableNormalMap = (_activeHighQuality & CAPI.ovrAvatar2EntityHighQualityFlags.NormalMaps) != 0;
+                            bool enablePropertyHairMap = (_activeHighQuality & CAPI.ovrAvatar2EntityHighQualityFlags.PropertyHairMap) != 0;
+                            if (enableNormalMap)
+                            {
+                                renderer.sharedMaterial.EnableKeyword("HAS_NORMAL_MAP_ON");
+                                renderer.sharedMaterial.SetFloat("HAS_NORMAL_MAP", 1.0f);
+                            }
+                            else
+                            {
+                                renderer.sharedMaterial.DisableKeyword("HAS_NORMAL_MAP_ON");
+                                renderer.sharedMaterial.SetFloat("HAS_NORMAL_MAP", 0.0f);
+                            }
+
+                            if (enablePropertyHairMap)
+                            {
+                                renderer.sharedMaterial.EnableKeyword("ENABLE_HAIR_ON");
+                                renderer.sharedMaterial.SetFloat("ENABLE_HAIR", 1.0f);
+                            }
+                            else
+                            {
+                                renderer.sharedMaterial.DisableKeyword("ENABLE_HAIR_ON");
+                                renderer.sharedMaterial.SetFloat("ENABLE_HAIR", 0.0f);
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                OvrAvatarLog.LogError($"SetHighQualityFlags Failed: {result}");
             }
         }
 

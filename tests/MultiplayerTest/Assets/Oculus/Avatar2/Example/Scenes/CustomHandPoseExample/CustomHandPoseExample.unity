@@ -200,8 +200,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66a61802bb8f1e947aa50f674d42db85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!4 &554161779 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5338449701420077780, guid: c3dc5412b9c44234a8ae43008b7a6979,
@@ -302,8 +302,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a2a9c34df4095f47b9ca8f975175f5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Device: 0
   m_PoseSource: 2
   m_PoseProviderComponent: {fileID: 0}
@@ -337,8 +337,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea6e0c6cd67922c48bbb5939267828e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   _nextSceneInput:
     controllerMask: 2
     buttonMask: 1
@@ -437,6 +437,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1387182791}
+  - component: {fileID: 1387182792}
   m_Layer: 0
   m_Name: CameraOffset
   m_TagString: Untagged
@@ -459,6 +460,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1387182792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387182790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e93961d3dfb44505a84d80b1f7fffef, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  _mode: 1
+  _coordinateSpace: 1
+  _position: {x: 0, y: 1.5, z: 0}
+  _rotation: {x: 0, y: 0, z: 0}
 --- !u!4 &1868580590 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7534483592080915777, guid: 8bd35c20b077959449e5f44de472b784,
@@ -494,8 +511,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f775fcfeef42d0543abbd1e03dfe74fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   _creationInfo:
     features: 342
     renderFilters:
@@ -506,7 +523,7 @@ MonoBehaviour:
   _activeManifestation: 2
   _bodyTracking: {fileID: 554161778}
   _lipSync: {fileID: 0}
-  _criticalJointTypes: 
+  _criticalJointTypes:
   _debugDrawing:
     drawTrackingPose: 0
     drawBoneNames: 0
@@ -569,8 +586,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32f3cd2ab93d875418350b1b6f51d33f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   _side: 0
   _handSkeleton: {fileID: 7534483591808359254, guid: 8bd35c20b077959449e5f44de472b784,
     type: 3}
@@ -590,8 +607,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32f3cd2ab93d875418350b1b6f51d33f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   _side: 1
   _handSkeleton: {fileID: 9195030365049692335, guid: 92dc2374677ddee43acd479ecf441901,
     type: 3}

@@ -4,6 +4,8 @@ using System.Runtime.InteropServices;
 using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
 
+using UnityEngine;
+
 using static Oculus.Avatar2.OvrAvatarHelperExtensions;
 /// @file OvrAvatarAPI_Entity.cs
 
@@ -33,6 +35,10 @@ namespace Oculus.Avatar2
             // Empty features flag, usually used for error signaling
             /* None value isn't needed in C# and conflicts w/ some Unity inspector logic for Flags */
             // None = 0,
+
+            // Reserved for future use
+            [InspectorName(null)]
+            ReservedExtra = 1 << 0,
 
             /// Render avatar geometry
             Rendering_Prims = 1 << 1,
@@ -70,8 +76,8 @@ namespace Oculus.Avatar2
             // Base set of features needed for entity rendering
             Rendering = Rendering_Prims | Rendering_SkinningMatrices,
 
-            // Collection of all currently active feature flags
-            Preset_All = Rendering_Prims | Rendering_SkinningMatrices | Rendering_ObjectSpaceTransforms | Animation
+            // Collection of all current feature flags
+            All = Rendering_Prims | Rendering_SkinningMatrices | Rendering_ObjectSpaceTransforms | Animation
                          | UseDefaultModel | UseDefaultAnimHierarchy | AnalyticIk | UseDefaultFaceAnimations
                          | ShowControllers | HandScaling | LegIk,
 
@@ -86,7 +92,12 @@ namespace Oculus.Avatar2
             Preset_Minimal = Rendering | Animation,
 
             // Preset for common remote avatar usage
-            Preset_Remote = Rendering | UseDefaultModel
+            Preset_Remote = Rendering | UseDefaultModel,
+
+            [InspectorName(null)]
+            First = ReservedExtra,
+            [InspectorName(null)]
+            Last = LegIk,
         }
 
         ///
@@ -108,7 +119,9 @@ namespace Oculus.Avatar2
             [EnumMask]
             public ovrAvatar2EntityViewFlags viewFlags; // unsigned ovrAvatar2EntityViewFlags
             [EnumMask]
-            public ovrAvatar2EntitySubMeshInclusionFlags subMeshInclusionFlags; // unsigned ovrAvatar2EntityViewFlags
+            public ovrAvatar2EntitySubMeshInclusionFlags subMeshInclusionFlags; // unsigned ovrAvatar2EntitySubMeshInclusionFlags
+            [EnumMask]
+            public ovrAvatar2EntityHighQualityFlags highQualityFlags; // unsigned ovrAvatar2EntityHighQaulityFlags
         }
 
 
@@ -237,6 +250,20 @@ namespace Oculus.Avatar2
 
         //-----------------------------------------------------------------
         //
+        // HighQuality
+        //
+        //
+
+        [DllImport(LibFile, CallingConvention = CallingConvention.Cdecl)]
+        public static extern ovrAvatar2Result ovrAvatar2Entity_GetHighQualityFlags(
+            ovrAvatar2EntityId entityId, out ovrAvatar2EntityHighQualityFlags highQualityFlags);
+
+        [DllImport(LibFile, CallingConvention = CallingConvention.Cdecl)]
+        public static extern ovrAvatar2Result ovrAvatar2Entity_SetHighQualityFlags(
+            ovrAvatar2EntityId entityId, ovrAvatar2EntityHighQualityFlags highQualityFlags);
+
+        //-----------------------------------------------------------------
+        //
         // Pose
         //
         //
@@ -263,6 +290,9 @@ namespace Oculus.Avatar2
 
         [DllImport(LibFile, CallingConvention = CallingConvention.Cdecl)]
         public static extern ovrAvatar2Result ovrAvatar2Entity_SetRoot(ovrAvatar2EntityId entityId, ovrAvatar2Transform root);
+
+        [DllImport(LibFile, CallingConvention = CallingConvention.Cdecl)]
+        public static extern unsafe ovrAvatar2Result ovrAvatar2Entity_SetRoots(ovrAvatar2EntityId* entityIds, ovrAvatar2Transform* roots, uint numEntities);
 
         //-----------------------------------------------------------------
         //
@@ -324,7 +354,8 @@ namespace Oculus.Avatar2
                 lodFlags = ovrAvatar2EntityLODFlags.All,
                 manifestationFlags = ovrAvatar2EntityManifestationFlags.All,
                 viewFlags = ovrAvatar2EntityViewFlags.All,
-                subMeshInclusionFlags = ovrAvatar2EntitySubMeshInclusionFlags.All
+                subMeshInclusionFlags = ovrAvatar2EntitySubMeshInclusionFlags.All,
+                highQualityFlags = CAPI.ovrAvatar2EntityHighQualityFlags.None
             };
         }
 
@@ -395,6 +426,7 @@ namespace Oculus.Avatar2
             loadSettings.loadFilters.manifestationFlags = loadFilters.manifestationFlags;
             loadSettings.loadFilters.subMeshInclusionFlags = loadFilters.subMeshInclusionFlags;
             loadSettings.loadFilters.viewFlags = loadFilters.viewFlags;
+            loadSettings.loadFilters.highQualityFlags = CAPI.ovrAvatar2EntityHighQualityFlags.None;
             return ovrAvatar2Entity_LoadUri(entityId, uri, loadSettings, out requestId);
         }
 
@@ -469,6 +501,7 @@ namespace Oculus.Avatar2
             loadSettings.loadFilters.manifestationFlags = loadFilters.manifestationFlags;
             loadSettings.loadFilters.subMeshInclusionFlags = loadFilters.subMeshInclusionFlags;
             loadSettings.loadFilters.viewFlags = loadFilters.viewFlags;
+            loadSettings.loadFilters.highQualityFlags = CAPI.ovrAvatar2EntityHighQualityFlags.None;
             return ovrAvatar2Entity_LoadUser(entityId, userId, loadSettings, out requestId);
         }
 
@@ -604,6 +637,17 @@ namespace Oculus.Avatar2
             [MarshalAs(UnmanagedType.U1)]
             out bool isActive);
 
+        /// Get whether the an entity will update its render prims.
+        /// \param entity to get status of
+        /// \param pointer to the where the active flag should be stored
+        /// \return result code
+        [DllImport(LibFile, CallingConvention = CallingConvention.Cdecl)]
+        public static extern unsafe ovrAvatar2Result ovrAvatar2Entity_GetActives(
+            ovrAvatar2EntityId* entityIds,
+            [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U1)]
+            bool* isActives,
+            uint numIds);
+
         //-----------------------------------------------------------------
         //
         // Debug
@@ -664,7 +708,9 @@ namespace Oculus.Avatar2
                 unsafe
                 {
                     var jointTypesPtr = (ovrAvatar2JointType*)jointTypesHandle.AddrOfPinnedObject();
-                    return OvrAvatar2Entity_QueryJointTypeNodes(entityId, jointTypesPtr, jointTypesLen, logContext);
+                    using var result =
+                        OvrAvatar2Entity_QueryJointTypeNodes(entityId, jointTypesPtr, jointTypesLen, logContext);
+                    return result.ToArray();
                 }
             }
             finally
@@ -680,26 +726,36 @@ namespace Oculus.Avatar2
             unsafe
             {
                 var jointTypesPtr = (ovrAvatar2JointType*)jointTypes.GetUnsafeReadOnlyPtr();
-                return OvrAvatar2Entity_QueryJointTypeNodes(entityId, jointTypesPtr, jointTypesLen, logContext);
+                using var result = OvrAvatar2Entity_QueryJointTypeNodes(entityId, jointTypesPtr, jointTypesLen, logContext);
+                return result.ToArray();
             }
         }
 
-        private static unsafe ovrAvatar2NodeId[] OvrAvatar2Entity_QueryJointTypeNodes(
+        public static NativeArrayDisposeWrapper<ovrAvatar2NodeId> OvrAvatar2Entity_QueryJointTypeNodes_NativeArray(ovrAvatar2EntityId entityId, in NativeArray<ovrAvatar2JointType> jointTypes, UnityEngine.Object logContext = null)
+        {
+            unsafe
+            {
+                return OvrAvatar2Entity_QueryJointTypeNodes(entityId, jointTypes.GetPtr(), jointTypes.Length, logContext);
+            }
+        }
+
+        private static unsafe NativeArrayDisposeWrapper<ovrAvatar2NodeId> OvrAvatar2Entity_QueryJointTypeNodes(
             ovrAvatar2EntityId entityId, ovrAvatar2JointType* jointTypesPtr, int jointTypesLen, UnityEngine.Object logContext = null)
         {
-            using (var nodeIdsOutput = new NativeArray<ovrAvatar2NodeId>(jointTypesLen, Allocator.Temp, NativeArrayOptions.UninitializedMemory))
-            {
-                var nodeIdsPtr = (ovrAvatar2NodeId*)nodeIdsOutput.GetUnsafePtr();
-                var queryResult = ovrAvatar2Entity_QueryJointTypeNodes(entityId, jointTypesPtr, (UInt32)jointTypesLen, nodeIdsPtr);
+            var nodeIdsOutput = new NativeArray<ovrAvatar2NodeId>(jointTypesLen, Allocator.Temp, NativeArrayOptions.UninitializedMemory);
+            var queryResult = ovrAvatar2Entity_QueryJointTypeNodes(entityId, jointTypesPtr, (UInt32)jointTypesLen, nodeIdsOutput.GetPtr());
 
-                if (queryResult.EnsureSuccessOrWarning(ovrAvatar2Result.LegacyJointTypeFallback
-                    , "enable `ovrAvatar2EntityFeatures.UseDefaultAnimHierarchy` in `OvrAvatarEntity.creationInfo.features`"
-                    , "ovrAvatar2Entity_QueryJointTypeNodes", entityLogScope, logContext))
-                {
-                    return nodeIdsOutput.ToArray();
-                }
+            // Log appropriate error/warning, if error - return null
+            if (!queryResult.EnsureSuccessOrWarning(ovrAvatar2Result.LegacyJointTypeFallback
+                , "enable `ovrAvatar2EntityFeatures.UseDefaultAnimHierarchy` in `OvrAvatarEntity.creationInfo.features`"
+                , "ovrAvatar2Entity_QueryJointTypeNodes", entityLogScope, logContext)
+                && queryResult != ovrAvatar2Result.LegacyJointTypeFallback)
+            {
+                nodeIdsOutput.Dispose();
+                return default; // effectively, `null`
             }
-            return null;
+
+            return nodeIdsOutput;
         }
     }
 }

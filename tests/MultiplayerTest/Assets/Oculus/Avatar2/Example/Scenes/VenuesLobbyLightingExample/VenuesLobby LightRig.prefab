@@ -90,6 +90,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &6449103579296214519
@@ -182,6 +183,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &7322517129512244511
@@ -240,6 +242,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -264,6 +267,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &5180273014275040591
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -367,6 +371,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &8423574076275988413
@@ -418,16 +423,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentExposure: 1
   ExposureShaderParameterName: u_Exposure
-  DiffuseEnvironmentCubeMap: {fileID: 8900000, guid: ee4f71bd3c1a63d48b5e71493583fafb,
+  DiffuseEnvironmentCubeMap: {fileID: 8900000, guid: 651a7e8194498914981dd7211c2ac107,
     type: 3}
-  DiffuseEnvironmentShaderParameterName: u_DiffuseEnvSampler
-  SpecularEnvironmentCubeMap: {fileID: 8900000, guid: 94241bcbeff2383469c0429a208a2e23,
+  DiffuseEnvironmentShaderParameterNames:
+  - u_DiffuseEnvSampler
+  - u_LambertianEnvSampler
+  SpecularEnvironmentCubeMap: {fileID: 8900000, guid: 9a991013884426c40a06843632bed336,
     type: 3}
-  SpecularEnvironmentCubeMapSingleMip: {fileID: 8900000, guid: 94241bcbeff2383469c0429a208a2e23,
-    type: 3}
-  SpecularEnvironmentShaderParameterName: u_SpecularEnvSampler
+  SpecularEnvironmentShaderParameterNames:
+  - u_SpecularEnvSampler
+  - u_GGXEnvSampler
   SpecularMapMipCountShaderPameterName: u_MipCount
   BrdfLutMap: {fileID: 2800000, guid: 918eb5f61eea9f6479953048b19170c0, type: 3}
-  BrdfLutShaderParameterName: u_brdfLUT
+  BrdfLutShaderParameterNames:
+  - u_brdfLUT
+  - u_GGXLUT
   CubeMapMaterial: {fileID: 0}
   CubeMapShaderParameterName: _Tex

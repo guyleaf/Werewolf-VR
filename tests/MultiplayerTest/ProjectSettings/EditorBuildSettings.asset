@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Werewolf/Scenes/Map1.unity
     guid: 29b378afa5fa7bd4fbc0e370cce0426c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Oculus/Avatar2/Example/Scenes/MirrorScene/MirrorScene.unity
     guid: 9f2e1693a4f24bc498477b3dfeb166aa
+  - enabled: 1
+    path: Assets/Oculus/Avatar2/Example/Scenes/GazeTrackingExample/GazeTrackingExample.unity
+    guid: 71c0a112e957503448f41007b965a1fd
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 3593fc4ccbadf9940bb0e7e1d561759d, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1203839905691e84f8fec6ffb4eea21e, type: 2}

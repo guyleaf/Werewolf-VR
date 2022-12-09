@@ -41,11 +41,6 @@ namespace Werewolf.Player
             public string path;
         }
 
-        [Header("Sample Avatar Entity")]
-        [Tooltip("A version of the avatar with additional textures will be loaded to portray more accurate human materials (requiring shader support).")]
-        [SerializeField]
-        private bool _highQuality = false;
-
         [Header("Assets")]
         [Tooltip("Asset paths to load, and whether each asset comes from a preloaded zip file or directly from StreamingAssets. See Preset Asset settings on OvrAvatarManager for how this maps to the real file name.")]
         [SerializeField]
@@ -62,11 +57,11 @@ namespace Werewolf.Player
         [Header("CDN")]
         [Tooltip("Automatically retry LoadUser download request on failure")]
         [SerializeField]
-        private bool _autoCdnRetry = true;
+        protected bool _autoCdnRetry = true;
 
         [Tooltip("Automatically check for avatar changes")]
         [SerializeField]
-        private bool _autoCheckChanges = false;
+        protected bool _autoCheckChanges = false;
 
         [Tooltip("How frequently to check for avatar changes")]
         [SerializeField]
@@ -88,7 +83,7 @@ namespace Werewolf.Player
         private static readonly int DESAT_TINT_ID = Shader.PropertyToID("_DesatTint");
         private static readonly int DESAT_LERP_ID = Shader.PropertyToID("_DesatLerp");
 
-        private bool HasLocalAvatarConfigured => _assets.Count > 0;
+        protected bool HasLocalAvatarConfigured => _assets.Count > 0;
 
         private PhotonView _photonView;
 
@@ -106,6 +101,7 @@ namespace Werewolf.Player
             // Note: This API doesn't exist pre v46. If you require to support both v46 and earlier versions, one option is leveraging reflection:
             OVRPlugin.StartEyeTracking();
             OVRPlugin.StartFaceTracking();
+            OVRPlugin.StartBodyTracking();
             // We use reflection here so that there are not compiler errors when using Oculus SDK v45 or below.
             // typeof(OVRPlugin).GetMethod("StartFaceTracking", BindingFlags.Public | BindingFlags.Static)?.Invoke(null, null);
             // typeof(OVRPlugin).GetMethod("StartEyeTracking", BindingFlags.Public | BindingFlags.Static)?.Invoke(null, null);
@@ -199,7 +195,7 @@ namespace Werewolf.Player
 
                 string assetPostfix = (_underscorePostfix ? "_" : "")
                     + OvrAvatarManager.Instance.GetPlatformGLBPostfix(isFromZip)
-                    + OvrAvatarManager.Instance.GetPlatformGLBVersion(_highQuality, isFromZip)
+                    + OvrAvatarManager.Instance.GetPlatformGLBVersion(_creationInfo.renderFilters.highQualityFlags != CAPI.ovrAvatar2EntityHighQualityFlags.None, isFromZip)
                     + OvrAvatarManager.Instance.GetPlatformGLBExtension(isFromZip);
                 if (!String.IsNullOrEmpty(_overridePostfix))
                 {
@@ -462,7 +458,7 @@ namespace Werewolf.Player
         #endregion
 
         #region Retry
-        private void UserHasNoAvatarFallback()
+        protected void UserHasNoAvatarFallback()
         {
             OvrAvatarLog.LogError(
                 $"Unable to find user avatar with userId {_userId}. Falling back to local avatar.", logScope, this);
@@ -470,7 +466,7 @@ namespace Werewolf.Player
             LoadLocalAvatar();
         }
 
-        private IEnumerator LoadUser(bool loadFallbackOnFailure)
+        protected IEnumerator LoadUser(bool loadFallbackOnFailure)
         {
             const float LOAD_USER_POLLING_INTERVAL = 4.0f;
             const float LOAD_USER_BACKOFF_FACTOR = 1.618033988f;
@@ -482,6 +478,7 @@ namespace Werewolf.Player
             var currentPollingInterval = LOAD_USER_POLLING_INTERVAL;
             do
             {
+                // Initiate user spec load (ie: CDN Avatar)
                 LoadUser();
 
                 CAPI.ovrAvatar2Result status;
@@ -490,7 +487,7 @@ namespace Werewolf.Player
                     // Wait for retry interval before taking any action
                     yield return new WaitForSecondsRealtime(currentPollingInterval);
 
-                    //TODO: Cache status
+                    // Check current `entity` status
                     status = this.entityStatus;
                     if (status.IsSuccess() || HasNonDefaultAvatar)
                     {
@@ -504,8 +501,13 @@ namespace Werewolf.Player
                         break;
                     }
 
+                    // Increase backoff interval
                     currentPollingInterval *= LOAD_USER_BACKOFF_FACTOR;
+
+                    // `while` status is still pending, keep polling the current attempt
+                    // Do not start a new request - do not decrement retry attempts
                 } while (status == CAPI.ovrAvatar2Result.Pending);
+                // Decrement retry attempts now that load failure has been confirmed (status != Pending)
             } while (--remainingAttempts > 0);
 
             if (loadFallbackOnFailure && !didLoadAvatar)
@@ -514,7 +516,7 @@ namespace Werewolf.Player
                     $"Unable to download user after {totalAttempts} retry attempts",
                     logScope, this);
 
-                // We cannot download an avatar, use local fallback
+                // We cannot download an avatar, use local fallback (ie: Preset Avatar)
                 UserHasNoAvatarFallback();
             }
         }
@@ -523,7 +525,7 @@ namespace Werewolf.Player
 
         #region Change Check
 
-        private IEnumerator PollForAvatarChange()
+        protected IEnumerator PollForAvatarChange()
         {
             var waitForPollInterval = new WaitForSecondsRealtime(_changeCheckInterval);
 
