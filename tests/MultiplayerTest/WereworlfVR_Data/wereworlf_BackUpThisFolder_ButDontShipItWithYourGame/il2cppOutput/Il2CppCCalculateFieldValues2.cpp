@@ -32058,14 +32058,18 @@ struct GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6  : public MonoBehav
 	List_1_tF470A3BE5C1B5B68E1325EF3F109D172E60BD7CD* ___messageList_5;
 	// UnityEngine.TextAlignment Werewolf.Game.GameManager::messageText
 	int32_t ___messageText_6;
+	// System.Int32 Werewolf.Game.GameManager::actorNumber
+	int32_t ___actorNumber_7;
 	// Photon.Pun.PhotonView Werewolf.Game.GameManager::_pv
-	PhotonView_t43F3D22FF3D00F7824E82D741D70F9CB55642E6B* ____pv_7;
+	PhotonView_t43F3D22FF3D00F7824E82D741D70F9CB55642E6B* ____pv_8;
+	// LightManager Werewolf.Game.GameManager::dayTimer
+	LightManager_t367FF6C506CFAC316A1E1C89106DF4075BF493FD* ___dayTimer_9;
 };
 
 struct GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6_StaticFields
 {
 	// Werewolf.Game.GameManager Werewolf.Game.GameManager::<Instance>k__BackingField
-	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ___U3CInstanceU3Ek__BackingField_8;
+	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ___U3CInstanceU3Ek__BackingField_10;
 };
 
 // UnityEngine.UI.GraphicRaycaster
@@ -34320,9 +34324,9 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6719[4] =
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6720[3] = 
 {
 	static_cast<int32_t>(offsetof(PlayerInputTrackingDelegate_t5666ED5642939FB8FD93E335F38EB7F8D8E71E59, ____ovrCameraRig_4)),static_cast<int32_t>(offsetof(PlayerInputTrackingDelegate_t5666ED5642939FB8FD93E335F38EB7F8D8E71E59, ____ovrLeftHand_5)),static_cast<int32_t>(offsetof(PlayerInputTrackingDelegate_t5666ED5642939FB8FD93E335F38EB7F8D8E71E59, ____ovrRightHand_6)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6721[4] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6721[6] = 
 {
-	static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___messageList_5)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___messageText_6)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ____pv_7)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6_StaticFields, ___U3CInstanceU3Ek__BackingField_8)),};
+	static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___messageList_5)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___messageText_6)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___actorNumber_7)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ____pv_8)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___dayTimer_9)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6_StaticFields, ___U3CInstanceU3Ek__BackingField_10)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6722[2] = 
 {
 	static_cast<int32_t>(offsetof(GameManager_t38601179F6CA7FB6C58818E86F0B4D69170F3F69_StaticFields, ___U3CInstanceU3Ek__BackingField_5)),static_cast<int32_t>(offsetof(GameManager_t38601179F6CA7FB6C58818E86F0B4D69170F3F69, ___playerPrefab_6)),};

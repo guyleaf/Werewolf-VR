@@ -48012,14 +48012,18 @@ struct GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6  : public MonoBehav
 	List_1_tF470A3BE5C1B5B68E1325EF3F109D172E60BD7CD* ___messageList_5;
 	// UnityEngine.TextAlignment Werewolf.Game.GameManager::messageText
 	int32_t ___messageText_6;
+	// System.Int32 Werewolf.Game.GameManager::actorNumber
+	int32_t ___actorNumber_7;
 	// Photon.Pun.PhotonView Werewolf.Game.GameManager::_pv
-	PhotonView_t43F3D22FF3D00F7824E82D741D70F9CB55642E6B* ____pv_7;
+	PhotonView_t43F3D22FF3D00F7824E82D741D70F9CB55642E6B* ____pv_8;
+	// LightManager Werewolf.Game.GameManager::dayTimer
+	LightManager_t367FF6C506CFAC316A1E1C89106DF4075BF493FD* ___dayTimer_9;
 };
 
 struct GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6_StaticFields
 {
 	// Werewolf.Game.GameManager Werewolf.Game.GameManager::<Instance>k__BackingField
-	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ___U3CInstanceU3Ek__BackingField_8;
+	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ___U3CInstanceU3Ek__BackingField_10;
 };
 
 // UnityEngine.UI.GraphicRaycaster

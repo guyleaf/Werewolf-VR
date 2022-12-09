@@ -30,7 +30,9 @@ namespace Werewolf.Player
         private bool _recSync = false;
         private LightManager dayTimer;
         private bool _isMasterClient;
-        
+        private int playerCount;
+        private List<int> playerList = new(){1, 2, 3, 4, 5, 6};
+        private List<int> roleList = new();
         private const string logScope = "playerAvatar";
 
         public enum AssetSource
@@ -122,10 +124,20 @@ namespace Werewolf.Player
 
         protected virtual IEnumerator Start()
         {
-            OvrAvatarLog.LogError("Force the build console open...");
+/*            OvrAvatarLog.LogError("Force the build console open...");
             _gm = GameObject.FindObjectOfType<GameManager>();
             dayTimer = GameObject.FindObjectOfType<LightManager>();
             _isMasterClient = PhotonNetwork.IsMasterClient;
+            playerCount = PhotonNetwork.CountOfPlayers;
+            System.Random rnd = new();
+            var rndNum = playerList.OrderBy(item => rnd.Next());
+            OvrAvatarLog.LogError("player roleList type: " + rndNum.GetType());
+            foreach (int role in rndNum)
+            {
+                OvrAvatarLog.LogError("player role: " + role);
+                roleList.Add(role);
+            }*/
+
             // preserve local test ability
             if (PhotonNetwork.IsConnected)
             {
@@ -690,15 +702,36 @@ namespace Werewolf.Player
                 }
                 _streamedDataList.RemoveAt(0);
             }
-            if (_isMasterClient && timer > 30  && PhotonNetwork.CurrentRoom.Players.Count > 1)
+
+/*            if (_isMasterClient)
             {
-                timer = 0;
-                _gm.CallRpcSendMessageToAll(true);  //timer
-                //dayTimer.TimeOfDay = 0;
-                //timer = 0;
-            }
-            timer += Time.deltaTime;
+                if (timer > 500  && PhotonNetwork.CurrentRoom.Players.Count > 1)
+                {
+                    timer = 0;
+                    _gm.CallRpcSendMessageToAll(750);  //timer
+                    //_gm.CallRpcSendMessageToOthers(true);  //timer
+                    //dayTimer.TimeOfDay = 0;
+                    //timer = 0;
+                }
+                
             
+                if (playerCount != PhotonNetwork.CountOfPlayers)
+                {
+                    playerCount = PhotonNetwork.CountOfPlayers;
+                    playerList.Clear();
+                    foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
+                    {
+                        playerList.Add(player.ActorNumber);
+                    }
+                }
+
+                foreach (int role in roleList)
+                {
+                    //werewolf:
+                    _gm.CallRpcSendMessageToAll(role);
+                }
+            }
+            timer += Time.deltaTime;*/
             /*if (_photonView.IsMine)
             {
                 timer += Time.deltaTime;
