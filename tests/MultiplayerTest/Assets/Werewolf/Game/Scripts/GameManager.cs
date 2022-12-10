@@ -95,11 +95,11 @@ namespace Werewolf.Game
                         _gm.CallRpcSyncTimeToAll(750);
                     }
                     
-                    if(timer < 5)
+                    if(timer < 5)  //use enum
                     {
                         _gm.CallRpcGameControlToAll(roleList[0]);
                     }
-                    else if(timer < 10)
+                    else if(timer < 10) 
                     {
                         _gm.CallRpcGameControlToAll(roleList[1]);
                     }
@@ -172,7 +172,9 @@ namespace Werewolf.Game
                     actorNumber = player.ActorNumber;
                 }
 
+
             }
+            actorNumber = PhotonNetwork.LocalPlayer.ActorNumber;
             Debug.Log("Players List:" + PhotonNetwork.PlayerList);
             Debug.Log("Master Client: " + PhotonNetwork.IsMasterClient);
             _isMasterClient = PhotonNetwork.IsMasterClient;
@@ -187,7 +189,7 @@ namespace Werewolf.Game
 
         public void CallRpcGameControlToAll(int _sync)
         {
-            _pv.RPC("RpcGameControl", RpcTarget.All, _sync);
+            _pv.RPC("RpcGameControl", RpcTarget.AllViaServer, _sync);
         }
 
         [PunRPC]  //Message send to others/all, others/all will received at the same location
@@ -202,7 +204,7 @@ namespace Werewolf.Game
         void RpcGameControl(int role, PhotonMessageInfo info)
         {
             Debug.LogError("received: " + role);
-            if(actorNumber == role)
+            if(PhotonNetwork.LocalPlayer.ActorNumber == role)
             {
                 Debug.LogError("received: " + role + ", role is mine! ");
                 action = true;
