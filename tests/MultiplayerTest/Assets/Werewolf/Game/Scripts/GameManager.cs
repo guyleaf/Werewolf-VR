@@ -204,6 +204,7 @@ namespace Werewolf.Game
                                 break;
                         }
                     }
+                    timer += Time.deltaTime;
                 }
             }
             
