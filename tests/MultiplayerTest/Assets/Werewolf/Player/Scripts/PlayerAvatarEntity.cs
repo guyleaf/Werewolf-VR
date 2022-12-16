@@ -150,7 +150,7 @@ namespace Werewolf.Player
             {
                 SetIsLocal(true);
                 _creationInfo.features = CAPI.ovrAvatar2EntityFeatures.Preset_Default | CAPI.ovrAvatar2EntityFeatures.Rendering_ObjectSpaceTransforms;
-                var playerInputManager = OvrAvatarManager.Instance.GetComponent<PlayerInputManager>();
+                var playerInputManager = OvrAvatarManager.Instance.GetComponent<PlayerAvatarInput>();
                 SetBodyTracking(playerInputManager);
                 var lipSyncInput = FindObjectOfType<OvrAvatarLipSyncContext>();
                 SetLipSync(lipSyncInput);

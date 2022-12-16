@@ -93,7 +93,7 @@ namespace Werewolf
                 yield return null;
             }
 
-            ulong userId = 0;
+            var userId = "0";
             bool getUserIdComplete = false;
             Users.GetLoggedInUser().OnComplete(message =>
             {
@@ -103,8 +103,7 @@ namespace Werewolf
                 }
                 else
                 {
-                    // PhotonNetwork.LocalPlayer.
-                    userId = message.Data.ID;
+                    userId = message.Data.ID.ToString();
                 }
                 getUserIdComplete = true;
             });
@@ -114,7 +113,7 @@ namespace Werewolf
             var playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
             Debug.AssertFormat(_spawnPoints.Count >= playerCount, $"{logScope}: No spawn points available.");
             var transform = _spawnPoints[playerCount - 1].transform;
-            PhotonNetwork.Instantiate(_playerPrefab.name, transform.position + _spawnPointOffsets, transform.rotation, 0, new object[] { (Int64)userId });
+            PhotonNetwork.LocalPlayer.TagObject = PhotonNetwork.Instantiate(_playerPrefab.name, transform.position + _spawnPointOffsets, transform.rotation, 0, new object[] { userId });
         }
 
         private void InstantiatePlayer()

@@ -79,7 +79,7 @@ PrefabInstance:
       objectReference: {fileID: 3255524753290351637, guid: d0377a811c2a95841ba015ae0b2c8d45, type: 3}
     - target: {fileID: 4870205409715631024, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: UseFastLoadAvatar
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4870205409715631024, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: assetVersionQuest2
@@ -92,6 +92,10 @@ PrefabInstance:
     - target: {fileID: 4870205409715631024, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: assetVersionDefault
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870205409715631024, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      propertyPath: _useCriticalJointJobs
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: m_RootOrder

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1762331867713484158}
   - component: {fileID: 5361939993033866985}
   - component: {fileID: 484185666568157151}
-  - component: {fileID: 1762331867713484153}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -173,16 +172,3 @@ MonoBehaviour:
   shaderGrayToSolidColorBlend_: 0.7
   shaderDesatBlend_: 0
   shaderSolidColor_: {r: 0.12941177, g: 0.19607843, b: 0.3882353, a: 0}
---- !u!114 &1762331867713484153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1483079080672437652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d00f31856fb236141987a82513bda53b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _followOnStart: 0

@@ -13,7 +13,7 @@ using Node = UnityEngine.XR.XRNode;
 
 namespace Werewolf.Player
 {
-    public class PlayerInputManager : OvrAvatarInputManager
+    public class PlayerAvatarInput : OvrAvatarInputManager
     {
         private const string logScope = "PlayerInput";
 
@@ -48,10 +48,10 @@ namespace Werewolf.Player
             // If OVRCameraRig doesn't exist, we should set tracking origin ourselves
             if (_useOvrCameraRig)
             {
-                Assert.IsNotNull(OVRManager.instance, "The OVRManager instance is not created.");
                 if (_ovrCameraRig == null)
                 {
-                    Assert.IsTrue(OVRManager.instance.TryGetComponent(out _ovrCameraRig), "The OVRCameraRig component is not found.");
+                    _ovrCameraRig = FindObjectOfType<OVRCameraRig>();
+                    Assert.IsTrue(_ovrCameraRig, "The OVRCameraRig component is not found.");
                 }
             }
             else

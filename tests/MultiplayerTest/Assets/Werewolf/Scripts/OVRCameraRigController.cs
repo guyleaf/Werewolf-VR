@@ -20,14 +20,9 @@ namespace Werewolf.Player
 	/// <summary>
 	/// Camera work. Follow a target
 	/// </summary>
-	[RequireComponent(typeof(PhotonView))]
-	public class CameraController : MonoBehaviourPun
+	public class OVRCameraRigController : MonoBehaviour
 	{
         #region Private Fields
-
-	    [Tooltip("Set this as false if a component of a prefab being instanciated by Photon Network, and manually call OnStartFollowing() when and if needed.")]
-	    [SerializeField]
-	    private bool _followOnStart = false;
 
 		private bool _isFollowing = false;
 
@@ -38,31 +33,10 @@ namespace Werewolf.Player
 
 		#region MonoBehaviour Callbacks
 
-		private void Awake()
-		{
-            var playerAvatarEntity = GetComponent<PlayerAvatarEntity>();
-            if (!PhotonNetwork.IsConnected)
-			{
-				playerAvatarEntity.OnDefaultAvatarLoadedEvent.AddListener(OpenCamera);
-            }
-            else if (photonView.IsMine)
-			{
-                playerAvatarEntity.OnUserAvatarLoadedEvent.AddListener(OpenCamera);
-            }
-        }
+        private void Start()
+        {
 
-		/// <summary>
-		/// MonoBehaviour method called on GameObject by Unity during initialization phase
-		/// </summary>
-		private void Start()
-		{
-            // Start following the target if wanted.
-            if (_followOnStart || photonView.IsMine)
-			{
-                Assert.IsNotNull(OVRManager.instance, "The OVRManager instance is not created.");
-                OnStartFollowing();
-            }
-		}
+        }
 
         private void LateUpdate()
 		{
@@ -89,7 +63,11 @@ namespace Werewolf.Player
 		/// </summary>
 		public void OnStartFollowing()
 		{
-            _cameraTransform = OVRManager.instance.transform;
+            // TODO: Change following method, not in runtime to find OVRCameraRig
+            var ovrCameraRig = FindObjectOfType<OVRCameraRig>();
+            Assert.IsTrue(ovrCameraRig, "The OVRCameraRig component is not found.");
+
+            _cameraTransform = ovrCameraRig.transform;
             _isFollowing = true;
             // we don't smooth anything, we go straight to the right camera shot
             Follow();
