@@ -20,15 +20,18 @@ namespace Werewolf.Game
 
         public GameManager _gm;
         public static float deltaTime;  // get time consume of a frame
+        public GameObject voteUI, blackScreen;
 
         private float timer = 0;
-        private float recTimer = 0;
+        private int dayTime = 150;
+        private int nightTime = 750;
+
         private bool _sync = false;
         private bool _recSync = false;
         private LightManager dayTimer;
         //private bool _isMasterClient;
         private int playerCount;
-        private List<int> playerList = new() { 1, 2, 3, 4, 5, 6 };
+        private List<int> playerList = new() { 0, 1, 2, 3, 4, 5, 6 };
         private List<int> roleList = new();
         private const string logScope = "playerAvatar";
         private int actorNumber;
@@ -36,6 +39,7 @@ namespace Werewolf.Game
         private const float sectionTime = 5;
         
         private bool dayTurn = false;
+        private bool broadCast = false;
 
         private enum Character
         {
@@ -51,7 +55,8 @@ namespace Werewolf.Game
             PLAYER3,
             PLAYER4,
             PLAYER5,
-            PLAYER6
+            PLAYER6,
+            voteTime
         }
         private Character character;
         private SpeechSeq speechSeq;
@@ -88,9 +93,15 @@ namespace Werewolf.Game
             character = Character.WEREWOLF;
             speechSeq = SpeechSeq.PLAYER1;
 
+            //Find UI
+            voteUI = GameObject.Find("Vote UI");
+            blackScreen = GameObject.Find("Black Screen");
+            voteUI.SetActive(false);
+            blackScreen.SetActive(false);
+
             //random ActorNumber 1 to 6 for assign character,
             System.Random rnd = new();
-            var rndNum = playerList.OrderBy(item => rnd.Next());
+            var rndNum = playerList.GetRange(1, 6).OrderBy(item => rnd.Next());
             Debug.LogError("player roleList type: " + rndNum.GetType());
             foreach (int role in rndNum)
             {
@@ -101,7 +112,8 @@ namespace Werewolf.Game
 
         private void Update()
         {
-            if (PhotonNetwork.IsMasterClient)
+            Debug.LogError("PhotonNetwork.CountOfPlayers: " + PhotonNetwork.CountOfPlayers);
+            if (PhotonNetwork.IsMasterClient) // && PhotonNetwork.CountOfPlayers > 1)
             {
                 if (playerCount != PhotonNetwork.CountOfPlayers)
                 {
@@ -115,7 +127,7 @@ namespace Werewolf.Game
                 }
                 else  // master client control game flow
                 {
-                    if (dayTurn == false)
+                    if (dayTurn == false)  // At night
                     {
                         switch (character)
                         {
@@ -143,17 +155,17 @@ namespace Werewolf.Game
                                     timer = 0;
                                     character = Character.WEREWOLF;
                                     dayTurn = true;
-                                    _gm.CallRpcSyncTimeToAll(150);  //sync time to daylight
+                                    _gm.CallRpcSyncTimeToAll(dayTime);  //sync time to daylight
                                 }
                                 break;
                         }
                     }
-                    else
+                    else  //at daytime
                     {
                         switch (speechSeq)  // Speech in sequence from  player 1 to player 6
                         {
                             case SpeechSeq.PLAYER1:
-                                _gm.CallRpcGameControlToAll(playerList[0]);
+                                _gm.CallRpcGameControlToAll(playerList[1]);
                                 if (timer >= sectionTime)
                                 {
                                     timer = 0;
@@ -161,7 +173,7 @@ namespace Werewolf.Game
                                 }
                                 break;
                             case SpeechSeq.PLAYER2:
-                                _gm.CallRpcGameControlToAll(playerList[1]);
+                                _gm.CallRpcGameControlToAll(playerList[2]);
                                 if (timer >= sectionTime)
                                 {
                                     timer = 0;
@@ -169,7 +181,7 @@ namespace Werewolf.Game
                                 }
                                 break;
                             case SpeechSeq.PLAYER3:
-                                _gm.CallRpcGameControlToAll(playerList[2]);
+                                _gm.CallRpcGameControlToAll(playerList[3]);
                                 if (timer >= sectionTime)
                                 {
                                     timer = 0;
@@ -177,7 +189,7 @@ namespace Werewolf.Game
                                 }
                                 break;
                             case SpeechSeq.PLAYER4:
-                                _gm.CallRpcGameControlToAll(playerList[3]);
+                                _gm.CallRpcGameControlToAll(playerList[4]);
                                 if (timer >= sectionTime)
                                 {
                                     timer = 0;
@@ -185,7 +197,7 @@ namespace Werewolf.Game
                                 }
                                 break;
                             case SpeechSeq.PLAYER5:
-                                _gm.CallRpcGameControlToAll(playerList[4]);
+                                _gm.CallRpcGameControlToAll(playerList[5]);
                                 if (timer >= sectionTime)
                                 {
                                     timer = 0;
@@ -193,13 +205,21 @@ namespace Werewolf.Game
                                 }
                                 break;
                             case SpeechSeq.PLAYER6:
-                                _gm.CallRpcGameControlToAll(playerList[5]);
+                                _gm.CallRpcGameControlToAll(playerList[6]);
+                                if (timer >= sectionTime)
+                                {
+                                    timer = 0;
+                                    speechSeq = SpeechSeq.voteTime;
+                                }
+                                break;
+                            case SpeechSeq.voteTime:
+                                _gm.CallRpcGameControlToAll(playerList[0]);
                                 if (timer >= sectionTime)
                                 {
                                     timer = 0;
                                     speechSeq = SpeechSeq.PLAYER1;
                                     dayTurn = false;
-                                    _gm.CallRpcSyncTimeToAll(750); //sync time to night
+                                    _gm.CallRpcSyncTimeToAll(nightTime); //sync time to night
                                 }
                                 break;
                         }
@@ -207,15 +227,42 @@ namespace Werewolf.Game
                     timer += Time.deltaTime;
                 }
             }
-            
+
             // player action 
-            if (action)
+            if (dayTurn == false)  // At night
             {
-                Debug.LogError("received update: my turn! ");
+                if (action)
+                {
+                    Debug.LogError("received update: NIGHT my turn! ");
+                    blackScreen.SetActive(false);
+                }
+                else
+                {
+                    Debug.LogError("received update: NIGHT not my turn! black screen set");
+                    blackScreen.SetActive(true);
+                }
             }
-            else
+            else  //at daytime
             {
-                Debug.LogError("received update: not my turn! ");
+                blackScreen.SetActive(false);
+                if (action)
+                {
+                    if (broadCast)
+                    {
+                        voteUI.SetActive(true);
+                        Debug.LogError("received update: DAY Vote Time! ");
+                    }
+                    else
+                    {
+                        Debug.LogError("received update: DAY my turn! ");
+                        voteUI.SetActive(false);
+                    }
+                }
+                else
+                {
+                    Debug.LogError("received update: DAY not my turn! ");
+                    voteUI.SetActive(false);
+                }
             }
             
         }
@@ -271,6 +318,7 @@ namespace Werewolf.Game
         public void CallRpcSyncTimeToAll(int _daytimer)
         {
             _pv.RPC("RpcSyncTimer", RpcTarget.AllViaServer, _daytimer);
+            _pv.RPC("RpcSyncDayNight", RpcTarget.AllViaServer, dayTurn);
         }
 
         public void CallRpcGameControlToAll(int role)
@@ -278,19 +326,50 @@ namespace Werewolf.Game
             _pv.RPC("RpcGameControl", RpcTarget.AllViaServer, role);
         }
 
+        public void CallRpcBlackScreenToAll(int role)
+        {
+            _pv.RPC("RpcBlackScreen", RpcTarget.AllViaServer, role);
+        }
+
         [PunRPC]  //Message send to others/all, others/all will received at the same location
         void RpcSyncTimer(int _dayTimer, PhotonMessageInfo info)
         {
             dayTimer.TimeOfDay = _dayTimer;
             timer = 0;
-            Debug.LogError("received: " + _dayTimer);
+            Debug.LogError("received time: " + _dayTimer);
+        }
+
+        [PunRPC]  //Message send to others/all, others/all will received at the same location
+        void RpcSyncDayNight(bool _dayTurn, PhotonMessageInfo info)
+        {
+            dayTurn = _dayTurn;
+            Debug.LogError($"received turn: {dayTurn} {_dayTurn}");
         }
 
         [PunRPC]  //Message send to others/all, others/all will received at the same location
         void RpcGameControl(int role, PhotonMessageInfo info)
         {
             Debug.LogError("received: " + role);
-            if(PhotonNetwork.LocalPlayer.ActorNumber == role)
+            if(PhotonNetwork.LocalPlayer.ActorNumber == role  || role == 0)
+            {
+                Debug.LogError("received: " + role + ", role is mine! ");
+                action = true;
+                if (role == 0) broadCast = true;
+                else broadCast = false;
+            }
+            else
+            {
+                Debug.LogError("received: " + role + ", not my role: " + actorNumber);
+                action = false;
+            }
+
+        }
+
+        [PunRPC]  //Message send to others/all, others/all will received at the same location
+        void RpcBlackScreen(int role, PhotonMessageInfo info)
+        {
+            Debug.LogError("received: " + role);
+            if (PhotonNetwork.LocalPlayer.ActorNumber == role)
             {
                 Debug.LogError("received: " + role + ", role is mine! ");
                 action = true;
@@ -301,22 +380,6 @@ namespace Werewolf.Game
                 action = false;
             }
 
-        }
-
-
-
-        [PunRPC]  //Message send to others/all, others/all will received at the same location
-        void RpcSendMessage(float timer, PhotonMessageInfo info)
-        {
-            Debug.LogError("received: " + timer.ToString("0.00"));
-
-            //messageList.Add(timer.ToString("0.00"));
-            //if (messageList.Count >= 10)
-            //{
-            //    messageList.RemoveAt(0);
-            //}
-            //messageList.Add(message);
-            //UpdateMessage();
         }
         #endregion
     }
