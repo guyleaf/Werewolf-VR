@@ -97,7 +97,7 @@ namespace Werewolf.Game
             voteUI = GameObject.Find("Vote UI");
             blackScreen = GameObject.Find("Black Screen");
             voteUI.SetActive(false);
-            //blackScreen.SetActive(false);
+            blackScreen.SetActive(false);
 
             //random ActorNumber 1 to 6 for assign character,
             System.Random rnd = new();
@@ -235,13 +235,13 @@ namespace Werewolf.Game
                 {
                     Debug.LogError("received update: NIGHT my turn! ");
                     blackScreen.SetActive(false);
-                    voteUI.SetActive(true);
+                    //voteUI.SetActive(true);
                 }
                 else
                 {
                     Debug.LogError("received update: NIGHT not my turn! black screen set");
                     blackScreen.SetActive(true);
-                    voteUI.SetActive(true);
+                    //voteUI.SetActive(true);
                 }
             }
             else  //at daytime
@@ -257,7 +257,7 @@ namespace Werewolf.Game
                     else
                     {
                         Debug.LogError("received update: DAY my turn! ");
-                        //voteUI.SetActive(false);
+                        voteUI.SetActive(false);
                     }
                 }
                 else
