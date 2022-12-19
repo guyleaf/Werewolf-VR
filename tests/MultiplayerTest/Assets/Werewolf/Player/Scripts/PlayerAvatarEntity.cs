@@ -21,7 +21,6 @@ using UnityEditor;
 
 namespace Werewolf.Player
 {
-    [RequireComponent(typeof(PhotonView))]
     public class PlayerAvatarEntity : OvrAvatarEntity, IPunObservable
     {
         private const string logScope = "playerAvatar";
@@ -40,6 +39,10 @@ namespace Werewolf.Player
             public AssetSource source;
             public string path;
         }
+
+        [Header("Initialization")]
+        [SerializeField]
+        private bool _autoLoad = true;
 
         [Header("Assets")]
         [Tooltip("Asset paths to load, and whether each asset comes from a preloaded zip file or directly from StreamingAssets. See Preset Asset settings on OvrAvatarManager for how this maps to the real file name.")]
@@ -79,10 +82,6 @@ namespace Werewolf.Player
         private Color _debugDrawGazePosColor = Color.magenta;
 #pragma warning restore CS0414
 
-        private static readonly int DESAT_AMOUNT_ID = Shader.PropertyToID("_DesatAmount");
-        private static readonly int DESAT_TINT_ID = Shader.PropertyToID("_DesatTint");
-        private static readonly int DESAT_LERP_ID = Shader.PropertyToID("_DesatLerp");
-
         protected bool HasLocalAvatarConfigured => _assets.Count > 0;
 
         private PhotonView _photonView;
@@ -91,9 +90,6 @@ namespace Werewolf.Player
 
         protected override void Awake()
         {
-            _photonView = GetComponent<PhotonView>();
-            Assert.IsNotNull(_photonView, "The PhotonView script is not attached to the player.");
-
             InitializeAvatarEntity();
             base.Awake();
             // OvrAvatarEntity.Awake calls OvrAvatarEntity.CreateEntity sets eye and face tracking contexts (which asks user permission).
@@ -109,61 +105,75 @@ namespace Werewolf.Player
 
         protected virtual IEnumerator Start()
         {
-            // preserve local test ability
-            if (PhotonNetwork.IsConnected)
+            if (_autoLoad)
             {
-                _userId = GetUserIdFromPhotonInstantiationData();
-            }
-            else
-            {
-                yield return GetUserIdFromOculus();
-            }
+                if (PhotonNetwork.InRoom)
+                {
+                    GetUserIdFromPhotonInstantiationData();
+                }
+                else
+                {
+                    yield return GetUserIdFromMeta();
+                }
 
-            yield return LoadUserAvatar();
+                yield return LoadUserAvatar();
+            }
 
 #if UNITY_EDITOR
-#if UNITY_2019_3_OR_NEWER
             SceneView.duringSceneGui += OnSceneGUI;
-#else
-        SceneView.onSceneGUIDelegate += OnSceneGUI;
-#endif
 #endif
         }
 
         protected override void OnDestroyCalled()
         {
 #if UNITY_EDITOR
-#if UNITY_2019_3_OR_NEWER
             SceneView.duringSceneGui -= OnSceneGUI;
-#else
-        SceneView.onSceneGUIDelegate -= OnSceneGUI;
-#endif
 #endif
         }
 
-        #region Loading
+        #region Loading Callbacks
 
         private void InitializeAvatarEntity()
         {
-            // preserve offline mode if photon network is not connected.
-            if (!PhotonNetwork.IsConnected || _photonView.IsMine)
+            if (PhotonNetwork.InRoom)
             {
-                SetIsLocal(true);
-                _creationInfo.features = CAPI.ovrAvatar2EntityFeatures.Preset_Default | CAPI.ovrAvatar2EntityFeatures.Rendering_ObjectSpaceTransforms;
-                var playerInputManager = OvrAvatarManager.Instance.GetComponent<PlayerAvatarInput>();
-                SetBodyTracking(playerInputManager);
-                var lipSyncInput = FindObjectOfType<OvrAvatarLipSyncContext>();
-                SetLipSync(lipSyncInput);
-                gameObject.name = $"{_photonView.ViewID}_LocalAvatar";
+                _photonView = GetComponent<PhotonView>();
+                Assert.IsNotNull(_photonView, "The PhotonView script is not attached to the player.");
+
+                var viewId = _photonView.ViewID;
+                if (_photonView.IsMine)
+                {
+                    InitializeLocalAvatar(viewId);
+                }
+                else
+                {
+                    InitializeRemoteAvatar(viewId);
+                }
             }
             else
             {
-                SetIsLocal(false);
-                _creationInfo.features = CAPI.ovrAvatar2EntityFeatures.Preset_Remote | CAPI.ovrAvatar2EntityFeatures.Rendering_ObjectSpaceTransforms;
-                gameObject.name = $"{_photonView.ViewID}_RemoteAvatar";
+                InitializeLocalAvatar(0);
             }
 
             ForceStreamLod(StreamLOD.Medium);
+        }
+
+        private void InitializeLocalAvatar(int viewId)
+        {
+            SetIsLocal(true);
+            _creationInfo.features = CAPI.ovrAvatar2EntityFeatures.Preset_Default | CAPI.ovrAvatar2EntityFeatures.Rendering_ObjectSpaceTransforms;
+            // var playerInputManager = FindObjectOfType<PlayerAvatarInput>();
+            // SetBodyTracking(playerInputManager);
+            // var lipSyncInput = FindObjectOfType<OvrAvatarLipSyncContext>();
+            // SetLipSync(lipSyncInput);
+            gameObject.name = $"{viewId}_LocalAvatar";
+        }
+
+        private void InitializeRemoteAvatar(int viewId)
+        {
+            SetIsLocal(false);
+            _creationInfo.features = CAPI.ovrAvatar2EntityFeatures.Preset_Remote | CAPI.ovrAvatar2EntityFeatures.Rendering_ObjectSpaceTransforms;
+            gameObject.name = $"{viewId}_RemoteAvatar";
         }
 
         private IEnumerator LoadUserAvatar()
@@ -314,130 +324,40 @@ namespace Werewolf.Player
             }
         }
 
-        private IEnumerator GetUserIdFromOculus()
+        private IEnumerator GetUserIdFromMeta()
         {
-            if (OvrPlatformInit.status == OvrPlatformInitStatus.NotStarted)
+            _userId = MetaPlatform.UserId;
+            if (_userId == 0)
             {
-                OvrPlatformInit.InitializeOvrPlatform();
+                yield return MetaPlatform.LogIn();
+                _userId = MetaPlatform.UserId;
             }
-
-            while (OvrPlatformInit.status != OvrPlatformInitStatus.Succeeded)
-            {
-                if (OvrPlatformInit.status == OvrPlatformInitStatus.Failed)
-                {
-                    OvrAvatarLog.LogError("OVR Platform failed to initialise");
-                    yield break;
-                }
-                yield return null;
-            }
-
-            bool getUserIdComplete = false;
-            Users.GetLoggedInUser().OnComplete(message =>
-            {
-                if (message.IsError)
-                {
-                    OvrAvatarLog.LogError("Getting Logged in user error " + message.GetError());
-                }
-                else
-                {
-                    _userId = message.Data.ID;
-                }
-                getUserIdComplete = true;
-            });
-
-            while (!getUserIdComplete) { yield return null; }
         }
 
         #endregion
 
-        #region Fade/Desat
+        #region Public Methods
 
-        private static readonly Color AVATAR_FADE_DEFAULT_COLOR = new(33 / 255f, 50 / 255f, 99 / 255f, 0f); // "#213263"
-        private static readonly float AVATAR_FADE_DEFAULT_COLOR_BLEND = 0.7f; // "#213263"
-        private static readonly float AVATAR_FADE_DEFAULT_GRAYSCALE_BLEND = 0;
-
-        [Header("Rendering")]
-        [SerializeField]
-        [Range(0, 1)]
-        private float shaderGrayToSolidColorBlend_ = AVATAR_FADE_DEFAULT_COLOR_BLEND;
-        [SerializeField]
-        [Range(0, 1)]
-        private float shaderDesatBlend_ = AVATAR_FADE_DEFAULT_GRAYSCALE_BLEND;
-        [SerializeField]
-        private Color shaderSolidColor_ = AVATAR_FADE_DEFAULT_COLOR;
-
-        public float ShaderGrayToSolidColorBlend
+        /// <summary>
+        /// Use User ID provided by the current device to load avatar
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator LoadAvatar()
         {
-            // Blends grayscale to solid color
-            get => shaderGrayToSolidColorBlend_;
-            set
-            {
-                if (Mathf.Approximately(value, shaderGrayToSolidColorBlend_))
-                {
-                    shaderGrayToSolidColorBlend_ = value;
-                    UpdateMaterialsWithDesatModifiers();
-                }
-            }
+            yield return GetUserIdFromMeta();
+            yield return LoadUserAvatar();
         }
 
-        public float ShaderDesatBlend
+        /// <summary>
+        /// Use provided User ID to load avatar
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public IEnumerator LoadAvatar(ulong userId)
         {
-            // Blends shader color to result of ShaderGrayToSolidColorBlend
-            get => shaderDesatBlend_;
-            set
-            {
-                if (Mathf.Approximately(value, shaderDesatBlend_))
-                {
-                    shaderDesatBlend_ = value;
-                    UpdateMaterialsWithDesatModifiers();
-                }
-            }
+            _userId = userId;
+            yield return LoadUserAvatar();
         }
-
-        public Color ShaderSolidColor
-        {
-            get => shaderSolidColor_;
-            set
-            {
-                if (shaderSolidColor_ != value)
-                {
-                    shaderSolidColor_ = value;
-                    UpdateMaterialsWithDesatModifiers();
-                }
-            }
-        }
-
-        public void SetShaderDesat(float desatBlend, float? grayToSolidBlend = null, Color? solidColor = null)
-        {
-            if (solidColor.HasValue)
-            {
-                shaderSolidColor_ = solidColor.Value;
-            }
-            if (grayToSolidBlend.HasValue)
-            {
-                shaderGrayToSolidColorBlend_ = grayToSolidBlend.Value;
-            }
-            shaderDesatBlend_ = desatBlend;
-            UpdateMaterialsWithDesatModifiers();
-        }
-
-        private void UpdateMaterialsWithDesatModifiers()
-        {
-            // TODO: Migrate to `OvrAvatarMaterial` system
-#pragma warning disable 618 // disable deprecated method call warnings
-            SetMaterialKeyword("DESAT", shaderDesatBlend_ > 0.0f);
-            SetMaterialProperties((block, entity) =>
-            {
-                block.SetFloat(DESAT_AMOUNT_ID, entity.shaderDesatBlend_);
-                block.SetColor(DESAT_TINT_ID, entity.shaderSolidColor_);
-                block.SetFloat(DESAT_LERP_ID, entity.shaderGrayToSolidColorBlend_);
-            }, this);
-#pragma warning restore 618 // restore deprecated method call warnings
-        }
-
-        #endregion
-
-        #region Unity Transforms
 
         public Transform GetSkeletonTransform(CAPI.ovrAvatar2JointType jointType)
         {
@@ -599,10 +519,10 @@ namespace Werewolf.Player
 
         #region Photon Callbacks
 
-        private ulong GetUserIdFromPhotonInstantiationData()
+        private void GetUserIdFromPhotonInstantiationData()
         {
             object[] instantiationData = _photonView.InstantiationData;
-            return Convert.ToUInt64(instantiationData[0]);
+            _userId = Convert.ToUInt64(instantiationData[0]);
         }
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

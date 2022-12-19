@@ -150,6 +150,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7652054073463162907, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      propertyPath: MotionSmoothing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7652054073463162907, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: SourceMorphFormat
       value: 3
       objectReference: {fileID: 0}
@@ -164,27 +168,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2817231646188770880, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
---- !u!1 &1474498448357671612 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4870205409715631027, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
-  m_PrefabInstance: {fileID: 6332072631850791183}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3889874673273223832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1474498448357671612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf264ccf5ace24b49830ada1d91a0625, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _useAsyncBodySolver: 1
-  _useOvrCameraRig: 1
-  _ovrCameraRig: {fileID: 0}
-  _debugDrawTrackingLocations: 0
 --- !u!4 &1474498448357671614 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4870205409715631025, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}

@@ -2,24 +2,30 @@ using System.Collections.Generic;
 using Oculus.Avatar2;
 using UnityEngine;
 using UnityEngine.XR;
-using UnityEngine.Assertions;
+using Oculus.Interaction;
+using Oculus.Interaction.Input;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 namespace Werewolf.Player
 {
-    public class PlayerAvatarInput : OvrAvatarInputManager
+    public class PlayerAvatarInput2 : OvrAvatarInputManager
     {
-        private const string logScope = "PlayerInput";
+        private const string logScope = "PlayerInput2";
 
         [SerializeField]
-        [Tooltip("Use Camera Rig")]
-        private bool _useOvrCameraRig;
+        private OVRCameraRig _ovrCameraRig;
 
-        [SerializeField]
-        [Tooltip("Optional. If added, it will use input directly from OVRCameraRig instead of doing its own calculations.")]
-        private OVRCameraRig _ovrCameraRig = null;
+        [SerializeField, Interface(typeof(IHand))]
+        private MonoBehaviour _leftHand;
+
+        [SerializeField, Interface(typeof(IHand))]
+        private MonoBehaviour _rightHand;
+
+        private IHand LeftHand;
+
+        private IHand RightHand;
 
         // Only used in editor, produces warnings when packaging
 #pragma warning disable CS0414 // is assigned but its value is never used
@@ -27,8 +33,11 @@ namespace Werewolf.Player
         private bool _debugDrawTrackingLocations = false;
 #pragma warning restore CS0414 // is assigned but its value is never used
 
-        protected void Awake()
+        private void Awake()
         {
+            LeftHand = _leftHand as IHand;
+            RightHand = _rightHand as IHand;
+
             // Debug Drawing
 #if UNITY_EDITOR
             SceneView.duringSceneGui += OnSceneGUI;
@@ -37,16 +46,7 @@ namespace Werewolf.Player
 
         private void Start()
         {
-            // If OVRCameraRig doesn't exist, we should set tracking origin ourselves
-            if (_useOvrCameraRig)
-            {
-                if (_ovrCameraRig == null)
-                {
-                    _ovrCameraRig = FindObjectOfType<OVRCameraRig>();
-                    Assert.IsTrue(_ovrCameraRig, "The OVRCameraRig component is not found.");
-                }
-            }
-            else
+            if (_ovrCameraRig == null)
             {
                 if (OVRManager.instance == null)
                 {
@@ -72,6 +72,16 @@ namespace Werewolf.Player
 
             if (BodyTracking != null)
             {
+                if (LeftHand == null || RightHand == null)
+                {
+                    Debug.LogWarning("Use default hand tracking input.");
+                }
+                else
+                {
+                    Debug.Log("HandTrackingDelegate");
+                    BodyTracking.HandTrackingDelegate = new PlayerHandTrackingDelegate(LeftHand, RightHand);
+                }
+
                 BodyTracking.InputTrackingDelegate = new SampleInputTrackingDelegate(_ovrCameraRig);
                 BodyTracking.InputControlDelegate = new SampleInputControlDelegate();
             }

@@ -20,5 +20,6 @@
         "**/Library": true,
         "**/ProjectSettings": true,
         "**/Temp": true
-    }
+    },
+    "omnisharp.analyzeOpenDocumentsOnly": true
 }
