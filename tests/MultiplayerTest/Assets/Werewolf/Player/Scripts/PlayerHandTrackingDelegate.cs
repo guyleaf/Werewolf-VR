@@ -112,8 +112,6 @@ namespace Werewolf.Player
 
         bool IOvrAvatarHandTrackingDelegate.GetHandData(OvrAvatarTrackingHandsState handData)
         {
-            Debug.Log("GetHandData()");
-
             handData.isTrackedLeft = _handData.isTrackedLeft;
             handData.isTrackedRight = _handData.isTrackedRight;
             handData.isConfidentLeft = _handData.isConfidentLeft;
