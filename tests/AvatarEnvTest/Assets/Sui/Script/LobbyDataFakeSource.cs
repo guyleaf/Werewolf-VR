@@ -9,13 +9,21 @@ public class LobbyDataFakeSource : LobbyDataSource
     {
         return roomNum;
     }
-    override public RoomState StateOfRooms(int roomIdx)
+    override public RoomState GetRoomStateByIndex(int roomIdx)
     {
         if(roomIdx >= roomNum || roomIdx < 0)
         {
             return null;
         }
         return new RoomState(roomIdx, roomIdx%6 + 1);
+    }
+    override public RoomState GetRoomStateByID(int roomId)
+    {
+        if (roomId >= roomNum || roomId < 0)
+        {
+            return null;
+        }
+        return new RoomState(roomId, roomId % 6 + 1);
     }
     public override void UpdateData()
     {

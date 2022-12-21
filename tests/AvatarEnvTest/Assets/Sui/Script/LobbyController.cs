@@ -44,7 +44,7 @@ public class LobbyController : MonoBehaviour
         for (int i = 0; i < roomsText.Count; ++i)
         {
             int roomIdx = currentPage * roomsText.Count + i;
-            RoomState roomState = dataSource.StateOfRooms(roomIdx);
+            RoomState roomState = dataSource.GetRoomStateByIndex(roomIdx);
             if (roomState != null)
             {
                 roomsText[i].fontSize = fontSize;

@@ -7,5 +7,6 @@ namespace UnifiedUINames
         public const string LobbyUI = "Lobby UI";
         public const string NothingUI = "Nothing UI";
         public const string VoteUI = "Vote UI";
+        public const string WaitingRoomUI = "Waiting Room UI";
     }
 }

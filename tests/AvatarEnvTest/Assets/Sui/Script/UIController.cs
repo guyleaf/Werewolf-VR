@@ -17,6 +17,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameObject lobbyUI;
     [SerializeField] private GameObject nothingUI;
     [SerializeField] private GameObject voteUI; 
+    [SerializeField] private GameObject waitingRoomUI;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class UIController : MonoBehaviour
         uiNameMap.Add(UnifiedUINames.UINames.LobbyUI, lobbyUI);
         uiNameMap.Add(UnifiedUINames.UINames.NothingUI, nothingUI);
         uiNameMap.Add(UnifiedUINames.UINames.VoteUI, voteUI);
+        uiNameMap.Add(UnifiedUINames.UINames.WaitingRoomUI, waitingRoomUI);
     }
 
     public bool SwitchTo(string uiName)
