@@ -3,23 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+
 public class UIController : MonoBehaviour
 {
     // UI state
-    private string currentUIName = "Enter UI"; // point to opened ui 
+    private string currentUIName = UnifiedUINames.UINames.NothingUI; // point to opened ui 
     private Dictionary<string, GameObject> uiNameMap 
         = new Dictionary<string, GameObject>(); // mapping string to ui
+
     // UI List
-    public GameObject enterUI;
-    public GameObject loadingUI;
-    public GameObject voteUI;
+    [SerializeField]private GameObject enterUI;
+    [SerializeField] private GameObject loadingUI;
+    [SerializeField] private GameObject lobbyUI;
+    [SerializeField] private GameObject nothingUI;
+    [SerializeField] private GameObject voteUI; 
 
     // Start is called before the first frame update
     void Start()
     {
-        uiNameMap.Add("Enter UI", enterUI);
-        uiNameMap.Add("Loading UI", loadingUI);
-        uiNameMap.Add("Vote UI", voteUI);
+        uiNameMap.Add(UnifiedUINames.UINames.EnterUI, enterUI);
+        uiNameMap.Add(UnifiedUINames.UINames.LoadingUI, loadingUI);
+        uiNameMap.Add(UnifiedUINames.UINames.LobbyUI, lobbyUI);
+        uiNameMap.Add(UnifiedUINames.UINames.NothingUI, nothingUI);
+        uiNameMap.Add(UnifiedUINames.UINames.VoteUI, voteUI);
     }
 
     public bool SwitchTo(string uiName)
@@ -40,30 +46,39 @@ public class UIController : MonoBehaviour
 
     public void CloseAllUI()
     {
-        foreach(string uiName in uiNameMap.Keys){
-            CloseUI(uiName);
-        }
+        SwitchTo("Nothing UI");
     }
 
-    public bool OpenUI(string uiName)
+    private bool OpenUI(string uiName)
     {
         GameObject uiToOpen;
         if (uiNameMap.TryGetValue(uiName, out uiToOpen))
         {
             uiToOpen.SetActive(true);
+            // SetActiveRecursively(uiToOpen.transform, true);
             return true;
         }
         return false;
     }
 
-    public bool CloseUI(string uiName)
+    private bool CloseUI(string uiName)
     {
         GameObject uiToClose;
         if(uiNameMap.TryGetValue(uiName, out uiToClose))
         {
             uiToClose.SetActive(false);
+            // SetActiveRecursively(uiToClose.transform, false);
             return true;
         }
         return false;
+    }
+
+    public static void SetActiveRecursively(Transform parent, bool active)
+    {
+        parent.gameObject.SetActive(active);
+        foreach (Transform child in parent)
+        {
+            SetActiveRecursively(child, active);
+        }
     }
 }

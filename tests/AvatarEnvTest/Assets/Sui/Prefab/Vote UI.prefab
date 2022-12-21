@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedVisual: {fileID: 3684400297791570833}
+  defaultSelect: 0
 --- !u!1 &3684400297791570833
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,6 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedVisual: {fileID: 3684400297791570833}
+  defaultSelect: 1
 --- !u!1 &6283005911103519066
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,6 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedVisual: {fileID: 3684400297791570833}
+  defaultSelect: 0
 --- !u!1 &6767128393648625117
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,6 +710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedVisual: {fileID: 3684400297791570833}
+  defaultSelect: 0
 --- !u!1 &7212869085685967169
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,7 +747,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8322627036518126111
 GameObject:
@@ -892,6 +896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedVisual: {fileID: 3684400297791570833}
+  defaultSelect: 0
 --- !u!1 &8557773003030398731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,6 +1044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedVisual: {fileID: 3684400297791570833}
+  defaultSelect: 0
 --- !u!1 &8907408932171432229
 GameObject:
   m_ObjectHideFlags: 0

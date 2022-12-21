@@ -4,7 +4,24 @@ using UnityEngine;
 
 public class SelectedVisual : MonoBehaviour
 {
-    public GameObject selectedVisual;
+    [SerializeField] private GameObject selectedVisual;
+    [SerializeField] private bool defaultSelect; // not response to maintain data correction
+
+    void Start()
+    {
+        if (defaultSelect)
+        {
+            Selected();
+        }
+    }
+
+    void OnEnable()
+    {
+        if (defaultSelect)
+        {
+            Selected();
+        }
+    }
 
     public void Selected()
     {
