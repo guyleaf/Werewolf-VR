@@ -28,6 +28,7 @@ namespace Werewolf.Game
 
         //player setting
         private int playerCount;
+        private int werewolfCount = 2;
         private List<int> playerList = new() { 0, 1, 2, 3, 4, 5, 6 };
         private List<int> roleList = new();
         public int actorNumber;
@@ -185,9 +186,21 @@ namespace Werewolf.Game
         [PunRPC]  //receive vote from others to MasterClient
         void RpcSendMyVote(int _role, int _myvote, PhotonMessageInfo info)
         {
-            int maxVote = 0, maxVotePlayer = 0;
-            votedPlayer += 1; // count how many player voted
+            if (dayTurn == false)
+            {
+                if (_role == roleList[0] || _role == roleList[1])
+                if (playerList.Contains(roleList[0])) werewolfCount += 1;
+                    voteSystem(_role, _myvote, playerCount);
+            }
+            else
+            {
+                voteSystem(_role, _myvote, playerCount);
+            }
+        }
 
+        //vote system
+        void voting(int _role, int _myvote) //add vote in to dictionary
+        {
             Debug.LogError($"received dict: {_role}, vote: {_myvote}");
             if (voteDict.TryGetValue(_myvote, out voteList))  //key: myvote, value: list of player voted at this number
             {
@@ -201,35 +214,48 @@ namespace Werewolf.Game
             voteDict[_myvote] = voteList;
             Debug.Log($"received dict voteList added value: {_role}");
             Debug.LogError($"received dict voteDict key myvote: {_myvote}, this vote contain total of value: {voteDict[_myvote].Count}");
+        }
 
-            if (playerCount == votedPlayer)  // if all player voted
+        //calculate votes and eject
+        void voteEnd(int maxVote = 0, int maxVotePlayer = 0)
+        {
+            foreach (var dictItem in voteDict)  //voteDict: key(player), value(voted player)
             {
-                foreach (var dictItem in voteDict)  //voteDict: key(player), value(voted player)
+                //Debug.Log($"dict Foreach key: {dictItem.Key}");
+                foreach (var listItem in dictItem.Value)
                 {
-                    //Debug.Log($"dict Foreach key: {dictItem.Key}");
-                    foreach (var listItem in dictItem.Value)
-                    {
-                        Debug.Log($"received dict Foreach key: {dictItem.Key}, value: {listItem}");  //, count: {dictItem.Value.Count} ");
-                    }
-                    Debug.LogError($"received dict {dictItem.Key} have votes count: {dictItem.Value.Count}");
-                    if (maxVote < dictItem.Value.Count)
-                    {
-                        maxVote = dictItem.Value.Count;
-                        maxVotePlayer = dictItem.Key;
-                    }
+                    Debug.Log($"received dict Foreach key: {dictItem.Key}, value: {listItem}");  //, count: {dictItem.Value.Count} ");
                 }
+                Debug.LogError($"received dict {dictItem.Key} have votes count: {dictItem.Value.Count}");
+                if (maxVote < dictItem.Value.Count)
+                {
+                    maxVote = dictItem.Value.Count;
+                    maxVotePlayer = dictItem.Key;
+                }
+            }
 
-                //check vote over half player or not, if so, eject player
-                int halfPlayer = (int)Math.Round(votedPlayer / 2.0f, 0, MidpointRounding.AwayFromZero);
-                Debug.LogError($"received dict maxVote{maxVote},  halfPlayer: {halfPlayer}, maxVotePlayer: {maxVotePlayer}");
-                if (maxVote >= halfPlayer && maxVotePlayer > 0)
-                {
-                    Debug.LogError($"received dict Player {maxVotePlayer} have {maxVote} votes, he/she will be eject!");
-                    playerList.Remove(maxVotePlayer);
-                    votedPlayer = 0;
-                    maxVotePlayer = 0;
-                    voteDict = new();
-                }
+            //check vote over half player or not, if so, eject player
+            int halfPlayer = (int)Math.Round(votedPlayer / 2.0f, 0, MidpointRounding.AwayFromZero);
+            Debug.LogError($"received dict maxVote{maxVote},  halfPlayer: {halfPlayer}, maxVotePlayer: {maxVotePlayer}");
+            if (maxVote >= halfPlayer && maxVotePlayer > 0)
+            {
+                Debug.LogError($"received dict Player {maxVotePlayer} have {maxVote} votes, he/she will be eject!");
+                playerList.Remove(maxVotePlayer);
+                //votedPlayer = 0;
+                //maxVotePlayer = 0;
+                voteDict = new();
+            }
+        }
+        //day vote
+        void voteSystem(int _role, int _myvote, int totalVotes)
+        {
+
+            votedPlayer += 1; // count how many player voted
+            voting(_role, _myvote);
+
+            if (totalVotes == votedPlayer)  // if all player voted
+            {
+                voteEnd();
             }
         }
 
@@ -479,11 +505,13 @@ namespace Werewolf.Game
                 {
                     Debug.Log("received update: NIGHT my turn! ");
                     blackScreen.SetActive(false);
+                    voteUI.SetActive(true);
                 }
                 else
                 {
                     Debug.Log("received update: NIGHT not my turn! black screen set");
                     blackScreen.SetActive(true);
+                    voteUI.SetActive(false);
                 }
                 voted = false;
             }
@@ -500,13 +528,13 @@ namespace Werewolf.Game
                     else
                     {
                         Debug.Log("received update: DAY my turn! ");
-                        //voteUI.SetActive(false);
+                        voteUI.SetActive(false);
                     }
                 }
                 else
                 {
                     Debug.Log("received update: DAY not my turn! ");
-                    //voteUI.SetActive(false);
+                    voteUI.SetActive(false);
                 }
             }
 
