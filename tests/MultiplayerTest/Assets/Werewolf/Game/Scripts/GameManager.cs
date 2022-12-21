@@ -367,50 +367,92 @@ namespace Werewolf.Game
                         switch (speechSeq)  // Speech in sequence from  player 1 to player 6
                         {
                             case SpeechSeq.PLAYER1:
-                                _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER1);
-                                if (timer >= sectionTime)
+                                if (playerList.Contains((int)SpeechSeq.PLAYER1))
                                 {
-                                    timer = 0;
+                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER1);
+                                    if (timer >= sectionTime)
+                                    {
+                                        timer = 0;
+                                        speechSeq = SpeechSeq.PLAYER2;
+                                    }
+                                }
+                                else
+                                {
                                     speechSeq = SpeechSeq.PLAYER2;
                                 }
                                 break;
                             case SpeechSeq.PLAYER2:
-                                _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER2);
-                                if (timer >= sectionTime)
+                                if (playerList.Contains((int)SpeechSeq.PLAYER2))
                                 {
-                                    timer = 0;
+                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER2);
+                                    if (timer >= sectionTime)
+                                    {
+                                        timer = 0;
+                                        speechSeq = SpeechSeq.PLAYER3;
+                                    }
+                                }
+                                else
+                                {
                                     speechSeq = SpeechSeq.PLAYER3;
                                 }
                                 break;
                             case SpeechSeq.PLAYER3:
-                                _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER3);
-                                if (timer >= sectionTime)
+                                if (playerList.Contains((int)SpeechSeq.PLAYER3))
                                 {
-                                    timer = 0;
+                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER3);
+                                    if (timer >= sectionTime)
+                                    {
+                                        timer = 0;
+                                        speechSeq = SpeechSeq.PLAYER4;
+                                    }
+                                }
+                                else
+                                {
                                     speechSeq = SpeechSeq.PLAYER4;
                                 }
                                 break;
                             case SpeechSeq.PLAYER4:
-                                _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER4);
-                                if (timer >= sectionTime)
+                                if (playerList.Contains((int)SpeechSeq.PLAYER4))
                                 {
-                                    timer = 0;
+                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER4);
+                                    if (timer >= sectionTime)
+                                    {
+                                        timer = 0;
+                                        speechSeq = SpeechSeq.PLAYER5;
+                                    }
+                                }
+                                else
+                                {
                                     speechSeq = SpeechSeq.PLAYER5;
                                 }
                                 break;
                             case SpeechSeq.PLAYER5:
-                                _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER5);
-                                if (timer >= sectionTime)
+                                if (playerList.Contains((int)SpeechSeq.PLAYER5))
                                 {
-                                    timer = 0;
+                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER5);
+                                    if (timer >= sectionTime)
+                                    {
+                                        timer = 0;
+                                        speechSeq = SpeechSeq.PLAYER6;
+                                    }
+                                }
+                                else
+                                {
                                     speechSeq = SpeechSeq.PLAYER6;
                                 }
                                 break;
                             case SpeechSeq.PLAYER6:
-                                _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER6);
-                                if (timer >= sectionTime)
+                                if (playerList.Contains((int)SpeechSeq.PLAYER6))
                                 {
-                                    timer = 0;
+                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER6);
+                                    if (timer >= sectionTime)
+                                    {
+                                        timer = 0;
+                                        speechSeq = SpeechSeq.voteTime;
+                                    }
+                                }
+                                else
+                                {
                                     speechSeq = SpeechSeq.voteTime;
                                 }
                                 break;
