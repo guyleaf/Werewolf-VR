@@ -48,6 +48,8 @@ MonoBehaviour:
   - RpcGameControl
   - RpcBlackScreen
   - RpcSyncDayNight
+  - RpcEndVoted
+  - RpcSendMyVote
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

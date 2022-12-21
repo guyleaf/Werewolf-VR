@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Werewolf.Game;
 
 public class ButtonClick : MonoBehaviour
 {
-	public GameObject button1, button2, button3, button4, button5, button6, buttonOK, voteUI;
+	private GameObject button1, button2, button3, button4, button5, button6, buttonOK, voteUI;
 	private Button btn;
 	private int buttonNum;
+	private GameManager _gm;
+	private int _actNumber;
 
 	void Start()
 	{
@@ -40,6 +43,8 @@ public class ButtonClick : MonoBehaviour
 
 		voteUI = GameObject.Find("Vote UI");
 		//voteUI.SetActive(true);
+
+		_gm = GameObject.FindObjectOfType<GameManager>();
 	}
 
 	void TaskOnClick(int num)
@@ -52,5 +57,7 @@ public class ButtonClick : MonoBehaviour
 	{
 		Debug.Log($"Enter button! {buttonNum} ");
 		voteUI.SetActive(false);
+		_gm.voted = true;
+		_gm.CallRpcSendMyVote(_gm.actorNumber, buttonNum);
 	}
 }
