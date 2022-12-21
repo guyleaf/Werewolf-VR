@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class RoomController : MonoBehaviour
 {
-    public int roomId = -1;
-    [SerializeField] private LobbyDataSource dataSource;
+    [SerializeField] private RoomDataSource dataSource;
     [SerializeField] private TMPro.TextMeshProUGUI waitingMessageText;
 
     // Update is called once per frame
@@ -17,14 +16,14 @@ public class RoomController : MonoBehaviour
 
     private void ShowRoom()
     {
-        RoomState roomState = dataSource.GetRoomStateByID(roomId);
+        RoomState roomState = dataSource.RoomState;
         if(roomState == null)
         {
-            waitingMessageText.text = "The room(ID: " + roomId + ") is not exist";
+            waitingMessageText.text = "The room(ID: " + dataSource.roomId + ") is not exist";
         }
         else
         {
-            waitingMessageText.text = "Waiting Other Player Join " 
+            waitingMessageText.text = "Room " + dataSource.roomId + "\nWaiting Other Player Join " 
                 + roomState.numPlayer.ToString() + "/" + roomState.maxPlayer.ToString();
         }
     }

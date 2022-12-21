@@ -66,7 +66,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Waiting Other Player Join 0/6
+  m_text: 'Room 0
+
+    Waiting Other Player Join 0/6'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -185,7 +187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311756a8b8bf38543953f126968694ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomId: 5
   dataSource: {fileID: 0}
   waitingMessageText: {fileID: 1277120258497320300}
 --- !u!1 &5510122665350086584
