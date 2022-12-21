@@ -49,4 +49,3 @@
 *.dylib filter=lfs diff=lfs merge=lfs
 *.bundle filter=lfs diff=lfs merge=lfs
 *.cubemap filter=lfs diff=lfs merge=lfs
-*.cubemap filter=lfs diff=lfs merge=lfs -text
