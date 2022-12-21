@@ -6,12 +6,7 @@ public class SwitchNextUI : MonoBehaviour
 {
     public List<string> uiNames;
     public UIController switcher;
-    int currentIndex = 0;
-
-    void Start()
-    {
-        switcher.SwitchTo(uiNames[currentIndex]);
-    }
+    private int currentIndex = -1;
 
     public void NextUI()
     {
