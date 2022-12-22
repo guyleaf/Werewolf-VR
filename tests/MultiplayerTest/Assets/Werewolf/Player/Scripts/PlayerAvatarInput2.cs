@@ -20,10 +20,10 @@ namespace Werewolf.Player
         [SerializeField, Interface(typeof(IHand))]
         private MonoBehaviour _leftHand;
 
+        private IHand LeftHand;
+
         [SerializeField, Interface(typeof(IHand))]
         private MonoBehaviour _rightHand;
-
-        private IHand LeftHand;
 
         private IHand RightHand;
 

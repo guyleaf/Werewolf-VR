@@ -68,6 +68,9 @@ namespace Werewolf.Player
 
             if (_leftHand.GetRootPose(out var pose))
             {
+                // The inputs should be in tracking space.
+                // So, we need to convert pose back.
+                pose = ToTrackingSpace(pose, _leftHand.TrackingToWorldSpace);
                 _handData.wristPosLeft = new CAPI.ovrAvatar2Transform(pose.position, pose.rotation).ConvertSpace();
             }
 
@@ -85,6 +88,9 @@ namespace Werewolf.Player
 
             if (_rightHand.GetRootPose(out var pose))
             {
+                // The inputs should be in tracking space.
+                // So, we need to convert pose back.
+                pose = ToTrackingSpace(pose, _rightHand.TrackingToWorldSpace);
                 _handData.wristPosRight = new CAPI.ovrAvatar2Transform(pose.position, pose.rotation).ConvertSpace();
             }
 
@@ -108,6 +114,14 @@ namespace Werewolf.Player
                     return result;
                 })
                 .ToArray();
+        }
+
+        private Pose ToTrackingSpace(in Pose worldPose, Transform worldSpace)
+        {
+            Vector3 position = worldSpace.InverseTransformPoint(worldPose.position);
+            Quaternion rotation = Quaternion.Inverse(worldSpace.rotation) * worldPose.rotation;
+
+            return new Pose(position, rotation);
         }
 
         bool IOvrAvatarHandTrackingDelegate.GetHandData(OvrAvatarTrackingHandsState handData)
