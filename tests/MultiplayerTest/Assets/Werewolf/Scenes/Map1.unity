@@ -1963,6 +1963,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -5
       objectReference: {fileID: 0}
+    - target: {fileID: 5177035012562332074, guid: 93f6d765bb6623042835f45ce4633838, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 65.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5177035012905412918, guid: 93f6d765bb6623042835f45ce4633838, type: 3}
       propertyPath: m_Name
       value: Vote UI

@@ -869,8 +869,8 @@ struct OptionData_t68DC820D58A3ABBAE844326B15A7F14D48FAE55F;
 struct OptionDataList_t53255477D0A9C6980AB48693A520EFBC94DFFB96;
 // UnityEngine.Font/FontTextureRebuildCallback
 struct FontTextureRebuildCallback_t76D5E172DF8AA57E67763D453AAC40F0961D09B1;
-// Werewolf.Game.GameManager/<>c__DisplayClass52_0
-struct U3CU3Ec__DisplayClass52_0_tED4945FBEE5DECB08FCC3CA76C3B5D433AEA5DDB;
+// Werewolf.Game.GameManager/<>c__DisplayClass55_0
+struct U3CU3Ec__DisplayClass55_0_t19E810F114517A7C59C4F4066DFC41D65A58802A;
 // VRUiKits.Utils.GazeProgressCircle/<FillCircle>d__5
 struct U3CFillCircleU3Ed__5_tBF85576D2A8D4ACC8BB30F3D3D2D07F5BC0D09F3;
 // UnityEngine.UI.InputField/EndEditEvent
@@ -2004,10 +2004,10 @@ struct U3CU3Ec_t2529E801AE37BB4E2785EDEC5F5739EFC00D054B_StaticFields
 	Func_1_t70BAAB9F1D00714988C7BA974AF43D14365CBD68* ___U3CU3E9__49_0_1;
 };
 
-// Werewolf.Game.GameManager/<>c__DisplayClass52_0
-struct U3CU3Ec__DisplayClass52_0_tED4945FBEE5DECB08FCC3CA76C3B5D433AEA5DDB  : public RuntimeObject
+// Werewolf.Game.GameManager/<>c__DisplayClass55_0
+struct U3CU3Ec__DisplayClass55_0_t19E810F114517A7C59C4F4066DFC41D65A58802A  : public RuntimeObject
 {
-	// System.Random Werewolf.Game.GameManager/<>c__DisplayClass52_0::rnd
+	// System.Random Werewolf.Game.GameManager/<>c__DisplayClass55_0::rnd
 	Random_t79716069EDE67D1D7734F60AE402D0CA3FB6B4C8* ___rnd_0;
 };
 
@@ -9328,16 +9328,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Array_Clear_m50BAA3751899858B097D3FF2ED3
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// System.Void Werewolf.Game.GameManager/<>c__DisplayClass52_0::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass52_0__ctor_m214C581FF706C85321C0A50BD0C7A372FFCC054F (U3CU3Ec__DisplayClass52_0_tED4945FBEE5DECB08FCC3CA76C3B5D433AEA5DDB* __this, const RuntimeMethod* method) 
+// System.Void Werewolf.Game.GameManager/<>c__DisplayClass55_0::.ctor()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass55_0__ctor_m5507ABBD2A03D1EB935DDACF8ECAAC905D83F6DC (U3CU3Ec__DisplayClass55_0_t19E810F114517A7C59C4F4066DFC41D65A58802A* __this, const RuntimeMethod* method) 
 {
 	{
 		Object__ctor_mE837C6B9FA8C6D5D109F4B2EC885D79919AC0EA2(__this, NULL);
 		return;
 	}
 }
-// System.Int32 Werewolf.Game.GameManager/<>c__DisplayClass52_0::<Start>b__0(System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t U3CU3Ec__DisplayClass52_0_U3CStartU3Eb__0_m6F2D63FE0DEEBD45319787D818DF8CF83332997B (U3CU3Ec__DisplayClass52_0_tED4945FBEE5DECB08FCC3CA76C3B5D433AEA5DDB* __this, int32_t ___item0, const RuntimeMethod* method) 
+// System.Int32 Werewolf.Game.GameManager/<>c__DisplayClass55_0::<Awake>b__0(System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t U3CU3Ec__DisplayClass55_0_U3CAwakeU3Eb__0_mEEEFCA3099D935BAF1444C8005571A0CBBD47E68 (U3CU3Ec__DisplayClass55_0_t19E810F114517A7C59C4F4066DFC41D65A58802A* __this, int32_t ___item0, const RuntimeMethod* method) 
 {
 	{
 		// var rndNum = playerList.GetRange(1, 6).OrderBy(item => rnd.Next());

@@ -35,7 +35,7 @@ public class ButtonClick : MonoBehaviour
 		Button btn6 = button6.GetComponent<Button>();
 		btn6.onClick.AddListener(delegate () { TaskOnClick(6); });
 
-		buttonSkip = GameObject.Find("ButtonCircle6");
+		buttonSkip = GameObject.Find("ButtonCircleSkip");
 		Button btnSkip = buttonSkip.GetComponent<Button>();
 		btnSkip.onClick.AddListener(delegate () { TaskOnClick(0); });  // skip button
 
