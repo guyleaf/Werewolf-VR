@@ -12380,10 +12380,10 @@ struct LayoutCache_tF844B2FAD6933B78FD5EFEBDE0529BCBAC19BA60  : public RuntimeOb
 	GUILayoutGroup_tD08496E80F283C290B5B90D7BFB3C9C7CC33CD8D* ___windows_3;
 };
 
-// Werewolf.Game.GameManager/<>c__DisplayClass34_0
-struct U3CU3Ec__DisplayClass34_0_tF54C0AA99CA6A3B9B5DC5F9D3BD5152933EA6C77  : public RuntimeObject
+// Werewolf.Game.GameManager/<>c__DisplayClass52_0
+struct U3CU3Ec__DisplayClass52_0_tED4945FBEE5DECB08FCC3CA76C3B5D433AEA5DDB  : public RuntimeObject
 {
-	// System.Random Werewolf.Game.GameManager/<>c__DisplayClass34_0::rnd
+	// System.Random Werewolf.Game.GameManager/<>c__DisplayClass52_0::rnd
 	Random_t79716069EDE67D1D7734F60AE402D0CA3FB6B4C8* ___rnd_0;
 };
 
@@ -40729,14 +40729,10 @@ struct ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812  : public MonoBehav
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___buttonOK_10;
 	// UnityEngine.GameObject ButtonClick::voteUI
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___voteUI_11;
-	// UnityEngine.UI.Button ButtonClick::btn
-	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___btn_12;
 	// System.Int32 ButtonClick::buttonNum
-	int32_t ___buttonNum_13;
+	int32_t ___buttonNum_12;
 	// Werewolf.Game.GameManager ButtonClick::_gm
-	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ____gm_14;
-	// System.Int32 ButtonClick::_actNumber
-	int32_t ____actNumber_15;
+	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ____gm_13;
 };
 
 // ButtonDownListener
@@ -48936,36 +48932,42 @@ struct GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6  : public MonoBehav
 	bool ___dayTurn_11;
 	// System.Int32 Werewolf.Game.GameManager::playerCount
 	int32_t ___playerCount_13;
+	// System.Int32 Werewolf.Game.GameManager::werewolfCount
+	int32_t ___werewolfCount_14;
 	// System.Collections.Generic.List`1<System.Int32> Werewolf.Game.GameManager::playerList
-	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___playerList_14;
+	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___playerList_15;
 	// System.Collections.Generic.List`1<System.Int32> Werewolf.Game.GameManager::roleList
-	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___roleList_15;
+	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___roleList_16;
 	// System.Int32 Werewolf.Game.GameManager::actorNumber
-	int32_t ___actorNumber_16;
+	int32_t ___actorNumber_17;
 	// Werewolf.Game.GameManager Werewolf.Game.GameManager::_gm
-	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ____gm_18;
+	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ____gm_19;
 	// UnityEngine.GameObject Werewolf.Game.GameManager::voteUI
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___voteUI_19;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___voteUI_20;
 	// UnityEngine.GameObject Werewolf.Game.GameManager::blackScreen
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___blackScreen_20;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___blackScreen_21;
 	// System.Boolean Werewolf.Game.GameManager::action
-	bool ___action_21;
+	bool ___action_22;
 	// System.Boolean Werewolf.Game.GameManager::broadCast
-	bool ___broadCast_22;
+	bool ___broadCast_23;
 	// Werewolf.Game.GameManager/Character Werewolf.Game.GameManager::character
-	int32_t ___character_24;
+	int32_t ___character_25;
 	// Werewolf.Game.GameManager/SpeechSeq Werewolf.Game.GameManager::speechSeq
-	int32_t ___speechSeq_25;
-	// System.Collections.Generic.Dictionary`2<System.Int32,System.Collections.Generic.List`1<System.Int32>> Werewolf.Game.GameManager::voteList
-	Dictionary_2_t9899279A2990FB86A896C58A3F27F8E1705785C3* ___voteList_26;
+	int32_t ___speechSeq_26;
+	// System.Collections.Generic.Dictionary`2<System.Int32,System.Collections.Generic.List`1<System.Int32>> Werewolf.Game.GameManager::voteDict
+	Dictionary_2_t9899279A2990FB86A896C58A3F27F8E1705785C3* ___voteDict_27;
+	// System.Collections.Generic.List`1<System.Int32> Werewolf.Game.GameManager::voteList
+	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___voteList_28;
 	// System.Boolean Werewolf.Game.GameManager::voted
-	bool ___voted_27;
+	bool ___voted_29;
 	// System.Int32 Werewolf.Game.GameManager::noPlayer
-	int32_t ___noPlayer_28;
+	int32_t ___noPlayer_30;
 	// System.Int32 Werewolf.Game.GameManager::myvote
-	int32_t ___myvote_29;
+	int32_t ___myvote_31;
+	// System.Int32 Werewolf.Game.GameManager::votedPlayer
+	int32_t ___votedPlayer_32;
 	// Photon.Pun.PhotonView Werewolf.Game.GameManager::_pv
-	PhotonView_t43F3D22FF3D00F7824E82D741D70F9CB55642E6B* ____pv_30;
+	PhotonView_t43F3D22FF3D00F7824E82D741D70F9CB55642E6B* ____pv_33;
 };
 
 struct GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6_StaticFields
@@ -48973,7 +48975,7 @@ struct GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6_StaticFields
 	// System.Single Werewolf.Game.GameManager::deltaTime
 	float ___deltaTime_12;
 	// Werewolf.Game.GameManager Werewolf.Game.GameManager::<Instance>k__BackingField
-	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ___U3CInstanceU3Ek__BackingField_31;
+	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ___U3CInstanceU3Ek__BackingField_34;
 };
 
 // UnityEngine.UI.GraphicRaycaster
@@ -51810,7 +51812,7 @@ const Il2CppTypeDefinitionSizes g_typeDefinitionSize5757 = { sizeof(int32_t)+ si
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5758;
 const Il2CppTypeDefinitionSizes g_typeDefinitionSize5758 = { sizeof(int32_t)+ sizeof(RuntimeObject), sizeof(int32_t), 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5759;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5759 = { sizeof(U3CU3Ec__DisplayClass34_0_tF54C0AA99CA6A3B9B5DC5F9D3BD5152933EA6C77), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5759 = { sizeof(U3CU3Ec__DisplayClass52_0_tED4945FBEE5DECB08FCC3CA76C3B5D433AEA5DDB), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5760;
 const Il2CppTypeDefinitionSizes g_typeDefinitionSize5760 = { sizeof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6), -1, sizeof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6_StaticFields), 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5761;

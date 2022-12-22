@@ -5,8 +5,8 @@ using Werewolf.Game;
 
 public class ButtonClick : MonoBehaviour
 {
-	private GameObject button1, button2, button3, button4, button5, button6, buttonOK, voteUI;
-	private int buttonNum;
+	private GameObject button1, button2, button3, button4, button5, button6, buttonSkip, buttonOK, voteUI;
+	private int buttonNum = 0; //defacult skip
 	private GameManager _gm;
 
 	void Start()
@@ -35,6 +35,10 @@ public class ButtonClick : MonoBehaviour
 		Button btn6 = button6.GetComponent<Button>();
 		btn6.onClick.AddListener(delegate () { TaskOnClick(6); });
 
+		buttonSkip = GameObject.Find("ButtonCircle6");
+		Button btnSkip = buttonSkip.GetComponent<Button>();
+		btnSkip.onClick.AddListener(delegate () { TaskOnClick(0); });  // skip button
+
 		buttonOK = GameObject.Find("ButtonCircleOK");
 		Button btnOK = buttonOK.GetComponent<Button>();
 		btnOK.onClick.AddListener(TaskOnClickEnter);
@@ -54,8 +58,9 @@ public class ButtonClick : MonoBehaviour
 	void TaskOnClickEnter()
 	{
 		Debug.Log($"Enter button! {buttonNum} ");
-		voteUI.SetActive(false);
+		//voteUI.SetActive(false);
 		_gm.voted = true;
 		_gm.CallRpcSendMyVote(_gm.actorNumber, buttonNum);
+		buttonNum = 0; //defacult skip
 	}
 }

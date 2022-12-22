@@ -6111,10 +6111,10 @@ struct U3CU3Ec__DisplayClass20_0_t215B791EE6A8631BA1357AB93642EA28BEF7D983  : pu
 	FingerFeatureStateProvider_tF68DAE5C112170CA24F6F50E78AB318AFC593BAE* ___U3CU3E4__this_1;
 };
 
-// Werewolf.Game.GameManager/<>c__DisplayClass34_0
-struct U3CU3Ec__DisplayClass34_0_tF54C0AA99CA6A3B9B5DC5F9D3BD5152933EA6C77  : public RuntimeObject
+// Werewolf.Game.GameManager/<>c__DisplayClass52_0
+struct U3CU3Ec__DisplayClass52_0_tED4945FBEE5DECB08FCC3CA76C3B5D433AEA5DDB  : public RuntimeObject
 {
-	// System.Random Werewolf.Game.GameManager/<>c__DisplayClass34_0::rnd
+	// System.Random Werewolf.Game.GameManager/<>c__DisplayClass52_0::rnd
 	Random_t79716069EDE67D1D7734F60AE402D0CA3FB6B4C8* ___rnd_0;
 };
 
@@ -33415,14 +33415,10 @@ struct ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812  : public MonoBehav
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___buttonOK_10;
 	// UnityEngine.GameObject ButtonClick::voteUI
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___voteUI_11;
-	// UnityEngine.UI.Button ButtonClick::btn
-	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___btn_12;
 	// System.Int32 ButtonClick::buttonNum
-	int32_t ___buttonNum_13;
+	int32_t ___buttonNum_12;
 	// Werewolf.Game.GameManager ButtonClick::_gm
-	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ____gm_14;
-	// System.Int32 ButtonClick::_actNumber
-	int32_t ____actNumber_15;
+	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ____gm_13;
 };
 
 // ButtonDownListener
@@ -42541,36 +42537,42 @@ struct GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6  : public MonoBehav
 	bool ___dayTurn_11;
 	// System.Int32 Werewolf.Game.GameManager::playerCount
 	int32_t ___playerCount_13;
+	// System.Int32 Werewolf.Game.GameManager::werewolfCount
+	int32_t ___werewolfCount_14;
 	// System.Collections.Generic.List`1<System.Int32> Werewolf.Game.GameManager::playerList
-	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___playerList_14;
+	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___playerList_15;
 	// System.Collections.Generic.List`1<System.Int32> Werewolf.Game.GameManager::roleList
-	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___roleList_15;
+	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___roleList_16;
 	// System.Int32 Werewolf.Game.GameManager::actorNumber
-	int32_t ___actorNumber_16;
+	int32_t ___actorNumber_17;
 	// Werewolf.Game.GameManager Werewolf.Game.GameManager::_gm
-	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ____gm_18;
+	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ____gm_19;
 	// UnityEngine.GameObject Werewolf.Game.GameManager::voteUI
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___voteUI_19;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___voteUI_20;
 	// UnityEngine.GameObject Werewolf.Game.GameManager::blackScreen
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___blackScreen_20;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___blackScreen_21;
 	// System.Boolean Werewolf.Game.GameManager::action
-	bool ___action_21;
+	bool ___action_22;
 	// System.Boolean Werewolf.Game.GameManager::broadCast
-	bool ___broadCast_22;
+	bool ___broadCast_23;
 	// Werewolf.Game.GameManager/Character Werewolf.Game.GameManager::character
-	int32_t ___character_24;
+	int32_t ___character_25;
 	// Werewolf.Game.GameManager/SpeechSeq Werewolf.Game.GameManager::speechSeq
-	int32_t ___speechSeq_25;
-	// System.Collections.Generic.Dictionary`2<System.Int32,System.Collections.Generic.List`1<System.Int32>> Werewolf.Game.GameManager::voteList
-	Dictionary_2_t9899279A2990FB86A896C58A3F27F8E1705785C3* ___voteList_26;
+	int32_t ___speechSeq_26;
+	// System.Collections.Generic.Dictionary`2<System.Int32,System.Collections.Generic.List`1<System.Int32>> Werewolf.Game.GameManager::voteDict
+	Dictionary_2_t9899279A2990FB86A896C58A3F27F8E1705785C3* ___voteDict_27;
+	// System.Collections.Generic.List`1<System.Int32> Werewolf.Game.GameManager::voteList
+	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___voteList_28;
 	// System.Boolean Werewolf.Game.GameManager::voted
-	bool ___voted_27;
+	bool ___voted_29;
 	// System.Int32 Werewolf.Game.GameManager::noPlayer
-	int32_t ___noPlayer_28;
+	int32_t ___noPlayer_30;
 	// System.Int32 Werewolf.Game.GameManager::myvote
-	int32_t ___myvote_29;
+	int32_t ___myvote_31;
+	// System.Int32 Werewolf.Game.GameManager::votedPlayer
+	int32_t ___votedPlayer_32;
 	// Photon.Pun.PhotonView Werewolf.Game.GameManager::_pv
-	PhotonView_t43F3D22FF3D00F7824E82D741D70F9CB55642E6B* ____pv_30;
+	PhotonView_t43F3D22FF3D00F7824E82D741D70F9CB55642E6B* ____pv_33;
 };
 
 struct GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6_StaticFields
@@ -42578,7 +42580,7 @@ struct GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6_StaticFields
 	// System.Single Werewolf.Game.GameManager::deltaTime
 	float ___deltaTime_12;
 	// Werewolf.Game.GameManager Werewolf.Game.GameManager::<Instance>k__BackingField
-	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ___U3CInstanceU3Ek__BackingField_31;
+	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ___U3CInstanceU3Ek__BackingField_34;
 };
 
 // Oculus.Interaction.GrabInteractable
@@ -50834,9 +50836,9 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5732[2] =
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5733[2] = 
 {
 	static_cast<int32_t>(offsetof(ActivateComponent_tB746AE6FC6EF13E701C716EBF8724792DEFF28E0, ___voteUI_4)),static_cast<int32_t>(offsetof(ActivateComponent_tB746AE6FC6EF13E701C716EBF8724792DEFF28E0, ___timer_5)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5734[12] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5734[10] = 
 {
-	static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ___button1_4)),static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ___button2_5)),static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ___button3_6)),static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ___button4_7)),static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ___button5_8)),static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ___button6_9)),static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ___buttonOK_10)),static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ___voteUI_11)),static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ___btn_12)),static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ___buttonNum_13)),static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ____gm_14)),static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ____actNumber_15)),};
+	static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ___button1_4)),static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ___button2_5)),static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ___button3_6)),static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ___button4_7)),static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ___button5_8)),static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ___button6_9)),static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ___buttonOK_10)),static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ___voteUI_11)),static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ___buttonNum_12)),static_cast<int32_t>(offsetof(ButtonClick_tA8C94F532C26DC9E2993AB94624687EE46B1D812, ____gm_13)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5735[1] = 
 {
 	static_cast<int32_t>(offsetof(click_tEA3B87B271AC400FAF55F8211AB28F2A107FC9C5, ___yourButton_4)),};
@@ -50908,10 +50910,10 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5758[8] =
 	static_cast<int32_t>(sizeof(RuntimeObject)),0,0,0,0,0,0,0,};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5759[1] = 
 {
-	static_cast<int32_t>(offsetof(U3CU3Ec__DisplayClass34_0_tF54C0AA99CA6A3B9B5DC5F9D3BD5152933EA6C77, ___rnd_0)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5760[27] = 
+	static_cast<int32_t>(offsetof(U3CU3Ec__DisplayClass52_0_tED4945FBEE5DECB08FCC3CA76C3B5D433AEA5DDB, ___rnd_0)),};
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5760[30] = 
 {
-	static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___messageList_5)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___messageText_6)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___dayTimer_7)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___timer_8)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___dayTime_9)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___nightTime_10)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___dayTurn_11)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6_StaticFields, ___deltaTime_12)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___playerCount_13)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___playerList_14)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___roleList_15)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___actorNumber_16)),0,static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ____gm_18)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___voteUI_19)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___blackScreen_20)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___action_21)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___broadCast_22)),0,static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___character_24)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___speechSeq_25)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___voteList_26)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___voted_27)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___noPlayer_28)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___myvote_29)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ____pv_30)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6_StaticFields, ___U3CInstanceU3Ek__BackingField_31)),};
+	static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___messageList_5)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___messageText_6)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___dayTimer_7)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___timer_8)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___dayTime_9)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___nightTime_10)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___dayTurn_11)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6_StaticFields, ___deltaTime_12)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___playerCount_13)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___werewolfCount_14)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___playerList_15)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___roleList_16)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___actorNumber_17)),0,static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ____gm_19)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___voteUI_20)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___blackScreen_21)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___action_22)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___broadCast_23)),0,static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___character_25)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___speechSeq_26)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___voteDict_27)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___voteList_28)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___voted_29)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___noPlayer_30)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___myvote_31)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ___votedPlayer_32)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6, ____pv_33)),static_cast<int32_t>(offsetof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6_StaticFields, ___U3CInstanceU3Ek__BackingField_34)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5761[4] = 
 {
 	static_cast<int32_t>(offsetof(ImageHoverOutline_t63013B9E70EE4869F6FDB399B988947642870B17, ___targetImage_4)),static_cast<int32_t>(offsetof(ImageHoverOutline_t63013B9E70EE4869F6FDB399B988947642870B17, ___outlineColor_5)),static_cast<int32_t>(offsetof(ImageHoverOutline_t63013B9E70EE4869F6FDB399B988947642870B17, ___outlineWidth_6)),static_cast<int32_t>(offsetof(ImageHoverOutline_t63013B9E70EE4869F6FDB399B988947642870B17, ___outline_7)),};
