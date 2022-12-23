@@ -5,7 +5,7 @@ using Werewolf.Game;
 
 public class ButtonClick : MonoBehaviour
 {
-	private GameObject button1, button2, button3, button4, button5, button6, buttonSkip, buttonOK, voteUI;
+	public GameObject button1, button2, button3, button4, button5, button6, buttonSkip, buttonOK, voteUI;
 	private int buttonNum = 0; //defacult skip
 	private GameManager _gm;
 

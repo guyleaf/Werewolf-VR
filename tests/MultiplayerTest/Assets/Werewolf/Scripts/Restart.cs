@@ -5,7 +5,7 @@ using Werewolf.Game;
 
 public class Restart : MonoBehaviour
 {
-	private GameObject buttonRestart, resultUI;
+	public GameObject buttonRestart, endGameUI;
 	private int buttonNum = 0; //defacult skip
 	private GameManager _gm;
 
@@ -15,8 +15,7 @@ public class Restart : MonoBehaviour
 		Button btnRestart = buttonRestart.GetComponent<Button>();
 		btnRestart.onClick.AddListener(TaskOnClickEnter);
 
-		resultUI = GameObject.Find("Result UI");
-		//voteUI.SetActive(true);
+		endGameUI = GameObject.Find("EndGame UI");
 
 		_gm = GameObject.FindObjectOfType<GameManager>();
 	}
@@ -30,13 +29,13 @@ public class Restart : MonoBehaviour
 	void TaskOnClickEnter()
 	{
 		Debug.Log($"Enter Lobby, restart!");
-		resultUI.SetActive(false);
+		endGameUI.SetActive(false);
 		_gm.endGame = false;
 		_gm.playerList = new() { 0, 1, 2, 3, 4, 5, 6 };
 		_gm.Awake();
 		_gm.dayTurn = false;
 		_gm.timer = 0;
-		_gm.lobbyButton.SetActive(false);
+		//_gm.lobbyButton.SetActive(false);
 		//_gm.CallRpcSendMyVote(_gm.actorNumber, buttonNum);
 		buttonNum = 0; //defacult skip
 	}

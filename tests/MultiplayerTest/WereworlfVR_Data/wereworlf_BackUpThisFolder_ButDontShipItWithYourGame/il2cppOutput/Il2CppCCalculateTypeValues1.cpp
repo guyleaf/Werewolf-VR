@@ -3068,8 +3068,8 @@ struct MessageEvent_tBF02D60FEABA2052B9970B1DEF2322E38ADE61C9;
 struct UpdateFunction_t1C48B7EECBE47AC123A9D9D7D9D2A9EE951C56C4;
 // Photon.Pun.UtilityScripts.PlayerNumbering/PlayerNumberingChanged
 struct PlayerNumberingChanged_tDBC9D30DF851F4FE050F1610200F223DE58AE0EA;
-// Werewolf.PlayerSpawner/<>c__DisplayClass6_0
-struct U3CU3Ec__DisplayClass6_0_tA1766BC4B4F24B3E66CDA7CCAE55666A3D1037D0;
+// Werewolf.PlayerSpawner/<>c__DisplayClass7_0
+struct U3CU3Ec__DisplayClass7_0_t3F553EFB10F76564EB928D0F23F0E1A3E2C50FD3;
 // UnityEngine.EventSystems.PointerInputModule/MouseButtonEventData
 struct MouseButtonEventData_t0761D63D3A2B13090597C22DD97597CC7FE4D154;
 // UnityEngine.EventSystems.PointerInputModule/MouseState
@@ -12380,13 +12380,6 @@ struct LayoutCache_tF844B2FAD6933B78FD5EFEBDE0529BCBAC19BA60  : public RuntimeOb
 	GUILayoutGroup_tD08496E80F283C290B5B90D7BFB3C9C7CC33CD8D* ___windows_3;
 };
 
-// Werewolf.Game.GameManager/<>c__DisplayClass55_0
-struct U3CU3Ec__DisplayClass55_0_t19E810F114517A7C59C4F4066DFC41D65A58802A  : public RuntimeObject
-{
-	// System.Random Werewolf.Game.GameManager/<>c__DisplayClass55_0::rnd
-	Random_t79716069EDE67D1D7734F60AE402D0CA3FB6B4C8* ___rnd_0;
-};
-
 // VRUiKits.Utils.GazeProgressCircle/<FillCircle>d__5
 struct U3CFillCircleU3Ed__5_tBF85576D2A8D4ACC8BB30F3D3D2D07F5BC0D09F3  : public RuntimeObject
 {
@@ -13577,29 +13570,29 @@ struct U3CU3Ec_tEAF67AA21B27D7A5978789FE0D87F954FCF279B7_StaticFields
 	Func_2_t2B3A7FC8E26CAE8436430D5AB21EB327938847A8* ___U3CU3E9__14_2_3;
 };
 
-// Werewolf.PlayerSpawner/<>c__DisplayClass6_0
-struct U3CU3Ec__DisplayClass6_0_tA1766BC4B4F24B3E66CDA7CCAE55666A3D1037D0  : public RuntimeObject
+// Werewolf.PlayerSpawner/<>c__DisplayClass7_0
+struct U3CU3Ec__DisplayClass7_0_t3F553EFB10F76564EB928D0F23F0E1A3E2C50FD3  : public RuntimeObject
 {
-	// System.UInt64 Werewolf.PlayerSpawner/<>c__DisplayClass6_0::userId
+	// System.UInt64 Werewolf.PlayerSpawner/<>c__DisplayClass7_0::userId
 	uint64_t ___userId_0;
-	// System.Boolean Werewolf.PlayerSpawner/<>c__DisplayClass6_0::getUserIdComplete
+	// System.Boolean Werewolf.PlayerSpawner/<>c__DisplayClass7_0::getUserIdComplete
 	bool ___getUserIdComplete_1;
 };
 
-// Werewolf.PlayerSpawner/<InstantiateNetworkAvatar>d__6
-struct U3CInstantiateNetworkAvatarU3Ed__6_t25E0659891F347B18E8303CB95FA2EE8946A1D94  : public RuntimeObject
+// Werewolf.PlayerSpawner/<InstantiateNetworkAvatar>d__7
+struct U3CInstantiateNetworkAvatarU3Ed__7_tD507A2B8D8D5AB319701A97AF6585412A301340C  : public RuntimeObject
 {
-	// System.Int32 Werewolf.PlayerSpawner/<InstantiateNetworkAvatar>d__6::<>1__state
+	// System.Int32 Werewolf.PlayerSpawner/<InstantiateNetworkAvatar>d__7::<>1__state
 	int32_t ___U3CU3E1__state_0;
-	// System.Object Werewolf.PlayerSpawner/<InstantiateNetworkAvatar>d__6::<>2__current
+	// System.Object Werewolf.PlayerSpawner/<InstantiateNetworkAvatar>d__7::<>2__current
 	RuntimeObject* ___U3CU3E2__current_1;
-	// Werewolf.PlayerSpawner Werewolf.PlayerSpawner/<InstantiateNetworkAvatar>d__6::<>4__this
+	// Werewolf.PlayerSpawner Werewolf.PlayerSpawner/<InstantiateNetworkAvatar>d__7::<>4__this
 	PlayerSpawner_t608F811790DA46869A62246EC2EA4D7DD1AB4A3A* ___U3CU3E4__this_2;
-	// Werewolf.PlayerSpawner/<>c__DisplayClass6_0 Werewolf.PlayerSpawner/<InstantiateNetworkAvatar>d__6::<>8__1
-	U3CU3Ec__DisplayClass6_0_tA1766BC4B4F24B3E66CDA7CCAE55666A3D1037D0* ___U3CU3E8__1_3;
-	// System.Byte Werewolf.PlayerSpawner/<InstantiateNetworkAvatar>d__6::<playerCount>5__2
+	// Werewolf.PlayerSpawner/<>c__DisplayClass7_0 Werewolf.PlayerSpawner/<InstantiateNetworkAvatar>d__7::<>8__1
+	U3CU3Ec__DisplayClass7_0_t3F553EFB10F76564EB928D0F23F0E1A3E2C50FD3* ___U3CU3E8__1_3;
+	// System.Byte Werewolf.PlayerSpawner/<InstantiateNetworkAvatar>d__7::<playerCount>5__2
 	uint8_t ___U3CplayerCountU3E5__2_4;
-	// UnityEngine.Transform Werewolf.PlayerSpawner/<InstantiateNetworkAvatar>d__6::<transform>5__3
+	// UnityEngine.Transform Werewolf.PlayerSpawner/<InstantiateNetworkAvatar>d__7::<transform>5__3
 	Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___U3CtransformU3E5__3_5;
 };
 
@@ -44456,6 +44449,8 @@ struct PlayerSpawner_t608F811790DA46869A62246EC2EA4D7DD1AB4A3A  : public MonoBeh
 	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ____spawnPointOffsets_6;
 	// System.Collections.Generic.List`1<UnityEngine.GameObject> Werewolf.PlayerSpawner::_spawnPoints
 	List_1_tB951CE80B58D1BF9650862451D8DAD8C231F207B* ____spawnPoints_7;
+	// Werewolf.Game.GameManager Werewolf.PlayerSpawner::_gm
+	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ____gm_8;
 };
 
 // Leaf.PhotonTutorial.Player.PlayerUI
@@ -44736,6 +44731,19 @@ struct RespawnOnDrop_tDA2EEBCEC4DB067F54616A6142CAEE71C83FD8FB  : public MonoBeh
 	TwoGrabFreeTransformerU5BU5D_t6321E9D2A47A7569F7FC2841D60D6D54AE877F4A* ____freeTransformers_9;
 	// UnityEngine.Rigidbody Oculus.Interaction.Samples.RespawnOnDrop::_rigidBody
 	Rigidbody_t268697F5A994213ED97393309870968BC1C7393C* ____rigidBody_10;
+};
+
+// Restart
+struct Restart_t123AB8241FB07FFA868B2C6C56FDA2638364FF4A  : public MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71
+{
+	// UnityEngine.GameObject Restart::buttonRestart
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___buttonRestart_4;
+	// UnityEngine.GameObject Restart::endGameUI
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___endGameUI_5;
+	// System.Int32 Restart::buttonNum
+	int32_t ___buttonNum_6;
+	// Werewolf.Game.GameManager Restart::_gm
+	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ____gm_7;
 };
 
 // Oculus.Interaction.HandGrab.Recorder.RigidbodyDetector
@@ -48928,60 +48936,86 @@ struct GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6  : public MonoBehav
 	int32_t ___nightTime_8;
 	// System.Boolean Werewolf.Game.GameManager::dayTurn
 	bool ___dayTurn_9;
+	// System.Boolean Werewolf.Game.GameManager::syncTime
+	bool ___syncTime_10;
 	// TMPro.TextMeshProUGUI Werewolf.Game.GameManager::timeText
-	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___timeText_11;
+	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___timeText_12;
 	// TMPro.TextMeshProUGUI Werewolf.Game.GameManager::messageText
-	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___messageText_12;
+	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___messageText_13;
+	// TMPro.TextMeshProUGUI Werewolf.Game.GameManager::endGameMessageText
+	TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* ___endGameMessageText_14;
 	// System.Int32 Werewolf.Game.GameManager::playerCount
-	int32_t ___playerCount_13;
+	int32_t ___playerCount_15;
 	// System.Int32 Werewolf.Game.GameManager::werewolfCount
-	int32_t ___werewolfCount_14;
+	int32_t ___werewolfCount_16;
 	// System.Collections.Generic.List`1<System.Int32> Werewolf.Game.GameManager::playerList
-	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___playerList_15;
+	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___playerList_17;
 	// System.Collections.Generic.List`1<System.Int32> Werewolf.Game.GameManager::roleList
-	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___roleList_16;
+	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___roleList_18;
 	// System.Int32 Werewolf.Game.GameManager::actorNumber
-	int32_t ___actorNumber_17;
+	int32_t ___actorNumber_19;
 	// Werewolf.Game.GameManager Werewolf.Game.GameManager::_gm
-	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ____gm_19;
+	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ____gm_21;
 	// UnityEngine.GameObject Werewolf.Game.GameManager::voteUI
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___voteUI_20;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___voteUI_22;
 	// UnityEngine.GameObject Werewolf.Game.GameManager::blackScreen
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___blackScreen_21;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___blackScreen_23;
 	// UnityEngine.GameObject Werewolf.Game.GameManager::resultUI
-	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___resultUI_22;
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___resultUI_24;
+	// UnityEngine.GameObject Werewolf.Game.GameManager::endGameUI
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___endGameUI_25;
+	// UnityEngine.GameObject Werewolf.Game.GameManager::localAvatar
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___localAvatar_26;
+	// UnityEngine.GameObject Werewolf.Game.GameManager::recorder
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___recorder_27;
 	// System.Boolean Werewolf.Game.GameManager::action
-	bool ___action_23;
+	bool ___action_28;
+	// System.Boolean Werewolf.Game.GameManager::findRecorder
+	bool ___findRecorder_29;
+	// System.Boolean Werewolf.Game.GameManager::seerTime
+	bool ___seerTime_30;
 	// System.Boolean Werewolf.Game.GameManager::broadCast
-	bool ___broadCast_24;
+	bool ___broadCast_31;
 	// System.Boolean Werewolf.Game.GameManager::deadTime
-	bool ___deadTime_25;
+	bool ___deadTime_32;
+	// System.Boolean Werewolf.Game.GameManager::localDead
+	bool ___localDead_33;
+	// System.Boolean Werewolf.Game.GameManager::endGame
+	bool ___endGame_34;
 	// Werewolf.Game.GameManager/Character Werewolf.Game.GameManager::character
-	int32_t ___character_27;
+	int32_t ___character_36;
 	// Werewolf.Game.GameManager/SpeechSeq Werewolf.Game.GameManager::speechSeq
-	int32_t ___speechSeq_28;
+	int32_t ___speechSeq_37;
+	// System.String Werewolf.Game.GameManager::message
+	String_t* ___message_38;
 	// System.Collections.Generic.Dictionary`2<System.Int32,System.Collections.Generic.List`1<System.Int32>> Werewolf.Game.GameManager::voteDict
-	Dictionary_2_t9899279A2990FB86A896C58A3F27F8E1705785C3* ___voteDict_29;
+	Dictionary_2_t9899279A2990FB86A896C58A3F27F8E1705785C3* ___voteDict_39;
 	// System.Collections.Generic.List`1<System.Int32> Werewolf.Game.GameManager::voteList
-	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___voteList_30;
+	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___voteList_40;
 	// System.Boolean Werewolf.Game.GameManager::voted
-	bool ___voted_31;
+	bool ___voted_41;
+	// System.Boolean Werewolf.Game.GameManager::allVoted
+	bool ___allVoted_42;
 	// System.Int32 Werewolf.Game.GameManager::myvote
-	int32_t ___myvote_32;
+	int32_t ___myvote_43;
 	// System.Int32 Werewolf.Game.GameManager::votedPlayer
-	int32_t ___votedPlayer_33;
+	int32_t ___votedPlayer_44;
 	// System.Int32 Werewolf.Game.GameManager::maxVotePlayer
-	int32_t ___maxVotePlayer_34;
+	int32_t ___maxVotePlayer_45;
+	// System.Int32 Werewolf.Game.GameManager::seerSelected
+	int32_t ___seerSelected_46;
+	// System.Int32 Werewolf.Game.GameManager::saviorSelected
+	int32_t ___saviorSelected_47;
 	// Photon.Pun.PhotonView Werewolf.Game.GameManager::_pv
-	PhotonView_t43F3D22FF3D00F7824E82D741D70F9CB55642E6B* ____pv_35;
+	PhotonView_t43F3D22FF3D00F7824E82D741D70F9CB55642E6B* ____pv_48;
 };
 
 struct GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6_StaticFields
 {
 	// System.Single Werewolf.Game.GameManager::deltaTime
-	float ___deltaTime_10;
+	float ___deltaTime_11;
 	// Werewolf.Game.GameManager Werewolf.Game.GameManager::<Instance>k__BackingField
-	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ___U3CInstanceU3Ek__BackingField_36;
+	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ___U3CInstanceU3Ek__BackingField_49;
 };
 
 // UnityEngine.UI.GraphicRaycaster
@@ -51776,49 +51810,49 @@ const Il2CppTypeDefinitionSizes g_typeDefinitionSize5736 = { sizeof(FaceToCamera
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5737;
 const Il2CppTypeDefinitionSizes g_typeDefinitionSize5737 = { sizeof(FaceToCameraBlackScreen_tC7D4A4E124D2A1C81424C139F581495A29F643EE), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5738;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5738 = { sizeof(U3CU3Ec__DisplayClass6_0_tA1766BC4B4F24B3E66CDA7CCAE55666A3D1037D0), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5738 = { sizeof(Restart_t123AB8241FB07FFA868B2C6C56FDA2638364FF4A), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5739;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5739 = { sizeof(U3CInstantiateNetworkAvatarU3Ed__6_t25E0659891F347B18E8303CB95FA2EE8946A1D94), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5739 = { sizeof(U3CU3Ec__DisplayClass7_0_t3F553EFB10F76564EB928D0F23F0E1A3E2C50FD3), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5740;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5740 = { sizeof(PlayerSpawner_t608F811790DA46869A62246EC2EA4D7DD1AB4A3A), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5740 = { sizeof(U3CInstantiateNetworkAvatarU3Ed__7_tD507A2B8D8D5AB319701A97AF6585412A301340C), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5741;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5741 = { sizeof(Tags_t8E263D1C25156A69BBAFF90A36A5EF3CEFDB1FCE), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5741 = { sizeof(PlayerSpawner_t608F811790DA46869A62246EC2EA4D7DD1AB4A3A), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5742;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5742 = { sizeof(Metadata_tA869B0E68AA6AA17A083733E9D542B29BAEB4564), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5742 = { sizeof(Tags_t8E263D1C25156A69BBAFF90A36A5EF3CEFDB1FCE), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5743;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5743 = { sizeof(CameraController_tCA70352924CC5AB2B10CBAD83D404E51E5C6C15B), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5743 = { sizeof(Metadata_tA869B0E68AA6AA17A083733E9D542B29BAEB4564), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5744;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5744 = { sizeof(int32_t)+ sizeof(RuntimeObject), sizeof(int32_t), 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5744 = { sizeof(CameraController_tCA70352924CC5AB2B10CBAD83D404E51E5C6C15B), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5745;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5745 = { sizeof(AssetData_tBC38F560DC780504914C352811FD6F0712AA023D)+ sizeof(RuntimeObject), sizeof(AssetData_tBC38F560DC780504914C352811FD6F0712AA023D_marshaled_pinvoke), 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5745 = { sizeof(int32_t)+ sizeof(RuntimeObject), sizeof(int32_t), 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5746;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5746 = { sizeof(U3CStartU3Ed__33_tB7CF54464C292430283B8BF4185F4D740EDE9B96), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5746 = { sizeof(AssetData_tBC38F560DC780504914C352811FD6F0712AA023D)+ sizeof(RuntimeObject), sizeof(AssetData_tBC38F560DC780504914C352811FD6F0712AA023D_marshaled_pinvoke), 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5747;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5747 = { sizeof(U3CLoadUserAvatarU3Ed__36_tEB4D85DA7B7FB482639AB371598ACE9EFD9316FD), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5747 = { sizeof(U3CStartU3Ed__33_tB7CF54464C292430283B8BF4185F4D740EDE9B96), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5748;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5748 = { sizeof(U3CLoadCdnAvatarU3Ed__38_t2B0C3D1942EE50EA7BC2BF6F77B45BA069A2B485), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5748 = { sizeof(U3CLoadUserAvatarU3Ed__36_tEB4D85DA7B7FB482639AB371598ACE9EFD9316FD), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5749;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5749 = { sizeof(U3CU3Ec__DisplayClass39_0_t31F5D032AD375E049D510D1C3E5D8122B66CCA6B), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5749 = { sizeof(U3CLoadCdnAvatarU3Ed__38_t2B0C3D1942EE50EA7BC2BF6F77B45BA069A2B485), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5750;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5750 = { sizeof(U3CGetUserIdFromOculusU3Ed__39_t38F4978679282FC670587AAA1D3854819B38F333), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5750 = { sizeof(U3CU3Ec__DisplayClass39_0_t31F5D032AD375E049D510D1C3E5D8122B66CCA6B), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5751;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5751 = { sizeof(U3CU3Ec_tFDB4F874D766391D5CE826928F0CA260060296DA), -1, sizeof(U3CU3Ec_tFDB4F874D766391D5CE826928F0CA260060296DA_StaticFields), 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5751 = { sizeof(U3CGetUserIdFromOculusU3Ed__39_t38F4978679282FC670587AAA1D3854819B38F333), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5752;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5752 = { sizeof(U3CLoadUserU3Ed__60_tAA1EED5E4CCFA745419D4A5E5408553687B5CFC0), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5752 = { sizeof(U3CU3Ec_tFDB4F874D766391D5CE826928F0CA260060296DA), -1, sizeof(U3CU3Ec_tFDB4F874D766391D5CE826928F0CA260060296DA_StaticFields), 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5753;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5753 = { sizeof(U3CPollForAvatarChangeU3Ed__61_t1BF102007CDB63511D093F45800E715782108AF5), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5753 = { sizeof(U3CLoadUserU3Ed__60_tAA1EED5E4CCFA745419D4A5E5408553687B5CFC0), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5754;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5754 = { sizeof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B), -1, sizeof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B_StaticFields), 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5754 = { sizeof(U3CPollForAvatarChangeU3Ed__61_t1BF102007CDB63511D093F45800E715782108AF5), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5755;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5755 = { sizeof(PlayerInputManager_t229879AC0C2F03348C940EA85DAADC6CCDAC357E), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5755 = { sizeof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B), -1, sizeof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B_StaticFields), 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5756;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5756 = { sizeof(PlayerInputTrackingDelegate_t5666ED5642939FB8FD93E335F38EB7F8D8E71E59), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5756 = { sizeof(PlayerInputManager_t229879AC0C2F03348C940EA85DAADC6CCDAC357E), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5757;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5757 = { sizeof(int32_t)+ sizeof(RuntimeObject), sizeof(int32_t), 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5757 = { sizeof(PlayerInputTrackingDelegate_t5666ED5642939FB8FD93E335F38EB7F8D8E71E59), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5758;
 const Il2CppTypeDefinitionSizes g_typeDefinitionSize5758 = { sizeof(int32_t)+ sizeof(RuntimeObject), sizeof(int32_t), 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5759;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize5759 = { sizeof(U3CU3Ec__DisplayClass55_0_t19E810F114517A7C59C4F4066DFC41D65A58802A), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize5759 = { sizeof(int32_t)+ sizeof(RuntimeObject), sizeof(int32_t), 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5760;
 const Il2CppTypeDefinitionSizes g_typeDefinitionSize5760 = { sizeof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6), -1, sizeof(GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6_StaticFields), 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize5761;
