@@ -58,7 +58,7 @@ public class ButtonClick : MonoBehaviour
 	void TaskOnClickEnter()
 	{
 		Debug.Log($"Enter button! {buttonNum} ");
-		//voteUI.SetActive(false);
+		voteUI.SetActive(false);
 		_gm.voted = true;
 		_gm.CallRpcSendMyVote(_gm.actorNumber, buttonNum);
 		buttonNum = 0; //defacult skip

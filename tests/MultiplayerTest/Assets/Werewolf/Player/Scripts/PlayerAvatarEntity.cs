@@ -187,7 +187,8 @@ namespace Werewolf.Player
                 var lipSyncInput = FindObjectOfType<OvrAvatarLipSyncContext>();
                 SetLipSync(lipSyncInput);
                 // SetActiveView(CAPI.ovrAvatar2EntityViewFlags.FirstPerson);
-                gameObject.name = $"{_photonView.ViewID}_LocalAvatar";
+                //gameObject.name = $"{_photonView.ViewID}_LocalAvatar";
+                gameObject.name = "LocalAvatar";
 
             }
             else

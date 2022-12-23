@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UIElements;
+using Werewolf.Game;
 
 namespace Werewolf
 {
@@ -26,7 +27,7 @@ namespace Werewolf
         [Tooltip("A list of spawn points. It will collect all gameobjects with a tag 'Respawn'.")]
         [SerializeField]
         private List<GameObject> _spawnPoints = new();
-
+        private GameManager _gm;
         #region Unity Callbacks
 
         private void Awake()
@@ -86,6 +87,8 @@ namespace Werewolf
             Debug.AssertFormat(_spawnPoints.Count >= playerCount, $"{logScope}: No spawn points available.");
             var transform = _spawnPoints[playerCount - 1].transform;
             PhotonNetwork.Instantiate(_playerPrefab.name, transform.position + _spawnPointOffsets, transform.rotation, 0, new object[] { (Int64)userId });
+            //_gm.localAvatar = GameObject.Find($"{gameObject.name}");
+            //_gm.speaker = GameObject.Find($"{gameObject.name}/Speaker(Clone)");
         }
 
         #endregion
