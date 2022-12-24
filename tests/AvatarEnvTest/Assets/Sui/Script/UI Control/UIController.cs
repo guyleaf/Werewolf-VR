@@ -12,20 +12,26 @@ public class UIController : MonoBehaviour
         = new Dictionary<string, GameObject>(); // mapping string to ui
 
     // UI List
+    [SerializeField] private GameObject avatarSelectUI;
     [SerializeField]private GameObject enterUI;
     [SerializeField] private GameObject loadingUI;
     [SerializeField] private GameObject lobbyUI;
     [SerializeField] private GameObject nothingUI;
+    [SerializeField] private GameObject notifyUI;
+    [SerializeField] private GameObject resultUI;
     [SerializeField] private GameObject voteUI; 
     [SerializeField] private GameObject waitingRoomUI;
 
     // Start is called before the first frame update
     void Start()
     {
+        uiNameMap.Add(UnifiedUINames.UINames.AvatarSelectUI, avatarSelectUI);
         uiNameMap.Add(UnifiedUINames.UINames.EnterUI, enterUI);
         uiNameMap.Add(UnifiedUINames.UINames.LoadingUI, loadingUI);
         uiNameMap.Add(UnifiedUINames.UINames.LobbyUI, lobbyUI);
         uiNameMap.Add(UnifiedUINames.UINames.NothingUI, nothingUI);
+        uiNameMap.Add(UnifiedUINames.UINames.NotifyUI, notifyUI);
+        uiNameMap.Add(UnifiedUINames.UINames.ResultUI, resultUI);
         uiNameMap.Add(UnifiedUINames.UINames.VoteUI, voteUI);
         uiNameMap.Add(UnifiedUINames.UINames.WaitingRoomUI, waitingRoomUI);
     }
