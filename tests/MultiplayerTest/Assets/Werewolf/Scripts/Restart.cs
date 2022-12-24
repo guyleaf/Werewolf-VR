@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using Werewolf.Game;
+using System.Linq;
 
 public class Restart : MonoBehaviour
 {
@@ -32,6 +33,16 @@ public class Restart : MonoBehaviour
 		endGameUI.SetActive(false);
 		_gm.endGame = false;
 		_gm.playerList = new() { 0, 1, 2, 3, 4, 5, 6 };
+		//random ActorNumber 1 to 6 for assign character,
+		System.Random rnd = new();
+		var rndNum = _gm.playerList.GetRange(1, 6).OrderBy(item => rnd.Next());
+		Debug.Log("restart player roleList type: " + rndNum.GetType());
+		_gm.roleList.Clear();
+		foreach (int role in rndNum)
+		{
+			Debug.Log("restart player role: " + role);
+			_gm.roleList.Add(role);
+		}
 		_gm.Awake();
 		_gm.dayTurn = false;
 		_gm.timer = 0;

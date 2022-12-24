@@ -34,7 +34,7 @@ namespace Werewolf.Game
         private int playerCount;
         private int werewolfCount = 2;
         public List<int> playerList = new() { 0, 1, 2, 3, 4, 5, 6 };
-        private List<int> roleList = new();
+        public List<int> roleList = new();
         public int actorNumber;
 
         private const string logScope = "playerAvatar";
@@ -239,10 +239,8 @@ namespace Werewolf.Game
         [PunRPC] //send recorder enable to all players
         void RpcRecorderEnableToAll(string data, PhotonMessageInfo info)
         {
-            Debug.LogWarning($" Gameflow RpcRecorderEnableToAll! data: {data}");
             var bf = new BinaryFormatter();
             var ins = new MemoryStream(Convert.FromBase64String(data)); //Create an input stream from the string
-            //var _playerList : List.< int > = bf.Deserialize(ins);
             List<int> _playerList = (List<int>)bf.Deserialize(ins);
             string result = "";
             foreach (var listMember in _playerList)
@@ -446,7 +444,7 @@ namespace Werewolf.Game
                 Debug.Log("player role: " + role);
                 roleList.Add(role);
             }*/
-            roleList = new() { 1, 3, 2, 5, 4, 6 };
+            roleList = new() { 1, 3, 5, 2, 4, 6 };
         }
 
         // Start is called before the first frame update
@@ -464,8 +462,8 @@ namespace Werewolf.Game
 
             //Find UI
             //localAvatar = GameObject.Find("LocalAvatar");
-            voice = GameObject.Find("Voice");
-            recorder = voice.GetComponent<Recorder>();
+            //voice = GameObject.Find("Voice");
+            recorder = GameObject.Find("Voice").GetComponent<Recorder>();
             voteUI = GameObject.Find("Vote UI");
             sectionUI = GameObject.Find("Section UI");
             resultUI = GameObject.Find("Result UI");
@@ -474,9 +472,9 @@ namespace Werewolf.Game
             timeText = GameObject.Find("Text (TMP)-Time").GetComponent<TextMeshProUGUI>();
             timeText.SetText(sectionTime.ToString("#.0"));
             messageText = GameObject.Find("Text (TMP)-ResultMessage").GetComponent<TextMeshProUGUI>();
-            messageText.SetText("Player X is dead, here is the last message!");
+            //messageText.SetText("Player X is dead, here is the last message!");
             sectionMessageText = GameObject.Find("Text (TMP)-SectionMessage").GetComponent<TextMeshProUGUI>();
-            sectionMessageText.SetText("Section: X Turn \nTimer: X s");
+            //sectionMessageText.SetText("Section: X Turn \nTimer: X s");
             endGameMessageText = GameObject.Find("Text (TMP)-EndGameMessage").GetComponent<TextMeshProUGUI>();
             endGameMessageText.SetText("End Game");
             voteUI.SetActive(false);
@@ -511,7 +509,7 @@ namespace Werewolf.Game
                     playerCount += 1;
                 }
                 Debug.LogWarning("Gameflow update player: " + playerCount);
-                if(playerCount >= 1)
+                if(playerCount > 1)
                 {
                     if (!syncTime)
                     {
@@ -788,6 +786,8 @@ namespace Werewolf.Game
                                     else
                                     {
                                         message = $"Player {maxVotePlayer} was ejected, here is the last message!";
+                                        playerList.Remove(maxVotePlayer);
+                                        maxVotePlayer = 0;
                                     }
                                     voted = false;
                                     allVoted = false;
@@ -804,11 +804,6 @@ namespace Werewolf.Game
                                     dayTurn = false;
                                     localDead = false;
                                     _gm.CallRpcSyncDayNightTimeToAll(nightTime); //sync time to night
-                                    if (maxVotePlayer > 0)
-                                    {
-                                        playerList.Remove(maxVotePlayer);
-                                        maxVotePlayer = 0;
-                                    }
                                     _gm.CallRpcRecorderEnableToAll(playerList);
                                     endGameCheck();
                                 }
@@ -834,8 +829,11 @@ namespace Werewolf.Game
             {
                 blackScreen.SetActive(false);
                 voteUI.SetActive(false);
+                sectionUI.SetActive(false);
                 endGameUI.SetActive(true);
                 resultUI.SetActive(false);
+                character = Character.WEREWOLF;
+                speechSeq = SpeechSeq.PLAYER1;
                 Debug.Log("Gameflow update: Night End Game! ");
             }
             else if (dayTurn == false)  // At night
