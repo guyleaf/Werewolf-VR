@@ -40,8 +40,9 @@ namespace Werewolf
             }
         }
 
-        public static IEnumerable LogIn()
+        public static IEnumerator LogIn()
         {
+            Debug.Log("LogIn()");
             if (IsUserLoggedIn)
             {
                 Debug.LogWarning("You are already logged in");
@@ -78,7 +79,9 @@ namespace Werewolf
                 getUserIdComplete = true;
             });
 
+            Debug.Log("Wait LogIn()");
             while (!getUserIdComplete) { yield return null; }
+            UnityEngine.Debug.Log(UserProfile.ID);
         }
     }
 }
