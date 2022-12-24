@@ -6,7 +6,7 @@ public class FaceToCameraBlackScreen : MonoBehaviour
 {
     public Transform mLookAt;
     private Transform localTrans;
-    private float distanceFromCamera = 0.2f;
+    private float distanceFromCamera = 0.4f;
     // Start is called before the first frame update
     void Start()
     {
