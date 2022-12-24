@@ -14,24 +14,26 @@
 
 // System.Action`1<System.Object>
 struct Action_1_t6F9EB113EB3F16226AEF811A2744F4111C116C87;
-// System.Collections.Generic.Dictionary`2<System.Object,System.Object>
-struct Dictionary_2_t14FE4A752A83D53771C584E4C8D14E01F2AFD7BA;
+// System.Action`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99;
 // System.Collections.Generic.Dictionary`2<System.String,OVR.SoundFX>
 struct Dictionary_2_tDE11841BAF0CBBAD0585B9F17C6E211B50989B25;
-// FastList`1<System.Object>
-struct FastList_1_t92F58F94AE09B3E2D7CA2BCD82425ECE115C33EB;
+// System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E;
 // FastList`1<OVR.SoundEmitter>
 struct FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24;
 // FastList`1<System.String>
 struct FastList_1_t8EFE4A2AA4328BF0B9F52CBF66A39DB8EF22BC59;
+// FastList`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4;
 // System.Collections.Generic.IEqualityComparer`1<System.String>
 struct IEqualityComparer_1_tAE94C8F24AD5B94D4EE85CA9FC59E3409D41CAF7;
 // System.Collections.Generic.Dictionary`2/KeyCollection<System.String,OVR.SoundFX>
 struct KeyCollection_t44E0E9D3F8F226FBCEA1A1B816A52107E975CC76;
-// System.Predicate`1<System.Object>
-struct Predicate_1_t8342C85FF4E41CD1F7024AC0CDC3E5312A32CB12;
 // System.Predicate`1<OVR.SoundEmitter>
 struct Predicate_1_tC52CE5CAE1CEC99FEB2226AC67B207A32DB4F3BF;
+// System.Predicate`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Predicate_1_t81499D2838AC2641B3FA14CD4DBF7E1594A9E107;
 // System.Collections.Generic.Dictionary`2/ValueCollection<System.String,OVR.SoundFX>
 struct ValueCollection_t0FC27C0C4609B9DB5F8F3016BD50D73B36F59A8F;
 // System.Collections.Generic.Dictionary`2/Entry<System.String,OVR.SoundFX>[]
@@ -68,6 +70,8 @@ struct StackTraceU5BU5D_t32FBCB20930EAF5BAE3F450FF75228E5450DA0DF;
 struct StringU5BU5D_t7674CD946EC0CE7B3AE0BE70E6EE85F2ECD9F248;
 // UnityEngine.Transform[]
 struct TransformU5BU5D_tBB9C5F5686CAE82E3D97D43DF0F3D68ABF75EC24;
+// Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType[]
+struct __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC;
 // System.Action
 struct Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07;
 // OVR.AmbienceEmitter
@@ -328,15 +332,6 @@ struct Dictionary_2_tDE11841BAF0CBBAD0585B9F17C6E211B50989B25  : public RuntimeO
 	RuntimeObject* ____syncRoot_9;
 };
 
-// FastList`1<System.Object>
-struct FastList_1_t92F58F94AE09B3E2D7CA2BCD82425ECE115C33EB  : public RuntimeObject
-{
-	// T[] FastList`1::array
-	ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ___array_0;
-	// System.Int32 FastList`1::size
-	int32_t ___size_1;
-};
-
 // FastList`1<OVR.SoundEmitter>
 struct FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24  : public RuntimeObject
 {
@@ -351,6 +346,15 @@ struct FastList_1_t8EFE4A2AA4328BF0B9F52CBF66A39DB8EF22BC59  : public RuntimeObj
 {
 	// T[] FastList`1::array
 	StringU5BU5D_t7674CD946EC0CE7B3AE0BE70E6EE85F2ECD9F248* ___array_0;
+	// System.Int32 FastList`1::size
+	int32_t ___size_1;
+};
+
+// FastList`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4  : public RuntimeObject
+{
+	// T[] FastList`1::array
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* ___array_0;
 	// System.Int32 FastList`1::size
 	int32_t ___size_1;
 };
@@ -1070,6 +1074,11 @@ struct Action_1_t6F9EB113EB3F16226AEF811A2744F4111C116C87  : public MulticastDel
 {
 };
 
+// System.Action`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99  : public MulticastDelegate_t
+{
+};
+
 // System.Predicate`1<OVR.SoundEmitter>
 struct Predicate_1_tC52CE5CAE1CEC99FEB2226AC67B207A32DB4F3BF  : public MulticastDelegate_t
 {
@@ -1672,48 +1681,48 @@ struct KeyframeU5BU5D_t63250A46914A6A07B2A6689850D47D7D19D80BA3  : public Runtim
 };
 
 
-// System.Void System.Collections.Generic.Dictionary`2<System.Object,System.Object>::.ctor(System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2__ctor_mF225F49F6BE54C39563CECD7C693F0AE4F0530E8_gshared (Dictionary_2_t14FE4A752A83D53771C584E4C8D14E01F2AFD7BA* __this, int32_t ___capacity0, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Object,System.Object>::Add(TKey,TValue)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_Add_m93FFFABE8FCE7FA9793F0915E2A8842C7CD0C0C1_gshared (Dictionary_2_t14FE4A752A83D53771C584E4C8D14E01F2AFD7BA* __this, RuntimeObject* ___key0, RuntimeObject* ___value1, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.Dictionary`2<System.Object,System.Object>::ContainsKey(TKey)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Dictionary_2_ContainsKey_m703047C213F7AB55C9DC346596287773A1F670CD_gshared (Dictionary_2_t14FE4A752A83D53771C584E4C8D14E01F2AFD7BA* __this, RuntimeObject* ___key0, const RuntimeMethod* method) ;
-// TValue System.Collections.Generic.Dictionary`2<System.Object,System.Object>::get_Item(TKey)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* Dictionary_2_get_Item_m4AAAECBE902A211BF2126E6AFA280AEF73A3E0D6_gshared (Dictionary_2_t14FE4A752A83D53771C584E4C8D14E01F2AFD7BA* __this, RuntimeObject* ___key0, const RuntimeMethod* method) ;
-// T UnityEngine.GameObject::GetComponent<System.Object>()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* GameObject_GetComponent_TisRuntimeObject_m6EAED4AA356F0F48288F67899E5958792395563B_gshared (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, const RuntimeMethod* method) ;
-// System.Void FastList`1<System.Object>::Clear()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void FastList_1_Clear_mFE2AC19B818FA1BE029D5A71C37E041496B25D9D_gshared (FastList_1_t92F58F94AE09B3E2D7CA2BCD82425ECE115C33EB* __this, const RuntimeMethod* method) ;
-// System.Void FastList`1<System.Object>::Add(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void FastList_1_Add_m7E3B81D4A314E1D7785FCD194DBA3E0C215732CD_gshared (FastList_1_t92F58F94AE09B3E2D7CA2BCD82425ECE115C33EB* __this, RuntimeObject* ___item0, const RuntimeMethod* method) ;
-// System.Int32 FastList`1<System.Object>::get_Count()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t FastList_1_get_Count_mBA686B21C253D143929263C157CC66BA874F9519_gshared_inline (FastList_1_t92F58F94AE09B3E2D7CA2BCD82425ECE115C33EB* __this, const RuntimeMethod* method) ;
-// T[] FastList`1<System.Object>::ToArray()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* FastList_1_ToArray_m728C37B017C21B8B6FC91BD4DEF130ECD400E3C7_gshared (FastList_1_t92F58F94AE09B3E2D7CA2BCD82425ECE115C33EB* __this, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor(System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2__ctor_mA5BF8973642D67EF56303F2867C75190756C3012_gshared (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E* __this, int32_t ___capacity0, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Add(TKey,TValue)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_Add_m54D479280472DEA042DB3933AF547E666B017333_gshared (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___key0, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___value1, const RuntimeMethod* method) ;
+// System.Boolean System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::ContainsKey(TKey)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Dictionary_2_ContainsKey_mA268E9B914DCE838DD0CD9D879BAAEECD0C677AA_gshared (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___key0, const RuntimeMethod* method) ;
+// TValue System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Item(TKey)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_get_Item_m2E96908E9716367701CD737FA54C884EB2A8C3EA_gshared (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___key0, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// T UnityEngine.GameObject::GetComponent<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameObject_GetComponent_TisIl2CppFullySharedGenericAny_m1122128E432233EB251AECF734E2B72A42A2C194_gshared (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Void FastList`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Clear()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void FastList_1_Clear_mFE0EAF6C509B75E10CFF627DED1B167C2FF3C35C_gshared (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4* __this, const RuntimeMethod* method) ;
+// System.Void FastList`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Add(T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void FastList_1_Add_mE78947EF153E6CEAEBA3C08D57C128F63C0CB5B1_gshared (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) ;
+// System.Int32 FastList`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Count()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t FastList_1_get_Count_m83E6BDF4257D11305CA3F3A763172CDC41D335C7_gshared_inline (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4* __this, const RuntimeMethod* method) ;
+// T[] FastList`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::ToArray()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* FastList_1_ToArray_mBBDB8969036DC25FB6E00FC366B382F2430251CC_gshared (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4* __this, const RuntimeMethod* method) ;
 // T UnityEngine.Object::FindObjectOfType<System.Object>()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* Object_FindObjectOfType_TisRuntimeObject_m02DFBF011F3B59F777A5E521DB2A116DD496E968_gshared (const RuntimeMethod* method) ;
 // T UnityEngine.GameObject::AddComponent<System.Object>()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* GameObject_AddComponent_TisRuntimeObject_m69B93700FACCF372F5753371C6E8FB780800B824_gshared (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, const RuntimeMethod* method) ;
-// T FastList`1<System.Object>::get_Item(System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* FastList_1_get_Item_mC72B42936388F8FE44B19770F73EA6AAFAF60CDA_gshared (FastList_1_t92F58F94AE09B3E2D7CA2BCD82425ECE115C33EB* __this, int32_t ___i0, const RuntimeMethod* method) ;
-// System.Void FastList`1<System.Object>::RemoveAtFast(System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void FastList_1_RemoveAtFast_m6AA34BAA1B0AE7AE23840A77ECE439E91872A16A_gshared (FastList_1_t92F58F94AE09B3E2D7CA2BCD82425ECE115C33EB* __this, int32_t ___index0, const RuntimeMethod* method) ;
-// System.Boolean FastList`1<System.Object>::Contains(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool FastList_1_Contains_mC280F20C1489113E4093A752AC4742876476B988_gshared (FastList_1_t92F58F94AE09B3E2D7CA2BCD82425ECE115C33EB* __this, RuntimeObject* ___item0, const RuntimeMethod* method) ;
-// System.Void System.Predicate`1<System.Object>::.ctor(System.Object,System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Predicate_1__ctor_m3E007299121A15DF80F4A210FF8C20E5DF688F20_gshared (Predicate_1_t8342C85FF4E41CD1F7024AC0CDC3E5312A32CB12* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
-// T FastList`1<System.Object>::Find(System.Predicate`1<T>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* FastList_1_Find_mADF0E63FA6B0B92334C1D8B26C9EEC5F7BB1DEA3_gshared (FastList_1_t92F58F94AE09B3E2D7CA2BCD82425ECE115C33EB* __this, Predicate_1_t8342C85FF4E41CD1F7024AC0CDC3E5312A32CB12* ___match0, const RuntimeMethod* method) ;
-// System.Boolean FastList`1<System.Object>::RemoveFast(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool FastList_1_RemoveFast_mCC36D242B2D1BD279964E653D381195B7C63BD17_gshared (FastList_1_t92F58F94AE09B3E2D7CA2BCD82425ECE115C33EB* __this, RuntimeObject* ___item0, const RuntimeMethod* method) ;
-// System.Void FastList`1<System.Object>::AddUnique(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void FastList_1_AddUnique_m13A79EF6DAF9A27DADCC4356067435FFBD8089E7_gshared (FastList_1_t92F58F94AE09B3E2D7CA2BCD82425ECE115C33EB* __this, RuntimeObject* ___item0, const RuntimeMethod* method) ;
-// System.Void FastList`1<System.Object>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void FastList_1__ctor_mDB8AB9664861594F7A1FEFCEEAD57AA46C3C42C2_gshared (FastList_1_t92F58F94AE09B3E2D7CA2BCD82425ECE115C33EB* __this, const RuntimeMethod* method) ;
-// T UnityEngine.Component::GetComponent<System.Object>()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* Component_GetComponent_TisRuntimeObject_m7181F81CAEC2CF53F5D2BC79B7425C16E1F80D33_gshared (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, const RuntimeMethod* method) ;
-// System.Void System.Action`1<System.Object>::Invoke(T)
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_1_Invoke_mF2422B2DD29F74CE66F791C3F68E288EC7C3DB9E_gshared_inline (Action_1_t6F9EB113EB3F16226AEF811A2744F4111C116C87* __this, RuntimeObject* ___obj0, const RuntimeMethod* method) ;
+// T FastList`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Item(System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void FastList_1_get_Item_mBFBE970498D5F5C5F3447E03A1ADE1F00A3E140F_gshared (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4* __this, int32_t ___i0, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Void FastList`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::RemoveAtFast(System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void FastList_1_RemoveAtFast_mFE750684AC656DFD54C36278CE7085B291C7E224_gshared (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4* __this, int32_t ___index0, const RuntimeMethod* method) ;
+// System.Boolean FastList`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Contains(T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool FastList_1_Contains_m1762149F3A3167AC154A304977E6971131E30BC4_gshared (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) ;
+// System.Void System.Predicate`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor(System.Object,System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Predicate_1__ctor_m2B0279AF2950764FCBFEF3BC1BF616854B3EE3AC_gshared (Predicate_1_t81499D2838AC2641B3FA14CD4DBF7E1594A9E107* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
+// T FastList`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Find(System.Predicate`1<T>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void FastList_1_Find_m5565909B43B9070B7BCF4392A77D29C8FAA84151_gshared (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4* __this, Predicate_1_t81499D2838AC2641B3FA14CD4DBF7E1594A9E107* ___match0, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Boolean FastList`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::RemoveFast(T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool FastList_1_RemoveFast_m037DD94DD397E991CCE4DF2F90361255975DF25B_gshared (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) ;
+// System.Void FastList`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::AddUnique(T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void FastList_1_AddUnique_mE6447902F975F2A0242102518E9449A23C4835D2_gshared (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) ;
+// System.Void FastList`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void FastList_1__ctor_mEDF20090D28DE762077A6E23BB32B9B772DB5EF7_gshared (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4* __this, const RuntimeMethod* method) ;
+// T UnityEngine.Component::GetComponent<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Component_GetComponent_TisIl2CppFullySharedGenericAny_m47CBDD147982125387F078ABBFDAAB92D397A6C2_gshared (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Void System.Action`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Invoke(T)
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_1_Invoke_m5A038831CEB84A7E374FE59D43444412629F833F_gshared_inline (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___obj0, const RuntimeMethod* method) ;
 
 // System.Void UnityEngine.PropertyAttribute::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PropertyAttribute__ctor_m19247686E165101F140615C7306DC2DA3953D97D (PropertyAttribute_t5E0CB5A6CDA6E24CBD4FF26DE3B0C29D8BB54BF0* __this, const RuntimeMethod* method) ;
@@ -1780,17 +1789,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_UpdateFreeEmitters_mEEA1E96
 // System.Void System.Collections.Generic.Dictionary`2<System.String,OVR.SoundFX>::.ctor(System.Int32)
 inline void Dictionary_2__ctor_mAF6E33EAD797B3E2D8752142FBAD01C3B5A79D09 (Dictionary_2_tDE11841BAF0CBBAD0585B9F17C6E211B50989B25* __this, int32_t ___capacity0, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_tDE11841BAF0CBBAD0585B9F17C6E211B50989B25*, int32_t, const RuntimeMethod*))Dictionary_2__ctor_mF225F49F6BE54C39563CECD7C693F0AE4F0530E8_gshared)(__this, ___capacity0, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, int32_t, const RuntimeMethod*))Dictionary_2__ctor_mA5BF8973642D67EF56303F2867C75190756C3012_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, ___capacity0, method);
 }
 // System.Void System.Collections.Generic.Dictionary`2<System.String,OVR.SoundFX>::Add(TKey,TValue)
 inline void Dictionary_2_Add_mAC5F3D45E28410AA3B4922421C7B9B70AA4015B5 (Dictionary_2_tDE11841BAF0CBBAD0585B9F17C6E211B50989B25* __this, String_t* ___key0, SoundFX_tD6E9FD2EAF7D9242A2831DBFF4B60DE5CC248A69* ___value1, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_tDE11841BAF0CBBAD0585B9F17C6E211B50989B25*, String_t*, SoundFX_tD6E9FD2EAF7D9242A2831DBFF4B60DE5CC248A69*, const RuntimeMethod*))Dictionary_2_Add_m93FFFABE8FCE7FA9793F0915E2A8842C7CD0C0C1_gshared)(__this, ___key0, ___value1, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Dictionary_2_Add_m54D479280472DEA042DB3933AF547E666B017333_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)___key0, (Il2CppFullySharedGenericAny)___value1, method);
 }
 // System.Boolean System.Collections.Generic.Dictionary`2<System.String,OVR.SoundFX>::ContainsKey(TKey)
 inline bool Dictionary_2_ContainsKey_m2EE327EA9B73A47470BE7B4DBC96CDCD04358CB1 (Dictionary_2_tDE11841BAF0CBBAD0585B9F17C6E211B50989B25* __this, String_t* ___key0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Dictionary_2_tDE11841BAF0CBBAD0585B9F17C6E211B50989B25*, String_t*, const RuntimeMethod*))Dictionary_2_ContainsKey_m703047C213F7AB55C9DC346596287773A1F670CD_gshared)(__this, ___key0, method);
+	return ((  bool (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Dictionary_2_ContainsKey_mA268E9B914DCE838DD0CD9D879BAAEECD0C677AA_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)___key0, method);
 }
 // System.String System.String::Concat(System.String[])
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_Concat_m647EBF831F54B6DF7D5AFA5FD012CF4EE7571B6A (StringU5BU5D_t7674CD946EC0CE7B3AE0BE70E6EE85F2ECD9F248* ___values0, const RuntimeMethod* method) ;
@@ -1803,14 +1812,18 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool String_IsNullOrEmpty_mEA9E3FB005AC28FE02
 // TValue System.Collections.Generic.Dictionary`2<System.String,OVR.SoundFX>::get_Item(TKey)
 inline SoundFX_tD6E9FD2EAF7D9242A2831DBFF4B60DE5CC248A69* Dictionary_2_get_Item_m635D0E4E00332278F7E3B793F0DCF64CC41D8D65 (Dictionary_2_tDE11841BAF0CBBAD0585B9F17C6E211B50989B25* __this, String_t* ___key0, const RuntimeMethod* method)
 {
-	return ((  SoundFX_tD6E9FD2EAF7D9242A2831DBFF4B60DE5CC248A69* (*) (Dictionary_2_tDE11841BAF0CBBAD0585B9F17C6E211B50989B25*, String_t*, const RuntimeMethod*))Dictionary_2_get_Item_m4AAAECBE902A211BF2126E6AFA280AEF73A3E0D6_gshared)(__this, ___key0, method);
+	SoundFX_tD6E9FD2EAF7D9242A2831DBFF4B60DE5CC248A69* il2cppRetVal;
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Dictionary_2_get_Item_m2E96908E9716367701CD737FA54C884EB2A8C3EA_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)___key0, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // UnityEngine.GameObject UnityEngine.GameObject::Find(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* GameObject_Find_m7A669B4EEC2617AB82F6E3FF007CDCD9F21DB300 (String_t* ___name0, const RuntimeMethod* method) ;
 // T UnityEngine.GameObject::GetComponent<OVR.AudioManager>()
 inline AudioManager_t1513C332177BE1CF5AB4A40BDD7E98EDAB9E53F2* GameObject_GetComponent_TisAudioManager_t1513C332177BE1CF5AB4A40BDD7E98EDAB9E53F2_m81192CC6BFFD87A259ECC3E62C6D0CA328D3D2FD (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, const RuntimeMethod* method)
 {
-	return ((  AudioManager_t1513C332177BE1CF5AB4A40BDD7E98EDAB9E53F2* (*) (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*, const RuntimeMethod*))GameObject_GetComponent_TisRuntimeObject_m6EAED4AA356F0F48288F67899E5958792395563B_gshared)(__this, method);
+	AudioManager_t1513C332177BE1CF5AB4A40BDD7E98EDAB9E53F2* il2cppRetVal;
+	((  void (*) (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))GameObject_GetComponent_TisIl2CppFullySharedGenericAny_m1122128E432233EB251AECF734E2B72A42A2C194_gshared)((GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Boolean OVR.AudioManager::FindAudioManager()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool AudioManager_FindAudioManager_m8ECEEC545509A74F6B0E8213BF857433289383C8 (const RuntimeMethod* method) ;
@@ -1821,26 +1834,27 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_Substring_m6BA4A3FA3800FE926
 // System.Void FastList`1<System.String>::Clear()
 inline void FastList_1_Clear_m0F5CF955731CDE80EC389D4A5B3DF356C5DFF518 (FastList_1_t8EFE4A2AA4328BF0B9F52CBF66A39DB8EF22BC59* __this, const RuntimeMethod* method)
 {
-	((  void (*) (FastList_1_t8EFE4A2AA4328BF0B9F52CBF66A39DB8EF22BC59*, const RuntimeMethod*))FastList_1_Clear_mFE2AC19B818FA1BE029D5A71C37E041496B25D9D_gshared)(__this, method);
+	((  void (*) (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*, const RuntimeMethod*))FastList_1_Clear_mFE0EAF6C509B75E10CFF627DED1B167C2FF3C35C_gshared)((FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*)__this, method);
 }
 // System.Void FastList`1<System.String>::Add(T)
 inline void FastList_1_Add_mA10FC164CBD8EC8B1B5A676DB24D911BCAF60243 (FastList_1_t8EFE4A2AA4328BF0B9F52CBF66A39DB8EF22BC59* __this, String_t* ___item0, const RuntimeMethod* method)
 {
-	((  void (*) (FastList_1_t8EFE4A2AA4328BF0B9F52CBF66A39DB8EF22BC59*, String_t*, const RuntimeMethod*))FastList_1_Add_m7E3B81D4A314E1D7785FCD194DBA3E0C215732CD_gshared)(__this, ___item0, method);
+	((  void (*) (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))FastList_1_Add_mE78947EF153E6CEAEBA3C08D57C128F63C0CB5B1_gshared)((FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.Int32 System.String::Compare(System.String,System.String,System.Boolean)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t String_Compare_m9772C6EB9834E1AD625F4663FB9A519AB10A3A14 (String_t* ___strA0, String_t* ___strB1, bool ___ignoreCase2, const RuntimeMethod* method) ;
 // System.Int32 FastList`1<System.String>::get_Count()
 inline int32_t FastList_1_get_Count_m9AFD8C923FBB262893A0E7F8B4C916A572A653F0_inline (FastList_1_t8EFE4A2AA4328BF0B9F52CBF66A39DB8EF22BC59* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (FastList_1_t8EFE4A2AA4328BF0B9F52CBF66A39DB8EF22BC59*, const RuntimeMethod*))FastList_1_get_Count_mBA686B21C253D143929263C157CC66BA874F9519_gshared_inline)(__this, method);
+	return ((  int32_t (*) (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*, const RuntimeMethod*))FastList_1_get_Count_m83E6BDF4257D11305CA3F3A763172CDC41D335C7_gshared_inline)((FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*)__this, method);
 }
 // System.String System.String::Concat(System.String,System.String,System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_Concat_m8855A6DE10F84DA7F4EC113CADDB59873A25573B (String_t* ___str00, String_t* ___str11, String_t* ___str22, const RuntimeMethod* method) ;
 // T[] FastList`1<System.String>::ToArray()
 inline StringU5BU5D_t7674CD946EC0CE7B3AE0BE70E6EE85F2ECD9F248* FastList_1_ToArray_m082288FACC9206FFDF05CE899417216AC30EB2BA (FastList_1_t8EFE4A2AA4328BF0B9F52CBF66A39DB8EF22BC59* __this, const RuntimeMethod* method)
 {
-	return ((  StringU5BU5D_t7674CD946EC0CE7B3AE0BE70E6EE85F2ECD9F248* (*) (FastList_1_t8EFE4A2AA4328BF0B9F52CBF66A39DB8EF22BC59*, const RuntimeMethod*))FastList_1_ToArray_m728C37B017C21B8B6FC91BD4DEF130ECD400E3C7_gshared)(__this, method);
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* il2cppRetVal = ((  __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* (*) (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*, const RuntimeMethod*))FastList_1_ToArray_mBBDB8969036DC25FB6E00FC366B382F2430251CC_gshared)((FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*)__this, method);
+	return (StringU5BU5D_t7674CD946EC0CE7B3AE0BE70E6EE85F2ECD9F248*)il2cppRetVal;
 }
 // System.Int32 OVR.AudioManager::CalculateMaxEmittersSize()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t AudioManager_CalculateMaxEmittersSize_m919B1A6FFAD6C20E10987B53DBCD3B14610F3EE9 (const RuntimeMethod* method) ;
@@ -1887,31 +1901,33 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_ResetFreeEmitters_m08A247E6
 // T FastList`1<OVR.SoundEmitter>::get_Item(System.Int32)
 inline SoundEmitter_t1E7D395D91DD971B46BCF6C54DEFF586A71674CA* FastList_1_get_Item_m474BC82A70194784943A62362B9682609534D6E7 (FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24* __this, int32_t ___i0, const RuntimeMethod* method)
 {
-	return ((  SoundEmitter_t1E7D395D91DD971B46BCF6C54DEFF586A71674CA* (*) (FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24*, int32_t, const RuntimeMethod*))FastList_1_get_Item_mC72B42936388F8FE44B19770F73EA6AAFAF60CDA_gshared)(__this, ___i0, method);
+	SoundEmitter_t1E7D395D91DD971B46BCF6C54DEFF586A71674CA* il2cppRetVal;
+	((  void (*) (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*, int32_t, Il2CppFullySharedGenericAny*, const RuntimeMethod*))FastList_1_get_Item_mBFBE970498D5F5C5F3447E03A1ADE1F00A3E140F_gshared)((FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*)__this, ___i0, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void FastList`1<OVR.SoundEmitter>::RemoveAtFast(System.Int32)
 inline void FastList_1_RemoveAtFast_m0FD9AFA3F7BF3A136CA99C9DA91078F8C982A90C (FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24* __this, int32_t ___index0, const RuntimeMethod* method)
 {
-	((  void (*) (FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24*, int32_t, const RuntimeMethod*))FastList_1_RemoveAtFast_m6AA34BAA1B0AE7AE23840A77ECE439E91872A16A_gshared)(__this, ___index0, method);
+	((  void (*) (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*, int32_t, const RuntimeMethod*))FastList_1_RemoveAtFast_mFE750684AC656DFD54C36278CE7085B291C7E224_gshared)((FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*)__this, ___index0, method);
 }
 // System.Boolean OVR.SoundEmitter::IsPlaying()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SoundEmitter_IsPlaying_mBD49AF821B5C09A8F5055BC6C78E7697DE25E591 (SoundEmitter_t1E7D395D91DD971B46BCF6C54DEFF586A71674CA* __this, const RuntimeMethod* method) ;
 // System.Boolean FastList`1<OVR.SoundEmitter>::Contains(T)
 inline bool FastList_1_Contains_mD93CDECA4A7A1EC051C179E3D5928D82B42FBADA (FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24* __this, SoundEmitter_t1E7D395D91DD971B46BCF6C54DEFF586A71674CA* ___item0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24*, SoundEmitter_t1E7D395D91DD971B46BCF6C54DEFF586A71674CA*, const RuntimeMethod*))FastList_1_Contains_mC280F20C1489113E4093A752AC4742876476B988_gshared)(__this, ___item0, method);
+	return ((  bool (*) (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))FastList_1_Contains_m1762149F3A3167AC154A304977E6971131E30BC4_gshared)((FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.Void FastList`1<OVR.SoundEmitter>::Add(T)
 inline void FastList_1_Add_m21A71B80FA5A1B3C0A7F91644C02D71BC7872300 (FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24* __this, SoundEmitter_t1E7D395D91DD971B46BCF6C54DEFF586A71674CA* ___item0, const RuntimeMethod* method)
 {
-	((  void (*) (FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24*, SoundEmitter_t1E7D395D91DD971B46BCF6C54DEFF586A71674CA*, const RuntimeMethod*))FastList_1_Add_m7E3B81D4A314E1D7785FCD194DBA3E0C215732CD_gshared)(__this, ___item0, method);
+	((  void (*) (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))FastList_1_Add_mE78947EF153E6CEAEBA3C08D57C128F63C0CB5B1_gshared)((FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.String OVR.AudioManager::Fmt(System.Int32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* AudioManager_Fmt_m401FCD75CEFB0E7912CCD02286E013605AFF39AF (AudioManager_t1513C332177BE1CF5AB4A40BDD7E98EDAB9E53F2* __this, int32_t ___count0, const RuntimeMethod* method) ;
 // System.Int32 FastList`1<OVR.SoundEmitter>::get_Count()
 inline int32_t FastList_1_get_Count_mCDEF0A38327320B1199B3A0B974A5D51F7536717_inline (FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24*, const RuntimeMethod*))FastList_1_get_Count_mBA686B21C253D143929263C157CC66BA874F9519_gshared_inline)(__this, method);
+	return ((  int32_t (*) (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*, const RuntimeMethod*))FastList_1_get_Count_m83E6BDF4257D11305CA3F3A763172CDC41D335C7_gshared_inline)((FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*)__this, method);
 }
 // System.String OVR.AudioManager::FmtFree(System.Int32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* AudioManager_FmtFree_m2534474AD79DD4707090282EA251C1CEEB4E9C85 (AudioManager_t1513C332177BE1CF5AB4A40BDD7E98EDAB9E53F2* __this, int32_t ___count0, const RuntimeMethod* method) ;
@@ -1922,7 +1938,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SoundEmitter_ResetParent_m9E5E2D9E77E9CD
 // System.Void FastList`1<OVR.SoundEmitter>::Clear()
 inline void FastList_1_Clear_mDF11E2BE89D7F33DA949F7A55F7EA733B6560D6E (FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24* __this, const RuntimeMethod* method)
 {
-	((  void (*) (FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24*, const RuntimeMethod*))FastList_1_Clear_mFE2AC19B818FA1BE029D5A71C37E041496B25D9D_gshared)(__this, method);
+	((  void (*) (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*, const RuntimeMethod*))FastList_1_Clear_mFE0EAF6C509B75E10CFF627DED1B167C2FF3C35C_gshared)((FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*)__this, method);
 }
 // System.Void OVR.SoundEmitter::FadeOutDelayed(System.Single,System.Single)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SoundEmitter_FadeOutDelayed_m8756F39609C5E457D494726AEA404BD59E61AB47 (SoundEmitter_t1E7D395D91DD971B46BCF6C54DEFF586A71674CA* __this, float ___delayedSecs0, float ___fadeTime1, const RuntimeMethod* method) ;
@@ -1949,12 +1965,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass77_0__ctor_m43A7E08
 // System.Void System.Predicate`1<OVR.SoundEmitter>::.ctor(System.Object,System.IntPtr)
 inline void Predicate_1__ctor_m6359287A23BBB5AD7F4B934E479561FD98FC24F3 (Predicate_1_tC52CE5CAE1CEC99FEB2226AC67B207A32DB4F3BF* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Predicate_1_tC52CE5CAE1CEC99FEB2226AC67B207A32DB4F3BF*, RuntimeObject*, intptr_t, const RuntimeMethod*))Predicate_1__ctor_m3E007299121A15DF80F4A210FF8C20E5DF688F20_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Predicate_1_t81499D2838AC2641B3FA14CD4DBF7E1594A9E107*, RuntimeObject*, intptr_t, const RuntimeMethod*))Predicate_1__ctor_m2B0279AF2950764FCBFEF3BC1BF616854B3EE3AC_gshared)((Predicate_1_t81499D2838AC2641B3FA14CD4DBF7E1594A9E107*)__this, ___object0, ___method1, method);
 }
 // T FastList`1<OVR.SoundEmitter>::Find(System.Predicate`1<T>)
 inline SoundEmitter_t1E7D395D91DD971B46BCF6C54DEFF586A71674CA* FastList_1_Find_m3153EE8431CDCF3A0E8FC4ACF05894926965846A (FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24* __this, Predicate_1_tC52CE5CAE1CEC99FEB2226AC67B207A32DB4F3BF* ___match0, const RuntimeMethod* method)
 {
-	return ((  SoundEmitter_t1E7D395D91DD971B46BCF6C54DEFF586A71674CA* (*) (FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24*, Predicate_1_tC52CE5CAE1CEC99FEB2226AC67B207A32DB4F3BF*, const RuntimeMethod*))FastList_1_Find_mADF0E63FA6B0B92334C1D8B26C9EEC5F7BB1DEA3_gshared)(__this, ___match0, method);
+	SoundEmitter_t1E7D395D91DD971B46BCF6C54DEFF586A71674CA* il2cppRetVal;
+	((  void (*) (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*, Predicate_1_t81499D2838AC2641B3FA14CD4DBF7E1594A9E107*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))FastList_1_Find_m5565909B43B9070B7BCF4392A77D29C8FAA84151_gshared)((FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*)__this, (Predicate_1_t81499D2838AC2641B3FA14CD4DBF7E1594A9E107*)___match0, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.String System.Enum::ToString()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* Enum_ToString_m946B0B83C4470457D0FF555D862022C72BB55741 (RuntimeObject* __this, const RuntimeMethod* method) ;
@@ -1963,7 +1981,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* Single_ToString_mE282EDA9CA4F7DF884
 // System.Boolean FastList`1<OVR.SoundEmitter>::RemoveFast(T)
 inline bool FastList_1_RemoveFast_mD1ED7E572AFFCCA1392F9E030B2A8004E2D3A7B9 (FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24* __this, SoundEmitter_t1E7D395D91DD971B46BCF6C54DEFF586A71674CA* ___item0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24*, SoundEmitter_t1E7D395D91DD971B46BCF6C54DEFF586A71674CA*, const RuntimeMethod*))FastList_1_RemoveFast_mCC36D242B2D1BD279964E653D381195B7C63BD17_gshared)(__this, ___item0, method);
+	return ((  bool (*) (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))FastList_1_RemoveFast_m037DD94DD397E991CCE4DF2F90361255975DF25B_gshared)((FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.Int32 OVR.AudioManager::PlaySoundAt(UnityEngine.Vector3,OVR.SoundFX,OVR.EmitterChannel,System.Single,System.Single,System.Single)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t AudioManager_PlaySoundAt_m0D0E24DDB118613ECF67CEB98B405700F7556C37 (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___position0, SoundFX_tD6E9FD2EAF7D9242A2831DBFF4B60DE5CC248A69* ___soundFX1, int32_t ___src2, float ___delay3, float ___volumeOverride4, float ___pitchMultiplier5, const RuntimeMethod* method) ;
@@ -2028,7 +2046,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SoundEmitter_SetPlayingSoundGroup_mD4E79
 // System.Void FastList`1<OVR.SoundEmitter>::AddUnique(T)
 inline void FastList_1_AddUnique_m5D241E64AFDDA67D137D5A99CF7C58C7BEB88E60 (FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24* __this, SoundEmitter_t1E7D395D91DD971B46BCF6C54DEFF586A71674CA* ___item0, const RuntimeMethod* method)
 {
-	((  void (*) (FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24*, SoundEmitter_t1E7D395D91DD971B46BCF6C54DEFF586A71674CA*, const RuntimeMethod*))FastList_1_AddUnique_m13A79EF6DAF9A27DADCC4356067435FFBD8089E7_gshared)(__this, ___item0, method);
+	((  void (*) (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))FastList_1_AddUnique_mE6447902F975F2A0242102518E9449A23C4835D2_gshared)((FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.Void ONSPAudioSource::set_EnableSpatialization(System.Boolean)
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ONSPAudioSource_set_EnableSpatialization_m2E0EA82AC228F9DF0873BF4995A02F04891B6796_inline (ONSPAudioSource_tA5C6AD51E3374EAD0A6A1E0FA237E34217EED024* __this, bool ___value0, const RuntimeMethod* method) ;
@@ -2071,12 +2089,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioMixer_TransitionToSnapshots_m87D4E3
 // System.Void FastList`1<OVR.SoundEmitter>::.ctor()
 inline void FastList_1__ctor_mFC52FA235D85EE82CACB1CD127CD881386093B59 (FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24* __this, const RuntimeMethod* method)
 {
-	((  void (*) (FastList_1_tDFDA17098FCBD0C1F2CA4AACB22B7EDA69F81E24*, const RuntimeMethod*))FastList_1__ctor_mDB8AB9664861594F7A1FEFCEEAD57AA46C3C42C2_gshared)(__this, method);
+	((  void (*) (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*, const RuntimeMethod*))FastList_1__ctor_mEDF20090D28DE762077A6E23BB32B9B772DB5EF7_gshared)((FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*)__this, method);
 }
 // System.Void FastList`1<System.String>::.ctor()
 inline void FastList_1__ctor_m7D735F0F4C5C14DF70B8A1EF88CE3C88CCEC9172 (FastList_1_t8EFE4A2AA4328BF0B9F52CBF66A39DB8EF22BC59* __this, const RuntimeMethod* method)
 {
-	((  void (*) (FastList_1_t8EFE4A2AA4328BF0B9F52CBF66A39DB8EF22BC59*, const RuntimeMethod*))FastList_1__ctor_mDB8AB9664861594F7A1FEFCEEAD57AA46C3C42C2_gshared)(__this, method);
+	((  void (*) (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*, const RuntimeMethod*))FastList_1__ctor_mEDF20090D28DE762077A6E23BB32B9B772DB5EF7_gshared)((FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4*)__this, method);
 }
 // System.Void OVR.SoundFX::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SoundFX__ctor_m002A942B8F81949A62278EE47B05A2FF062A2786 (SoundFX_tD6E9FD2EAF7D9242A2831DBFF4B60DE5CC248A69* __this, const RuntimeMethod* method) ;
@@ -2103,7 +2121,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioSource_set_velocityUpdateMode_m379F
 // T UnityEngine.Component::GetComponent<UnityEngine.AudioSource>()
 inline AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* Component_GetComponent_TisAudioSource_t871AC2272F896738252F04EE949AEF5B241D3299_m42DA4DEA19EB60D80CBED7413ADEB27FA033C77B (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, const RuntimeMethod* method)
 {
-	return ((  AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* (*) (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*, const RuntimeMethod*))Component_GetComponent_TisRuntimeObject_m7181F81CAEC2CF53F5D2BC79B7425C16E1F80D33_gshared)(__this, method);
+	AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* il2cppRetVal;
+	((  void (*) (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Component_GetComponent_TisIl2CppFullySharedGenericAny_m47CBDD147982125387F078ABBFDAAB92D397A6C2_gshared)((Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // T UnityEngine.GameObject::AddComponent<UnityEngine.AudioSource>()
 inline AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* GameObject_AddComponent_TisAudioSource_t871AC2272F896738252F04EE949AEF5B241D3299_m0E8EFDB9B3D8DF1ADE10C56D3168A9C1BA19BF14 (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, const RuntimeMethod* method)
@@ -2115,7 +2135,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool AudioManager_get_enableSpatialization_m3
 // T UnityEngine.Component::GetComponent<ONSPAudioSource>()
 inline ONSPAudioSource_tA5C6AD51E3374EAD0A6A1E0FA237E34217EED024* Component_GetComponent_TisONSPAudioSource_tA5C6AD51E3374EAD0A6A1E0FA237E34217EED024_m5FDCF56BDA7B2FBE7639D216A9E882ECDAA8B0D3 (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, const RuntimeMethod* method)
 {
-	return ((  ONSPAudioSource_tA5C6AD51E3374EAD0A6A1E0FA237E34217EED024* (*) (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*, const RuntimeMethod*))Component_GetComponent_TisRuntimeObject_m7181F81CAEC2CF53F5D2BC79B7425C16E1F80D33_gshared)(__this, method);
+	ONSPAudioSource_tA5C6AD51E3374EAD0A6A1E0FA237E34217EED024* il2cppRetVal;
+	((  void (*) (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Component_GetComponent_TisIl2CppFullySharedGenericAny_m47CBDD147982125387F078ABBFDAAB92D397A6C2_gshared)((Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // T UnityEngine.GameObject::AddComponent<ONSPAudioSource>()
 inline ONSPAudioSource_tA5C6AD51E3374EAD0A6A1E0FA237E34217EED024* GameObject_AddComponent_TisONSPAudioSource_tA5C6AD51E3374EAD0A6A1E0FA237E34217EED024_mCF42916456E9F371EDC873130EC32A7B317309C5 (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, const RuntimeMethod* method)
@@ -2141,7 +2163,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_Invoke_m7126A54DACA72
 // System.Void System.Action`1<System.Object>::Invoke(T)
 inline void Action_1_Invoke_mF2422B2DD29F74CE66F791C3F68E288EC7C3DB9E_inline (Action_1_t6F9EB113EB3F16226AEF811A2744F4111C116C87* __this, RuntimeObject* ___obj0, const RuntimeMethod* method)
 {
-	((  void (*) (Action_1_t6F9EB113EB3F16226AEF811A2744F4111C116C87*, RuntimeObject*, const RuntimeMethod*))Action_1_Invoke_mF2422B2DD29F74CE66F791C3F68E288EC7C3DB9E_gshared_inline)(__this, ___obj0, method);
+	((  void (*) (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Action_1_Invoke_m5A038831CEB84A7E374FE59D43444412629F833F_gshared_inline)((Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*)__this, (Il2CppFullySharedGenericAny)___obj0, method);
 }
 // System.Void OVR.SoundGroup::DecrementPlayCount()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SoundGroup_DecrementPlayCount_m60DDC124CC487A7A101B4EE6049F4B7CC3E9D171 (SoundGroup_tF0707BF5640AECC8D6A4AE3D2512A1D28F42B1F9* __this, const RuntimeMethod* method) ;
@@ -11160,7 +11182,7 @@ IL_0009:
 		return L_1;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t FastList_1_get_Count_mBA686B21C253D143929263C157CC66BA874F9519_gshared_inline (FastList_1_t92F58F94AE09B3E2D7CA2BCD82425ECE115C33EB* __this, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t FastList_1_get_Count_m83E6BDF4257D11305CA3F3A763172CDC41D335C7_gshared_inline (FastList_1_tA8635B1EC2577F9976901152E0D59D96955B02F4* __this, const RuntimeMethod* method) 
 {
 	{
 		// get { return size;}
@@ -11168,8 +11190,8 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t FastList_1_get_Count_mBA6
 		return L_0;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_1_Invoke_mF2422B2DD29F74CE66F791C3F68E288EC7C3DB9E_gshared_inline (Action_1_t6F9EB113EB3F16226AEF811A2744F4111C116C87* __this, RuntimeObject* ___obj0, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_1_Invoke_m5A038831CEB84A7E374FE59D43444412629F833F_gshared_inline (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___obj0, const RuntimeMethod* method) 
 {
-	typedef void (*FunctionPointerType) (RuntimeObject*, RuntimeObject*, const RuntimeMethod*);
+	typedef void (*FunctionPointerType) (RuntimeObject*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*);
 	((FunctionPointerType)__this->___invoke_impl_1)((Il2CppObject*)__this->___method_code_6, ___obj0, reinterpret_cast<RuntimeMethod*>(__this->___method_3));
 }

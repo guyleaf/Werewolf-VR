@@ -27,6 +27,7 @@ IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_Facebook_Wit_TTS_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_Facebook_Wit_TTS_Samples_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_LitJson_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_Mono_Security_CodeGenModule;
+IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_Nobi_UiRoundedCorners_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_Oculus_AudioManager_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_Oculus_AvatarSDK2_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_Oculus_AvatarSDK2_Example_CodeGenModule;
@@ -91,7 +92,6 @@ IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_Unity_XR_Oculus_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_VoiceSDK_Dictation_Runtime_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_VoiceSDK_Runtime_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g___Generated_CodeGenModule;
-IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_com_benU2Dw_erp_CodeGenModule;
 IL2CPP_EXTERN_C_CONST Il2CppCodeGenModule g_mscorlib_CodeGenModule;
 IL2CPP_EXTERN_C const Il2CppCodeGenModule* g_CodeGenModules[];
 const Il2CppCodeGenModule* g_CodeGenModules[75] = 
@@ -105,6 +105,7 @@ const Il2CppCodeGenModule* g_CodeGenModules[75] =
 	(&g_Facebook_Wit_TTS_Samples_CodeGenModule),
 	(&g_LitJson_CodeGenModule),
 	(&g_Mono_Security_CodeGenModule),
+	(&g_Nobi_UiRoundedCorners_CodeGenModule),
 	(&g_Oculus_AudioManager_CodeGenModule),
 	(&g_Oculus_AvatarSDK2_CodeGenModule),
 	(&g_Oculus_AvatarSDK2_Example_CodeGenModule),
@@ -169,22 +170,21 @@ const Il2CppCodeGenModule* g_CodeGenModules[75] =
 	(&g_VoiceSDK_Dictation_Runtime_CodeGenModule),
 	(&g_VoiceSDK_Runtime_CodeGenModule),
 	(&g___Generated_CodeGenModule),
-	(&g_com_benU2Dw_erp_CodeGenModule),
 	(&g_mscorlib_CodeGenModule),
 };
 IL2CPP_EXTERN_C const Il2CppCodeRegistration g_CodeRegistration;
 const Il2CppCodeRegistration g_CodeRegistration = 
 {
-	81,
+	23,
 	g_ReversePInvokeWrapperPointers,
-	48681,
+	4378,
 	g_Il2CppGenericMethodPointers,
 	g_Il2CppGenericAdjustorThunks,
-	10795,
+	5326,
 	g_Il2CppInvokerPointers,
-	1876,
+	742,
 	g_UnresolvedVirtualMethodPointers,
-	1227,
+	936,
 	g_Il2CppInteropData,
 	0,
 	NULL,

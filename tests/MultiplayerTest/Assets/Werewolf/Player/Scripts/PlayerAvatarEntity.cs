@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 using Oculus.Avatar2;
-using Oculus.Platform;
 
 using UnityEngine;
 
@@ -32,6 +31,11 @@ namespace Werewolf.Player
             /// Load a loose glb file directly from StreamingAssets
             StreamingAssets,
         }
+
+        [Header("Custom Events")]
+        public AvatarStateEvent OnUserAvatarFoundEvent = new();
+
+        public AvatarStateEvent OnUserAvatarNotFoundEvent = new();
 
         [Serializable]
         private struct AssetData
@@ -64,7 +68,7 @@ namespace Werewolf.Player
 
         [Tooltip("Automatically check for avatar changes")]
         [SerializeField]
-        protected bool _autoCheckChanges = false;
+        protected bool _autoCheckChanges = true;
 
         [Tooltip("How frequently to check for avatar changes")]
         [SerializeField]
@@ -226,12 +230,11 @@ namespace Werewolf.Player
 
         private IEnumerator LoadCdnAvatar()
         {
-            const float HAS_AVATAR_RETRY_WAIT_TIME = 4.0f;
-            const int HAS_AVATAR_RETRY_ATTEMPTS = 12;
+            const float HAS_AVATAR_RETRY_WAIT_TIME = 5.0f;
 
-            int totalAttempts = _autoCdnRetry ? HAS_AVATAR_RETRY_ATTEMPTS : 1;
+            int totalAttempts = 0;
             bool continueRetries = _autoCdnRetry;
-            int retriesRemaining = totalAttempts;
+
             bool hasFoundAvatar = false;
             bool requestComplete = false;
             do
@@ -246,17 +249,18 @@ namespace Werewolf.Player
                         requestComplete = true;
                         continueRetries = false;
 
+                        OnUserAvatarFoundEvent?.Invoke(this);
+
                         // Now attempt download
                         yield return LoadUser(true);
                         // End coroutine - do not load default
                         break;
 
                     case OvrAvatarManager.HasAvatarRequestResultCode.HasNoAvatar:
-                        requestComplete = true;
-                        continueRetries = false;
+                        OnUserAvatarNotFoundEvent?.Invoke(this);
 
                         OvrAvatarLog.LogDebug(
-                            "User has no avatar. Falling back to local avatar."
+                            "User has no avatar. Keep retrying."
                             , logScope, this);
                         break;
 
@@ -296,11 +300,13 @@ namespace Werewolf.Player
                         break;
                 }
 
-                continueRetries &= --retriesRemaining > 0;
                 if (continueRetries)
                 {
                     yield return new WaitForSecondsRealtime(HAS_AVATAR_RETRY_WAIT_TIME);
                 }
+                totalAttempts++;
+
+                OvrAvatarLog.LogInfo($"Request Attempts: {totalAttempts}");
             } while (continueRetries);
 
             if (!requestComplete)
@@ -316,9 +322,8 @@ namespace Werewolf.Player
                 UserHasNoAvatarFallback();
             }
 
-            // Check for changes unless a local asset is configured, user could create one later
-            // If a local asset is loaded, it will currently conflict w/ the CDN asset
-            if (_autoCheckChanges && (hasFoundAvatar || !HasLocalAvatarConfigured))
+            // Check for changes, user could create one later
+            if (_autoCheckChanges && hasFoundAvatar)
             {
                 yield return PollForAvatarChange();
             }
@@ -329,7 +334,7 @@ namespace Werewolf.Player
             _userId = MetaPlatform.UserId;
             if (_userId == 0)
             {
-                yield return MetaPlatform.LogIn();
+                yield return MetaPlatform.Instance.LogIn();
                 _userId = MetaPlatform.UserId;
             }
         }
@@ -396,6 +401,7 @@ namespace Werewolf.Player
             int remainingAttempts = totalAttempts;
             bool didLoadAvatar = false;
             var currentPollingInterval = LOAD_USER_POLLING_INTERVAL;
+
             do
             {
                 // Initiate user spec load (ie: CDN Avatar)

@@ -6,14 +6,25 @@ using UnityEngine;
 
 namespace Werewolf
 {
-    public static class MetaPlatform
+    public class MetaPlatform
     {
+        private static MetaPlatform _instance;
+
         public static bool IsUserLoggedIn = false;
 
         // cached user profile data
         public static Oculus.Platform.Models.User UserProfile
         {
             get; private set;
+        }
+
+        public static MetaPlatform Instance
+        {
+            get
+            {
+                _instance ??= new MetaPlatform();
+                return _instance;
+            }
         }
 
         public static ulong UserId
@@ -40,7 +51,7 @@ namespace Werewolf
             }
         }
 
-        public static IEnumerable LogIn()
+        public IEnumerator LogIn()
         {
             if (IsUserLoggedIn)
             {
@@ -48,20 +59,7 @@ namespace Werewolf
                 yield break;
             }
 
-            if (OvrPlatformInit.status == OvrPlatformInitStatus.NotStarted)
-            {
-                OvrPlatformInit.InitializeOvrPlatform();
-            }
-
-            while (OvrPlatformInit.status != OvrPlatformInitStatus.Succeeded)
-            {
-                if (OvrPlatformInit.status == OvrPlatformInitStatus.Failed)
-                {
-                    Debug.LogError("OVR Platform failed to initialise");
-                    yield break;
-                }
-                yield return null;
-            }
+            yield return InitializeOvrPlatform();
 
             bool getUserIdComplete = false;
             Users.GetLoggedInUser().OnComplete(message =>
@@ -79,6 +77,24 @@ namespace Werewolf
             });
 
             while (!getUserIdComplete) { yield return null; }
+        }
+
+        private IEnumerator InitializeOvrPlatform()
+        {
+            if (OvrPlatformInit.status == OvrPlatformInitStatus.NotStarted)
+            {
+                OvrPlatformInit.InitializeOvrPlatform();
+            }
+
+            while (OvrPlatformInit.status != OvrPlatformInitStatus.Succeeded)
+            {
+                if (OvrPlatformInit.status == OvrPlatformInitStatus.Failed)
+                {
+                    Debug.LogError("OVR Platform failed to initialise");
+                    yield break;
+                }
+                yield return null;
+            }
         }
     }
 }

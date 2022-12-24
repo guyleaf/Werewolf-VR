@@ -111,13 +111,24 @@ struct GenericInterfaceActionInvoker2
 		((Action)invokeData.methodPtr)(obj, p1, p2, invokeData.method);
 	}
 };
+template <typename T1>
+struct InvokerActionInvoker1;
+template <typename T1>
+struct InvokerActionInvoker1<T1*>
+{
+	static inline void Invoke (Il2CppMethodPointer methodPtr, const RuntimeMethod* method, void* obj, T1* p1)
+	{
+		void* params[1] = { p1 };
+		method->invoker_method(methodPtr, method, obj, params, params[0]);
+	}
+};
 template <typename T1, typename T2>
 struct InvokerActionInvoker2
 {
 	static inline void Invoke (Il2CppMethodPointer methodPtr, const RuntimeMethod* method, void* obj, T1 p1, T2 p2)
 	{
 		void* params[2] = { &p1, &p2 };
-		method->invoker_method(methodPtr, method, obj, params, NULL);
+		method->invoker_method(methodPtr, method, obj, params, params[1]);
 	}
 };
 template <typename T1, typename T2, typename T3>
@@ -128,7 +139,7 @@ struct InvokerActionInvoker3<T1*, T2, T3>
 	static inline void Invoke (Il2CppMethodPointer methodPtr, const RuntimeMethod* method, void* obj, T1* p1, T2 p2, T3 p3)
 	{
 		void* params[3] = { p1, &p2, &p3 };
-		method->invoker_method(methodPtr, method, obj, params, NULL);
+		method->invoker_method(methodPtr, method, obj, params, params[2]);
 	}
 };
 template <typename T1, typename T2, typename T3>
@@ -137,7 +148,7 @@ struct InvokerActionInvoker3<T1, T2*, T3*>
 	static inline void Invoke (Il2CppMethodPointer methodPtr, const RuntimeMethod* method, void* obj, T1 p1, T2* p2, T3* p3)
 	{
 		void* params[3] = { &p1, p2, p3 };
-		method->invoker_method(methodPtr, method, obj, params, NULL);
+		method->invoker_method(methodPtr, method, obj, params, params[2]);
 	}
 };
 template <typename T1, typename T2, typename T3>
@@ -146,7 +157,7 @@ struct InvokerActionInvoker3<T1*, T2*, T3>
 	static inline void Invoke (Il2CppMethodPointer methodPtr, const RuntimeMethod* method, void* obj, T1* p1, T2* p2, T3 p3)
 	{
 		void* params[3] = { p1, p2, &p3 };
-		method->invoker_method(methodPtr, method, obj, params, NULL);
+		method->invoker_method(methodPtr, method, obj, params, params[2]);
 	}
 };
 template <typename T1, typename T2, typename T3, typename T4>
@@ -157,7 +168,7 @@ struct InvokerActionInvoker4<T1*, T2, T3*, T4*>
 	static inline void Invoke (Il2CppMethodPointer methodPtr, const RuntimeMethod* method, void* obj, T1* p1, T2 p2, T3* p3, T4* p4)
 	{
 		void* params[4] = { p1, &p2, p3, p4 };
-		method->invoker_method(methodPtr, method, obj, params, NULL);
+		method->invoker_method(methodPtr, method, obj, params, params[3]);
 	}
 };
 template <typename T1, typename T2, typename T3, typename T4>
@@ -166,7 +177,7 @@ struct InvokerActionInvoker4<T1*, T2*, T3*, T4>
 	static inline void Invoke (Il2CppMethodPointer methodPtr, const RuntimeMethod* method, void* obj, T1* p1, T2* p2, T3* p3, T4 p4)
 	{
 		void* params[4] = { p1, p2, p3, &p4 };
-		method->invoker_method(methodPtr, method, obj, params, NULL);
+		method->invoker_method(methodPtr, method, obj, params, params[3]);
 	}
 };
 template <typename R>
@@ -201,16 +212,18 @@ struct Action_1_t10DCB0C07D0D3C565CEACADC80D1152B35A45F6C;
 struct Action_1_t6F9EB113EB3F16226AEF811A2744F4111C116C87;
 // System.Action`1<System.String>
 struct Action_1_t3CB5D1A819C3ED3F99E9E39F890F18633253949A;
+// System.Action`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99;
 // System.Action`2<Oculus.Avatar2.AvatarLOD,System.Boolean>
 struct Action_2_t2C293E393288EEE7A65FC1BD1191FAFAB00DFE8F;
 // Oculus.Avatar2.OvrAvatarLog/AssertLessThanMessageBuilder`1<System.Int32>
 struct AssertLessThanMessageBuilder_1_t2C55B15A9C2A758C92FAE5EF509A7B674B83686B;
+// Oculus.Avatar2.OvrAvatarLog/AssertLessThanMessageBuilder`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct AssertLessThanMessageBuilder_1_tD2D8026BDEB9CCF7A4666CE8FA47E7FBD1FE0539;
 // System.Collections.Concurrent.ConcurrentQueue`1<System.Action>
 struct ConcurrentQueue_1_tC8B0BCCEA7ED64CA00454B9EB2F35771723A00D3;
 // System.Converter`2<System.Int32,System.UInt16>
 struct Converter_2_t303A9B51634DC538CBBEBBF7FB60FF15942DBC7E;
-// System.Collections.Generic.Dictionary`2<System.Int32,System.ValueTuple`2<System.Object,System.Int32Enum>>
-struct Dictionary_2_tD7902513349692AD112478CC073C31507A094A53;
 // System.Collections.Generic.Dictionary`2<System.Int32,System.ValueTuple`2<System.Object,Oculus.Avatar2.OvrAvatarMaterial/PropertyType>>
 struct Dictionary_2_tE32C1852A07CF79B831595C3A13047DF1CB649B6;
 // System.Collections.Generic.Dictionary`2<System.Int32,System.Text.Encoding>
@@ -219,16 +232,6 @@ struct Dictionary_2_t87EDE08B2E48F793A22DE50D6B3CC2E7EBB2DB54;
 struct Dictionary_2_tFF4770CEFA44D31F08196BF5EC1725A40ED4376E;
 // System.Collections.Generic.Dictionary`2<System.Int32,System.Threading.Tasks.Task>
 struct Dictionary_2_t403063CE4960B4F46C688912237C6A27E550FF55;
-// System.Collections.Generic.Dictionary`2<System.Int32Enum,System.Object>
-struct Dictionary_2_t514396B90715EDD83BB0470C76C2F426F9381C71;
-// System.Collections.Generic.Dictionary`2<System.Object,System.Boolean>
-struct Dictionary_2_tDBC7BB75C617E4886F85171F2758C7996F98EC36;
-// System.Collections.Generic.Dictionary`2<System.Object,System.Int32>
-struct Dictionary_2_t5C96F4B6841710A9013966F76224BAE01FB4B4D1;
-// System.Collections.Generic.Dictionary`2<System.Object,System.Int32Enum>
-struct Dictionary_2_t2A9A7F3ECFC3483F89253F3C4BB5BE98A37F6EF3;
-// System.Collections.Generic.Dictionary`2<System.Object,System.Object>
-struct Dictionary_2_t14FE4A752A83D53771C584E4C8D14E01F2AFD7BA;
 // System.Collections.Generic.Dictionary`2<Oculus.Avatar2.OvrAvatarEntity,System.Action>
 struct Dictionary_2_t31FE541D5577DAD3F1B96D43085E089BB6F6A9A4;
 // System.Collections.Generic.Dictionary`2<Oculus.Avatar2.OvrAvatarPrimitive,OvrAvatarSkinnedRenderable>
@@ -241,6 +244,8 @@ struct Dictionary_2_t17D0D125440AC627FCF80F189C6CBCB02856063C;
 struct Dictionary_2_t5C8F46F5D57502270DD9E1DA8303B23C7FE85588;
 // System.Collections.Generic.Dictionary`2<System.String,Oculus.Avatar2.OvrAvatarManager/PermissionState>
 struct Dictionary_2_tABA5E7ACDA2137DC4EFAD01D82364BC51D639D67;
+// System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E;
 // System.Collections.Generic.Dictionary`2<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarAssetBase>
 struct Dictionary_2_tAA0D132EC6F82FB0AE83034CDC2BE815B946008F;
 // System.Collections.Generic.Dictionary`2<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarResourceLoader>
@@ -261,20 +266,20 @@ struct Dictionary_2_t057D2C15D985ADA60BDBB1A90ECDB643E67463AF;
 struct Dictionary_2_tF1F7690F907D127209C338D34D2A1A645B0F6A08;
 // Oculus.Avatar2.EntityJointMonitorBase`1<Oculus.Avatar2.InterpolatingJoint>
 struct EntityJointMonitorBase_1_tF927A39C3750EEFB624F79D812842B082B762702;
-// Oculus.Avatar2.EntityJointMonitorBase`1<System.Object>
-struct EntityJointMonitorBase_1_t82C051D9CB5616D267CE631E49DFF1361727B96B;
 // Oculus.Avatar2.EntityJointMonitorBase`1<Oculus.Avatar2.TransformHolder>
 struct EntityJointMonitorBase_1_tBAAEAA889E33FFC9E2F14F7E5BE9BB41B0214D30;
+// Oculus.Avatar2.EntityJointMonitorBase`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct EntityJointMonitorBase_1_t3A41835CDC6B2C5F9769AED071587880A093FABF;
 // System.Func`1<System.Threading.Tasks.Task/ContingentProperties>
 struct Func_1_tD59A12717D79BFB403BF973694B1BE5B85474BD1;
 // System.Collections.Generic.HashSet`1<Oculus.Avatar2.InterpolatingJoint>
 struct HashSet_1_t6A959A1233CAC4860042B073BF873F859F18CCB8;
-// System.Collections.Generic.HashSet`1<System.Object>
-struct HashSet_1_t2F33BEB06EEA4A872E2FAF464382422AA39AE885;
 // System.Collections.Generic.HashSet`1<Oculus.Avatar2.OvrAvatarRenderable>
 struct HashSet_1_tD57198B772C171DC61CB40EBA1CD6294C44E86DA;
 // System.Collections.Generic.HashSet`1<System.UInt32>
 struct HashSet_1_t5DD20B42149A11AEBF12A75505306E6EFC34943A;
+// System.Collections.Generic.HashSet`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87;
 // System.Collections.Generic.HashSet`1<Oculus.Avatar2.CAPI/ovrAvatar2Id>
 struct HashSet_1_t278DF4E8528D70135DEB2A8C73C166F8EC60353B;
 // System.Collections.Generic.HashSet`1<Oculus.Avatar2.CAPI/ovrAvatar2JointType>
@@ -285,8 +290,6 @@ struct IEnumerator_1_t3B3D3F40CBCC89A90420BE4AC60F39AA467383C0;
 struct IEqualityComparer_1_tDBFC8496F14612776AF930DBF84AFE7D06D1F0E9;
 // System.Collections.Generic.IEqualityComparer`1<Oculus.Avatar2.InterpolatingJoint>
 struct IEqualityComparer_1_t0BE50D632C942819F41005A0F1CA9F92753804E3;
-// System.Collections.Generic.IEqualityComparer`1<System.Object>
-struct IEqualityComparer_1_t2CA7720C7ADCCDECD3B02E45878B4478619D5347;
 // System.Collections.Generic.IEqualityComparer`1<Oculus.Avatar2.OvrAvatarEntity>
 struct IEqualityComparer_1_tAF266EDC04CB0222A9A33D7EF2341EE45F6B6C54;
 // System.Collections.Generic.IEqualityComparer`1<Oculus.Avatar2.OvrAvatarRenderable>
@@ -295,6 +298,8 @@ struct IEqualityComparer_1_tC7C3D86F0A58C617E0CFE873AC04D19DBC46AE86;
 struct IEqualityComparer_1_tAE94C8F24AD5B94D4EE85CA9FC59E3409D41CAF7;
 // System.Collections.Generic.IEqualityComparer`1<System.UInt32>
 struct IEqualityComparer_1_t0BB8211419723EB61BF19007AC9D62365E50500E;
+// System.Collections.Generic.IEqualityComparer`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct IEqualityComparer_1_t47CC0B235E693652D181B679FF6D61A469ECC122;
 // System.Collections.Generic.IEqualityComparer`1<Oculus.Avatar2.CAPI/ovrAvatar2Id>
 struct IEqualityComparer_1_tB8D2ACC7E6461CC24CCA7E749EABD95B95996135;
 // System.Collections.Generic.IEqualityComparer`1<Oculus.Avatar2.CAPI/ovrAvatar2RequestId>
@@ -317,8 +322,6 @@ struct KeyCollection_t6EF985B751639BA8369A6ABEAA566250DF89CB7E;
 struct KeyCollection_t489E2B3AF3C40800CF924DD0F185D51F7F62AAF5;
 // System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Int32>>
 struct List_1_t941E36F7444B6E85114CF22035CB833E55C9D086;
-// System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Object>>
-struct List_1_t03C5C2BE7A26C11DCF0C0BD79075EAEE62EF967B;
 // System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Single>>
 struct List_1_t3D2138A7C2EB312C0132190151D7E29594071BA0;
 // System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Texture2D>>
@@ -327,14 +330,14 @@ struct List_1_t087A9CD6ECE16049438D0BA69E67668E8EABBD90;
 struct List_1_t39ADBAF6BCCB03EE530D05F996A684735270E45B;
 // System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector4>>
 struct List_1_t9CEEFCCC9B23A162158811AC97949D814329569E;
+// System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>>
+struct List_1_t5D2D70E87EB982F476DEC43ABD920F7C607E008A;
 // System.Collections.Generic.List`1<System.Collections.Generic.IEnumerator`1<Oculus.Avatar2.OvrTime/SliceStep>>
 struct List_1_tA4C9277BDBB54D7461A2873B90D64D8CAE1B0BDC;
 // System.Collections.Generic.List`1<Oculus.Avatar2.AvatarLOD>
 struct List_1_tD9573B0AA4D6837365028E52D00AE6ADE6D66B07;
 // System.Collections.Generic.List`1<Oculus.Skinning.GpuSkinning.IOvrGpuSkinner>
 struct List_1_t30AD2C16A293D57B5D24E76572ADA06A477BB3F8;
-// System.Collections.Generic.List`1<System.Object>
-struct List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D;
 // System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarEntity>
 struct List_1_tCD7C2E929EE313A3CD9C1CA1ED76D701EA9F9770;
 // System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarGazeTarget>
@@ -353,6 +356,8 @@ struct List_1_tA27720EA48E3D7D3C9EEC58EA9FEC1EE302ADFAC;
 struct List_1_t7DF9A64B82FEAC7BDA0652C0FC3CD1EE41F91BEC;
 // System.Collections.Generic.List`1<System.String>
 struct List_1_tF470A3BE5C1B5B68E1325EF3F109D172E60BD7CD;
+// System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A;
 // System.Collections.Generic.List`1<Oculus.Avatar2.AvatarLODManager/ContributingCamera>
 struct List_1_t92DF5C42A100C972CD335A3356D516000B3356C3;
 // System.Collections.Generic.List`1<Oculus.Avatar2.CAPI/ovrAvatar2JointType>
@@ -373,46 +378,46 @@ struct OvrSingletonBehaviour_1_t590913F31226562E7C87A8DDE719C5DC047D3A1C;
 struct Predicate_1_t8342C85FF4E41CD1F7024AC0CDC3E5312A32CB12;
 // System.Predicate`1<System.Threading.Tasks.Task>
 struct Predicate_1_t7F48518B008C1472339EEEBABA3DE203FE1F26ED;
-// System.Collections.Generic.Queue`1<System.Object>
-struct Queue_1_tE9EF546915795972C3BFD68FBB8FA859D3BAF3B5;
 // System.Collections.Generic.Queue`1<Oculus.Avatar2.OvrAvatarEntity>
 struct Queue_1_t036E5DB94EA60938804DC7C6741B1DE2B0D85728;
 // System.Collections.Generic.Queue`1<Oculus.Avatar2.OvrAvatarResourceLoader>
 struct Queue_1_tA08C8922EE0939ECC23E955072533F3023914245;
 // System.Collections.Generic.Queue`1<System.String>
 struct Queue_1_t55768C6731D974992BF9775CEA33AAFE7F51CF31;
+// System.Collections.Generic.Queue`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41;
+// System.Threading.Tasks.TaskCompletionSource`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct TaskCompletionSource_1_t8A40BE53A167B6D71D5640881A7A894D8DA94970;
 // System.Threading.Tasks.TaskCompletionSource`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>
 struct TaskCompletionSource_1_tF20E8618AD32D085EFBAC9E127CDB77B996C483C;
+// System.Threading.Tasks.TaskFactory`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct TaskFactory_1_tF4CDC5BDA20AE9BD3F65B6146CDCD3F753003E1D;
 // System.Threading.Tasks.TaskFactory`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>
 struct TaskFactory_1_tE00EE3D25AD276F32635687957B4FD50CA831BAB;
 // System.Threading.Tasks.TaskFactory`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarChangedRequestResultCode>
 struct TaskFactory_1_tEE3A2FA28ECE7E8D336530850FEF7A2B84F836F5;
 // System.Threading.Tasks.TaskFactory`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarRequestResultCode>
 struct TaskFactory_1_t0DF597DB9F7CB7852D299A7AA8CE1F35954446CD;
-// System.Threading.Tasks.Task`1<System.Int32Enum>
-struct Task_1_t8DED34447688BFCF5112B0D05D5A80CED94E4BFB;
+// System.Threading.Tasks.Task`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9;
 // System.Threading.Tasks.Task`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>
 struct Task_1_tD337C15ECE0EB22DACBE88D74A3CEAE3E87499DF;
 // System.Threading.Tasks.Task`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarChangedRequestResultCode>
 struct Task_1_t3E26BA4FF944DB60FE41DEB3C32DA04781024E8C;
 // System.Threading.Tasks.Task`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarRequestResultCode>
 struct Task_1_t7A345830A44DE8C634017FA1015B87124397D4BF;
-// UnityEngine.Events.UnityEvent`1<System.Int32Enum>
-struct UnityEvent_1_t090B79D1A655BCAB01BC91C7409AC476DC731B81;
-// UnityEngine.Events.UnityEvent`1<System.Object>
-struct UnityEvent_1_t3CE03B42D5873C0C0E0692BEE72E1E6D5399F205;
 // UnityEngine.Events.UnityEvent`1<Oculus.Avatar2.OvrAvatarEntity>
 struct UnityEvent_1_t614FC186D7A1FCD4BE7D67BDAF60DCDD32583E9A;
+// UnityEngine.Events.UnityEvent`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct UnityEvent_1_t2A2840A12C919146C6D21E86D7DAA8E3DAB74030;
 // UnityEngine.Events.UnityEvent`1<Oculus.Avatar2.OvrAvatarEntity/LoadingState>
 struct UnityEvent_1_t5CFF406790FD3BA05475B4E31B7E39B473CA7517;
-// UnityEngine.Events.UnityEvent`2<System.Object,Oculus.Avatar2.CAPI/ovrAvatar2LoadRequestInfo>
-struct UnityEvent_2_t391CAFF2DB6C4A472E0F4FAB8EB79ECF8F519974;
 // UnityEngine.Events.UnityEvent`2<Oculus.Avatar2.OvrAvatarEntity,Oculus.Avatar2.CAPI/ovrAvatar2LoadRequestInfo>
 struct UnityEvent_2_t30BCBEED2E88201E2FF2C57BD9E82FB477F2EB4E;
+// UnityEngine.Events.UnityEvent`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct UnityEvent_2_t4000343C3337D1FF4300FFA119D84820B0628F1F;
 // System.Collections.Generic.Dictionary`2/ValueCollection<System.Int32,System.ValueTuple`2<System.Object,Oculus.Avatar2.OvrAvatarMaterial/PropertyType>>
 struct ValueCollection_t10FFC3129994E53708132045C1C94CBD3A1F2FD8;
-// System.Collections.Generic.Dictionary`2/ValueCollection<System.Int32Enum,System.Object>
-struct ValueCollection_tB299C06E8B49BF406A8E6B012CEB2F5086FD124D;
 // System.Collections.Generic.Dictionary`2/ValueCollection<Oculus.Avatar2.OvrAvatarEntity,System.Action>
 struct ValueCollection_t511969162DE61212EC815AEDC9AEA4FB2F2AD992;
 // System.Collections.Generic.Dictionary`2/ValueCollection<System.String,System.Boolean>
@@ -421,14 +426,16 @@ struct ValueCollection_t067B6565DAB51831954BD36DF5F65A806EDBEF99;
 struct ValueCollection_tCE6BD704B9571C131E2D8C8CED569DDEC4AE042B;
 // System.Collections.Generic.Dictionary`2/ValueCollection<System.String,Oculus.Avatar2.OvrAvatarManager/PermissionState>
 struct ValueCollection_t8D5C75A2296F4E07E7F3CA9565730DA822637F8D;
+// System.Collections.Generic.Dictionary`2/ValueCollection<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct ValueCollection_tC492596681BD51AB34FC76FA76C15C9B3FFB7B40;
 // System.Collections.Generic.Dictionary`2/ValueCollection<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarAssetBase>
 struct ValueCollection_t3C947B12527B6B75335CE5E159AA541F0D4ED9AE;
 // System.Collections.Generic.Dictionary`2/ValueCollection<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarResourceLoader>
 struct ValueCollection_tCADF12CAC734CC51F3CC94053F6A7A3E4345761A;
 // System.Collections.Generic.Dictionary`2/ValueCollection<Oculus.Avatar2.CAPI/ovrAvatar2JointType,Oculus.Avatar2.InterpolatingJoint>
 struct ValueCollection_tDB63D0276C7DAF011C00FD516E961291A2349DC2;
-// System.Collections.Generic.Dictionary`2/ValueCollection<Oculus.Avatar2.CAPI/ovrAvatar2JointType,System.Object>
-struct ValueCollection_tDBEA273722AD171D8B327AC7B739C7D3AC7AA9CF;
+// System.Collections.Generic.Dictionary`2/ValueCollection<Oculus.Avatar2.CAPI/ovrAvatar2JointType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct ValueCollection_t450E7F9D9DBE020E1659D9AE70B6454215CC51D5;
 // System.Collections.Generic.Dictionary`2/ValueCollection<Oculus.Avatar2.CAPI/ovrAvatar2RequestId,Oculus.Avatar2.OvrAvatarManager/RequestDelegate>
 struct ValueCollection_t875F3DBEDD76B253316B4C169FF73D447DED7974;
 // System.Collections.Generic.Dictionary`2/Entry<System.Int32,System.ValueTuple`2<System.Object,Oculus.Avatar2.OvrAvatarMaterial/PropertyType>>[]
@@ -449,8 +456,6 @@ struct EntryU5BU5D_t877FF53A39DEA1C36786489E30E02DDFFDBDAF51;
 struct EntryU5BU5D_t8988FD56D70B042CBD24803D23EEE81BD6E8A4FA;
 // Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Int32>[]
 struct ExtensionEntry_1U5BU5D_t0DF78E1782DFE069C762A6E1933005FD0A9D4B58;
-// Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Object>[]
-struct ExtensionEntry_1U5BU5D_t58ADB2727CD608F7B5074931EAAA085F94A912F4;
 // Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Single>[]
 struct ExtensionEntry_1U5BU5D_tA08F5932FBCA7FC0E6354CEF4D2BB933D2FBA8B9;
 // Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Texture2D>[]
@@ -461,12 +466,12 @@ struct ExtensionEntry_1U5BU5D_t14CB4D103D667F38A0758E88AB19D3D41E9A0152;
 struct ExtensionEntry_1U5BU5D_t9634D1D2F1107B97919C05989FAA0AE32749E0A9;
 // System.Collections.Generic.HashSet`1/Slot<Oculus.Avatar2.InterpolatingJoint>[]
 struct SlotU5BU5D_tC9EC7E8CE65309761E348DE4794CB7F4702EBF35;
-// System.Collections.Generic.HashSet`1/Slot<System.Object>[]
-struct SlotU5BU5D_tF596AD324082C553DB364C768406A40BB3C85343;
 // System.Collections.Generic.HashSet`1/Slot<Oculus.Avatar2.OvrAvatarRenderable>[]
 struct SlotU5BU5D_t9DCC6D1A726DF15B10349B8C9D38EC9968EB19E9;
 // System.Collections.Generic.HashSet`1/Slot<System.UInt32>[]
 struct SlotU5BU5D_tBF418274114DA8D3D070D784415BF0500C1960C6;
+// System.Collections.Generic.HashSet`1/Slot<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>[]
+struct SlotU5BU5D_t2B9148416634BCB8743E1F61254B305F1882FF1D;
 // System.Collections.Generic.HashSet`1/Slot<Oculus.Avatar2.CAPI/ovrAvatar2Id>[]
 struct SlotU5BU5D_t0CEB099BF91A0BE67AA99F8036C3B8A062947B9D;
 // Oculus.Avatar2.OvrAvatarEntity/PrimitiveRenderData[][]
@@ -487,8 +492,6 @@ struct DelegateU5BU5D_tC5AB7E8F745616680F337909D3A8E6C722CDF771;
 struct Int16U5BU5D_t8175CE8DD9C9F9FB0CF4F58E45BC570575B43CFB;
 // System.Int32[]
 struct Int32U5BU5D_t19C97395396A72ECAF310612F0760F165060314C;
-// System.Int32Enum[]
-struct Int32EnumU5BU5D_t87B7DB802810C38016332669039EF42C487A081F;
 // System.Int64[]
 struct Int64U5BU5D_tAEDFCBDB5414E2A140A6F34C0538BF97FCF67A1D;
 // System.IntPtr[]
@@ -533,6 +536,8 @@ struct Vector2U5BU5D_tFEBBC94BCC6C9C88277BA04047D2B3FDB6ED7FDA;
 struct Vector3U5BU5D_tFF1859CCE176131B909E2044F76443064254679C;
 // UnityEngine.Vector4[]
 struct Vector4U5BU5D_tC0F3A7115F85007510F6D173968200CD31BCF7AD;
+// Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType[]
+struct __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC;
 // Oculus.Avatar2.CAPI/ovrAvatar2Bone[]
 struct ovrAvatar2BoneU5BU5D_tB703FF2A0DBD6B449412C8583BB5F7327D869933;
 // Oculus.Avatar2.CAPI/ovrAvatar2GazeTarget[]
@@ -1498,7 +1503,6 @@ struct ovrAvatar2HandTrackingDataContext_t5EC3698D6C7970CC0E8A2F43BEDC90FBC2D3CE
 struct ovrAvatar2HandTrackingDataContext_t5EC3698D6C7970CC0E8A2F43BEDC90FBC2D3CE1C_marshaled_pinvoke;
 struct ovrAvatar2HandTrackingDataContext_t5EC3698D6C7970CC0E8A2F43BEDC90FBC2D3CE1C_marshaled_pinvoke;;
 
-struct ExtensionEntry_1U5BU5D_t58ADB2727CD608F7B5074931EAAA085F94A912F4;
 struct BoneWeightU5BU5D_t76F390D8CBA0ADCB87EB98B135C8886857DFE651;
 struct ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031;
 struct CharU5BU5D_t799905CF001DD5F13F7DBB310181FC4D8B7D0AAB;
@@ -1506,7 +1510,6 @@ struct Color32U5BU5D_t38116C3E91765C4C5726CE12C77FAD7F9F737259;
 struct DelegateU5BU5D_tC5AB7E8F745616680F337909D3A8E6C722CDF771;
 struct Int16U5BU5D_t8175CE8DD9C9F9FB0CF4F58E45BC570575B43CFB;
 struct Int32U5BU5D_t19C97395396A72ECAF310612F0760F165060314C;
-struct Int32EnumU5BU5D_t87B7DB802810C38016332669039EF42C487A081F;
 struct InterpolatingJointU5BU5D_t3AD933325087B2EAE8816E7D31BA87C547059AE4;
 struct Matrix4x4U5BU5D_t9C51C93425FABC022B506D2DB3A5FA70F9752C4D;
 struct ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918;
@@ -1519,6 +1522,7 @@ struct StringU5BU5D_t7674CD946EC0CE7B3AE0BE70E6EE85F2ECD9F248;
 struct Vector2U5BU5D_tFEBBC94BCC6C9C88277BA04047D2B3FDB6ED7FDA;
 struct Vector3U5BU5D_tFF1859CCE176131B909E2044F76443064254679C;
 struct Vector4U5BU5D_tC0F3A7115F85007510F6D173968200CD31BCF7AD;
+struct __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC;
 struct ovrAvatar2BoneU5BU5D_tB703FF2A0DBD6B449412C8583BB5F7327D869933;
 struct ovrAvatar2GazeTargetU5BU5D_tE29772FC2A863E7CC5CC34DF6FCFCD0574A4C36C;
 struct ovrAvatar2HandInputTypeU5BU5D_tF617F4B335B392A95C4A138879580FE674FBE3BD;
@@ -1736,26 +1740,15 @@ struct Dictionary_2_tF1F7690F907D127209C338D34D2A1A645B0F6A08  : public RuntimeO
 	RuntimeObject* ____syncRoot_9;
 };
 
-// System.EmptyArray`1<System.Int32Enum>
-struct EmptyArray_1_t0A27D963887A48FA040C718B868C2455F9AD84FA  : public RuntimeObject
+// System.EmptyArray`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct EmptyArray_1_tF69A5F6BAD1150A16C4C98B346D6122FE3751C80  : public RuntimeObject
 {
 };
 
-struct EmptyArray_1_t0A27D963887A48FA040C718B868C2455F9AD84FA_StaticFields
+struct EmptyArray_1_tF69A5F6BAD1150A16C4C98B346D6122FE3751C80_StaticFields
 {
 	// T[] System.EmptyArray`1::Value
-	Int32EnumU5BU5D_t87B7DB802810C38016332669039EF42C487A081F* ___Value_0;
-};
-
-// System.EmptyArray`1<System.Object>
-struct EmptyArray_1_tDF0DD7256B115243AA6BD5558417387A734240EE  : public RuntimeObject
-{
-};
-
-struct EmptyArray_1_tDF0DD7256B115243AA6BD5558417387A734240EE_StaticFields
-{
-	// T[] System.EmptyArray`1::Value
-	ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ___Value_0;
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* ___Value_0;
 };
 
 // Oculus.Avatar2.EntityJointMonitorBase`1<Oculus.Avatar2.InterpolatingJoint>
@@ -1787,27 +1780,6 @@ struct HashSet_1_t6A959A1233CAC4860042B073BF873F859F18CCB8  : public RuntimeObje
 	Int32U5BU5D_t19C97395396A72ECAF310612F0760F165060314C* ____buckets_7;
 	// System.Collections.Generic.HashSet`1/Slot<T>[] System.Collections.Generic.HashSet`1::_slots
 	SlotU5BU5D_tC9EC7E8CE65309761E348DE4794CB7F4702EBF35* ____slots_8;
-	// System.Int32 System.Collections.Generic.HashSet`1::_count
-	int32_t ____count_9;
-	// System.Int32 System.Collections.Generic.HashSet`1::_lastIndex
-	int32_t ____lastIndex_10;
-	// System.Int32 System.Collections.Generic.HashSet`1::_freeList
-	int32_t ____freeList_11;
-	// System.Collections.Generic.IEqualityComparer`1<T> System.Collections.Generic.HashSet`1::_comparer
-	RuntimeObject* ____comparer_12;
-	// System.Int32 System.Collections.Generic.HashSet`1::_version
-	int32_t ____version_13;
-	// System.Runtime.Serialization.SerializationInfo System.Collections.Generic.HashSet`1::_siInfo
-	SerializationInfo_t3C47F63E24BEB9FCE2DC6309E027F238DC5C5E37* ____siInfo_14;
-};
-
-// System.Collections.Generic.HashSet`1<System.Object>
-struct HashSet_1_t2F33BEB06EEA4A872E2FAF464382422AA39AE885  : public RuntimeObject
-{
-	// System.Int32[] System.Collections.Generic.HashSet`1::_buckets
-	Int32U5BU5D_t19C97395396A72ECAF310612F0760F165060314C* ____buckets_7;
-	// System.Collections.Generic.HashSet`1/Slot<T>[] System.Collections.Generic.HashSet`1::_slots
-	SlotU5BU5D_tF596AD324082C553DB364C768406A40BB3C85343* ____slots_8;
 	// System.Int32 System.Collections.Generic.HashSet`1::_count
 	int32_t ____count_9;
 	// System.Int32 System.Collections.Generic.HashSet`1::_lastIndex
@@ -1864,6 +1836,27 @@ struct HashSet_1_t5DD20B42149A11AEBF12A75505306E6EFC34943A  : public RuntimeObje
 	SerializationInfo_t3C47F63E24BEB9FCE2DC6309E027F238DC5C5E37* ____siInfo_14;
 };
 
+// System.Collections.Generic.HashSet`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87  : public RuntimeObject
+{
+	// System.Int32[] System.Collections.Generic.HashSet`1::_buckets
+	Int32U5BU5D_t19C97395396A72ECAF310612F0760F165060314C* ____buckets_7;
+	// System.Collections.Generic.HashSet`1/Slot<T>[] System.Collections.Generic.HashSet`1::_slots
+	SlotU5BU5D_t2B9148416634BCB8743E1F61254B305F1882FF1D* ____slots_8;
+	// System.Int32 System.Collections.Generic.HashSet`1::_count
+	int32_t ____count_9;
+	// System.Int32 System.Collections.Generic.HashSet`1::_lastIndex
+	int32_t ____lastIndex_10;
+	// System.Int32 System.Collections.Generic.HashSet`1::_freeList
+	int32_t ____freeList_11;
+	// System.Collections.Generic.IEqualityComparer`1<T> System.Collections.Generic.HashSet`1::_comparer
+	RuntimeObject* ____comparer_12;
+	// System.Int32 System.Collections.Generic.HashSet`1::_version
+	int32_t ____version_13;
+	// System.Runtime.Serialization.SerializationInfo System.Collections.Generic.HashSet`1::_siInfo
+	SerializationInfo_t3C47F63E24BEB9FCE2DC6309E027F238DC5C5E37* ____siInfo_14;
+};
+
 // System.Collections.Generic.HashSet`1<Oculus.Avatar2.CAPI/ovrAvatar2Id>
 struct HashSet_1_t278DF4E8528D70135DEB2A8C73C166F8EC60353B  : public RuntimeObject
 {
@@ -1902,25 +1895,6 @@ struct List_1_t941E36F7444B6E85114CF22035CB833E55C9D086_StaticFields
 {
 	// T[] System.Collections.Generic.List`1::s_emptyArray
 	ExtensionEntry_1U5BU5D_t0DF78E1782DFE069C762A6E1933005FD0A9D4B58* ___s_emptyArray_5;
-};
-
-// System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Object>>
-struct List_1_t03C5C2BE7A26C11DCF0C0BD79075EAEE62EF967B  : public RuntimeObject
-{
-	// T[] System.Collections.Generic.List`1::_items
-	ExtensionEntry_1U5BU5D_t58ADB2727CD608F7B5074931EAAA085F94A912F4* ____items_1;
-	// System.Int32 System.Collections.Generic.List`1::_size
-	int32_t ____size_2;
-	// System.Int32 System.Collections.Generic.List`1::_version
-	int32_t ____version_3;
-	// System.Object System.Collections.Generic.List`1::_syncRoot
-	RuntimeObject* ____syncRoot_4;
-};
-
-struct List_1_t03C5C2BE7A26C11DCF0C0BD79075EAEE62EF967B_StaticFields
-{
-	// T[] System.Collections.Generic.List`1::s_emptyArray
-	ExtensionEntry_1U5BU5D_t58ADB2727CD608F7B5074931EAAA085F94A912F4* ___s_emptyArray_5;
 };
 
 // System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Single>>
@@ -1999,25 +1973,6 @@ struct List_1_t9CEEFCCC9B23A162158811AC97949D814329569E_StaticFields
 	ExtensionEntry_1U5BU5D_t9634D1D2F1107B97919C05989FAA0AE32749E0A9* ___s_emptyArray_5;
 };
 
-// System.Collections.Generic.List`1<System.Object>
-struct List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D  : public RuntimeObject
-{
-	// T[] System.Collections.Generic.List`1::_items
-	ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ____items_1;
-	// System.Int32 System.Collections.Generic.List`1::_size
-	int32_t ____size_2;
-	// System.Int32 System.Collections.Generic.List`1::_version
-	int32_t ____version_3;
-	// System.Object System.Collections.Generic.List`1::_syncRoot
-	RuntimeObject* ____syncRoot_4;
-};
-
-struct List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D_StaticFields
-{
-	// T[] System.Collections.Generic.List`1::s_emptyArray
-	ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ___s_emptyArray_5;
-};
-
 // System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarEntity>
 struct List_1_tCD7C2E929EE313A3CD9C1CA1ED76D701EA9F9770  : public RuntimeObject
 {
@@ -2094,6 +2049,25 @@ struct List_1_tF470A3BE5C1B5B68E1325EF3F109D172E60BD7CD_StaticFields
 	StringU5BU5D_t7674CD946EC0CE7B3AE0BE70E6EE85F2ECD9F248* ___s_emptyArray_5;
 };
 
+// System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A  : public RuntimeObject
+{
+	// T[] System.Collections.Generic.List`1::_items
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* ____items_1;
+	// System.Int32 System.Collections.Generic.List`1::_size
+	int32_t ____size_2;
+	// System.Int32 System.Collections.Generic.List`1::_version
+	int32_t ____version_3;
+	// System.Object System.Collections.Generic.List`1::_syncRoot
+	RuntimeObject* ____syncRoot_4;
+};
+
+struct List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A_StaticFields
+{
+	// T[] System.Collections.Generic.List`1::s_emptyArray
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* ___s_emptyArray_5;
+};
+
 // System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarEntity/PrimitiveRenderData>
 struct List_1_t1A400D239D08A69786D62E1BF2F64152E8AF89F1  : public RuntimeObject
 {
@@ -2130,23 +2104,6 @@ struct List_1_t9E4BD1D7C88F9F73EE7DD445FBC2860ADC0424F6_StaticFields
 {
 	// T[] System.Collections.Generic.List`1::s_emptyArray
 	LoadRequestU5BU5D_t71AA6C09B54C5A550292D209092783276307D983* ___s_emptyArray_5;
-};
-
-// System.Collections.Generic.Queue`1<System.Object>
-struct Queue_1_tE9EF546915795972C3BFD68FBB8FA859D3BAF3B5  : public RuntimeObject
-{
-	// T[] System.Collections.Generic.Queue`1::_array
-	ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ____array_0;
-	// System.Int32 System.Collections.Generic.Queue`1::_head
-	int32_t ____head_1;
-	// System.Int32 System.Collections.Generic.Queue`1::_tail
-	int32_t ____tail_2;
-	// System.Int32 System.Collections.Generic.Queue`1::_size
-	int32_t ____size_3;
-	// System.Int32 System.Collections.Generic.Queue`1::_version
-	int32_t ____version_4;
-	// System.Object System.Collections.Generic.Queue`1::_syncRoot
-	RuntimeObject* ____syncRoot_5;
 };
 
 // System.Collections.Generic.Queue`1<Oculus.Avatar2.OvrAvatarEntity>
@@ -2198,6 +2155,30 @@ struct Queue_1_t55768C6731D974992BF9775CEA33AAFE7F51CF31  : public RuntimeObject
 	int32_t ____version_4;
 	// System.Object System.Collections.Generic.Queue`1::_syncRoot
 	RuntimeObject* ____syncRoot_5;
+};
+
+// System.Collections.Generic.Queue`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41  : public RuntimeObject
+{
+	// T[] System.Collections.Generic.Queue`1::_array
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* ____array_0;
+	// System.Int32 System.Collections.Generic.Queue`1::_head
+	int32_t ____head_1;
+	// System.Int32 System.Collections.Generic.Queue`1::_tail
+	int32_t ____tail_2;
+	// System.Int32 System.Collections.Generic.Queue`1::_size
+	int32_t ____size_3;
+	// System.Int32 System.Collections.Generic.Queue`1::_version
+	int32_t ____version_4;
+	// System.Object System.Collections.Generic.Queue`1::_syncRoot
+	RuntimeObject* ____syncRoot_5;
+};
+
+// System.Threading.Tasks.TaskCompletionSource`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct TaskCompletionSource_1_t8A40BE53A167B6D71D5640881A7A894D8DA94970  : public RuntimeObject
+{
+	// System.Threading.Tasks.Task`1<TResult> System.Threading.Tasks.TaskCompletionSource`1::_task
+	Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9* ____task_0;
 };
 
 // System.Threading.Tasks.TaskCompletionSource`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>
@@ -2703,17 +2684,21 @@ struct ArraySegment_1_t8BFB82736DF7396993D8AC314453598665A24BA4_StaticFields
 	ArraySegment_1_t8BFB82736DF7396993D8AC314453598665A24BA4 ___U3CEmptyU3Ek__BackingField_0;
 };
 
-// System.Collections.Generic.List`1/Enumerator<System.Object>
-struct Enumerator_t9473BAB568A27E2339D48C1F91319E0F6D244D7A 
+// System.ArraySegment`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178 
 {
-	// System.Collections.Generic.List`1<T> System.Collections.Generic.List`1/Enumerator::_list
-	List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* ____list_0;
-	// System.Int32 System.Collections.Generic.List`1/Enumerator::_index
-	int32_t ____index_1;
-	// System.Int32 System.Collections.Generic.List`1/Enumerator::_version
-	int32_t ____version_2;
-	// T System.Collections.Generic.List`1/Enumerator::_current
-	RuntimeObject* ____current_3;
+	// T[] System.ArraySegment`1::_array
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* ____array_1;
+	// System.Int32 System.ArraySegment`1::_offset
+	int32_t ____offset_2;
+	// System.Int32 System.ArraySegment`1::_count
+	int32_t ____count_3;
+};
+
+struct ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178_StaticFields
+{
+	// System.ArraySegment`1<T> System.ArraySegment`1::<Empty>k__BackingField
+	ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178 ___U3CEmptyU3Ek__BackingField_0;
 };
 
 // System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarEntity>
@@ -2755,18 +2740,11 @@ struct Enumerator_tA7A4B718FE1ED1D87565680D8C8195EC8AEAB3D1
 	String_t* ____current_3;
 };
 
-// System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator<System.Int32Enum,System.Object>
-struct Enumerator_tF9B1C7464F1BFE1675CFE608CC62D4507968CF08 
-{
-	// System.Collections.Generic.Dictionary`2<TKey,TValue> System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator::_dictionary
-	Dictionary_2_t514396B90715EDD83BB0470C76C2F426F9381C71* ____dictionary_0;
-	// System.Int32 System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator::_index
-	int32_t ____index_1;
-	// System.Int32 System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator::_version
-	int32_t ____version_2;
-	// TValue System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator::_currentValue
-	RuntimeObject* ____currentValue_3;
-};
+// System.Collections.Generic.List`1/Enumerator<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+typedef Il2CppFullySharedGenericStruct Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF;
+
+// System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+typedef Il2CppFullySharedGenericStruct Enumerator_tEEF12A9EDAAA0461A72ED9491F6AC20B22440222;
 
 // System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator<Oculus.Avatar2.CAPI/ovrAvatar2JointType,Oculus.Avatar2.InterpolatingJoint>
 struct Enumerator_t341E03610D002F0DF3052637D4C1F3F215039507 
@@ -2790,15 +2768,6 @@ struct ExtensionEntry_1_tF2C4369D973C4DBC0C068E5D57B9696534CCDA19
 	int32_t ____payload_1;
 };
 
-// Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Object>
-struct ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1 
-{
-	// System.String Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1::_name
-	String_t* ____name_0;
-	// T Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1::_payload
-	RuntimeObject* ____payload_1;
-};
-
 // Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Single>
 struct ExtensionEntry_1_tA92D0E18425FA6278BFDE762213B76BE8DC0FBF8 
 {
@@ -2817,23 +2786,8 @@ struct ExtensionEntry_1_t556C9F7F04149A0284287CF87282BBC4599FEA6F
 	Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4* ____payload_1;
 };
 
-// System.Collections.Generic.KeyValuePair`2<System.Int32Enum,System.Object>
-struct KeyValuePair_2_tF70DDE0C5A349727371FB070D433FA147032A13B 
-{
-	// TKey System.Collections.Generic.KeyValuePair`2::key
-	int32_t ___key_0;
-	// TValue System.Collections.Generic.KeyValuePair`2::value
-	RuntimeObject* ___value_1;
-};
-
-// System.Collections.Generic.KeyValuePair`2<System.Object,System.Boolean>
-struct KeyValuePair_2_t7E5E41B933054DBF6F52C6CDF0BC2CB4B1606423 
-{
-	// TKey System.Collections.Generic.KeyValuePair`2::key
-	RuntimeObject* ___key_0;
-	// TValue System.Collections.Generic.KeyValuePair`2::value
-	bool ___value_1;
-};
+// Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+typedef Il2CppFullySharedGenericStruct ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3;
 
 // System.Collections.Generic.KeyValuePair`2<System.String,System.Boolean>
 struct KeyValuePair_2_t6FBA699E626F0DB5D988252D056F02A4938CF89C 
@@ -2843,6 +2797,9 @@ struct KeyValuePair_2_t6FBA699E626F0DB5D988252D056F02A4938CF89C
 	// TValue System.Collections.Generic.KeyValuePair`2::value
 	bool ___value_1;
 };
+
+// System.Collections.Generic.KeyValuePair`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+typedef Il2CppFullySharedGenericStruct KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669;
 
 // System.Collections.Generic.KeyValuePair`2<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarResourceLoader>
 struct KeyValuePair_2_t864572569829FCB230C40B37E780E9F730B0A8A5 
@@ -2864,8 +2821,8 @@ struct NativeArray_1_t107C57D0357BCF9956A60495CD8FAADDF1D26AFB
 	int32_t ___m_AllocatorLabel_2;
 };
 
-// Unity.Collections.NativeArray`1<System.Int32Enum>
-struct NativeArray_1_tE0DCAF7ED58915BC160F767E310F0F0A55B6BC75 
+// Unity.Collections.NativeArray`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>
+struct NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 
 {
 	// System.Void* Unity.Collections.NativeArray`1::m_Buffer
 	void* ___m_Buffer_0;
@@ -2917,11 +2874,27 @@ struct Nullable_1_t78F453FADB4A9F50F267A4E349019C34410D1A01
 	bool ___value_1;
 };
 
+// System.Runtime.CompilerServices.TaskAwaiter`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct TaskAwaiter_1_t274550A5F4BB61F8D62C9C83AF92995FCCE549C8 
+{
+	// System.Threading.Tasks.Task`1<TResult> System.Runtime.CompilerServices.TaskAwaiter`1::m_task
+	Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9* ___m_task_0;
+};
+
 // System.Runtime.CompilerServices.TaskAwaiter`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>
 struct TaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6 
 {
 	// System.Threading.Tasks.Task`1<TResult> System.Runtime.CompilerServices.TaskAwaiter`1::m_task
 	Task_1_tD337C15ECE0EB22DACBE88D74A3CEAE3E87499DF* ___m_task_0;
+};
+
+// System.Threading.Tasks.Task`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9 : public Task_t751C4CC3ECD055BABA8A0B6A5DFBB4283DCA8572 {};
+
+struct Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9_StaticFields
+{
+	// System.Threading.Tasks.TaskFactory`1<TResult> System.Threading.Tasks.Task`1::s_defaultFactory
+	TaskFactory_1_tF4CDC5BDA20AE9BD3F65B6146CDCD3F753003E1D* ___s_defaultFactory_39;
 };
 
 // System.Threading.Tasks.Task`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarChangedRequestResultCode>
@@ -2971,15 +2944,6 @@ struct UnityEvent_2_t30BCBEED2E88201E2FF2C57BD9E82FB477F2EB4E  : public UnityEve
 	ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ___m_InvokeArray_3;
 };
 
-// System.ValueTuple`2<System.Object,System.Int32Enum>
-struct ValueTuple_2_tDFEF5D5D0F51624CEA17371BAD6D70276931BC49 
-{
-	// T1 System.ValueTuple`2::Item1
-	RuntimeObject* ___Item1_0;
-	// T2 System.ValueTuple`2::Item2
-	int32_t ___Item2_1;
-};
-
 // System.ValueTuple`2<System.Object,Oculus.Avatar2.OvrAvatarMaterial/PropertyType>
 struct ValueTuple_2_t9F1221051994FC4B9DE9C99AF2D30E5813D8C8F6 
 {
@@ -3001,6 +2965,9 @@ struct ValueTuple_4_tEFDD577311961F01B82627ABB705050B07AC2FFA
 	// T4 System.ValueTuple`4::Item4
 	uint64_t ___Item4_3;
 };
+
+// System.ValueTuple`4<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+typedef Il2CppFullySharedGenericStruct ValueTuple_4_t8725FCE32886281FCF0441F1DAE319DADD76B78F;
 
 // System.Runtime.CompilerServices.AsyncMethodBuilderCore
 struct AsyncMethodBuilderCore_tD5ABB3A2536319A3345B32A5481E37E23DD8CEDF 
@@ -3987,19 +3954,19 @@ struct U3CvisemesU3Ee__FixedBuffer_t489B53891D5FDE717EAE1EACB563C5645F30E20D
 	};
 };
 
-// System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<System.Int32Enum>
-struct AsyncTaskMethodBuilder_1_tB63B23CE5211A1439A08AE69DF9BF403502D3FE9 
+// System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4 
 {
 	// System.Runtime.CompilerServices.AsyncMethodBuilderCore System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1::m_coreState
 	AsyncMethodBuilderCore_tD5ABB3A2536319A3345B32A5481E37E23DD8CEDF ___m_coreState_1;
 	// System.Threading.Tasks.Task`1<TResult> System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1::m_task
-	Task_1_t8DED34447688BFCF5112B0D05D5A80CED94E4BFB* ___m_task_2;
+	Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9* ___m_task_2;
 };
 
-struct AsyncTaskMethodBuilder_1_tB63B23CE5211A1439A08AE69DF9BF403502D3FE9_StaticFields
+struct AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4_StaticFields
 {
 	// System.Threading.Tasks.Task`1<TResult> System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1::s_defaultResultTask
-	Task_1_t8DED34447688BFCF5112B0D05D5A80CED94E4BFB* ___s_defaultResultTask_0;
+	Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9* ___s_defaultResultTask_0;
 };
 
 // System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarChangedRequestResultCode>
@@ -4045,19 +4012,6 @@ struct Enumerator_t0E54B2E53E88A97C042EE85F413A7CF50692D0C9
 	ExtensionEntry_1_tF2C4369D973C4DBC0C068E5D57B9696534CCDA19 ____current_3;
 };
 
-// System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Object>>
-struct Enumerator_tEF9AB955C5A9CB26AD5E865D88965D515AF2E8EB 
-{
-	// System.Collections.Generic.List`1<T> System.Collections.Generic.List`1/Enumerator::_list
-	List_1_t03C5C2BE7A26C11DCF0C0BD79075EAEE62EF967B* ____list_0;
-	// System.Int32 System.Collections.Generic.List`1/Enumerator::_index
-	int32_t ____index_1;
-	// System.Int32 System.Collections.Generic.List`1/Enumerator::_version
-	int32_t ____version_2;
-	// T System.Collections.Generic.List`1/Enumerator::_current
-	ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1 ____current_3;
-};
-
 // System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Single>>
 struct Enumerator_t69D2B438661A4BF53F5826356D3635489039FA26 
 {
@@ -4084,36 +4038,6 @@ struct Enumerator_t5D44032F2D5A4414AE6653D0E878E49496B63FAE
 	ExtensionEntry_1_t556C9F7F04149A0284287CF87282BBC4599FEA6F ____current_3;
 };
 
-// System.Collections.Generic.Dictionary`2/Enumerator<System.Int32Enum,System.Object>
-struct Enumerator_t72F234BE749BE6BA202FC41626B5E819E4F208B4 
-{
-	// System.Collections.Generic.Dictionary`2<TKey,TValue> System.Collections.Generic.Dictionary`2/Enumerator::_dictionary
-	Dictionary_2_t514396B90715EDD83BB0470C76C2F426F9381C71* ____dictionary_0;
-	// System.Int32 System.Collections.Generic.Dictionary`2/Enumerator::_version
-	int32_t ____version_1;
-	// System.Int32 System.Collections.Generic.Dictionary`2/Enumerator::_index
-	int32_t ____index_2;
-	// System.Collections.Generic.KeyValuePair`2<TKey,TValue> System.Collections.Generic.Dictionary`2/Enumerator::_current
-	KeyValuePair_2_tF70DDE0C5A349727371FB070D433FA147032A13B ____current_3;
-	// System.Int32 System.Collections.Generic.Dictionary`2/Enumerator::_getEnumeratorRetType
-	int32_t ____getEnumeratorRetType_4;
-};
-
-// System.Collections.Generic.Dictionary`2/Enumerator<System.Object,System.Boolean>
-struct Enumerator_tD5E26031CE205BBE3214F599A38680F6E87A011B 
-{
-	// System.Collections.Generic.Dictionary`2<TKey,TValue> System.Collections.Generic.Dictionary`2/Enumerator::_dictionary
-	Dictionary_2_tDBC7BB75C617E4886F85171F2758C7996F98EC36* ____dictionary_0;
-	// System.Int32 System.Collections.Generic.Dictionary`2/Enumerator::_version
-	int32_t ____version_1;
-	// System.Int32 System.Collections.Generic.Dictionary`2/Enumerator::_index
-	int32_t ____index_2;
-	// System.Collections.Generic.KeyValuePair`2<TKey,TValue> System.Collections.Generic.Dictionary`2/Enumerator::_current
-	KeyValuePair_2_t7E5E41B933054DBF6F52C6CDF0BC2CB4B1606423 ____current_3;
-	// System.Int32 System.Collections.Generic.Dictionary`2/Enumerator::_getEnumeratorRetType
-	int32_t ____getEnumeratorRetType_4;
-};
-
 // System.Collections.Generic.Dictionary`2/Enumerator<System.String,System.Boolean>
 struct Enumerator_tD1EEDE565BC0380945286625C34F4F872BC3821C 
 {
@@ -4128,6 +4052,9 @@ struct Enumerator_tD1EEDE565BC0380945286625C34F4F872BC3821C
 	// System.Int32 System.Collections.Generic.Dictionary`2/Enumerator::_getEnumeratorRetType
 	int32_t ____getEnumeratorRetType_4;
 };
+
+// System.Collections.Generic.Dictionary`2/Enumerator<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+typedef Il2CppFullySharedGenericStruct Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1;
 
 // System.Collections.Generic.Dictionary`2/Enumerator<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarResourceLoader>
 struct Enumerator_t2EFE3C107EEAC4C62604945D6A1C2D6F9D69CE8B 
@@ -4162,15 +4089,6 @@ struct ExtensionEntry_1_tB2BE801FD5C4993FB45DEE1343D057605BBFF0F2
 	Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 ____payload_1;
 };
 
-// System.Collections.Generic.KeyValuePair`2<System.Int32,System.ValueTuple`2<System.Object,System.Int32Enum>>
-struct KeyValuePair_2_t77D15A38C6197D8EF2F3685102450E1FB48F13C7 
-{
-	// TKey System.Collections.Generic.KeyValuePair`2::key
-	int32_t ___key_0;
-	// TValue System.Collections.Generic.KeyValuePair`2::value
-	ValueTuple_2_tDFEF5D5D0F51624CEA17371BAD6D70276931BC49 ___value_1;
-};
-
 // System.Collections.Generic.KeyValuePair`2<System.Int32,System.ValueTuple`2<System.Object,Oculus.Avatar2.OvrAvatarMaterial/PropertyType>>
 struct KeyValuePair_2_t1FD314B8CA0FF784E5B8243EA96F1E78B73012B4 
 {
@@ -4179,6 +4097,9 @@ struct KeyValuePair_2_t1FD314B8CA0FF784E5B8243EA96F1E78B73012B4
 	// TValue System.Collections.Generic.KeyValuePair`2::value
 	ValueTuple_2_t9F1221051994FC4B9DE9C99AF2D30E5813D8C8F6 ___value_1;
 };
+
+// System.Nullable`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>
+typedef Il2CppFullySharedGenericStruct Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339;
 
 // System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2StreamingPlaybackState>
 struct Nullable_1_tEE876B0A383DEE0B818E0DD33CD2721195BC5AD4 
@@ -4201,6 +4122,15 @@ struct OvrAvatarAsset_1_tD2115ED1CAFD60558C1CE7E8BB98773B4F8365EB  : public OvrA
 {
 	// T Oculus.Avatar2.OvrAvatarAsset`1::data
 	ovrAvatar2Primitive_t461AF57BC9FFB5EF65D9594D816ED80408F1D271 ___data_3;
+};
+
+// Oculus.Avatar2.OvrSpan`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>
+struct OvrSpan_1_tABCF10E9E40CF31C1378EB23141B1D48DD8C9BF8 
+{
+	// System.IntPtr Oculus.Avatar2.OvrSpan`1::_ptr
+	intptr_t ____ptr_0;
+	// System.Int32 Oculus.Avatar2.OvrSpan`1::_length
+	int32_t ____length_1;
 };
 
 // Oculus.Avatar2.OvrSpan`1<Oculus.Avatar2.CAPI/ovrAvatar2Bone>
@@ -4425,13 +4355,6 @@ struct GCHandle_tC44F6F72EE68BD4CFABA24309DA7A179D41127DC
 {
 	// System.IntPtr System.Runtime.InteropServices.GCHandle::handle
 	intptr_t ___handle_0;
-};
-
-// System.Int32Enum
-struct Int32Enum_tCBAC8BA2BFF3A845FA599F303093BBBA374B6F0C 
-{
-	// System.Int32 System.Int32Enum::value__
-	int32_t ___value___2;
 };
 
 // Oculus.Avatar2.InterpolatingJoint
@@ -5151,21 +5074,6 @@ struct Enumerator_tDFC366BCC918F6C416A85E882432787BE9693F29
 	ExtensionEntry_1_tB2BE801FD5C4993FB45DEE1343D057605BBFF0F2 ____current_3;
 };
 
-// System.Collections.Generic.Dictionary`2/Enumerator<System.Int32,System.ValueTuple`2<System.Object,System.Int32Enum>>
-struct Enumerator_t38F8FFEADA820481EE033B58C2FBCEC243555C0B 
-{
-	// System.Collections.Generic.Dictionary`2<TKey,TValue> System.Collections.Generic.Dictionary`2/Enumerator::_dictionary
-	Dictionary_2_tD7902513349692AD112478CC073C31507A094A53* ____dictionary_0;
-	// System.Int32 System.Collections.Generic.Dictionary`2/Enumerator::_version
-	int32_t ____version_1;
-	// System.Int32 System.Collections.Generic.Dictionary`2/Enumerator::_index
-	int32_t ____index_2;
-	// System.Collections.Generic.KeyValuePair`2<TKey,TValue> System.Collections.Generic.Dictionary`2/Enumerator::_current
-	KeyValuePair_2_t77D15A38C6197D8EF2F3685102450E1FB48F13C7 ____current_3;
-	// System.Int32 System.Collections.Generic.Dictionary`2/Enumerator::_getEnumeratorRetType
-	int32_t ____getEnumeratorRetType_4;
-};
-
 // System.Collections.Generic.Dictionary`2/Enumerator<System.Int32,System.ValueTuple`2<System.Object,Oculus.Avatar2.OvrAvatarMaterial/PropertyType>>
 struct Enumerator_tE2406962D544D3AB446EC0EEBE803A4BE3E07C51 
 {
@@ -5796,6 +5704,11 @@ struct Action_1_t3CB5D1A819C3ED3F99E9E39F890F18633253949A  : public MulticastDel
 
 // Oculus.Avatar2.OvrAvatarLog/AssertLessThanMessageBuilder`1<System.Int32>
 struct AssertLessThanMessageBuilder_1_t2C55B15A9C2A758C92FAE5EF509A7B674B83686B  : public MulticastDelegate_t
+{
+};
+
+// Oculus.Avatar2.OvrAvatarLog/AssertLessThanMessageBuilder`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct AssertLessThanMessageBuilder_1_tD2D8026BDEB9CCF7A4666CE8FA47E7FBD1FE0539  : public MulticastDelegate_t
 {
 };
 
@@ -7732,78 +7645,19 @@ struct ovrAvatar2BoneU5BU5D_tB703FF2A0DBD6B449412C8583BB5F7327D869933  : public 
 		m_Items[index] = value;
 	}
 };
-// System.Int32Enum[]
-struct Int32EnumU5BU5D_t87B7DB802810C38016332669039EF42C487A081F  : public RuntimeArray
+// Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType[]
+struct __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC  : public RuntimeArray
 {
-	ALIGN_FIELD (8) int32_t m_Items[1];
+	ALIGN_FIELD (8) uint8_t m_Items[1];
 
-	inline int32_t GetAt(il2cpp_array_size_t index) const
+	inline uint8_t* GetAddressAt(il2cpp_array_size_t index)
 	{
 		IL2CPP_ARRAY_BOUNDS_CHECK(index, (uint32_t)(this)->max_length);
-		return m_Items[index];
+		return m_Items + il2cpp_array_calc_byte_offset(this, index);
 	}
-	inline int32_t* GetAddressAt(il2cpp_array_size_t index)
+	inline uint8_t* GetAddressAtUnchecked(il2cpp_array_size_t index)
 	{
-		IL2CPP_ARRAY_BOUNDS_CHECK(index, (uint32_t)(this)->max_length);
-		return m_Items + index;
-	}
-	inline void SetAt(il2cpp_array_size_t index, int32_t value)
-	{
-		IL2CPP_ARRAY_BOUNDS_CHECK(index, (uint32_t)(this)->max_length);
-		m_Items[index] = value;
-	}
-	inline int32_t GetAtUnchecked(il2cpp_array_size_t index) const
-	{
-		return m_Items[index];
-	}
-	inline int32_t* GetAddressAtUnchecked(il2cpp_array_size_t index)
-	{
-		return m_Items + index;
-	}
-	inline void SetAtUnchecked(il2cpp_array_size_t index, int32_t value)
-	{
-		m_Items[index] = value;
-	}
-};
-// Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Object>[]
-struct ExtensionEntry_1U5BU5D_t58ADB2727CD608F7B5074931EAAA085F94A912F4  : public RuntimeArray
-{
-	ALIGN_FIELD (8) ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1 m_Items[1];
-
-	inline ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1 GetAt(il2cpp_array_size_t index) const
-	{
-		IL2CPP_ARRAY_BOUNDS_CHECK(index, (uint32_t)(this)->max_length);
-		return m_Items[index];
-	}
-	inline ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1* GetAddressAt(il2cpp_array_size_t index)
-	{
-		IL2CPP_ARRAY_BOUNDS_CHECK(index, (uint32_t)(this)->max_length);
-		return m_Items + index;
-	}
-	inline void SetAt(il2cpp_array_size_t index, ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1 value)
-	{
-		IL2CPP_ARRAY_BOUNDS_CHECK(index, (uint32_t)(this)->max_length);
-		m_Items[index] = value;
-		Il2CppCodeGenWriteBarrier((void**)&((m_Items + index)->____name_0), (void*)NULL);
-		#if IL2CPP_ENABLE_STRICT_WRITE_BARRIERS
-		Il2CppCodeGenWriteBarrier((void**)&((m_Items + index)->____payload_1), (void*)NULL);
-		#endif
-	}
-	inline ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1 GetAtUnchecked(il2cpp_array_size_t index) const
-	{
-		return m_Items[index];
-	}
-	inline ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1* GetAddressAtUnchecked(il2cpp_array_size_t index)
-	{
-		return m_Items + index;
-	}
-	inline void SetAtUnchecked(il2cpp_array_size_t index, ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1 value)
-	{
-		m_Items[index] = value;
-		Il2CppCodeGenWriteBarrier((void**)&((m_Items + index)->____name_0), (void*)NULL);
-		#if IL2CPP_ENABLE_STRICT_WRITE_BARRIERS
-		Il2CppCodeGenWriteBarrier((void**)&((m_Items + index)->____payload_1), (void*)NULL);
-		#endif
+		return m_Items + il2cpp_array_calc_byte_offset(this, index);
 	}
 };
 
@@ -7826,440 +7680,224 @@ IL2CPP_EXTERN_C void ovrAvatar2HandTrackingDataContext_t5EC3698D6C7970CC0E8A2F43
 IL2CPP_EXTERN_C void ovrAvatar2HandTrackingDataContext_t5EC3698D6C7970CC0E8A2F43BEDC90FBC2D3CE1C_marshal_pinvoke_back(const ovrAvatar2HandTrackingDataContext_t5EC3698D6C7970CC0E8A2F43BEDC90FBC2D3CE1C_marshaled_pinvoke& marshaled, ovrAvatar2HandTrackingDataContext_t5EC3698D6C7970CC0E8A2F43BEDC90FBC2D3CE1C& unmarshaled);
 IL2CPP_EXTERN_C void ovrAvatar2HandTrackingDataContext_t5EC3698D6C7970CC0E8A2F43BEDC90FBC2D3CE1C_marshal_pinvoke_cleanup(ovrAvatar2HandTrackingDataContext_t5EC3698D6C7970CC0E8A2F43BEDC90FBC2D3CE1C_marshaled_pinvoke& marshaled);
 
-// System.Void System.Collections.Generic.List`1<System.Object>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2StreamingPlaybackState>::get_HasValue()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_mCD69EFFC135329B265E578E50CBDAFD4E8258B53_gshared_inline (Nullable_1_tEE876B0A383DEE0B818E0DD33CD2721195BC5AD4* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1<System.Object>::Clear()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Clear_m16C1F2C61FED5955F10EB36BC1CB2DF34B128994_gshared_inline (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, const RuntimeMethod* method) ;
-// System.Void UnityEngine.Events.UnityEvent`1<System.Int32Enum>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnityEvent_1__ctor_mB02CA1F5BD6D866640636D18011AC3329058C26B_gshared (UnityEvent_1_t090B79D1A655BCAB01BC91C7409AC476DC731B81* __this, const RuntimeMethod* method) ;
-// System.Void UnityEngine.Events.UnityEvent`1<System.Object>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnityEvent_1__ctor_m8D77F4F05F69D0E52E8A445322811EEC25987525_gshared (UnityEvent_1_t3CE03B42D5873C0C0E0692BEE72E1E6D5399F205* __this, const RuntimeMethod* method) ;
-// System.Void UnityEngine.Events.UnityEvent`2<System.Object,Oculus.Avatar2.CAPI/ovrAvatar2LoadRequestInfo>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnityEvent_2__ctor_m84215DA1B6E84B48A17E949933C424B8808A8B39_gshared (UnityEvent_2_t391CAFF2DB6C4A472E0F4FAB8EB79ECF8F519974* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.HashSet`1<System.Object>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void HashSet_1__ctor_m9132EE1422BAA45E44B7FFF495F378790D36D90E_gshared (HashSet_1_t2F33BEB06EEA4A872E2FAF464382422AA39AE885* __this, const RuntimeMethod* method) ;
-// System.Int32 System.Collections.Generic.HashSet`1<System.Object>::get_Count()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t HashSet_1_get_Count_m41CC85EEB7855CEFA3BC7A32F115387939318ED3_gshared_inline (HashSet_1_t2F33BEB06EEA4A872E2FAF464382422AA39AE885* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.HashSet`1<System.Object>::Add(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool HashSet_1_Add_m2CD7657B3459B61DD4BBA47024AC71F7D319658B_gshared (HashSet_1_t2F33BEB06EEA4A872E2FAF464382422AA39AE885* __this, RuntimeObject* ___item0, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.HashSet`1<System.Object>::Remove(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool HashSet_1_Remove_mF1D84C0A2829DDA2A0CEE1D82A5B999B5F6627CB_gshared (HashSet_1_t2F33BEB06EEA4A872E2FAF464382422AA39AE885* __this, RuntimeObject* ___item0, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.HashSet`1<System.Object>::Clear()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void HashSet_1_Clear_m75A6528F0B47448EB3B3A05EC379260E9BDFC2DD_gshared (HashSet_1_t2F33BEB06EEA4A872E2FAF464382422AA39AE885* __this, const RuntimeMethod* method) ;
-// System.Void Oculus.Avatar2.EntityJointMonitorBase`1<System.Object>::.ctor(Oculus.Avatar2.OvrAvatarEntity)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EntityJointMonitorBase_1__ctor_mE5B1E85142C4A174962ADB92E0FF15827B38EA92_gshared (EntityJointMonitorBase_1_t82C051D9CB5616D267CE631E49DFF1361727B96B* __this, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* ___entity0, const RuntimeMethod* method) ;
-// UnityEngine.Transform Oculus.Avatar2.EntityJointMonitorBase`1<System.Object>::CreateNewTransform(Oculus.Avatar2.CAPI/ovrAvatar2JointType)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* EntityJointMonitorBase_1_CreateNewTransform_m2E4FC9205710DFDCCBC93E022B78CAAABB4A6EFB_gshared (EntityJointMonitorBase_1_t82C051D9CB5616D267CE631E49DFF1361727B96B* __this, int32_t ___jointType0, const RuntimeMethod* method) ;
-// System.Collections.Generic.Dictionary`2/ValueCollection<Oculus.Avatar2.CAPI/ovrAvatar2JointType,T> Oculus.Avatar2.EntityJointMonitorBase`1<System.Object>::GetAllJointData()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ValueCollection_tDBEA273722AD171D8B327AC7B739C7D3AC7AA9CF* EntityJointMonitorBase_1_GetAllJointData_mDEE178B3B542CCE784EAA21103DE15A632A8CADC_gshared (EntityJointMonitorBase_1_t82C051D9CB5616D267CE631E49DFF1361727B96B* __this, const RuntimeMethod* method) ;
-// System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator<TKey,TValue> System.Collections.Generic.Dictionary`2/ValueCollection<System.Int32Enum,System.Object>::GetEnumerator()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Enumerator_tF9B1C7464F1BFE1675CFE608CC62D4507968CF08 ValueCollection_GetEnumerator_m412091D90257E6493D8F9404FFC734832E1C5007_gshared (ValueCollection_tB299C06E8B49BF406A8E6B012CEB2F5086FD124D* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator<System.Int32Enum,System.Object>::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Enumerator_Dispose_m51A04B4A4A98EC6004015ECF7C9605316687CBD3_gshared (Enumerator_tF9B1C7464F1BFE1675CFE608CC62D4507968CF08* __this, const RuntimeMethod* method) ;
-// TValue System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator<System.Int32Enum,System.Object>::get_Current()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* Enumerator_get_Current_m76B0ECD4B03E606A1CE3DF60589D2E97130B02CA_gshared_inline (Enumerator_tF9B1C7464F1BFE1675CFE608CC62D4507968CF08* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator<System.Int32Enum,System.Object>::MoveNext()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Enumerator_MoveNext_m30C883F9DF743472B2102F74D70DA61074694D1E_gshared (Enumerator_tF9B1C7464F1BFE1675CFE608CC62D4507968CF08* __this, const RuntimeMethod* method) ;
-// T[] System.Array::Empty<System.Object>()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_gshared_inline (const RuntimeMethod* method) ;
-// System.Void Oculus.Avatar2.EntityJointMonitorBase`1<System.Object>::DisposeJointData(Oculus.Avatar2.CAPI/ovrAvatar2JointType,T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EntityJointMonitorBase_1_DisposeJointData_mE28730DF9B4DFB06CB9C4792C71A4520F9B2975D_gshared (EntityJointMonitorBase_1_t82C051D9CB5616D267CE631E49DFF1361727B96B* __this, int32_t ___jointType0, RuntimeObject* ___jointData1, const RuntimeMethod* method) ;
-// System.Void Unity.Collections.NativeArray`1<Oculus.Avatar2.OvrAvatarEntitySmoothingJointJobMonitor/JointPose>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeArray_1__ctor_m69B6A1E68EC71FBE274FC004B3255A9427290EB9_gshared (NativeArray_1_t802F061E70652C1B3E3D0AE10B23C356824ABF59* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method) ;
-// System.Void System.Array::Resize<System.Object>(T[]&,System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Array_Resize_TisRuntimeObject_mE8D92C287251BAF8256D85E5829F749359EC334E_gshared (ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918** ___array0, int32_t ___newSize1, const RuntimeMethod* method) ;
-// System.Boolean Unity.Collections.NativeArray`1<Oculus.Avatar2.OvrAvatarEntitySmoothingJointJobMonitor/JointPose>::get_IsCreated()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool NativeArray_1_get_IsCreated_mB3954DEB9E37C75BE45A077D2DDF447F7C679DAC_gshared (NativeArray_1_t802F061E70652C1B3E3D0AE10B23C356824ABF59* __this, const RuntimeMethod* method) ;
-// System.Void Unity.Collections.NativeArray`1<Oculus.Avatar2.OvrAvatarEntitySmoothingJointJobMonitor/JointPose>::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeArray_1_Dispose_m06D4289DE75F7365678CD5876C39691D34BFCFF4_gshared (NativeArray_1_t802F061E70652C1B3E3D0AE10B23C356824ABF59* __this, const RuntimeMethod* method) ;
-// Unity.Jobs.JobHandle UnityEngine.Jobs.IJobParallelForTransformExtensions::Schedule<Oculus.Avatar2.OvrAvatarEntitySmoothingJointJobMonitor/UpdateJointTransformsJob>(T,UnityEngine.Jobs.TransformAccessArray,Unity.Jobs.JobHandle)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForTransformExtensions_Schedule_TisUpdateJointTransformsJob_t6CE83E6147BB0C684B728326BA3E296FF56603D3_mEC4E4097BF9924E5855DE899A75E07533081073C_gshared (UpdateJointTransformsJob_t6CE83E6147BB0C684B728326BA3E296FF56603D3 ___jobData0, TransformAccessArray_t104EDE5BB3DC7E294332BB1D2AA508CAEDEE83D4 ___transforms1, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn2, const RuntimeMethod* method) ;
-// System.Void Oculus.Avatar2.EntityJointMonitorBase`1<System.Object>::Dispose(System.Boolean)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EntityJointMonitorBase_1_Dispose_m40EE759975C9B1A368780C3E2C66CA3175CAE26B_gshared (EntityJointMonitorBase_1_t82C051D9CB5616D267CE631E49DFF1361727B96B* __this, bool ___isDispose0, const RuntimeMethod* method) ;
-// T* Oculus.Avatar2.OvrAvatarHelperExtensions::GetReadonlyPtr<Oculus.Avatar2.OvrAvatarEntitySmoothingJointJobMonitor/JointPose>(Unity.Collections.NativeArray`1<T>&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JointPose_t469B8A86C56520D9A39DA487F942D1BF51DD141B* OvrAvatarHelperExtensions_GetReadonlyPtr_TisJointPose_t469B8A86C56520D9A39DA487F942D1BF51DD141B_m30AEBED0458FBE406746022C01438C66A2C02EE0_gshared (NativeArray_1_t802F061E70652C1B3E3D0AE10B23C356824ABF59* ___array0, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, const RuntimeMethod* method) ;
+// System.Boolean System.Nullable`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::get_HasValue()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_m14F273FB376DF00D727434CDCD28AB4EDCC14C3C_gshared_inline (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339* __this, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Clear()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Clear_mD615D1BCB2C9DD91DAD86A2F9E5CF1DFFCBF7925_gshared_inline (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, const RuntimeMethod* method) ;
+// System.Void UnityEngine.Events.UnityEvent`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnityEvent_1__ctor_m174C3AF06DAD8FF5ABF88D1A43EE8EE2B5670A2D_gshared (UnityEvent_1_t2A2840A12C919146C6D21E86D7DAA8E3DAB74030* __this, const RuntimeMethod* method) ;
+// System.Void UnityEngine.Events.UnityEvent`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnityEvent_2__ctor_m0798E1A7C273C7F46CA7F62E0368AE5CABF790C0_gshared (UnityEvent_2_t4000343C3337D1FF4300FFA119D84820B0628F1F* __this, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.HashSet`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void HashSet_1__ctor_m5E12B490550D90B0686D55F8F4E7B0506BD07120_gshared (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87* __this, const RuntimeMethod* method) ;
+// System.Int32 System.Collections.Generic.HashSet`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Count()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t HashSet_1_get_Count_mA764DCA3CB14CB2CBDF742A163492FF4DA515B63_gshared_inline (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87* __this, const RuntimeMethod* method) ;
+// System.Boolean System.Collections.Generic.HashSet`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Add(T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool HashSet_1_Add_m73E14DB94D21272EEE1E28E4D74704B0095D8064_gshared (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) ;
+// System.Boolean System.Collections.Generic.HashSet`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Remove(T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool HashSet_1_Remove_mE12E434B402CFEB49197444DE1D52A3AE4C7F6EE_gshared (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.HashSet`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Clear()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void HashSet_1_Clear_mCD863950F0D273BF34801FDD92CBEC230ECD5A6D_gshared (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87* __this, const RuntimeMethod* method) ;
+// System.Void Oculus.Avatar2.EntityJointMonitorBase`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor(Oculus.Avatar2.OvrAvatarEntity)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EntityJointMonitorBase_1__ctor_mA6798EA8088AE58F4FB9968D8277F7100125A66D_gshared (EntityJointMonitorBase_1_t3A41835CDC6B2C5F9769AED071587880A093FABF* __this, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* ___entity0, const RuntimeMethod* method) ;
+// UnityEngine.Transform Oculus.Avatar2.EntityJointMonitorBase`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::CreateNewTransform(Oculus.Avatar2.CAPI/ovrAvatar2JointType)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* EntityJointMonitorBase_1_CreateNewTransform_m574EBDE96023C6A3419D16419B24178800C859D6_gshared (EntityJointMonitorBase_1_t3A41835CDC6B2C5F9769AED071587880A093FABF* __this, int32_t ___jointType0, const RuntimeMethod* method) ;
+// System.Collections.Generic.Dictionary`2/ValueCollection<Oculus.Avatar2.CAPI/ovrAvatar2JointType,T> Oculus.Avatar2.EntityJointMonitorBase`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::GetAllJointData()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ValueCollection_t450E7F9D9DBE020E1659D9AE70B6454215CC51D5* EntityJointMonitorBase_1_GetAllJointData_mE857F0533B863CD64A05218200525EADFB94E0CA_gshared (EntityJointMonitorBase_1_t3A41835CDC6B2C5F9769AED071587880A093FABF* __this, const RuntimeMethod* method) ;
+// System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator<TKey,TValue> System.Collections.Generic.Dictionary`2/ValueCollection<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::GetEnumerator()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ValueCollection_GetEnumerator_m22BB9C6494A679370661D0B6DA1FA7EF744281EA_gshared (ValueCollection_tC492596681BD51AB34FC76FA76C15C9B3FFB7B40* __this, Enumerator_tEEF12A9EDAAA0461A72ED9491F6AC20B22440222* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Dispose()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Enumerator_Dispose_mB05777B182DD6D8C5ED21811C2CA95405D2743F8_gshared (Enumerator_tEEF12A9EDAAA0461A72ED9491F6AC20B22440222* __this, const RuntimeMethod* method) ;
+// TValue System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Current()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Enumerator_get_Current_m77681472C32B9ABB97AE602C0D4C365A0A8E8ACE_gshared_inline (Enumerator_tEEF12A9EDAAA0461A72ED9491F6AC20B22440222* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Boolean System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::MoveNext()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Enumerator_MoveNext_m297C3CEEAAC8D29D8F7C93E0801CD1D362D1C66F_gshared (Enumerator_tEEF12A9EDAAA0461A72ED9491F6AC20B22440222* __this, const RuntimeMethod* method) ;
+// T[] System.Array::Empty<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* Array_Empty_TisIl2CppFullySharedGenericAny_m244E2A51B33F845A2093F0862FBCE502E4FDD868_gshared_inline (const RuntimeMethod* method) ;
+// System.Void Oculus.Avatar2.EntityJointMonitorBase`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::DisposeJointData(Oculus.Avatar2.CAPI/ovrAvatar2JointType,T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EntityJointMonitorBase_1_DisposeJointData_m4E19F0EDA65253CC15A9C77F1C47944702E1DF8D_gshared (EntityJointMonitorBase_1_t3A41835CDC6B2C5F9769AED071587880A093FABF* __this, int32_t ___jointType0, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___jointData1, const RuntimeMethod* method) ;
+// System.Void Unity.Collections.NativeArray`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeArray_1__ctor_m788DE0F85C4051DDF092DDF96484DE655ACFB6F1_gshared (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method) ;
+// System.Void System.Array::Resize<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>(T[]&,System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Array_Resize_TisIl2CppFullySharedGenericAny_m263FC41C8DB989397C43C86556D63CEBE13F4712_gshared (__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC** ___array0, int32_t ___newSize1, const RuntimeMethod* method) ;
+// System.Boolean Unity.Collections.NativeArray`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::get_IsCreated()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool NativeArray_1_get_IsCreated_m527A2C3B75C25BFF29D1D9EA88C81172FF4F5A5A_gshared (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18* __this, const RuntimeMethod* method) ;
+// System.Void Unity.Collections.NativeArray`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::Dispose()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeArray_1_Dispose_m365A262FA4CA431467F021D7732CECD68316AF80_gshared (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18* __this, const RuntimeMethod* method) ;
+// Unity.Jobs.JobHandle UnityEngine.Jobs.IJobParallelForTransformExtensions::Schedule<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>(T,UnityEngine.Jobs.TransformAccessArray,Unity.Jobs.JobHandle)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForTransformExtensions_Schedule_TisIl2CppFullySharedGenericStruct_mF63AA368751F216D7DEFE8808AA6890F5FE75B38_gshared (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct ___jobData0, TransformAccessArray_t104EDE5BB3DC7E294332BB1D2AA508CAEDEE83D4 ___transforms1, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn2, const RuntimeMethod* method) ;
+// System.Void Oculus.Avatar2.EntityJointMonitorBase`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Dispose(System.Boolean)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void EntityJointMonitorBase_1_Dispose_m658E9D73F932C74384D48B06C832DBDA26E8FCBE_gshared (EntityJointMonitorBase_1_t3A41835CDC6B2C5F9769AED071587880A093FABF* __this, bool ___isDispose0, const RuntimeMethod* method) ;
+// T* Oculus.Avatar2.OvrAvatarHelperExtensions::GetReadonlyPtr<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>(Unity.Collections.NativeArray`1<T>&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Il2CppFullySharedGenericStruct* OvrAvatarHelperExtensions_GetReadonlyPtr_TisIl2CppFullySharedGenericStruct_m9F0798CE0035AE16365D8D1557B191C1C29E501F_gshared (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18* ___array0, const RuntimeMethod* method) ;
 // T Oculus.Avatar2.OvrAvatarCallbackContextBase::GetInstance<System.Object>(System.IntPtr)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* OvrAvatarCallbackContextBase_GetInstance_TisRuntimeObject_m001159409F3C09FD23955D6291D4CD37ADD0CCD7_gshared (intptr_t ___handle0, const RuntimeMethod* method) ;
 // T Oculus.Avatar2.OvrSingletonBehaviour`1<System.Object>::get_Instance()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* OvrSingletonBehaviour_1_get_Instance_mA14DDC196D96469E10501B39B513A282283FEC75_gshared_inline (const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1<System.Object>::Add(T)
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Add_mEBCF994CC3814631017F46A387B1A192ED6C85C7_gshared_inline (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, RuntimeObject* ___item0, const RuntimeMethod* method) ;
-// System.Int32 System.Collections.Generic.List`1<System.Object>::IndexOf(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t List_1_IndexOf_m378F61BA812B79DEE58D86FE8AA9F20E3FC7D85F_gshared (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, RuntimeObject* ___item0, const RuntimeMethod* method) ;
-// System.Int32 System.Collections.Generic.List`1<System.Object>::get_Count()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t List_1_get_Count_m4407E4C389F22B8CEC282C15D56516658746C383_gshared_inline (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, const RuntimeMethod* method) ;
-// T System.Collections.Generic.List`1<System.Object>::get_Item(System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* List_1_get_Item_m33561245D64798C2AB07584C0EC4F240E4839A38_gshared (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, int32_t ___index0, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1<System.Object>::set_Item(System.Int32,T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1_set_Item_m3C58DBC69A321AF2826595584FF3E9F43C07EA56_gshared (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, int32_t ___index0, RuntimeObject* ___value1, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1<System.Object>::RemoveAt(System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1_RemoveAt_m54F62297ADEE4D4FDA697F49ED807BF901201B54_gshared (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, int32_t ___index0, const RuntimeMethod* method) ;
-// System.Int32 System.Collections.Generic.List`1<System.Object>::get_Capacity()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t List_1_get_Capacity_mF05ADA0EC0B9CC71EDE6D06F6A33A50705EEA32D_gshared (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, const RuntimeMethod* method) ;
-// System.Collections.Generic.List`1/Enumerator<T> System.Collections.Generic.List`1<System.Object>::GetEnumerator()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Enumerator_t9473BAB568A27E2339D48C1F91319E0F6D244D7A List_1_GetEnumerator_mD8294A7FA2BEB1929487127D476F8EC1CDC23BFC_gshared (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1/Enumerator<System.Object>::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Enumerator_Dispose_mD9DC3E3C3697830A4823047AB29A77DBBB5ED419_gshared (Enumerator_t9473BAB568A27E2339D48C1F91319E0F6D244D7A* __this, const RuntimeMethod* method) ;
-// T System.Collections.Generic.List`1/Enumerator<System.Object>::get_Current()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* Enumerator_get_Current_m6330F15D18EE4F547C05DF9BF83C5EB710376027_gshared_inline (Enumerator_t9473BAB568A27E2339D48C1F91319E0F6D244D7A* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.List`1/Enumerator<System.Object>::MoveNext()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Enumerator_MoveNext_mE921CC8F29FBBDE7CC3209A0ED0D921D58D00BCB_gshared (Enumerator_t9473BAB568A27E2339D48C1F91319E0F6D244D7A* __this, const RuntimeMethod* method) ;
-// System.String Oculus.Avatar2.OvrAvatarLog/AssertLessThanMessageBuilder`1<System.Int32>::Invoke(T& modreq(System.Runtime.InteropServices.InAttribute),T& modreq(System.Runtime.InteropServices.InAttribute))
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR String_t* AssertLessThanMessageBuilder_1_Invoke_m760BBFF184B1874F08F9797614592D3166526C98_gshared_inline (AssertLessThanMessageBuilder_1_t2C55B15A9C2A758C92FAE5EF509A7B674B83686B* __this, int32_t* ___lhs0, int32_t* ___rhs1, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Add(T)
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Add_mD4F3498FBD3BDD3F03CBCFB38041CBAC9C28CAFC_gshared_inline (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) ;
+// System.Int32 System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::IndexOf(T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t List_1_IndexOf_m1FFA888B47CE3256B0AC301302FAD79AAAFC0818_gshared (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) ;
+// System.Int32 System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Count()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t List_1_get_Count_mD2ED26ACAF3BAF386FFEA83893BA51DB9FD8BA30_gshared_inline (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, const RuntimeMethod* method) ;
+// T System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Item(System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1_get_Item_m6E4BA37C1FB558E4A62AE4324212E45D09C5C937_gshared (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, int32_t ___index0, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::set_Item(System.Int32,T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1_set_Item_m9A958091885CC5363CCFE9F0BC472EAFCB56C813_gshared (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, int32_t ___index0, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___value1, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::RemoveAt(System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1_RemoveAt_mF6C23E9072D8CBE2872705E7E4D08BDB78770F5C_gshared (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, int32_t ___index0, const RuntimeMethod* method) ;
+// System.Int32 System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Capacity()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t List_1_get_Capacity_m5BE6D733C76E1AB093FB6D2783220A5B96EF61DF_gshared (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, const RuntimeMethod* method) ;
+// System.Collections.Generic.List`1/Enumerator<T> System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::GetEnumerator()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1_GetEnumerator_m8B2A92ACD4FBA5FBDC3F6F4F5C23A0DDF491DA61_gshared (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.List`1/Enumerator<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Dispose()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Enumerator_Dispose_mFE1EBE6F6425283FEAEAE7C79D02CDE4F9D367E8_gshared (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF* __this, const RuntimeMethod* method) ;
+// T System.Collections.Generic.List`1/Enumerator<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Current()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Enumerator_get_Current_m8B42D4B2DE853B9D11B997120CD0228D4780E394_gshared_inline (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Boolean System.Collections.Generic.List`1/Enumerator<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::MoveNext()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Enumerator_MoveNext_m8D8E5E878AF0A88A535AB1AB5BA4F23E151A678A_gshared (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF* __this, const RuntimeMethod* method) ;
+// System.String Oculus.Avatar2.OvrAvatarLog/AssertLessThanMessageBuilder`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Invoke(T& modreq(System.Runtime.InteropServices.InAttribute),T& modreq(System.Runtime.InteropServices.InAttribute))
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR String_t* AssertLessThanMessageBuilder_1_Invoke_m53D46E53EA865E74BD06BA662928F46C486B8C72_gshared_inline (AssertLessThanMessageBuilder_1_tD2D8026BDEB9CCF7A4666CE8FA47E7FBD1FE0539* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType& modreq(System.Runtime.InteropServices.InAttribute)*/Il2CppFullySharedGenericAny* ___lhs0, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType& modreq(System.Runtime.InteropServices.InAttribute)*/Il2CppFullySharedGenericAny* ___rhs1, const RuntimeMethod* method) ;
 // System.Void Oculus.Avatar2.OvrSingletonBehaviour`1<System.Object>::Instantiate()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrSingletonBehaviour_1_Instantiate_m9A47E8A1080FCF91D4B6CB8F21AFD031419CF03C_gshared (const RuntimeMethod* method) ;
 // T UnityEngine.GameObject::AddComponent<System.Object>()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* GameObject_AddComponent_TisRuntimeObject_m69B93700FACCF372F5753371C6E8FB780800B824_gshared (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, const RuntimeMethod* method) ;
-// System.Void* Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::GetUnsafePtr<System.Int32Enum>(Unity.Collections.NativeArray`1<T>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void* NativeArrayUnsafeUtility_GetUnsafePtr_TisInt32Enum_tCBAC8BA2BFF3A845FA599F303093BBBA374B6F0C_mEE7B3ECD03DC7652CE142D844C76E71B0DC5DC1D_gshared (NativeArray_1_tE0DCAF7ED58915BC160F767E310F0F0A55B6BC75 ___nativeArray0, const RuntimeMethod* method) ;
-// System.Void* Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::GetUnsafePtr<System.Boolean>(Unity.Collections.NativeArray`1<T>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void* NativeArrayUnsafeUtility_GetUnsafePtr_TisBoolean_t09A6377A54BE2F9E6985A8149F19234FD7DDFE22_m41896E2964C3EA3FA819964F34DD768F13ACE89C_gshared (NativeArray_1_t107C57D0357BCF9956A60495CD8FAADDF1D26AFB ___nativeArray0, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1<System.Object>::CopyTo(T[])
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1_CopyTo_mDA4751F464411AB4C757C63C6EDBF4891BFD6891_gshared (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ___array0, const RuntimeMethod* method) ;
-// System.Void Unity.Collections.NativeArray`1<System.Int32Enum>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeArray_1__ctor_m0D4D6107C1C882F6D813E0CC53744262582D6110_gshared (NativeArray_1_tE0DCAF7ED58915BC160F767E310F0F0A55B6BC75* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method) ;
-// System.Void Unity.Collections.NativeArray`1<System.Boolean>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeArray_1__ctor_m262609CCB123CE8BB59524B83D08D2CFA8C33A86_gshared (NativeArray_1_t107C57D0357BCF9956A60495CD8FAADDF1D26AFB* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method) ;
-// System.Void Unity.Collections.NativeArray`1<Oculus.Avatar2.CAPI/ovrAvatar2Transform>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void NativeArray_1__ctor_mF5A17580467FF6F0011D164FE4C441C1688C1F49_gshared (NativeArray_1_tA8A08AFF143B7319E7BD4C94856D04CB6F0A5C95* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method) ;
-// T* Oculus.Avatar2.OvrAvatarHelperExtensions::GetPtr<System.Int32Enum>(Unity.Collections.NativeArray`1<T>&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t* OvrAvatarHelperExtensions_GetPtr_TisInt32Enum_tCBAC8BA2BFF3A845FA599F303093BBBA374B6F0C_m9174A4942B425842E9CDAE9302FEDE7028E7C6BD_gshared (NativeArray_1_tE0DCAF7ED58915BC160F767E310F0F0A55B6BC75* ___array0, const RuntimeMethod* method) ;
-// T* Oculus.Avatar2.OvrAvatarHelperExtensions::GetPtr<Oculus.Avatar2.CAPI/ovrAvatar2Transform>(Unity.Collections.NativeArray`1<T>&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ovrAvatar2Transform_tB3FB6C9DDF9E2C72D21992CCEA1B928DC9B5D554* OvrAvatarHelperExtensions_GetPtr_TisovrAvatar2Transform_tB3FB6C9DDF9E2C72D21992CCEA1B928DC9B5D554_m33036D17093751DD640DBF46737B4859218B9831_gshared (NativeArray_1_tA8A08AFF143B7319E7BD4C94856D04CB6F0A5C95* ___array0, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.List`1<System.Object>::Remove(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool List_1_Remove_m4DFA48F4CEB9169601E75FC28517C5C06EFA5AD7_gshared (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, RuntimeObject* ___item0, const RuntimeMethod* method) ;
-// System.Int32 System.Collections.Generic.Dictionary`2<System.Int32Enum,System.Object>::get_Count()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Dictionary_2_get_Count_m44D61ECE58FF6B6BC5BB779226F0461383D152EF_gshared (Dictionary_2_t514396B90715EDD83BB0470C76C2F426F9381C71* __this, const RuntimeMethod* method) ;
-// System.Collections.Generic.Dictionary`2/ValueCollection<TKey,TValue> System.Collections.Generic.Dictionary`2<System.Int32Enum,System.Object>::get_Values()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ValueCollection_tB299C06E8B49BF406A8E6B012CEB2F5086FD124D* Dictionary_2_get_Values_m88548D48A871D5B79DB4BAAB82C62D4D61568F64_gshared (Dictionary_2_t514396B90715EDD83BB0470C76C2F426F9381C71* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2/ValueCollection<System.Int32Enum,System.Object>::CopyTo(TValue[],System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ValueCollection_CopyTo_mEF6CF2DBA4E1381D8493C4F4165EF311C0810B61_gshared (ValueCollection_tB299C06E8B49BF406A8E6B012CEB2F5086FD124D* __this, ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ___array0, int32_t ___index1, const RuntimeMethod* method) ;
-// System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> System.Collections.Generic.Dictionary`2<System.Int32Enum,System.Object>::GetEnumerator()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Enumerator_t72F234BE749BE6BA202FC41626B5E819E4F208B4 Dictionary_2_GetEnumerator_m4126F9137DF46492CEB1563FCCD5A16C5F99D686_gshared (Dictionary_2_t514396B90715EDD83BB0470C76C2F426F9381C71* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2/Enumerator<System.Int32Enum,System.Object>::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Enumerator_Dispose_m183A70972A3287360EE9443997160D3AA6D4662D_gshared (Enumerator_t72F234BE749BE6BA202FC41626B5E819E4F208B4* __this, const RuntimeMethod* method) ;
-// System.Collections.Generic.KeyValuePair`2<TKey,TValue> System.Collections.Generic.Dictionary`2/Enumerator<System.Int32Enum,System.Object>::get_Current()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR KeyValuePair_2_tF70DDE0C5A349727371FB070D433FA147032A13B Enumerator_get_Current_m12EE850D56E586DF121B059557CEAF4A7472995B_gshared_inline (Enumerator_t72F234BE749BE6BA202FC41626B5E819E4F208B4* __this, const RuntimeMethod* method) ;
-// TValue System.Collections.Generic.KeyValuePair`2<System.Int32Enum,System.Object>::get_Value()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* KeyValuePair_2_get_Value_m415A21240AEF58C2E0A2FBA97E2BB75637781DB5_gshared_inline (KeyValuePair_2_tF70DDE0C5A349727371FB070D433FA147032A13B* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.Dictionary`2/Enumerator<System.Int32Enum,System.Object>::MoveNext()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Enumerator_MoveNext_m48EC022EB2EB605F29EE19F3A0A79E3CB05FD283_gshared (Enumerator_t72F234BE749BE6BA202FC41626B5E819E4F208B4* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Int32Enum,System.Object>::Clear()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_Clear_m763AA956A8325F527F831F49E2563FF2871A680E_gshared (Dictionary_2_t514396B90715EDD83BB0470C76C2F426F9381C71* __this, const RuntimeMethod* method) ;
+// System.Void* Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::GetUnsafePtr<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>(Unity.Collections.NativeArray`1<T>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void* NativeArrayUnsafeUtility_GetUnsafePtr_TisIl2CppFullySharedGenericStruct_m4AB802D5B1B296D0F976C1E7631699B0C4A4D00F_gshared (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 ___nativeArray0, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::CopyTo(T[])
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1_CopyTo_m9632CAFAB9E06DBDE71886CC36E6C910F8350F9C_gshared (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* ___array0, const RuntimeMethod* method) ;
+// T* Oculus.Avatar2.OvrAvatarHelperExtensions::GetPtr<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>(Unity.Collections.NativeArray`1<T>&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Il2CppFullySharedGenericStruct* OvrAvatarHelperExtensions_GetPtr_TisIl2CppFullySharedGenericStruct_m80D4AB5BC6B71EA78B7B6FE4383257BF05F52BF2_gshared (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18* ___array0, const RuntimeMethod* method) ;
+// System.Boolean System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Remove(T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool List_1_Remove_m9BCE8CEF94E6F2BF8624D65214FF4F3CA686D60C_gshared (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) ;
+// System.Int32 System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Count()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Dictionary_2_get_Count_mBB454C6743410D3E06D44D494D4D6FF4CBBBDB1E_gshared (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E* __this, const RuntimeMethod* method) ;
+// System.Collections.Generic.Dictionary`2/ValueCollection<TKey,TValue> System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Values()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ValueCollection_tC492596681BD51AB34FC76FA76C15C9B3FFB7B40* Dictionary_2_get_Values_mE06FB7381D8152E35F0716DC7FE13788362112A7_gshared (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E* __this, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.Dictionary`2/ValueCollection<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::CopyTo(TValue[],System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ValueCollection_CopyTo_m07B10CD2540C75750331E4ABF3792B35FAF94F99_gshared (ValueCollection_tC492596681BD51AB34FC76FA76C15C9B3FFB7B40* __this, __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* ___array0, int32_t ___index1, const RuntimeMethod* method) ;
+// System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::GetEnumerator()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_GetEnumerator_mEC4954B142C43B5CBAA045953EAD4E168FFCD492_gshared (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E* __this, Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.Dictionary`2/Enumerator<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Dispose()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Enumerator_Dispose_m3D89F01AE65EC60062FFB578C0E771C098EF2CB7_gshared (Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1* __this, const RuntimeMethod* method) ;
+// System.Collections.Generic.KeyValuePair`2<TKey,TValue> System.Collections.Generic.Dictionary`2/Enumerator<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Current()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Enumerator_get_Current_m26AF82C275C82180BB7F23C7E408BC1FEB9A38EE_gshared_inline (Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1* __this, KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669* il2cppRetVal, const RuntimeMethod* method) ;
+// TValue System.Collections.Generic.KeyValuePair`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Value()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void KeyValuePair_2_get_Value_mFA1964BF56AA214EE0D491CC197F61BC9E5F1F7A_gshared_inline (KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Boolean System.Collections.Generic.Dictionary`2/Enumerator<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::MoveNext()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Enumerator_MoveNext_m97783F73CDB1D0083A2F7D26A51847BF0843ADEA_gshared (Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1* __this, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Clear()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_Clear_m935B3F117860376DC854C9E0C80CBD99BE77EEA4_gshared (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E* __this, const RuntimeMethod* method) ;
 // System.Void Oculus.Avatar2.OvrAvatarManager::_ShutdownSingleton<System.Object>(T)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarManager__ShutdownSingleton_TisRuntimeObject_m0749C912434C7F48F25D69DF0798EA8BE7AA5872_gshared (OvrAvatarManager_t6C70B22ADC5B226C529297C56CE27DA0DDCC485B* __this, RuntimeObject* ___singletonInstance0, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.List`1<System.Object>::Contains(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool List_1_Contains_m4C9139C2A6B23E9343D3F87807B32C6E2CFE660D_gshared (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, RuntimeObject* ___item0, const RuntimeMethod* method) ;
-// System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<TResult> System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<System.Int32Enum>::Create()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AsyncTaskMethodBuilder_1_tB63B23CE5211A1439A08AE69DF9BF403502D3FE9 AsyncTaskMethodBuilder_1_Create_mA40B8A53C4AB16DDDC272E1BD7361CEB160C2A03_gshared (const RuntimeMethod* method) ;
-// System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<System.Int32Enum>::Start<Oculus.Avatar2.OvrAvatarManager/<UserHasAvatarAsync>d__121>(TStateMachine&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncTaskMethodBuilder_1_Start_TisU3CUserHasAvatarAsyncU3Ed__121_t23267F826001B73CF923DA986D5444DE710770FC_mAB68F5B767AB98C7C35DB12BAAE5BFB8A835E3D9_gshared (AsyncTaskMethodBuilder_1_tB63B23CE5211A1439A08AE69DF9BF403502D3FE9* __this, U3CUserHasAvatarAsyncU3Ed__121_t23267F826001B73CF923DA986D5444DE710770FC* ___stateMachine0, const RuntimeMethod* method) ;
-// System.Threading.Tasks.Task`1<TResult> System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<System.Int32Enum>::get_Task()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Task_1_t8DED34447688BFCF5112B0D05D5A80CED94E4BFB* AsyncTaskMethodBuilder_1_get_Task_m228C453A630CC50C7517D9F9A31BFAFBBD0DDBA8_gshared (AsyncTaskMethodBuilder_1_tB63B23CE5211A1439A08AE69DF9BF403502D3FE9* __this, const RuntimeMethod* method) ;
-// System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<System.Int32Enum>::Start<Oculus.Avatar2.OvrAvatarManager/<SendHasAvatarChangedRequestAsync>d__122>(TStateMachine&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncTaskMethodBuilder_1_Start_TisU3CSendHasAvatarChangedRequestAsyncU3Ed__122_t263504CA6BEF5583159DC5CF94DD891FA2725ED2_mCE2096E276A81222D6CAEBD42A0CC18F1DC71D28_gshared (AsyncTaskMethodBuilder_1_tB63B23CE5211A1439A08AE69DF9BF403502D3FE9* __this, U3CSendHasAvatarChangedRequestAsyncU3Ed__122_t263504CA6BEF5583159DC5CF94DD891FA2725ED2* ___stateMachine0, const RuntimeMethod* method) ;
-// System.Void System.Threading.Tasks.TaskCompletionSource`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TaskCompletionSource_1__ctor_m710366962F3693AE0F6E8A0828FC57B007DC27FF_gshared (TaskCompletionSource_1_tF20E8618AD32D085EFBAC9E127CDB77B996C483C* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Int32Enum,System.Object>::Add(TKey,TValue)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_Add_mC515884C0546021A29DC0A00DBCABD89B1B65872_gshared (Dictionary_2_t514396B90715EDD83BB0470C76C2F426F9381C71* __this, int32_t ___key0, RuntimeObject* ___value1, const RuntimeMethod* method) ;
-// System.Void System.ValueTuple`4<System.UInt64,System.UInt64,System.UInt64,System.UInt64>::.ctor(T1,T2,T3,T4)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ValueTuple_4__ctor_m9270B567BD31A8BB18A2B4CDED68F53C75D21BEA_gshared (ValueTuple_4_tEFDD577311961F01B82627ABB705050B07AC2FFA* __this, uint64_t ___item10, uint64_t ___item21, uint64_t ___item32, uint64_t ___item43, const RuntimeMethod* method) ;
+// System.Boolean System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Contains(T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool List_1_Contains_m8DA550B703DFB328B69C4712064C667D7CA33DF1_gshared (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) ;
+// System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<TResult> System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Create()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4 AsyncTaskMethodBuilder_1_Create_m852C283F3EAD7381A0CC8D14204899C192BDC20A_gshared (const RuntimeMethod* method) ;
+// System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Start<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>(TStateMachine&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncTaskMethodBuilder_1_Start_TisIl2CppFullySharedGenericAny_m81177143E3D9118AF316E4C8E5D2AB2BF16C4E80_gshared (AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny* ___stateMachine0, const RuntimeMethod* method) ;
+// System.Threading.Tasks.Task`1<TResult> System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Task()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9* AsyncTaskMethodBuilder_1_get_Task_m90B072626CA4BF0F567616D4A035739B97F46D8B_gshared (AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4* __this, const RuntimeMethod* method) ;
+// System.Void System.Threading.Tasks.TaskCompletionSource`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TaskCompletionSource_1__ctor_mD6DB19F66035FC77675F1ED9FE696A65CF9C0F23_gshared (TaskCompletionSource_1_t8A40BE53A167B6D71D5640881A7A894D8DA94970* __this, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Add(TKey,TValue)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_Add_m54D479280472DEA042DB3933AF547E666B017333_gshared (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___key0, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___value1, const RuntimeMethod* method) ;
+// System.Void System.ValueTuple`4<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor(T1,T2,T3,T4)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ValueTuple_4__ctor_mFF0D3A69E30DE69A5DB3A2559A8901F1E9851FCB_gshared (ValueTuple_4_t8725FCE32886281FCF0441F1DAE319DADD76B78F* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item10, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item21, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item32, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item43, const RuntimeMethod* method) ;
 // System.Boolean Oculus.Avatar2.OvrSingletonBehaviour`1<System.Object>::get_hasInstance()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool OvrSingletonBehaviour_1_get_hasInstance_m5F0332A5B3DC3E6FB47B7D3805A99940C00B4B7B_gshared (const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.Dictionary`2<System.Int32Enum,System.Object>::TryGetValue(TKey,TValue&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Dictionary_2_TryGetValue_mD8A6CDD5C954C86D2150FCFF1B76EB62F35A881D_gshared (Dictionary_2_t514396B90715EDD83BB0470C76C2F426F9381C71* __this, int32_t ___key0, RuntimeObject** ___value1, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.Dictionary`2<System.Int32Enum,System.Object>::Remove(TKey)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Dictionary_2_Remove_mA2D94572DAE1E370288187F54B99416C7DB26A5B_gshared (Dictionary_2_t514396B90715EDD83BB0470C76C2F426F9381C71* __this, int32_t ___key0, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.Dictionary`2<System.Int32Enum,System.Object>::ContainsKey(TKey)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Dictionary_2_ContainsKey_m874C59716993973F0A52C848B20C70C26DB9BCF7_gshared (Dictionary_2_t514396B90715EDD83BB0470C76C2F426F9381C71* __this, int32_t ___key0, const RuntimeMethod* method) ;
-// T System.Collections.Generic.Queue`1<System.Object>::Dequeue()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* Queue_1_Dequeue_m86B243DF9EC238316EC3D27DF3E0AB8DB0987E84_gshared (Queue_1_tE9EF546915795972C3BFD68FBB8FA859D3BAF3B5* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.Dictionary`2<System.Object,System.Object>::TryGetValue(TKey,TValue&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Dictionary_2_TryGetValue_mD15380A4ED7CDEE99EA45881577D26BA9CE1B849_gshared (Dictionary_2_t14FE4A752A83D53771C584E4C8D14E01F2AFD7BA* __this, RuntimeObject* ___key0, RuntimeObject** ___value1, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.Dictionary`2<System.Object,System.Object>::Remove(TKey)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Dictionary_2_Remove_m5C7C45E75D951A75843F3F7AADD56ECD64F6BC86_gshared (Dictionary_2_t14FE4A752A83D53771C584E4C8D14E01F2AFD7BA* __this, RuntimeObject* ___key0, const RuntimeMethod* method) ;
-// System.Int32 System.Collections.Generic.Queue`1<System.Object>::get_Count()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t Queue_1_get_Count_m1768ADA9855B7CDA14C9C42E098A287F1A39C3A2_gshared_inline (Queue_1_tE9EF546915795972C3BFD68FBB8FA859D3BAF3B5* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Object,System.Object>::Add(TKey,TValue)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_Add_m93FFFABE8FCE7FA9793F0915E2A8842C7CD0C0C1_gshared (Dictionary_2_t14FE4A752A83D53771C584E4C8D14E01F2AFD7BA* __this, RuntimeObject* ___key0, RuntimeObject* ___value1, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Queue`1<System.Object>::Enqueue(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Queue_1_Enqueue_m5CB8CF3906F1289F92036F0973EC5BE3450402EF_gshared (Queue_1_tE9EF546915795972C3BFD68FBB8FA859D3BAF3B5* __this, RuntimeObject* ___item0, const RuntimeMethod* method) ;
-// T System.Collections.Generic.Queue`1<System.Object>::Peek()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* Queue_1_Peek_mBCFFD1AF751385D78C4EA93D62857F936CD03866_gshared (Queue_1_tE9EF546915795972C3BFD68FBB8FA859D3BAF3B5* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Object,System.Int32Enum>::set_Item(TKey,TValue)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_set_Item_mC0F84089707699016E685213CFF60997BC7CB12B_gshared (Dictionary_2_t2A9A7F3ECFC3483F89253F3C4BB5BE98A37F6EF3* __this, RuntimeObject* ___key0, int32_t ___value1, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.Queue`1<System.Object>::Contains(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Queue_1_Contains_m2005E02D4DC2C3186E5BA0722C8435C966AB7B0E_gshared (Queue_1_tE9EF546915795972C3BFD68FBB8FA859D3BAF3B5* __this, RuntimeObject* ___item0, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.Dictionary`2<System.Object,System.Int32Enum>::ContainsKey(TKey)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Dictionary_2_ContainsKey_m480A9507410375C999B20A1E0FA56C7E41489974_gshared (Dictionary_2_t2A9A7F3ECFC3483F89253F3C4BB5BE98A37F6EF3* __this, RuntimeObject* ___key0, const RuntimeMethod* method) ;
-// System.Void System.Action`1<System.Object>::.ctor(System.Object,System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_1__ctor_m2E1DFA67718FC1A0B6E5DFEB78831FFE9C059EB4_gshared (Action_1_t6F9EB113EB3F16226AEF811A2744F4111C116C87* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
-// TValue System.Collections.Generic.Dictionary`2<System.Object,System.Int32Enum>::get_Item(TKey)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Dictionary_2_get_Item_m14B4D7B4BDD73D1A4985E09747AF5B2B6A6444D1_gshared (Dictionary_2_t2A9A7F3ECFC3483F89253F3C4BB5BE98A37F6EF3* __this, RuntimeObject* ___key0, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Object,System.Object>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2__ctor_m5B32FBC624618211EB461D59CFBB10E987FD1329_gshared (Dictionary_2_t14FE4A752A83D53771C584E4C8D14E01F2AFD7BA* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Queue`1<System.Object>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Queue_1__ctor_m6E2A5A8173E0CC524496D5155C737DF8FD10D0EB_gshared (Queue_1_tE9EF546915795972C3BFD68FBB8FA859D3BAF3B5* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1<System.Object>::.ctor(System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1__ctor_m76CBBC3E2F0583F5AD30CE592CEA1225C06A0428_gshared (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, int32_t ___capacity0, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Int32Enum,System.Object>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2__ctor_mCC9983804D8DC41E938E080075F9EA7BDD0C7059_gshared (Dictionary_2_t514396B90715EDD83BB0470C76C2F426F9381C71* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Object,System.Int32Enum>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2__ctor_mE0470880427DED948EF413AD5E9525F41CAF7D1D_gshared (Dictionary_2_t2A9A7F3ECFC3483F89253F3C4BB5BE98A37F6EF3* __this, const RuntimeMethod* method) ;
-// T[] System.Array::Empty<System.Int32Enum>()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Int32EnumU5BU5D_t87B7DB802810C38016332669039EF42C487A081F* Array_Empty_TisInt32Enum_tCBAC8BA2BFF3A845FA599F303093BBBA374B6F0C_m94E12BB613D748D2EEB9E1ABD961630D2F970385_gshared_inline (const RuntimeMethod* method) ;
+// System.Boolean System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::TryGetValue(TKey,TValue&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Dictionary_2_TryGetValue_m7519D765EAF1E8A7D3137C2F1B7B3A01D15A1692_gshared (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___key0, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny* ___value1, const RuntimeMethod* method) ;
+// System.Boolean System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Remove(TKey)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Dictionary_2_Remove_m583C4F0E2926B584BE6EC6008195360FC631C14C_gshared (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___key0, const RuntimeMethod* method) ;
+// System.Boolean System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::ContainsKey(TKey)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Dictionary_2_ContainsKey_mA268E9B914DCE838DD0CD9D879BAAEECD0C677AA_gshared (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___key0, const RuntimeMethod* method) ;
+// T System.Collections.Generic.Queue`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Dequeue()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Queue_1_Dequeue_m80C152387A53656EC4AEF450BCBA9087DC51EEE3_gshared (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Int32 System.Collections.Generic.Queue`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Count()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t Queue_1_get_Count_mE6103188ACDEC07F90F2D2986554730D18029750_gshared_inline (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41* __this, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.Queue`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Enqueue(T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Queue_1_Enqueue_m9159DC6A9BC5528A3444329C408F4101004CF652_gshared (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) ;
+// T System.Collections.Generic.Queue`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Peek()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Queue_1_Peek_mC16DCF76985FF167BAB542F92D9AA03C1E210D8C_gshared (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::set_Item(TKey,TValue)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_set_Item_m4C6841170DD11AED683D2D71919F362A4CFF4A80_gshared (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___key0, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___value1, const RuntimeMethod* method) ;
+// System.Boolean System.Collections.Generic.Queue`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Contains(T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Queue_1_Contains_m18A922A2A41A33641FC69FAB29C41657375E682F_gshared (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) ;
+// System.Void System.Action`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor(System.Object,System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_1__ctor_m685A441EC9FAC9D554B26FA83A08F4BEF96DFF0E_gshared (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
+// TValue System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Item(TKey)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_get_Item_m2E96908E9716367701CD737FA54C884EB2A8C3EA_gshared (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___key0, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2__ctor_m7745B6ED71E47C95E1BFCE647C4F026A404C668F_gshared (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E* __this, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.Queue`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Queue_1__ctor_m657BFA58DFD6AB5B1B4B69AA6E963CD569637EAD_gshared (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41* __this, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor(System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1__ctor_m3069CACB5775E013107F559C825422266A09F9E8_gshared (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, int32_t ___capacity0, const RuntimeMethod* method) ;
 // System.Void Oculus.Avatar2.OvrSingletonBehaviour`1<System.Object>::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrSingletonBehaviour_1__ctor_m1838EA3540940DC0394E3EDD0FB4823DFCE35C7B_gshared (OvrSingletonBehaviour_1_t695BED25EBC2F47A10CEF7576D1B1EBBE6C0F6B5* __this, const RuntimeMethod* method) ;
-// System.Threading.Tasks.Task`1<TResult> System.Threading.Tasks.TaskCompletionSource`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>::get_Task()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Task_1_tD337C15ECE0EB22DACBE88D74A3CEAE3E87499DF* TaskCompletionSource_1_get_Task_m1745E0B89C73F8CD76D4EEEF40B531D30CE1C43C_gshared_inline (TaskCompletionSource_1_tF20E8618AD32D085EFBAC9E127CDB77B996C483C* __this, const RuntimeMethod* method) ;
-// System.Runtime.CompilerServices.TaskAwaiter`1<TResult> System.Threading.Tasks.Task`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>::GetAwaiter()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR TaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6 Task_1_GetAwaiter_m5031E879D397E47172C12137096A8EEA86EB70B9_gshared (Task_1_tD337C15ECE0EB22DACBE88D74A3CEAE3E87499DF* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Runtime.CompilerServices.TaskAwaiter`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>::get_IsCompleted()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool TaskAwaiter_1_get_IsCompleted_m537DFC3EE4F461F7C9F3DCECBD3F73F13B67EEC7_gshared (TaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6* __this, const RuntimeMethod* method) ;
-// System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<System.Int32Enum>::AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>,Oculus.Avatar2.OvrAvatarManager/<UserHasAvatarAsync>d__121>(TAwaiter&,TStateMachine&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncTaskMethodBuilder_1_AwaitUnsafeOnCompleted_TisTaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6_TisU3CUserHasAvatarAsyncU3Ed__121_t23267F826001B73CF923DA986D5444DE710770FC_mE56F0AF43F82B42B0DF455B62D4F920AF54955AA_gshared (AsyncTaskMethodBuilder_1_tB63B23CE5211A1439A08AE69DF9BF403502D3FE9* __this, TaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6* ___awaiter0, U3CUserHasAvatarAsyncU3Ed__121_t23267F826001B73CF923DA986D5444DE710770FC* ___stateMachine1, const RuntimeMethod* method) ;
-// TResult System.Runtime.CompilerServices.TaskAwaiter`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>::GetResult()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AvatarRequestBoolResults_t9AB81E0E9EE20CC1D65BAF42796EAD5ABDCFD670 TaskAwaiter_1_GetResult_m05FE27E35871DBE16D00043DE4DA19AB4C3EA5A0_gshared (TaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6* __this, const RuntimeMethod* method) ;
-// TResult System.Threading.Tasks.Task`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>::get_Result()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AvatarRequestBoolResults_t9AB81E0E9EE20CC1D65BAF42796EAD5ABDCFD670 Task_1_get_Result_mCDA80F331F61E8D550FF944589A074E95FDD3DD1_gshared (Task_1_tD337C15ECE0EB22DACBE88D74A3CEAE3E87499DF* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Nullable`1<System.Boolean>::get_HasValue()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_m6B76D139692C43B2AF7C695FAB044B16ACFAF355_gshared_inline (Nullable_1_t78F453FADB4A9F50F267A4E349019C34410D1A01* __this, const RuntimeMethod* method) ;
-// T System.Nullable`1<System.Boolean>::get_Value()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Nullable_1_get_Value_mE2C54C6AE9FC9F05BF44CD9D7D61DC6CD56E3E28_gshared (Nullable_1_t78F453FADB4A9F50F267A4E349019C34410D1A01* __this, const RuntimeMethod* method) ;
-// System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<System.Int32Enum>::SetException(System.Exception)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncTaskMethodBuilder_1_SetException_m2E575629BCD46EA73D32EA85764E79315C353E13_gshared (AsyncTaskMethodBuilder_1_tB63B23CE5211A1439A08AE69DF9BF403502D3FE9* __this, Exception_t* ___exception0, const RuntimeMethod* method) ;
-// System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<System.Int32Enum>::SetResult(TResult)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncTaskMethodBuilder_1_SetResult_m718D4EE45CDBF257976C193933CBE5478FFC14E3_gshared (AsyncTaskMethodBuilder_1_tB63B23CE5211A1439A08AE69DF9BF403502D3FE9* __this, int32_t ___result0, const RuntimeMethod* method) ;
-// System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<System.Int32Enum>::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncTaskMethodBuilder_1_SetStateMachine_mBE5F26838D7801B8250806F352A6915A7F9AA2E5_gshared (AsyncTaskMethodBuilder_1_tB63B23CE5211A1439A08AE69DF9BF403502D3FE9* __this, RuntimeObject* ___stateMachine0, const RuntimeMethod* method) ;
-// System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<System.Int32Enum>::AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>,Oculus.Avatar2.OvrAvatarManager/<SendHasAvatarChangedRequestAsync>d__122>(TAwaiter&,TStateMachine&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncTaskMethodBuilder_1_AwaitUnsafeOnCompleted_TisTaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6_TisU3CSendHasAvatarChangedRequestAsyncU3Ed__122_t263504CA6BEF5583159DC5CF94DD891FA2725ED2_mB61BE17699E4E6C179D7EAAD2072CDC99CED9965_gshared (AsyncTaskMethodBuilder_1_tB63B23CE5211A1439A08AE69DF9BF403502D3FE9* __this, TaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6* ___awaiter0, U3CSendHasAvatarChangedRequestAsyncU3Ed__122_t263504CA6BEF5583159DC5CF94DD891FA2725ED2* ___stateMachine1, const RuntimeMethod* method) ;
-// System.Void System.Nullable`1<System.Boolean>::.ctor(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Nullable_1__ctor_m4FAA8281CB4EFFD8B817734351FB3AC20A0CD6F5_gshared (Nullable_1_t78F453FADB4A9F50F267A4E349019C34410D1A01* __this, bool ___value0, const RuntimeMethod* method) ;
-// System.Void System.Threading.Tasks.TaskCompletionSource`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>::SetResult(TResult)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TaskCompletionSource_1_SetResult_mB0E94BE9C416B41D0AA791C42E8A444D4E20C4A4_gshared (TaskCompletionSource_1_tF20E8618AD32D085EFBAC9E127CDB77B996C483C* __this, AvatarRequestBoolResults_t9AB81E0E9EE20CC1D65BAF42796EAD5ABDCFD670 ___result0, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Int32,System.ValueTuple`2<System.Object,System.Int32Enum>>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2__ctor_mD549C9A43A8C96F392C8F83EE8C3484FE924DDD2_gshared (Dictionary_2_tD7902513349692AD112478CC073C31507A094A53* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Object,System.Boolean>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2__ctor_m0D0F99974D7435C4E08FE9A9A632C9E5430F8454_gshared (Dictionary_2_tDBC7BB75C617E4886F85171F2758C7996F98EC36* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Object,System.Int32>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2__ctor_m517E7F9D104FEAE6646EABDDC9C852510E86077C_gshared (Dictionary_2_t5C96F4B6841710A9013966F76224BAE01FB4B4D1* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Int32,System.ValueTuple`2<System.Object,System.Int32Enum>>::Clear()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_Clear_mAD9FFAA503553B14735A89B73F0619A4615774DA_gshared (Dictionary_2_tD7902513349692AD112478CC073C31507A094A53* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Object,System.Boolean>::Clear()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_Clear_mE0E8184DB358BEB3549E33D6EEA31FF45B89D99F_gshared (Dictionary_2_tDBC7BB75C617E4886F85171F2758C7996F98EC36* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.Dictionary`2<System.Object,System.Boolean>::TryGetValue(TKey,TValue&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Dictionary_2_TryGetValue_m9AAE125D6298B2B6B9D2F150C841A70872BF887B_gshared (Dictionary_2_tDBC7BB75C617E4886F85171F2758C7996F98EC36* __this, RuntimeObject* ___key0, bool* ___value1, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.Dictionary`2<System.Object,System.Boolean>::ContainsKey(TKey)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Dictionary_2_ContainsKey_mBEDE43E001DFC228FF4DA06FBCA7CC215C8E7C73_gshared (Dictionary_2_tDBC7BB75C617E4886F85171F2758C7996F98EC36* __this, RuntimeObject* ___key0, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Object,System.Boolean>::set_Item(TKey,TValue)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_set_Item_mF1A7BA3C1568A00A32A43BCD889038FE080F77BF_gshared (Dictionary_2_tDBC7BB75C617E4886F85171F2758C7996F98EC36* __this, RuntimeObject* ___key0, bool ___value1, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.Dictionary`2<System.Object,System.Boolean>::Remove(TKey)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Dictionary_2_Remove_m3410C28AE4E1AB9B3387CC479F63A8C8BF22AEEF_gshared (Dictionary_2_tDBC7BB75C617E4886F85171F2758C7996F98EC36* __this, RuntimeObject* ___key0, const RuntimeMethod* method) ;
-// TValue System.Collections.Generic.Dictionary`2<System.Int32,System.ValueTuple`2<System.Object,System.Int32Enum>>::get_Item(TKey)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ValueTuple_2_tDFEF5D5D0F51624CEA17371BAD6D70276931BC49 Dictionary_2_get_Item_mD81738454855B8A868544A34A158BEBF21BF1382_gshared (Dictionary_2_tD7902513349692AD112478CC073C31507A094A53* __this, int32_t ___key0, const RuntimeMethod* method) ;
-// System.Void Oculus.Avatar2.OvrAvatarMaterial::SetProperty<UnityEngine.Color>(System.Int32,T&,Oculus.Avatar2.OvrAvatarMaterial/PropertyType)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarMaterial_SetProperty_TisColor_tD001788D726C3A7F1379BEED0260B9591F440C1F_m0ECBF3D9BA57E56851DF7CE4C0C03CEDFB4F5813_gshared (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, Color_tD001788D726C3A7F1379BEED0260B9591F440C1F* ___val1, int32_t ___type2, const RuntimeMethod* method) ;
-// System.Void Oculus.Avatar2.OvrAvatarMaterial::SetProperty<System.Single>(System.Int32,T&,Oculus.Avatar2.OvrAvatarMaterial/PropertyType)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarMaterial_SetProperty_TisSingle_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_m935B599931A054D2FFCF51DE8D0B0E5454C0E2E0_gshared (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, float* ___val1, int32_t ___type2, const RuntimeMethod* method) ;
-// System.Void Oculus.Avatar2.OvrAvatarMaterial::SetProperty<System.Object>(System.Int32,T&,Oculus.Avatar2.OvrAvatarMaterial/PropertyType)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarMaterial_SetProperty_TisRuntimeObject_mE19F18E2499B8E20C5AC3C09200D909DF4D0E893_gshared (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, RuntimeObject** ___val1, int32_t ___type2, const RuntimeMethod* method) ;
-// System.Void Oculus.Avatar2.OvrAvatarMaterial::SetProperty<System.Int32>(System.Int32,T&,Oculus.Avatar2.OvrAvatarMaterial/PropertyType)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarMaterial_SetProperty_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_m90D168BE8F0B574EA57A0BC544E7F9B1EFA04A9D_gshared (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, int32_t* ___val1, int32_t ___type2, const RuntimeMethod* method) ;
-// System.Void Oculus.Avatar2.OvrAvatarMaterial::SetProperty<UnityEngine.Matrix4x4>(System.Int32,T&,Oculus.Avatar2.OvrAvatarMaterial/PropertyType)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarMaterial_SetProperty_TisMatrix4x4_tDB70CF134A14BA38190C59AA700BCE10E2AED3E6_mCB0C7D4E3A72C0851B154E4E610F68F8C0496B3D_gshared (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, Matrix4x4_tDB70CF134A14BA38190C59AA700BCE10E2AED3E6* ___val1, int32_t ___type2, const RuntimeMethod* method) ;
-// System.Void Oculus.Avatar2.OvrAvatarMaterial::SetProperty<UnityEngine.Vector4>(System.Int32,T&,Oculus.Avatar2.OvrAvatarMaterial/PropertyType)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarMaterial_SetProperty_TisVector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3_m40FD947BEB9349257B2FCBC01C4A6313FAF3432E_gshared (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3* ___val1, int32_t ___type2, const RuntimeMethod* method) ;
-// System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> System.Collections.Generic.Dictionary`2<System.Object,System.Boolean>::GetEnumerator()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Enumerator_tD5E26031CE205BBE3214F599A38680F6E87A011B Dictionary_2_GetEnumerator_mC7827569955B8266DAC471AC8CBCADC6416AB941_gshared (Dictionary_2_tDBC7BB75C617E4886F85171F2758C7996F98EC36* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2/Enumerator<System.Object,System.Boolean>::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Enumerator_Dispose_m47DDE5BF12A9FCE3120292E1B2F352CDDD214EEF_gshared (Enumerator_tD5E26031CE205BBE3214F599A38680F6E87A011B* __this, const RuntimeMethod* method) ;
-// System.Collections.Generic.KeyValuePair`2<TKey,TValue> System.Collections.Generic.Dictionary`2/Enumerator<System.Object,System.Boolean>::get_Current()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR KeyValuePair_2_t7E5E41B933054DBF6F52C6CDF0BC2CB4B1606423 Enumerator_get_Current_m90E0638FF1812FE1DDE8D13CC607F4CD161D12C1_gshared_inline (Enumerator_tD5E26031CE205BBE3214F599A38680F6E87A011B* __this, const RuntimeMethod* method) ;
-// TKey System.Collections.Generic.KeyValuePair`2<System.Object,System.Boolean>::get_Key()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* KeyValuePair_2_get_Key_m94A9BD1AEA6EA0A8BEE3739A3881F479181638C4_gshared_inline (KeyValuePair_2_t7E5E41B933054DBF6F52C6CDF0BC2CB4B1606423* __this, const RuntimeMethod* method) ;
-// TValue System.Collections.Generic.KeyValuePair`2<System.Object,System.Boolean>::get_Value()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool KeyValuePair_2_get_Value_mC3C5F83458F19B6276D6E090A86CFDADE6EFAAD8_gshared_inline (KeyValuePair_2_t7E5E41B933054DBF6F52C6CDF0BC2CB4B1606423* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.Dictionary`2/Enumerator<System.Object,System.Boolean>::MoveNext()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Enumerator_MoveNext_m0712867110707C27D0A2D46D9735F066C9BA48A2_gshared (Enumerator_tD5E26031CE205BBE3214F599A38680F6E87A011B* __this, const RuntimeMethod* method) ;
-// System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> System.Collections.Generic.Dictionary`2<System.Int32,System.ValueTuple`2<System.Object,System.Int32Enum>>::GetEnumerator()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Enumerator_t38F8FFEADA820481EE033B58C2FBCEC243555C0B Dictionary_2_GetEnumerator_m5E4699CF7ACE90EB0876F8A9A061706DF292CB5F_gshared (Dictionary_2_tD7902513349692AD112478CC073C31507A094A53* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2/Enumerator<System.Int32,System.ValueTuple`2<System.Object,System.Int32Enum>>::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Enumerator_Dispose_mB366F3A2EF0882D3DBC9E3AD80F17574EB749710_gshared (Enumerator_t38F8FFEADA820481EE033B58C2FBCEC243555C0B* __this, const RuntimeMethod* method) ;
-// System.Collections.Generic.KeyValuePair`2<TKey,TValue> System.Collections.Generic.Dictionary`2/Enumerator<System.Int32,System.ValueTuple`2<System.Object,System.Int32Enum>>::get_Current()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR KeyValuePair_2_t77D15A38C6197D8EF2F3685102450E1FB48F13C7 Enumerator_get_Current_m05E35A6939ADA91CC61D511C39FF55428BA7E2EC_gshared_inline (Enumerator_t38F8FFEADA820481EE033B58C2FBCEC243555C0B* __this, const RuntimeMethod* method) ;
-// TValue System.Collections.Generic.KeyValuePair`2<System.Int32,System.ValueTuple`2<System.Object,System.Int32Enum>>::get_Value()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ValueTuple_2_tDFEF5D5D0F51624CEA17371BAD6D70276931BC49 KeyValuePair_2_get_Value_m45DA0F8C6C1FDB139DF0932F2CB94B6E1155EB3E_gshared_inline (KeyValuePair_2_t77D15A38C6197D8EF2F3685102450E1FB48F13C7* __this, const RuntimeMethod* method) ;
-// TKey System.Collections.Generic.KeyValuePair`2<System.Int32,System.ValueTuple`2<System.Object,System.Int32Enum>>::get_Key()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t KeyValuePair_2_get_Key_m04221D37F542255AE07CD4D0A9E59AAD49D01CA5_gshared_inline (KeyValuePair_2_t77D15A38C6197D8EF2F3685102450E1FB48F13C7* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.Dictionary`2/Enumerator<System.Int32,System.ValueTuple`2<System.Object,System.Int32Enum>>::MoveNext()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Enumerator_MoveNext_mAB2F2583CCD1674BE4DEF7B84C3767A93B8F0771_gshared (Enumerator_t38F8FFEADA820481EE033B58C2FBCEC243555C0B* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.Dictionary`2<System.Object,System.Int32>::TryGetValue(TKey,TValue&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Dictionary_2_TryGetValue_m4B8EE45640C70BBFD6F3EFF1040983404C098342_gshared (Dictionary_2_t5C96F4B6841710A9013966F76224BAE01FB4B4D1* __this, RuntimeObject* ___key0, int32_t* ___value1, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Object,System.Int32>::Add(TKey,TValue)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_Add_m63897227AFA7035F1772315ABBBE7FD0A250E10C_gshared (Dictionary_2_t5C96F4B6841710A9013966F76224BAE01FB4B4D1* __this, RuntimeObject* ___key0, int32_t ___value1, const RuntimeMethod* method) ;
+// System.Threading.Tasks.Task`1<TResult> System.Threading.Tasks.TaskCompletionSource`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Task()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9* TaskCompletionSource_1_get_Task_m4994989AA2174905CF517397D0F6B082ADC29EE9_gshared_inline (TaskCompletionSource_1_t8A40BE53A167B6D71D5640881A7A894D8DA94970* __this, const RuntimeMethod* method) ;
+// System.Runtime.CompilerServices.TaskAwaiter`1<TResult> System.Threading.Tasks.Task`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::GetAwaiter()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR TaskAwaiter_1_t274550A5F4BB61F8D62C9C83AF92995FCCE549C8 Task_1_GetAwaiter_mADB36AF74C602F4C81E4752994696EA21CB0C0B6_gshared (/*System.Threading.Tasks.Task`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>*/Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9* __this, const RuntimeMethod* method) ;
+// System.Boolean System.Runtime.CompilerServices.TaskAwaiter`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_IsCompleted()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool TaskAwaiter_1_get_IsCompleted_m7F153D4DF6456F60BABB1E7663CDDF3EFE172007_gshared (TaskAwaiter_1_t274550A5F4BB61F8D62C9C83AF92995FCCE549C8* __this, const RuntimeMethod* method) ;
+// System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::AwaitUnsafeOnCompleted<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>(TAwaiter&,TStateMachine&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncTaskMethodBuilder_1_AwaitUnsafeOnCompleted_TisIl2CppFullySharedGenericAny_TisIl2CppFullySharedGenericAny_m0B984271E33D944D547FB29917733016C411E5EB_gshared (AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny* ___awaiter0, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny* ___stateMachine1, const RuntimeMethod* method) ;
+// TResult System.Runtime.CompilerServices.TaskAwaiter`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::GetResult()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TaskAwaiter_1_GetResult_mA0FDEC1F33CAC08401C6F3B9E5A5C6F1B4503EEB_gshared (TaskAwaiter_1_t274550A5F4BB61F8D62C9C83AF92995FCCE549C8* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// TResult System.Threading.Tasks.Task`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Result()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Task_1_get_Result_mF84A04F573B3700E098DF189233DA4CB3E14D53C_gshared (/*System.Threading.Tasks.Task`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>*/Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// T System.Nullable`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::get_Value()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Nullable_1_get_Value_mA083C4D9192050DC38513BDD9D364C5C68A3A675_gshared (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339* __this, Il2CppFullySharedGenericStruct* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::SetException(System.Exception)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncTaskMethodBuilder_1_SetException_m25948BB842FBF253D89FE8399CCB2325B491EE34_gshared (AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4* __this, Exception_t* ___exception0, const RuntimeMethod* method) ;
+// System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::SetResult(TResult)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncTaskMethodBuilder_1_SetResult_mC5A4FB0746878FC882C792D8BCAF5277E1F24778_gshared (AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___result0, const RuntimeMethod* method) ;
+// System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AsyncTaskMethodBuilder_1_SetStateMachine_m7EF377C3A25FB4388DAF14ECAFC18E1C9F3EEA4A_gshared (AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4* __this, RuntimeObject* ___stateMachine0, const RuntimeMethod* method) ;
+// System.Void System.Nullable`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::.ctor(T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Nullable_1__ctor_m4257D7FF23A495D1B204F20330FBDED58248E4CC_gshared (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct ___value0, const RuntimeMethod* method) ;
+// System.Void System.Threading.Tasks.TaskCompletionSource`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::SetResult(TResult)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TaskCompletionSource_1_SetResult_m20A3A9EACC332D8ECC8AA9E690B90E6C56835CED_gshared (TaskCompletionSource_1_t8A40BE53A167B6D71D5640881A7A894D8DA94970* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___result0, const RuntimeMethod* method) ;
+// System.Void Oculus.Avatar2.OvrAvatarMaterial::SetProperty<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>(System.Int32,T&,Oculus.Avatar2.OvrAvatarMaterial/PropertyType)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarMaterial_SetProperty_TisIl2CppFullySharedGenericAny_m2C969C6E77B881522DBC51C59AAE9196F19B1B9B_gshared (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny* ___val1, int32_t ___type2, const RuntimeMethod* method) ;
+// TKey System.Collections.Generic.KeyValuePair`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Key()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void KeyValuePair_2_get_Key_mBE75BF8983618BC1ACEC20F94C1BFF85C8AA50F1_gshared_inline (KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
 // T Oculus.Avatar2.OvrAvatarRenderable::AddRenderer<System.Object>()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* OvrAvatarRenderable_AddRenderer_TisRuntimeObject_mCBB6EB19367533504B9915E3C2197EB561A0236A_gshared (OvrAvatarRenderable_t6A160B0805AD93B2153702F98E0952038648F1E7* __this, const RuntimeMethod* method) ;
 // T Oculus.Avatar2.UnityExtensions::GetOrAddComponent<System.Object>(UnityEngine.GameObject)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* UnityExtensions_GetOrAddComponent_TisRuntimeObject_m10FF2E51CCE520E8AF9AF0C6002A1A4B68FBF702_gshared (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___obj0, const RuntimeMethod* method) ;
-// T UnityEngine.Component::GetComponent<System.Object>()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* Component_GetComponent_TisRuntimeObject_m7181F81CAEC2CF53F5D2BC79B7425C16E1F80D33_gshared (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, const RuntimeMethod* method) ;
+// T UnityEngine.Component::GetComponent<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Component_GetComponent_TisIl2CppFullySharedGenericAny_m47CBDD147982125387F078ABBFDAAB92D397A6C2_gshared (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
 // T UnityEngine.ScriptableObject::CreateInstance<System.Object>()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* ScriptableObject_CreateInstance_TisRuntimeObject_mC07BE383F5EF546F4191035A679930852BC19BDA_gshared (const RuntimeMethod* method) ;
-// System.Int32 Oculus.Avatar2.OvrSpan`1<Oculus.Avatar2.CAPI/ovrAvatar2Transform>::get_Length()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t OvrSpan_1_get_Length_m72758F7E0A4F839B4538BAE2C15127E328648503_gshared_inline (OvrSpan_1_t7E6A202CDD3092B36A9ED503F62A2FE6CE96E618* __this, const RuntimeMethod* method) ;
-// System.IntPtr Oculus.Avatar2.OvrSpan`1<Oculus.Avatar2.CAPI/ovrAvatar2Transform>::get_Address()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t OvrSpan_1_get_Address_m9819614A7EDC39544E7DF67A05953BDCEBB2A94C_gshared_inline (OvrSpan_1_t7E6A202CDD3092B36A9ED503F62A2FE6CE96E618* __this, const RuntimeMethod* method) ;
-// System.Void Oculus.Avatar2.OvrSpan`1<Oculus.Avatar2.CAPI/ovrAvatar2Transform>::.ctor(System.Void*,System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrSpan_1__ctor_mAA376225A455149DD57E5D0896EF6560D9071D53_gshared (OvrSpan_1_t7E6A202CDD3092B36A9ED503F62A2FE6CE96E618* __this, void* ___ptr0, int32_t ___length1, const RuntimeMethod* method) ;
-// System.Int32 Oculus.Avatar2.OvrSpan`1<Oculus.Avatar2.CAPI/ovrAvatar2Bone>::get_Length()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t OvrSpan_1_get_Length_m2D537204D3654A26AC967D7E77AD084C43C92136_gshared_inline (OvrSpan_1_tC4E8D46BC68C39FFC86330749394042C5B3D55FC* __this, const RuntimeMethod* method) ;
-// System.IntPtr Oculus.Avatar2.OvrSpan`1<Oculus.Avatar2.CAPI/ovrAvatar2Bone>::get_Address()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t OvrSpan_1_get_Address_m69EB5B170713430217181197C1D9AF5496F60671_gshared_inline (OvrSpan_1_tC4E8D46BC68C39FFC86330749394042C5B3D55FC* __this, const RuntimeMethod* method) ;
-// System.Void Oculus.Avatar2.OvrSpan`1<Oculus.Avatar2.CAPI/ovrAvatar2Bone>::.ctor(System.Void*,System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrSpan_1__ctor_mCECF55AB834B1C48E3CD6A3F4EF1D39D1CAED19B_gshared (OvrSpan_1_tC4E8D46BC68C39FFC86330749394042C5B3D55FC* __this, void* ___ptr0, int32_t ___length1, const RuntimeMethod* method) ;
-// System.Boolean System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2LipSyncContext>::get_HasValue()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_mA247264B7B76B281F4855D711D276ADAF1ED603D_gshared_inline (Nullable_1_tA58BFAB7679D2EBDCF2E4537F4048819F4FED053* __this, const RuntimeMethod* method) ;
-// T System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2LipSyncContext>::get_Value()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ovrAvatar2LipSyncContext_t6BD4A5C7CE68A2224A9AA7F1E3601CC420767AFA Nullable_1_get_Value_m70F3C2E8C83D859A6BECC93D9FAC64C301DD2F6B_gshared (Nullable_1_tA58BFAB7679D2EBDCF2E4537F4048819F4FED053* __this, const RuntimeMethod* method) ;
-// T[] System.ArraySegment`1<System.Single>::get_Array()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C* ArraySegment_1_get_Array_m1E527B0219936D6E63F60F321794D4A41AE9FA96_gshared_inline (ArraySegment_1_t8BFB82736DF7396993D8AC314453598665A24BA4* __this, const RuntimeMethod* method) ;
-// System.Int32 System.ArraySegment`1<System.Single>::get_Offset()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ArraySegment_1_get_Offset_mDDFD5262CBC72F51E3E18D6869FBA03A86FB7A8B_gshared_inline (ArraySegment_1_t8BFB82736DF7396993D8AC314453598665A24BA4* __this, const RuntimeMethod* method) ;
-// System.Int32 System.ArraySegment`1<System.Single>::get_Count()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ArraySegment_1_get_Count_mABA070861BE134EF962A6E80D53B885A5F9C020E_gshared_inline (ArraySegment_1_t8BFB82736DF7396993D8AC314453598665A24BA4* __this, const RuntimeMethod* method) ;
-// T[] System.ArraySegment`1<System.Int16>::get_Array()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Int16U5BU5D_t8175CE8DD9C9F9FB0CF4F58E45BC570575B43CFB* ArraySegment_1_get_Array_m1B023530CEE9F0816934FDDD167983DBB0922B76_gshared_inline (ArraySegment_1_t271440F313890A1EEC1AC75D1EEDADCAC42BC779* __this, const RuntimeMethod* method) ;
-// System.Int32 System.ArraySegment`1<System.Int16>::get_Offset()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ArraySegment_1_get_Offset_m9EDC1C082C701B6700DA92CC1ED247B410CA800A_gshared_inline (ArraySegment_1_t271440F313890A1EEC1AC75D1EEDADCAC42BC779* __this, const RuntimeMethod* method) ;
-// System.Int32 System.ArraySegment`1<System.Int16>::get_Count()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ArraySegment_1_get_Count_m64BBFC1B7C10D59EAA1CC499435362A37F3EAE6F_gshared_inline (ArraySegment_1_t271440F313890A1EEC1AC75D1EEDADCAC42BC779* __this, const RuntimeMethod* method) ;
-// System.Void System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2LipSyncContext>::.ctor(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Nullable_1__ctor_m3327CB3C01E870D190546E22AC6FFB2A6CF590D9_gshared (Nullable_1_tA58BFAB7679D2EBDCF2E4537F4048819F4FED053* __this, ovrAvatar2LipSyncContext_t6BD4A5C7CE68A2224A9AA7F1E3601CC420767AFA ___value0, const RuntimeMethod* method) ;
-// System.Void System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2FacePoseProvider>::.ctor(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Nullable_1__ctor_m2A28F69F74DFA754B2CDC9A1CAB112BF95C89818_gshared (Nullable_1_t97052EC4CAE1859E0A2AE4946E2175C8E83FD3C5* __this, ovrAvatar2FacePoseProvider_tA68FC38CB3F773D61092FCE2C6B726A231F74893 ___value0, const RuntimeMethod* method) ;
-// System.Void System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2FacePoseProviderNative>::.ctor(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Nullable_1__ctor_mA37775A88970FDEE0AAFDB1D6C4B0DD59DC9514C_gshared (Nullable_1_t46C943179743F64FCDDAE4F17DA41E9F22632C2D* __this, ovrAvatar2FacePoseProviderNative_tEA0EC66161D7F09057E0093F013BDBB1BB208A46 ___value0, const RuntimeMethod* method) ;
-// System.Void System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2EyePoseProvider>::.ctor(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Nullable_1__ctor_m2F2D785EAD6A430694FBA1464F1AF3302A30E743_gshared (Nullable_1_tF24391CCCB57E71A77DCFA9C86475AD02E26DA45* __this, ovrAvatar2EyePoseProvider_t9D47F05FB988F93F58BADFCAF2536D6772133C51 ___value0, const RuntimeMethod* method) ;
-// System.Void System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2EyePoseProviderNative>::.ctor(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Nullable_1__ctor_m130D76C67EA5CA284061F783C5A0507614EFB6E7_gshared (Nullable_1_t29C62B03879BFC156513A1129906548DD701E233* __this, ovrAvatar2EyePoseProviderNative_t05B83364EF1DFA7FBD70B0E40B8CD01032D20015 ___value0, const RuntimeMethod* method) ;
-// System.Void System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2HandTrackingDataContext>::.ctor(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Nullable_1__ctor_m8A7E147073318BE266229B925DA7C2401E286735_gshared (Nullable_1_tE5220701AA78449627E5EDCB47F075FC51064441* __this, ovrAvatar2HandTrackingDataContext_t5EC3698D6C7970CC0E8A2F43BEDC90FBC2D3CE1C ___value0, const RuntimeMethod* method) ;
-// System.Void System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2HandTrackingDataContextNative>::.ctor(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Nullable_1__ctor_m5B2A3D77370D6479E3F4F3FA5886B0E60DE0A895_gshared (Nullable_1_t0C948DF63099F187195361F0AD280D05D8D3392C* __this, ovrAvatar2HandTrackingDataContextNative_t3DACE582507E7E8CC2DDA0AC828911BC8EC6BF58 ___value0, const RuntimeMethod* method) ;
-// System.Boolean System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2HandTrackingDataContext>::get_HasValue()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_mDB254396B32D86AC6F8E1C1F12CB1476AF1121F6_gshared_inline (Nullable_1_tE5220701AA78449627E5EDCB47F075FC51064441* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2HandTrackingDataContextNative>::get_HasValue()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_mC26A9457141F71E294D0FE939CF1A0A07F352A3B_gshared_inline (Nullable_1_t0C948DF63099F187195361F0AD280D05D8D3392C* __this, const RuntimeMethod* method) ;
-// T System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2HandTrackingDataContext>::get_Value()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ovrAvatar2HandTrackingDataContext_t5EC3698D6C7970CC0E8A2F43BEDC90FBC2D3CE1C Nullable_1_get_Value_mAAB5EDE76A824BD95525A6857FBFE0B450818331_gshared (Nullable_1_tE5220701AA78449627E5EDCB47F075FC51064441* __this, const RuntimeMethod* method) ;
-// T System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2HandTrackingDataContextNative>::get_Value()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ovrAvatar2HandTrackingDataContextNative_t3DACE582507E7E8CC2DDA0AC828911BC8EC6BF58 Nullable_1_get_Value_mD074CD26B9C2890B01000576F69634B74519ED5F_gshared (Nullable_1_t0C948DF63099F187195361F0AD280D05D8D3392C* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2FacePoseProvider>::get_HasValue()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_m6F6F4D562A6DB4CFA84A3AFCCAA8AFC74D21F751_gshared_inline (Nullable_1_t97052EC4CAE1859E0A2AE4946E2175C8E83FD3C5* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2FacePoseProviderNative>::get_HasValue()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_m2DE652F35AE393E3A5789EB9DC263D9F62EA81E5_gshared_inline (Nullable_1_t46C943179743F64FCDDAE4F17DA41E9F22632C2D* __this, const RuntimeMethod* method) ;
-// T System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2FacePoseProvider>::get_Value()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ovrAvatar2FacePoseProvider_tA68FC38CB3F773D61092FCE2C6B726A231F74893 Nullable_1_get_Value_m912673F9B453609C545CFC8DCBFD5A2BAF315051_gshared (Nullable_1_t97052EC4CAE1859E0A2AE4946E2175C8E83FD3C5* __this, const RuntimeMethod* method) ;
-// T System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2FacePoseProviderNative>::get_Value()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ovrAvatar2FacePoseProviderNative_tEA0EC66161D7F09057E0093F013BDBB1BB208A46 Nullable_1_get_Value_m213AF71CF82C56D41FE4CFA95E9CEFE265F09A95_gshared (Nullable_1_t46C943179743F64FCDDAE4F17DA41E9F22632C2D* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2EyePoseProvider>::get_HasValue()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_m9C74EFC542CA7DAF4DCE50AD5447E2DC598B85DB_gshared_inline (Nullable_1_tF24391CCCB57E71A77DCFA9C86475AD02E26DA45* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2EyePoseProviderNative>::get_HasValue()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_m73318857A0A02716ABFBFC239C82D32CEF47A213_gshared_inline (Nullable_1_t29C62B03879BFC156513A1129906548DD701E233* __this, const RuntimeMethod* method) ;
-// T System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2EyePoseProvider>::get_Value()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ovrAvatar2EyePoseProvider_t9D47F05FB988F93F58BADFCAF2536D6772133C51 Nullable_1_get_Value_m4A57F46A973643C3034C470101373E9A81CB22D7_gshared (Nullable_1_tF24391CCCB57E71A77DCFA9C86475AD02E26DA45* __this, const RuntimeMethod* method) ;
-// T System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2EyePoseProviderNative>::get_Value()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ovrAvatar2EyePoseProviderNative_t05B83364EF1DFA7FBD70B0E40B8CD01032D20015 Nullable_1_get_Value_m9351FACCFF77AD0FB617A29E0A0E892E158A2CE3_gshared (Nullable_1_t29C62B03879BFC156513A1129906548DD701E233* __this, const RuntimeMethod* method) ;
-// System.Collections.Generic.List`1/Enumerator<T> System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector3>>::GetEnumerator()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Enumerator_tCA9F2278D555C08735E4D82B5E0AEA718FD84E16 List_1_GetEnumerator_m1B93DAC0D19488602175BD91AFED03E5A7FF991D_gshared (List_1_t39ADBAF6BCCB03EE530D05F996A684735270E45B* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector3>>::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Enumerator_Dispose_m489C4DFC924BCB103B141882E6E52EAEBFA6A7C1_gshared (Enumerator_tCA9F2278D555C08735E4D82B5E0AEA718FD84E16* __this, const RuntimeMethod* method) ;
-// T System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector3>>::get_Current()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ExtensionEntry_1_t3122008635A0240B51467C3F8B72DB740693D3E7 Enumerator_get_Current_m03423C06EF234C1EE724D929117C2509B4CDBB5F_gshared_inline (Enumerator_tCA9F2278D555C08735E4D82B5E0AEA718FD84E16* __this, const RuntimeMethod* method) ;
-// System.String Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector3>::get_Name()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR String_t* ExtensionEntry_1_get_Name_m55839CECDF72E2CDCDEDCAEFC6A819C3DC7546F7_gshared_inline (ExtensionEntry_1_t3122008635A0240B51467C3F8B72DB740693D3E7* __this, const RuntimeMethod* method) ;
-// T Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector3>::get_Payload()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ExtensionEntry_1_get_Payload_m50DF091492CA32D7CA9D5F1334AE8999B6EE8475_gshared_inline (ExtensionEntry_1_t3122008635A0240B51467C3F8B72DB740693D3E7* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector3>>::MoveNext()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Enumerator_MoveNext_m270F510DCEAE5D2992E250F128D9A3D5A0B1E6D1_gshared (Enumerator_tCA9F2278D555C08735E4D82B5E0AEA718FD84E16* __this, const RuntimeMethod* method) ;
-// System.Collections.Generic.List`1/Enumerator<T> System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector4>>::GetEnumerator()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Enumerator_tDFC366BCC918F6C416A85E882432787BE9693F29 List_1_GetEnumerator_m4BB89DEC1466EC2082FBC57D1B47B005BCAF0B37_gshared (List_1_t9CEEFCCC9B23A162158811AC97949D814329569E* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector4>>::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Enumerator_Dispose_m49912DFE4D3013CA5896DF41DE5A5418A6B259B4_gshared (Enumerator_tDFC366BCC918F6C416A85E882432787BE9693F29* __this, const RuntimeMethod* method) ;
-// T System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector4>>::get_Current()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ExtensionEntry_1_tB2BE801FD5C4993FB45DEE1343D057605BBFF0F2 Enumerator_get_Current_m34E9B065B89A1D0E484FC4A1111CEA0ADA536803_gshared_inline (Enumerator_tDFC366BCC918F6C416A85E882432787BE9693F29* __this, const RuntimeMethod* method) ;
-// System.String Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector4>::get_Name()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR String_t* ExtensionEntry_1_get_Name_mFEB2AB5ED15C18A86C5A75C03E2D9EC0B21486B7_gshared_inline (ExtensionEntry_1_tB2BE801FD5C4993FB45DEE1343D057605BBFF0F2* __this, const RuntimeMethod* method) ;
-// T Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector4>::get_Payload()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 ExtensionEntry_1_get_Payload_m7CDF2DD4A589D3B997E5F3EB4F5F1D6164A8D2CC_gshared_inline (ExtensionEntry_1_tB2BE801FD5C4993FB45DEE1343D057605BBFF0F2* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector4>>::MoveNext()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Enumerator_MoveNext_m078DF5194805449C6F4A498D0F57A0301AE71D9C_gshared (Enumerator_tDFC366BCC918F6C416A85E882432787BE9693F29* __this, const RuntimeMethod* method) ;
-// System.Collections.Generic.List`1/Enumerator<T> System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Single>>::GetEnumerator()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Enumerator_t69D2B438661A4BF53F5826356D3635489039FA26 List_1_GetEnumerator_mA76B898CBFC5D5E84B500BC436933F35D2228854_gshared (List_1_t3D2138A7C2EB312C0132190151D7E29594071BA0* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Single>>::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Enumerator_Dispose_m443586E5DE0B38DEDDE6ABD522412238CE87F8D8_gshared (Enumerator_t69D2B438661A4BF53F5826356D3635489039FA26* __this, const RuntimeMethod* method) ;
-// T System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Single>>::get_Current()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ExtensionEntry_1_tA92D0E18425FA6278BFDE762213B76BE8DC0FBF8 Enumerator_get_Current_m18A19E28A3B18D607FD63937E8D0986CB423508D_gshared_inline (Enumerator_t69D2B438661A4BF53F5826356D3635489039FA26* __this, const RuntimeMethod* method) ;
-// System.String Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Single>::get_Name()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR String_t* ExtensionEntry_1_get_Name_m95214DAB1A67FC0F92C3457BD76DFD7377D9B6A5_gshared_inline (ExtensionEntry_1_tA92D0E18425FA6278BFDE762213B76BE8DC0FBF8* __this, const RuntimeMethod* method) ;
-// T Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Single>::get_Payload()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float ExtensionEntry_1_get_Payload_m2275CB9A8FA28F13945D5F12F886145921BDABE8_gshared_inline (ExtensionEntry_1_tA92D0E18425FA6278BFDE762213B76BE8DC0FBF8* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Single>>::MoveNext()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Enumerator_MoveNext_m0BECA3C68218162A418233CEBCF617BB1B78A422_gshared (Enumerator_t69D2B438661A4BF53F5826356D3635489039FA26* __this, const RuntimeMethod* method) ;
-// System.Collections.Generic.List`1/Enumerator<T> System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Int32>>::GetEnumerator()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Enumerator_t0E54B2E53E88A97C042EE85F413A7CF50692D0C9 List_1_GetEnumerator_mE26FFC2D25B4C3519127949453FE2CF41D2F71E1_gshared (List_1_t941E36F7444B6E85114CF22035CB833E55C9D086* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Int32>>::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Enumerator_Dispose_mB0FE0D6B3EB93EDBB0B822E5E17742163EED3140_gshared (Enumerator_t0E54B2E53E88A97C042EE85F413A7CF50692D0C9* __this, const RuntimeMethod* method) ;
-// T System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Int32>>::get_Current()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ExtensionEntry_1_tF2C4369D973C4DBC0C068E5D57B9696534CCDA19 Enumerator_get_Current_mBED8585C3D5FF52D6D9B4B01167654F96E23C02C_gshared_inline (Enumerator_t0E54B2E53E88A97C042EE85F413A7CF50692D0C9* __this, const RuntimeMethod* method) ;
-// System.String Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Int32>::get_Name()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR String_t* ExtensionEntry_1_get_Name_m6285FEC42161D27BF14DB4564F8FACFAB3024FAC_gshared_inline (ExtensionEntry_1_tF2C4369D973C4DBC0C068E5D57B9696534CCDA19* __this, const RuntimeMethod* method) ;
-// T Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Int32>::get_Payload()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ExtensionEntry_1_get_Payload_mA537FBD130CBD4BCDD00792F58BFA62F2D2B9964_gshared_inline (ExtensionEntry_1_tF2C4369D973C4DBC0C068E5D57B9696534CCDA19* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Int32>>::MoveNext()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Enumerator_MoveNext_mAD1BFF18BD21300CD02B79A12E91817903CC4630_gshared (Enumerator_t0E54B2E53E88A97C042EE85F413A7CF50692D0C9* __this, const RuntimeMethod* method) ;
-// System.Collections.Generic.List`1/Enumerator<T> System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Object>>::GetEnumerator()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Enumerator_tEF9AB955C5A9CB26AD5E865D88965D515AF2E8EB List_1_GetEnumerator_m932403EBB764B5760621C84643D3800D74A62296_gshared (List_1_t03C5C2BE7A26C11DCF0C0BD79075EAEE62EF967B* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Object>>::Dispose()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Enumerator_Dispose_mF58E8D592F9B2F8F9D7FFDE71AD78EAD52975820_gshared (Enumerator_tEF9AB955C5A9CB26AD5E865D88965D515AF2E8EB* __this, const RuntimeMethod* method) ;
-// T System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Object>>::get_Current()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1 Enumerator_get_Current_m71CB410F523ACAF815B3241BF90C4DE0B3BE4CE2_gshared_inline (Enumerator_tEF9AB955C5A9CB26AD5E865D88965D515AF2E8EB* __this, const RuntimeMethod* method) ;
-// System.String Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Object>::get_Name()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR String_t* ExtensionEntry_1_get_Name_m520A58F18C50A01B9A6875133784FB0CB29ACECE_gshared_inline (ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1* __this, const RuntimeMethod* method) ;
-// T Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Object>::get_Payload()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* ExtensionEntry_1_get_Payload_m1F6BFA44C6CF16A30A60E200A461967E101306EA_gshared_inline (ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Object>>::MoveNext()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Enumerator_MoveNext_m01A3B753AB17921E972FE2EE7179F70CD9E334E9_gshared (Enumerator_tEF9AB955C5A9CB26AD5E865D88965D515AF2E8EB* __this, const RuntimeMethod* method) ;
-// System.Boolean Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntries::StoreNameAndPayloadForEntry<System.Single>(Oculus.Avatar2.CAPI/ovrAvatar2Id,System.UInt32,System.UInt32,Oculus.Avatar2.CAPI/ovrAvatar2MaterialExtensionEntry&,System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<T>>&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ExtensionEntries_StoreNameAndPayloadForEntry_TisSingle_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_m06F124B3CD2D998A101517AACEC9354D870D8A92_gshared (int32_t ___primitiveId0, uint32_t ___extensionIdx1, uint32_t ___entryIdx2, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C* ___metaData3, List_1_t3D2138A7C2EB312C0132190151D7E29594071BA0** ___listToStoreInto4, const RuntimeMethod* method) ;
-// System.Boolean Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntries::StoreNameAndPayloadForEntry<System.Int32>(Oculus.Avatar2.CAPI/ovrAvatar2Id,System.UInt32,System.UInt32,Oculus.Avatar2.CAPI/ovrAvatar2MaterialExtensionEntry&,System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<T>>&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ExtensionEntries_StoreNameAndPayloadForEntry_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_m1208013433D04DA4F0C65F5D958CF7E196B3068B_gshared (int32_t ___primitiveId0, uint32_t ___extensionIdx1, uint32_t ___entryIdx2, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C* ___metaData3, List_1_t941E36F7444B6E85114CF22035CB833E55C9D086** ___listToStoreInto4, const RuntimeMethod* method) ;
-// System.Boolean Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntries::StoreNameAndPayloadForEntry<UnityEngine.Vector3>(Oculus.Avatar2.CAPI/ovrAvatar2Id,System.UInt32,System.UInt32,Oculus.Avatar2.CAPI/ovrAvatar2MaterialExtensionEntry&,System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<T>>&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ExtensionEntries_StoreNameAndPayloadForEntry_TisVector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2_m46C47BA449DD0CEAA4166202380A4D11FC92B537_gshared (int32_t ___primitiveId0, uint32_t ___extensionIdx1, uint32_t ___entryIdx2, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C* ___metaData3, List_1_t39ADBAF6BCCB03EE530D05F996A684735270E45B** ___listToStoreInto4, const RuntimeMethod* method) ;
-// System.Boolean Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntries::StoreNameAndPayloadForEntry<UnityEngine.Vector4>(Oculus.Avatar2.CAPI/ovrAvatar2Id,System.UInt32,System.UInt32,Oculus.Avatar2.CAPI/ovrAvatar2MaterialExtensionEntry&,System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<T>>&)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ExtensionEntries_StoreNameAndPayloadForEntry_TisVector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3_m3E2E1D40D41A2BC54BE7A8269BDA3FB5AD455EE2_gshared (int32_t ___primitiveId0, uint32_t ___extensionIdx1, uint32_t ___entryIdx2, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C* ___metaData3, List_1_t9CEEFCCC9B23A162158811AC97949D814329569E** ___listToStoreInto4, const RuntimeMethod* method) ;
-// System.Boolean Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntries::GetNameAndPayloadForEntry<System.Int32Enum>(Oculus.Avatar2.CAPI/ovrAvatar2Id,System.UInt32,System.UInt32,Oculus.Avatar2.CAPI/ovrAvatar2MaterialExtensionEntry&,System.String&,T*)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ExtensionEntries_GetNameAndPayloadForEntry_TisInt32Enum_tCBAC8BA2BFF3A845FA599F303093BBBA374B6F0C_m5E31C164CBFE93BB3602ED1BC794BF341B4702F3_gshared (int32_t ___primitiveId0, uint32_t ___extensionIndex1, uint32_t ___entryIndex2, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C* ___metaData3, String_t** ___entryName4, int32_t* ___outPayload5, const RuntimeMethod* method) ;
+// System.Int32 Oculus.Avatar2.OvrSpan`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::get_Length()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t OvrSpan_1_get_Length_mFB123E739F216FC9BB34F03F39A0154D2B39F312_gshared_inline (OvrSpan_1_tABCF10E9E40CF31C1378EB23141B1D48DD8C9BF8* __this, const RuntimeMethod* method) ;
+// System.IntPtr Oculus.Avatar2.OvrSpan`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::get_Address()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t OvrSpan_1_get_Address_m31042E5B147C0EC559627BAC974A95DE3338B197_gshared_inline (OvrSpan_1_tABCF10E9E40CF31C1378EB23141B1D48DD8C9BF8* __this, const RuntimeMethod* method) ;
+// System.Void Oculus.Avatar2.OvrSpan`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>::.ctor(System.Void*,System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrSpan_1__ctor_mB888C6B370887CFF16DCC49768FCF9995235F039_gshared (OvrSpan_1_tABCF10E9E40CF31C1378EB23141B1D48DD8C9BF8* __this, void* ___ptr0, int32_t ___length1, const RuntimeMethod* method) ;
+// T[] System.ArraySegment`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Array()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* ArraySegment_1_get_Array_mE4A35DFD81ABF447350B9A05C0F4BF0248A3CFF2_gshared_inline (ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178* __this, const RuntimeMethod* method) ;
+// System.Int32 System.ArraySegment`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Offset()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ArraySegment_1_get_Offset_m4FAFF061AB36BF278BA8DC37B6D13718A06301E6_gshared_inline (ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178* __this, const RuntimeMethod* method) ;
+// System.Int32 System.ArraySegment`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Count()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ArraySegment_1_get_Count_mEF96248898C14F3687A5C72B920F841701E4E13C_gshared_inline (ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178* __this, const RuntimeMethod* method) ;
+// System.String Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Name()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR String_t* ExtensionEntry_1_get_Name_m334759304121FB3A8712E97BDA20F13362CD15CA_gshared_inline (ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3* __this, const RuntimeMethod* method) ;
+// T Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Payload()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ExtensionEntry_1_get_Payload_m8EF45BCCCD281E510E68B35571A095FCEE32104B_gshared_inline (ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Boolean Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntries::StoreNameAndPayloadForEntry<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>(Oculus.Avatar2.CAPI/ovrAvatar2Id,System.UInt32,System.UInt32,Oculus.Avatar2.CAPI/ovrAvatar2MaterialExtensionEntry&,System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<T>>&)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ExtensionEntries_StoreNameAndPayloadForEntry_TisIl2CppFullySharedGenericStruct_m508335D8D494B4DBD6AFAD30AC79C5C378D1AB86_gshared (int32_t ___primitiveId0, uint32_t ___extensionIdx1, uint32_t ___entryIdx2, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C* ___metaData3, List_1_t5D2D70E87EB982F476DEC43ABD920F7C607E008A** ___listToStoreInto4, const RuntimeMethod* method) ;
+// System.Boolean Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntries::GetNameAndPayloadForEntry<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType>(Oculus.Avatar2.CAPI/ovrAvatar2Id,System.UInt32,System.UInt32,Oculus.Avatar2.CAPI/ovrAvatar2MaterialExtensionEntry&,System.String&,T*)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ExtensionEntries_GetNameAndPayloadForEntry_TisIl2CppFullySharedGenericStruct_mA360948C1AC10DE18963504E150E7F8064ED3570_gshared (int32_t ___primitiveId0, uint32_t ___extensionIndex1, uint32_t ___entryIndex2, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C* ___metaData3, String_t** ___entryName4, Il2CppFullySharedGenericStruct* ___outPayload5, const RuntimeMethod* method) ;
 // System.Boolean Oculus.Avatar2.OvrAvatarManager::GetOvrAvatarAsset<System.Object>(Oculus.Avatar2.CAPI/ovrAvatar2Id,T&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool OvrAvatarManager_GetOvrAvatarAsset_TisRuntimeObject_m7EDFCDAA0790889BDDDEB171ACA023CF1F4935A2_gshared (int32_t ___assetId0, RuntimeObject** ___asset1, const RuntimeMethod* method) ;
-// System.Void Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Object>::.ctor(System.String,T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ExtensionEntry_1__ctor_m6D82C6CF5F4EB7CA0DDDFD11588B2D9535009A50_gshared (ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1* __this, String_t* ___name0, RuntimeObject* ___payload1, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Object>>::Add(T)
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Add_m22A268C731500AFE2F467D52C1A23FA75BBF55C7_gshared_inline (List_1_t03C5C2BE7A26C11DCF0C0BD79075EAEE62EF967B* __this, ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1 ___item0, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector3>>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1__ctor_m3C31D7825EF313F3275A2B153A617C0216584254_gshared (List_1_t39ADBAF6BCCB03EE530D05F996A684735270E45B* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector4>>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1__ctor_mE72FBDB7DC9958CB42AFDDFAE3F0F71347C53895_gshared (List_1_t9CEEFCCC9B23A162158811AC97949D814329569E* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Single>>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1__ctor_m80C85254CEF25CECE1A697BC96E6D6B9B4786F6E_gshared (List_1_t3D2138A7C2EB312C0132190151D7E29594071BA0* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Int32>>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1__ctor_m51B43A0561404628438B1C4DCA240723CE475CB0_gshared (List_1_t941E36F7444B6E85114CF22035CB833E55C9D086* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Object>>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1__ctor_mB28E8BB6720669BD8707301CA0AEDFD00F2688D1_gshared (List_1_t03C5C2BE7A26C11DCF0C0BD79075EAEE62EF967B* __this, const RuntimeMethod* method) ;
+// System.Void Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor(System.String,T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ExtensionEntry_1__ctor_m62A94AA7B85C799AB929D2983E7855161F4408D0_gshared (ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3* __this, String_t* ___name0, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___payload1, const RuntimeMethod* method) ;
 
 // System.Void Oculus.Avatar2.OvrAvatarEntity/SkeletonJoint::.ctor(System.String,UnityEngine.Transform,System.Int32,Oculus.Avatar2.CAPI/ovrAvatar2NodeId)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SkeletonJoint__ctor_m11478FE321B5BEB323DEB6A9EF6DFD12D3931F56 (SkeletonJoint_t8432BAB1392C9E8B7C45151FC885F6E4C97743C6* __this, String_t* ___jointName0, Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___tx1, int32_t ___parentIdx2, int32_t ___nodeIdentifier3, const RuntimeMethod* method) ;
@@ -8304,7 +7942,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MonoBehaviour__ctor_m592DB0105CA0BC97AA1
 // System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarEntity/PrimitiveRenderData>::.ctor()
 inline void List_1__ctor_m311D82A0276F4BE0EF228655A9AC710D0C2DBF65 (List_1_t1A400D239D08A69786D62E1BF2F64152E8AF89F1* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t1A400D239D08A69786D62E1BF2F64152E8AF89F1*, const RuntimeMethod*))List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Boolean Oculus.Avatar2.OvrAvatarEntity::get_IsLocal()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool OvrAvatarEntity_get_IsLocal_m05D4F9E1C3968C69755219803C6B153230D02B63_inline (OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* __this, const RuntimeMethod* method) ;
@@ -8313,7 +7951,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Nullable_1_tEE876B0A383DEE0B818E0DD33CD272119
 // System.Boolean System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2StreamingPlaybackState>::get_HasValue()
 inline bool Nullable_1_get_HasValue_mCD69EFFC135329B265E578E50CBDAFD4E8258B53_inline (Nullable_1_tEE876B0A383DEE0B818E0DD33CD2721195BC5AD4* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Nullable_1_tEE876B0A383DEE0B818E0DD33CD2721195BC5AD4*, const RuntimeMethod*))Nullable_1_get_HasValue_mCD69EFFC135329B265E578E50CBDAFD4E8258B53_gshared_inline)(__this, method);
+	return ((  bool (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, const RuntimeMethod*))Nullable_1_get_HasValue_m14F273FB376DF00D727434CDCD28AB4EDCC14C3C_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, method);
 }
 // System.Boolean Oculus.Avatar2.OvrAvatarEntity::HasAnyFeatures(Oculus.Avatar2.CAPI/ovrAvatar2EntityFeatures)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool OvrAvatarEntity_HasAnyFeatures_m8E6E275869472504137269B44834C77CBBE6A5E3 (OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* __this, int32_t ___features0, const RuntimeMethod* method) ;
@@ -8322,7 +7960,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarEntity_BroadcastAnimationFrameS
 // System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarEntity/PrimitiveRenderData>::Clear()
 inline void List_1_Clear_m20BDF327ECA5221333C9194480FBAA36F6597A88_inline (List_1_t1A400D239D08A69786D62E1BF2F64152E8AF89F1* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t1A400D239D08A69786D62E1BF2F64152E8AF89F1*, const RuntimeMethod*))List_1_Clear_m16C1F2C61FED5955F10EB36BC1CB2DF34B128994_gshared_inline)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1_Clear_mD615D1BCB2C9DD91DAD86A2F9E5CF1DFFCBF7925_gshared_inline)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarEntity::AppendPrimitivesWithAnimationEnabled(System.Collections.Generic.List`1<OvrAvatarSkinnedRenderable>,System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarEntity/PrimitiveRenderData>)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarEntity_AppendPrimitivesWithAnimationEnabled_m99ED537D80FCED55D39F524AC73C3CDFF9732763 (OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* __this, List_1_tD1E649A51449E4CFA07645D6728664CD52CE4CE3* ___skinnedOut0, List_1_t1A400D239D08A69786D62E1BF2F64152E8AF89F1* ___renderDataOut1, const RuntimeMethod* method) ;
@@ -8361,17 +7999,17 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void AnimationFrameInfo_set_IsVal
 // System.Void UnityEngine.Events.UnityEvent`1<Oculus.Avatar2.OvrAvatarEntity/LoadingState>::.ctor()
 inline void UnityEvent_1__ctor_mC2BB0669390F51D6432E5855E456E41EB172196F (UnityEvent_1_t5CFF406790FD3BA05475B4E31B7E39B473CA7517* __this, const RuntimeMethod* method)
 {
-	((  void (*) (UnityEvent_1_t5CFF406790FD3BA05475B4E31B7E39B473CA7517*, const RuntimeMethod*))UnityEvent_1__ctor_mB02CA1F5BD6D866640636D18011AC3329058C26B_gshared)(__this, method);
+	((  void (*) (UnityEvent_1_t2A2840A12C919146C6D21E86D7DAA8E3DAB74030*, const RuntimeMethod*))UnityEvent_1__ctor_m174C3AF06DAD8FF5ABF88D1A43EE8EE2B5670A2D_gshared)((UnityEvent_1_t2A2840A12C919146C6D21E86D7DAA8E3DAB74030*)__this, method);
 }
 // System.Void UnityEngine.Events.UnityEvent`1<Oculus.Avatar2.OvrAvatarEntity>::.ctor()
 inline void UnityEvent_1__ctor_m1C7D4323A78D0257FE6A1FF5F4225804E1D04568 (UnityEvent_1_t614FC186D7A1FCD4BE7D67BDAF60DCDD32583E9A* __this, const RuntimeMethod* method)
 {
-	((  void (*) (UnityEvent_1_t614FC186D7A1FCD4BE7D67BDAF60DCDD32583E9A*, const RuntimeMethod*))UnityEvent_1__ctor_m8D77F4F05F69D0E52E8A445322811EEC25987525_gshared)(__this, method);
+	((  void (*) (UnityEvent_1_t2A2840A12C919146C6D21E86D7DAA8E3DAB74030*, const RuntimeMethod*))UnityEvent_1__ctor_m174C3AF06DAD8FF5ABF88D1A43EE8EE2B5670A2D_gshared)((UnityEvent_1_t2A2840A12C919146C6D21E86D7DAA8E3DAB74030*)__this, method);
 }
 // System.Void UnityEngine.Events.UnityEvent`2<Oculus.Avatar2.OvrAvatarEntity,Oculus.Avatar2.CAPI/ovrAvatar2LoadRequestInfo>::.ctor()
 inline void UnityEvent_2__ctor_m37FE082FD54BB067243610A26119CB9226ACD89B (UnityEvent_2_t30BCBEED2E88201E2FF2C57BD9E82FB477F2EB4E* __this, const RuntimeMethod* method)
 {
-	((  void (*) (UnityEvent_2_t30BCBEED2E88201E2FF2C57BD9E82FB477F2EB4E*, const RuntimeMethod*))UnityEvent_2__ctor_m84215DA1B6E84B48A17E949933C424B8808A8B39_gshared)(__this, method);
+	((  void (*) (UnityEvent_2_t4000343C3337D1FF4300FFA119D84820B0628F1F*, const RuntimeMethod*))UnityEvent_2__ctor_m0798E1A7C273C7F46CA7F62E0368AE5CABF790C0_gshared)((UnityEvent_2_t4000343C3337D1FF4300FFA119D84820B0628F1F*)__this, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarEntity/CheckPrimitivesResult::.ctor(Oculus.Avatar2.CAPI/ovrAvatar2EntityRenderStateVersion,Oculus.Avatar2.CAPI/ovrAvatar2EntityRenderStateVersion)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CheckPrimitivesResult__ctor_m371E40EFB6AB8441F634FBC9076CB9EE0DBB7F1A (CheckPrimitivesResult_t36EDCA34280318F9B8998B80D2765F782A97EEFD* __this, int32_t ___allNodesVersion0, int32_t ___visVersion1, const RuntimeMethod* method) ;
@@ -8380,7 +8018,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Transform_tB27202C6F4E36D225EE28A13E4D662BF99
 // System.Void System.Collections.Generic.HashSet`1<Oculus.Avatar2.OvrAvatarRenderable>::.ctor()
 inline void HashSet_1__ctor_m65C89667AF46638A88EF33941BC971CF3805B9F5 (HashSet_1_tD57198B772C171DC61CB40EBA1CD6294C44E86DA* __this, const RuntimeMethod* method)
 {
-	((  void (*) (HashSet_1_tD57198B772C171DC61CB40EBA1CD6294C44E86DA*, const RuntimeMethod*))HashSet_1__ctor_m9132EE1422BAA45E44B7FFF495F378790D36D90E_gshared)(__this, method);
+	((  void (*) (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*, const RuntimeMethod*))HashSet_1__ctor_m5E12B490550D90B0686D55F8F4E7B0506BD07120_gshared)((HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*)__this, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarEntity/LodData::.ctor(UnityEngine.GameObject)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LodData__ctor_m61F087E0434FC66664CA791CDF0F2B3BCE88FCB0 (LodData_t0924A7D832FBDB0359AD0A792B3E5CEB94F3A01A* __this, GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___gob0, const RuntimeMethod* method) ;
@@ -8389,7 +8027,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool LodData_get_IsValid_m4FBC63ECF94A2B62357
 // System.Int32 System.Collections.Generic.HashSet`1<Oculus.Avatar2.OvrAvatarRenderable>::get_Count()
 inline int32_t HashSet_1_get_Count_mFBC577432638D9F17129F55080C3BD7F0F0F507B_inline (HashSet_1_tD57198B772C171DC61CB40EBA1CD6294C44E86DA* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (HashSet_1_tD57198B772C171DC61CB40EBA1CD6294C44E86DA*, const RuntimeMethod*))HashSet_1_get_Count_m41CC85EEB7855CEFA3BC7A32F115387939318ED3_gshared_inline)(__this, method);
+	return ((  int32_t (*) (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*, const RuntimeMethod*))HashSet_1_get_Count_mA764DCA3CB14CB2CBDF742A163492FF4DA515B63_gshared_inline)((HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*)__this, method);
 }
 // System.Boolean Oculus.Avatar2.OvrAvatarEntity/LodData::get_HasInstances()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool LodData_get_HasInstances_mFFACE19CAD8C0F8E0A6357EE5F86A4FC46B3DFAF (LodData_t0924A7D832FBDB0359AD0A792B3E5CEB94F3A01A* __this, const RuntimeMethod* method) ;
@@ -8400,7 +8038,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t LodData_get_triangleCount_m75BA25701E
 // System.Boolean System.Collections.Generic.HashSet`1<Oculus.Avatar2.OvrAvatarRenderable>::Add(T)
 inline bool HashSet_1_Add_mE3B564654B5F8753831C87E5A26948001D36EDB7 (HashSet_1_tD57198B772C171DC61CB40EBA1CD6294C44E86DA* __this, OvrAvatarRenderable_t6A160B0805AD93B2153702F98E0952038648F1E7* ___item0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (HashSet_1_tD57198B772C171DC61CB40EBA1CD6294C44E86DA*, OvrAvatarRenderable_t6A160B0805AD93B2153702F98E0952038648F1E7*, const RuntimeMethod*))HashSet_1_Add_m2CD7657B3459B61DD4BBA47024AC71F7D319658B_gshared)(__this, ___item0, method);
+	return ((  bool (*) (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))HashSet_1_Add_m73E14DB94D21272EEE1E28E4D74704B0095D8064_gshared)((HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // Oculus.Avatar2.AvatarLODCostData& modreq(System.Runtime.InteropServices.InAttribute) Oculus.Avatar2.OvrAvatarRenderable::get_CostData()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AvatarLODCostData_t5FA890A2CEA193BA2CDB6A168ED15F60BB763565* OvrAvatarRenderable_get_CostData_mDCE89450D7691591FF84898BCA66B074BE962796 (OvrAvatarRenderable_t6A160B0805AD93B2153702F98E0952038648F1E7* __this, const RuntimeMethod* method) ;
@@ -8411,7 +8049,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LodData_AddInstance_m4A8677E29995670CDE6
 // System.Boolean System.Collections.Generic.HashSet`1<Oculus.Avatar2.OvrAvatarRenderable>::Remove(T)
 inline bool HashSet_1_Remove_m5B81BDD21BAEA461142D4C0971965E1FCD98DE64 (HashSet_1_tD57198B772C171DC61CB40EBA1CD6294C44E86DA* __this, OvrAvatarRenderable_t6A160B0805AD93B2153702F98E0952038648F1E7* ___item0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (HashSet_1_tD57198B772C171DC61CB40EBA1CD6294C44E86DA*, OvrAvatarRenderable_t6A160B0805AD93B2153702F98E0952038648F1E7*, const RuntimeMethod*))HashSet_1_Remove_mF1D84C0A2829DDA2A0CEE1D82A5B999B5F6627CB_gshared)(__this, ___item0, method);
+	return ((  bool (*) (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))HashSet_1_Remove_mE12E434B402CFEB49197444DE1D52A3AE4C7F6EE_gshared)((HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // Oculus.Avatar2.AvatarLODCostData Oculus.Avatar2.AvatarLODCostData::Subtract(Oculus.Avatar2.AvatarLODCostData&,Oculus.Avatar2.AvatarLODCostData&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AvatarLODCostData_t5FA890A2CEA193BA2CDB6A168ED15F60BB763565 AvatarLODCostData_Subtract_m41158547513ECC685DB70242A0EC3D677F5F8003 (AvatarLODCostData_t5FA890A2CEA193BA2CDB6A168ED15F60BB763565* ___total0, AvatarLODCostData_t5FA890A2CEA193BA2CDB6A168ED15F60BB763565* ___sub1, const RuntimeMethod* method) ;
@@ -8420,7 +8058,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool LodData_RemoveInstance_m2FBFB73DA17C22D6
 // System.Void System.Collections.Generic.HashSet`1<Oculus.Avatar2.OvrAvatarRenderable>::Clear()
 inline void HashSet_1_Clear_mFA1C774C13C6F5A3DDB6E1F0E852E6FD4CB79807 (HashSet_1_tD57198B772C171DC61CB40EBA1CD6294C44E86DA* __this, const RuntimeMethod* method)
 {
-	((  void (*) (HashSet_1_tD57198B772C171DC61CB40EBA1CD6294C44E86DA*, const RuntimeMethod*))HashSet_1_Clear_m75A6528F0B47448EB3B3A05EC379260E9BDFC2DD_gshared)(__this, method);
+	((  void (*) (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*, const RuntimeMethod*))HashSet_1_Clear_mCD863950F0D273BF34801FDD92CBEC230ECD5A6D_gshared)((HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*)__this, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarEntity/LodData::Clear()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LodData_Clear_m26D06EB1DC607763883B616095069372F4E4BE7C (LodData_t0924A7D832FBDB0359AD0A792B3E5CEB94F3A01A* __this, const RuntimeMethod* method) ;
@@ -8471,12 +8109,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Object_Destroy_mE97D0A766419A81296E8D4E5
 // System.Void Oculus.Avatar2.EntityJointMonitorBase`1<Oculus.Avatar2.TransformHolder>::.ctor(Oculus.Avatar2.OvrAvatarEntity)
 inline void EntityJointMonitorBase_1__ctor_m1E91353235A7B00890935E214E30D3381FBA669F (EntityJointMonitorBase_1_tBAAEAA889E33FFC9E2F14F7E5BE9BB41B0214D30* __this, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* ___entity0, const RuntimeMethod* method)
 {
-	((  void (*) (EntityJointMonitorBase_1_tBAAEAA889E33FFC9E2F14F7E5BE9BB41B0214D30*, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA*, const RuntimeMethod*))EntityJointMonitorBase_1__ctor_mE5B1E85142C4A174962ADB92E0FF15827B38EA92_gshared)(__this, ___entity0, method);
+	((  void (*) (EntityJointMonitorBase_1_t3A41835CDC6B2C5F9769AED071587880A093FABF*, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA*, const RuntimeMethod*))EntityJointMonitorBase_1__ctor_mA6798EA8088AE58F4FB9968D8277F7100125A66D_gshared)((EntityJointMonitorBase_1_t3A41835CDC6B2C5F9769AED071587880A093FABF*)__this, ___entity0, method);
 }
 // UnityEngine.Transform Oculus.Avatar2.EntityJointMonitorBase`1<Oculus.Avatar2.TransformHolder>::CreateNewTransform(Oculus.Avatar2.CAPI/ovrAvatar2JointType)
 inline Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* EntityJointMonitorBase_1_CreateNewTransform_m617FC171350581119677915148EFA1A105482038 (EntityJointMonitorBase_1_tBAAEAA889E33FFC9E2F14F7E5BE9BB41B0214D30* __this, int32_t ___jointType0, const RuntimeMethod* method)
 {
-	return ((  Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* (*) (EntityJointMonitorBase_1_tBAAEAA889E33FFC9E2F14F7E5BE9BB41B0214D30*, int32_t, const RuntimeMethod*))EntityJointMonitorBase_1_CreateNewTransform_m2E4FC9205710DFDCCBC93E022B78CAAABB4A6EFB_gshared)(__this, ___jointType0, method);
+	return ((  Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* (*) (EntityJointMonitorBase_1_t3A41835CDC6B2C5F9769AED071587880A093FABF*, int32_t, const RuntimeMethod*))EntityJointMonitorBase_1_CreateNewTransform_m574EBDE96023C6A3419D16419B24178800C859D6_gshared)((EntityJointMonitorBase_1_t3A41835CDC6B2C5F9769AED071587880A093FABF*)__this, ___jointType0, method);
 }
 // System.Void Oculus.Avatar2.TransformHolder::.ctor(UnityEngine.Transform)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TransformHolder__ctor_mBD67F010837FC250FE530F399CB4FBFB3C6F8B6E (TransformHolder_t7871D0F75044D0B30657B8F3D2F9FD5A81F088FC* __this, Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___tx0, const RuntimeMethod* method) ;
@@ -8495,12 +8133,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Quaternion_tDA59F214EF07D7700B26E40E562F267AF
 // System.Void Oculus.Avatar2.EntityJointMonitorBase`1<Oculus.Avatar2.InterpolatingJoint>::.ctor(Oculus.Avatar2.OvrAvatarEntity)
 inline void EntityJointMonitorBase_1__ctor_m5E6314C443FB02CADAF4EFA501B8DE84F63A12E6 (EntityJointMonitorBase_1_tF927A39C3750EEFB624F79D812842B082B762702* __this, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* ___entity0, const RuntimeMethod* method)
 {
-	((  void (*) (EntityJointMonitorBase_1_tF927A39C3750EEFB624F79D812842B082B762702*, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA*, const RuntimeMethod*))EntityJointMonitorBase_1__ctor_mE5B1E85142C4A174962ADB92E0FF15827B38EA92_gshared)(__this, ___entity0, method);
+	((  void (*) (EntityJointMonitorBase_1_t3A41835CDC6B2C5F9769AED071587880A093FABF*, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA*, const RuntimeMethod*))EntityJointMonitorBase_1__ctor_mA6798EA8088AE58F4FB9968D8277F7100125A66D_gshared)((EntityJointMonitorBase_1_t3A41835CDC6B2C5F9769AED071587880A093FABF*)__this, ___entity0, method);
 }
 // UnityEngine.Transform Oculus.Avatar2.EntityJointMonitorBase`1<Oculus.Avatar2.InterpolatingJoint>::CreateNewTransform(Oculus.Avatar2.CAPI/ovrAvatar2JointType)
 inline Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* EntityJointMonitorBase_1_CreateNewTransform_m7F9C8E2C9F771844F1E1C854D4EB0DE73270E452 (EntityJointMonitorBase_1_tF927A39C3750EEFB624F79D812842B082B762702* __this, int32_t ___jointType0, const RuntimeMethod* method)
 {
-	return ((  Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* (*) (EntityJointMonitorBase_1_tF927A39C3750EEFB624F79D812842B082B762702*, int32_t, const RuntimeMethod*))EntityJointMonitorBase_1_CreateNewTransform_m2E4FC9205710DFDCCBC93E022B78CAAABB4A6EFB_gshared)(__this, ___jointType0, method);
+	return ((  Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* (*) (EntityJointMonitorBase_1_t3A41835CDC6B2C5F9769AED071587880A093FABF*, int32_t, const RuntimeMethod*))EntityJointMonitorBase_1_CreateNewTransform_m574EBDE96023C6A3419D16419B24178800C859D6_gshared)((EntityJointMonitorBase_1_t3A41835CDC6B2C5F9769AED071587880A093FABF*)__this, ___jointType0, method);
 }
 // System.Void Oculus.Avatar2.InterpolatingJoint::.ctor(UnityEngine.Transform)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InterpolatingJoint__ctor_m302F62BAC525791F3EB46EBB318028CAA72D8CBA (InterpolatingJoint_tE4A7AE2B218720D3EDBBCD64DAA2D0FB59267A3E* __this, Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___tx0, const RuntimeMethod* method) ;
@@ -8509,39 +8147,45 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InterpolatingJoint_AddNewAnimationFrame_
 // System.Collections.Generic.Dictionary`2/ValueCollection<Oculus.Avatar2.CAPI/ovrAvatar2JointType,T> Oculus.Avatar2.EntityJointMonitorBase`1<Oculus.Avatar2.InterpolatingJoint>::GetAllJointData()
 inline ValueCollection_tDB63D0276C7DAF011C00FD516E961291A2349DC2* EntityJointMonitorBase_1_GetAllJointData_m08F55D9F6FF073E5423D83AABFFA6D3674F9DFE1 (EntityJointMonitorBase_1_tF927A39C3750EEFB624F79D812842B082B762702* __this, const RuntimeMethod* method)
 {
-	return ((  ValueCollection_tDB63D0276C7DAF011C00FD516E961291A2349DC2* (*) (EntityJointMonitorBase_1_tF927A39C3750EEFB624F79D812842B082B762702*, const RuntimeMethod*))EntityJointMonitorBase_1_GetAllJointData_mDEE178B3B542CCE784EAA21103DE15A632A8CADC_gshared)(__this, method);
+	ValueCollection_t450E7F9D9DBE020E1659D9AE70B6454215CC51D5* il2cppRetVal = ((  ValueCollection_t450E7F9D9DBE020E1659D9AE70B6454215CC51D5* (*) (EntityJointMonitorBase_1_t3A41835CDC6B2C5F9769AED071587880A093FABF*, const RuntimeMethod*))EntityJointMonitorBase_1_GetAllJointData_mE857F0533B863CD64A05218200525EADFB94E0CA_gshared)((EntityJointMonitorBase_1_t3A41835CDC6B2C5F9769AED071587880A093FABF*)__this, method);
+	return (ValueCollection_tDB63D0276C7DAF011C00FD516E961291A2349DC2*)il2cppRetVal;
 }
 // System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator<TKey,TValue> System.Collections.Generic.Dictionary`2/ValueCollection<Oculus.Avatar2.CAPI/ovrAvatar2JointType,Oculus.Avatar2.InterpolatingJoint>::GetEnumerator()
 inline Enumerator_t341E03610D002F0DF3052637D4C1F3F215039507 ValueCollection_GetEnumerator_m5367A4085A1C1308DBDB6BDED124565D5E30B562 (ValueCollection_tDB63D0276C7DAF011C00FD516E961291A2349DC2* __this, const RuntimeMethod* method)
 {
-	return ((  Enumerator_t341E03610D002F0DF3052637D4C1F3F215039507 (*) (ValueCollection_tDB63D0276C7DAF011C00FD516E961291A2349DC2*, const RuntimeMethod*))ValueCollection_GetEnumerator_m412091D90257E6493D8F9404FFC734832E1C5007_gshared)(__this, method);
+	Enumerator_t341E03610D002F0DF3052637D4C1F3F215039507 il2cppRetVal;
+	((  void (*) (ValueCollection_tC492596681BD51AB34FC76FA76C15C9B3FFB7B40*, Enumerator_tEEF12A9EDAAA0461A72ED9491F6AC20B22440222*, const RuntimeMethod*))ValueCollection_GetEnumerator_m22BB9C6494A679370661D0B6DA1FA7EF744281EA_gshared)((ValueCollection_tC492596681BD51AB34FC76FA76C15C9B3FFB7B40*)__this, (Enumerator_tEEF12A9EDAAA0461A72ED9491F6AC20B22440222*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator<Oculus.Avatar2.CAPI/ovrAvatar2JointType,Oculus.Avatar2.InterpolatingJoint>::Dispose()
 inline void Enumerator_Dispose_mA9BB43BD0498AE0F4F8BE0596BAD6E8EEC6577A0 (Enumerator_t341E03610D002F0DF3052637D4C1F3F215039507* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Enumerator_t341E03610D002F0DF3052637D4C1F3F215039507*, const RuntimeMethod*))Enumerator_Dispose_m51A04B4A4A98EC6004015ECF7C9605316687CBD3_gshared)(__this, method);
+	((  void (*) (Enumerator_tEEF12A9EDAAA0461A72ED9491F6AC20B22440222*, const RuntimeMethod*))Enumerator_Dispose_mB05777B182DD6D8C5ED21811C2CA95405D2743F8_gshared)((Enumerator_tEEF12A9EDAAA0461A72ED9491F6AC20B22440222*)__this, method);
 }
 // TValue System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator<Oculus.Avatar2.CAPI/ovrAvatar2JointType,Oculus.Avatar2.InterpolatingJoint>::get_Current()
 inline InterpolatingJoint_tE4A7AE2B218720D3EDBBCD64DAA2D0FB59267A3E* Enumerator_get_Current_m3A3845E63CBC32E4E94ECFE6C29505A589F617FB_inline (Enumerator_t341E03610D002F0DF3052637D4C1F3F215039507* __this, const RuntimeMethod* method)
 {
-	return ((  InterpolatingJoint_tE4A7AE2B218720D3EDBBCD64DAA2D0FB59267A3E* (*) (Enumerator_t341E03610D002F0DF3052637D4C1F3F215039507*, const RuntimeMethod*))Enumerator_get_Current_m76B0ECD4B03E606A1CE3DF60589D2E97130B02CA_gshared_inline)(__this, method);
+	InterpolatingJoint_tE4A7AE2B218720D3EDBBCD64DAA2D0FB59267A3E* il2cppRetVal;
+	((  void (*) (Enumerator_tEEF12A9EDAAA0461A72ED9491F6AC20B22440222*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Enumerator_get_Current_m77681472C32B9ABB97AE602C0D4C365A0A8E8ACE_gshared_inline)((Enumerator_tEEF12A9EDAAA0461A72ED9491F6AC20B22440222*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void Oculus.Avatar2.InterpolatingJoint::UpdateTransform(System.Single)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void InterpolatingJoint_UpdateTransform_mA5639184D31C69EEE9B95FFABEF959F60653F67E (InterpolatingJoint_tE4A7AE2B218720D3EDBBCD64DAA2D0FB59267A3E* __this, float ___interpolationValue0, const RuntimeMethod* method) ;
 // System.Boolean System.Collections.Generic.Dictionary`2/ValueCollection/Enumerator<Oculus.Avatar2.CAPI/ovrAvatar2JointType,Oculus.Avatar2.InterpolatingJoint>::MoveNext()
 inline bool Enumerator_MoveNext_mFBCF0D42F375CE9EA27D993CA7B7C4938BCEBEB6 (Enumerator_t341E03610D002F0DF3052637D4C1F3F215039507* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Enumerator_t341E03610D002F0DF3052637D4C1F3F215039507*, const RuntimeMethod*))Enumerator_MoveNext_m30C883F9DF743472B2102F74D70DA61074694D1E_gshared)(__this, method);
+	return ((  bool (*) (Enumerator_tEEF12A9EDAAA0461A72ED9491F6AC20B22440222*, const RuntimeMethod*))Enumerator_MoveNext_m297C3CEEAAC8D29D8F7C93E0801CD1D362D1C66F_gshared)((Enumerator_tEEF12A9EDAAA0461A72ED9491F6AC20B22440222*)__this, method);
 }
 // System.Void System.Collections.Generic.HashSet`1<Oculus.Avatar2.InterpolatingJoint>::.ctor()
 inline void HashSet_1__ctor_m8B2EFA0373382E4D0E9049AFEA3DCF14E5790EF9 (HashSet_1_t6A959A1233CAC4860042B073BF873F859F18CCB8* __this, const RuntimeMethod* method)
 {
-	((  void (*) (HashSet_1_t6A959A1233CAC4860042B073BF873F859F18CCB8*, const RuntimeMethod*))HashSet_1__ctor_m9132EE1422BAA45E44B7FFF495F378790D36D90E_gshared)(__this, method);
+	((  void (*) (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*, const RuntimeMethod*))HashSet_1__ctor_m5E12B490550D90B0686D55F8F4E7B0506BD07120_gshared)((HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*)__this, method);
 }
 // T[] System.Array::Empty<Oculus.Avatar2.InterpolatingJoint>()
 inline InterpolatingJointU5BU5D_t3AD933325087B2EAE8816E7D31BA87C547059AE4* Array_Empty_TisInterpolatingJoint_tE4A7AE2B218720D3EDBBCD64DAA2D0FB59267A3E_m2A680DE2B431FFCD537EA4D97AFAD1EBAB1153D1_inline (const RuntimeMethod* method)
 {
-	return ((  InterpolatingJointU5BU5D_t3AD933325087B2EAE8816E7D31BA87C547059AE4* (*) (const RuntimeMethod*))Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_gshared_inline)(method);
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* il2cppRetVal = ((  __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* (*) (const RuntimeMethod*))Array_Empty_TisIl2CppFullySharedGenericAny_m244E2A51B33F845A2093F0862FBCE502E4FDD868_gshared_inline)(method);
+	return (InterpolatingJointU5BU5D_t3AD933325087B2EAE8816E7D31BA87C547059AE4*)il2cppRetVal;
 }
 // System.Void Oculus.Avatar2.OvrAvatarEntitySmoothingJointMonitor::.ctor(Oculus.Avatar2.OvrAvatarEntity,Oculus.Avatar2.IInterpolationValueProvider)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarEntitySmoothingJointMonitor__ctor_mDF691028FB37D0D7E289DB4D2C86E125D394D4B4 (OvrAvatarEntitySmoothingJointMonitor_t1BC796863C8D9B4FBE7B2C3615ECD1204E78A2E6* __this, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* ___entity0, RuntimeObject* ___interpolationValueProvider1, const RuntimeMethod* method) ;
@@ -8550,34 +8194,34 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR InterpolatingJoint_tE4A7AE2B218720D3EDBBCD64D
 // System.Boolean System.Collections.Generic.HashSet`1<Oculus.Avatar2.InterpolatingJoint>::Add(T)
 inline bool HashSet_1_Add_m84D0A1ADF9E26F1302D1D73A6DD72804DFE11C24 (HashSet_1_t6A959A1233CAC4860042B073BF873F859F18CCB8* __this, InterpolatingJoint_tE4A7AE2B218720D3EDBBCD64DAA2D0FB59267A3E* ___item0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (HashSet_1_t6A959A1233CAC4860042B073BF873F859F18CCB8*, InterpolatingJoint_tE4A7AE2B218720D3EDBBCD64DAA2D0FB59267A3E*, const RuntimeMethod*))HashSet_1_Add_m2CD7657B3459B61DD4BBA47024AC71F7D319658B_gshared)(__this, ___item0, method);
+	return ((  bool (*) (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))HashSet_1_Add_m73E14DB94D21272EEE1E28E4D74704B0095D8064_gshared)((HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.Boolean System.Collections.Generic.HashSet`1<Oculus.Avatar2.InterpolatingJoint>::Remove(T)
 inline bool HashSet_1_Remove_m485E5F4A7EAEAFC467F80E2C0C46EACE8573932F (HashSet_1_t6A959A1233CAC4860042B073BF873F859F18CCB8* __this, InterpolatingJoint_tE4A7AE2B218720D3EDBBCD64DAA2D0FB59267A3E* ___item0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (HashSet_1_t6A959A1233CAC4860042B073BF873F859F18CCB8*, InterpolatingJoint_tE4A7AE2B218720D3EDBBCD64DAA2D0FB59267A3E*, const RuntimeMethod*))HashSet_1_Remove_mF1D84C0A2829DDA2A0CEE1D82A5B999B5F6627CB_gshared)(__this, ___item0, method);
+	return ((  bool (*) (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))HashSet_1_Remove_mE12E434B402CFEB49197444DE1D52A3AE4C7F6EE_gshared)((HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.Void Oculus.Avatar2.EntityJointMonitorBase`1<Oculus.Avatar2.InterpolatingJoint>::DisposeJointData(Oculus.Avatar2.CAPI/ovrAvatar2JointType,T)
 inline void EntityJointMonitorBase_1_DisposeJointData_m83D09A26F684AE44FB80AEEB3C1968300227D845 (EntityJointMonitorBase_1_tF927A39C3750EEFB624F79D812842B082B762702* __this, int32_t ___jointType0, InterpolatingJoint_tE4A7AE2B218720D3EDBBCD64DAA2D0FB59267A3E* ___jointData1, const RuntimeMethod* method)
 {
-	((  void (*) (EntityJointMonitorBase_1_tF927A39C3750EEFB624F79D812842B082B762702*, int32_t, InterpolatingJoint_tE4A7AE2B218720D3EDBBCD64DAA2D0FB59267A3E*, const RuntimeMethod*))EntityJointMonitorBase_1_DisposeJointData_mE28730DF9B4DFB06CB9C4792C71A4520F9B2975D_gshared)(__this, ___jointType0, ___jointData1, method);
+	((  void (*) (EntityJointMonitorBase_1_t3A41835CDC6B2C5F9769AED071587880A093FABF*, int32_t, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))EntityJointMonitorBase_1_DisposeJointData_m4E19F0EDA65253CC15A9C77F1C47944702E1DF8D_gshared)((EntityJointMonitorBase_1_t3A41835CDC6B2C5F9769AED071587880A093FABF*)__this, ___jointType0, (Il2CppFullySharedGenericAny)___jointData1, method);
 }
 // System.Int32 System.Collections.Generic.HashSet`1<Oculus.Avatar2.InterpolatingJoint>::get_Count()
 inline int32_t HashSet_1_get_Count_m44712113312F76EB9C4790FA37DF007155A551F6_inline (HashSet_1_t6A959A1233CAC4860042B073BF873F859F18CCB8* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (HashSet_1_t6A959A1233CAC4860042B073BF873F859F18CCB8*, const RuntimeMethod*))HashSet_1_get_Count_m41CC85EEB7855CEFA3BC7A32F115387939318ED3_gshared_inline)(__this, method);
+	return ((  int32_t (*) (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*, const RuntimeMethod*))HashSet_1_get_Count_mA764DCA3CB14CB2CBDF742A163492FF4DA515B63_gshared_inline)((HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*)__this, method);
 }
 // System.Void UnityEngine.Jobs.TransformAccessArray::.ctor(System.Int32,System.Int32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TransformAccessArray__ctor_m66B44699D46850AA776992B25A5443B6BAC42ED1 (TransformAccessArray_t104EDE5BB3DC7E294332BB1D2AA508CAEDEE83D4* __this, int32_t ___capacity0, int32_t ___desiredJobCount1, const RuntimeMethod* method) ;
 // System.Void Unity.Collections.NativeArray`1<Oculus.Avatar2.OvrAvatarEntitySmoothingJointJobMonitor/JointPose>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
 inline void NativeArray_1__ctor_m69B6A1E68EC71FBE274FC004B3255A9427290EB9 (NativeArray_1_t802F061E70652C1B3E3D0AE10B23C356824ABF59* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method)
 {
-	((  void (*) (NativeArray_1_t802F061E70652C1B3E3D0AE10B23C356824ABF59*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_m69B6A1E68EC71FBE274FC004B3255A9427290EB9_gshared)(__this, ___length0, ___allocator1, ___options2, method);
+	((  void (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_m788DE0F85C4051DDF092DDF96484DE655ACFB6F1_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)__this, ___length0, ___allocator1, ___options2, method);
 }
 // System.Void System.Array::Resize<Oculus.Avatar2.InterpolatingJoint>(T[]&,System.Int32)
 inline void Array_Resize_TisInterpolatingJoint_tE4A7AE2B218720D3EDBBCD64DAA2D0FB59267A3E_mB83BABB124FC2E2AA1005E2FA60C984CD56B8C47 (InterpolatingJointU5BU5D_t3AD933325087B2EAE8816E7D31BA87C547059AE4** ___array0, int32_t ___newSize1, const RuntimeMethod* method)
 {
-	((  void (*) (InterpolatingJointU5BU5D_t3AD933325087B2EAE8816E7D31BA87C547059AE4**, int32_t, const RuntimeMethod*))Array_Resize_TisRuntimeObject_mE8D92C287251BAF8256D85E5829F749359EC334E_gshared)(___array0, ___newSize1, method);
+	((  void (*) (__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC**, int32_t, const RuntimeMethod*))Array_Resize_TisIl2CppFullySharedGenericAny_m263FC41C8DB989397C43C86556D63CEBE13F4712_gshared)((__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC**)___array0, ___newSize1, method);
 }
 // System.Void UnityEngine.Jobs.TransformAccessArray::Add(UnityEngine.Transform)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TransformAccessArray_Add_mC1B41F75FE0CD6AAB77186F6EF7A41E790BDE336 (TransformAccessArray_t104EDE5BB3DC7E294332BB1D2AA508CAEDEE83D4* __this, Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* ___transform0, const RuntimeMethod* method) ;
@@ -8590,12 +8234,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TransformAccessArray_Dispose_mC0775DCFFE
 // System.Boolean Unity.Collections.NativeArray`1<Oculus.Avatar2.OvrAvatarEntitySmoothingJointJobMonitor/JointPose>::get_IsCreated()
 inline bool NativeArray_1_get_IsCreated_mB3954DEB9E37C75BE45A077D2DDF447F7C679DAC (NativeArray_1_t802F061E70652C1B3E3D0AE10B23C356824ABF59* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (NativeArray_1_t802F061E70652C1B3E3D0AE10B23C356824ABF59*, const RuntimeMethod*))NativeArray_1_get_IsCreated_mB3954DEB9E37C75BE45A077D2DDF447F7C679DAC_gshared)(__this, method);
+	return ((  bool (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, const RuntimeMethod*))NativeArray_1_get_IsCreated_m527A2C3B75C25BFF29D1D9EA88C81172FF4F5A5A_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)__this, method);
 }
 // System.Void Unity.Collections.NativeArray`1<Oculus.Avatar2.OvrAvatarEntitySmoothingJointJobMonitor/JointPose>::Dispose()
 inline void NativeArray_1_Dispose_m06D4289DE75F7365678CD5876C39691D34BFCFF4 (NativeArray_1_t802F061E70652C1B3E3D0AE10B23C356824ABF59* __this, const RuntimeMethod* method)
 {
-	((  void (*) (NativeArray_1_t802F061E70652C1B3E3D0AE10B23C356824ABF59*, const RuntimeMethod*))NativeArray_1_Dispose_m06D4289DE75F7365678CD5876C39691D34BFCFF4_gshared)(__this, method);
+	((  void (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, const RuntimeMethod*))NativeArray_1_Dispose_m365A262FA4CA431467F021D7732CECD68316AF80_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)__this, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarEntitySmoothingJointJobMonitor/JointPose::.ctor(UnityEngine.Vector3&,UnityEngine.Quaternion&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JointPose__ctor_m0BA07B3853C2D1F0476061E6E9BD578EB9DD883C (JointPose_t469B8A86C56520D9A39DA487F942D1BF51DD141B* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2* ___pos0, Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974* ___rot1, const RuntimeMethod* method) ;
@@ -8606,22 +8250,23 @@ IL2CPP_EXTERN_C IL2CPP_NO_INLINE IL2CPP_METHOD_ATTR void UpdateJointTransformsJo
 // Unity.Jobs.JobHandle UnityEngine.Jobs.IJobParallelForTransformExtensions::Schedule<Oculus.Avatar2.OvrAvatarEntitySmoothingJointJobMonitor/UpdateJointTransformsJob>(T,UnityEngine.Jobs.TransformAccessArray,Unity.Jobs.JobHandle)
 inline JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 IJobParallelForTransformExtensions_Schedule_TisUpdateJointTransformsJob_t6CE83E6147BB0C684B728326BA3E296FF56603D3_mEC4E4097BF9924E5855DE899A75E07533081073C (UpdateJointTransformsJob_t6CE83E6147BB0C684B728326BA3E296FF56603D3 ___jobData0, TransformAccessArray_t104EDE5BB3DC7E294332BB1D2AA508CAEDEE83D4 ___transforms1, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 ___dependsOn2, const RuntimeMethod* method)
 {
-	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (UpdateJointTransformsJob_t6CE83E6147BB0C684B728326BA3E296FF56603D3, TransformAccessArray_t104EDE5BB3DC7E294332BB1D2AA508CAEDEE83D4, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForTransformExtensions_Schedule_TisUpdateJointTransformsJob_t6CE83E6147BB0C684B728326BA3E296FF56603D3_mEC4E4097BF9924E5855DE899A75E07533081073C_gshared)(___jobData0, ___transforms1, ___dependsOn2, method);
+	return ((  JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08 (*) (/*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, TransformAccessArray_t104EDE5BB3DC7E294332BB1D2AA508CAEDEE83D4, JobHandle_t5DF5F99902FED3C801A81C05205CEA6CE039EF08, const RuntimeMethod*))IJobParallelForTransformExtensions_Schedule_TisIl2CppFullySharedGenericStruct_mF63AA368751F216D7DEFE8808AA6890F5FE75B38_gshared)((Il2CppFullySharedGenericStruct)&___jobData0, ___transforms1, ___dependsOn2, method);
 }
 // System.Void System.Collections.Generic.HashSet`1<Oculus.Avatar2.InterpolatingJoint>::Clear()
 inline void HashSet_1_Clear_m4F332CA987287F83048D6C3F07A0E892435739B1 (HashSet_1_t6A959A1233CAC4860042B073BF873F859F18CCB8* __this, const RuntimeMethod* method)
 {
-	((  void (*) (HashSet_1_t6A959A1233CAC4860042B073BF873F859F18CCB8*, const RuntimeMethod*))HashSet_1_Clear_m75A6528F0B47448EB3B3A05EC379260E9BDFC2DD_gshared)(__this, method);
+	((  void (*) (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*, const RuntimeMethod*))HashSet_1_Clear_mCD863950F0D273BF34801FDD92CBEC230ECD5A6D_gshared)((HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87*)__this, method);
 }
 // System.Void Oculus.Avatar2.EntityJointMonitorBase`1<Oculus.Avatar2.InterpolatingJoint>::Dispose(System.Boolean)
 inline void EntityJointMonitorBase_1_Dispose_m21C74BF7CFD181BD092F10686E0EAA5B016DA459 (EntityJointMonitorBase_1_tF927A39C3750EEFB624F79D812842B082B762702* __this, bool ___isDispose0, const RuntimeMethod* method)
 {
-	((  void (*) (EntityJointMonitorBase_1_tF927A39C3750EEFB624F79D812842B082B762702*, bool, const RuntimeMethod*))EntityJointMonitorBase_1_Dispose_m40EE759975C9B1A368780C3E2C66CA3175CAE26B_gshared)(__this, ___isDispose0, method);
+	((  void (*) (EntityJointMonitorBase_1_t3A41835CDC6B2C5F9769AED071587880A093FABF*, bool, const RuntimeMethod*))EntityJointMonitorBase_1_Dispose_m658E9D73F932C74384D48B06C832DBDA26E8FCBE_gshared)((EntityJointMonitorBase_1_t3A41835CDC6B2C5F9769AED071587880A093FABF*)__this, ___isDispose0, method);
 }
 // T* Oculus.Avatar2.OvrAvatarHelperExtensions::GetReadonlyPtr<Oculus.Avatar2.OvrAvatarEntitySmoothingJointJobMonitor/JointPose>(Unity.Collections.NativeArray`1<T>&)
 inline JointPose_t469B8A86C56520D9A39DA487F942D1BF51DD141B* OvrAvatarHelperExtensions_GetReadonlyPtr_TisJointPose_t469B8A86C56520D9A39DA487F942D1BF51DD141B_m30AEBED0458FBE406746022C01438C66A2C02EE0 (NativeArray_1_t802F061E70652C1B3E3D0AE10B23C356824ABF59* ___array0, const RuntimeMethod* method)
 {
-	return ((  JointPose_t469B8A86C56520D9A39DA487F942D1BF51DD141B* (*) (NativeArray_1_t802F061E70652C1B3E3D0AE10B23C356824ABF59*, const RuntimeMethod*))OvrAvatarHelperExtensions_GetReadonlyPtr_TisJointPose_t469B8A86C56520D9A39DA487F942D1BF51DD141B_m30AEBED0458FBE406746022C01438C66A2C02EE0_gshared)(___array0, method);
+	Il2CppFullySharedGenericStruct* il2cppRetVal = ((  Il2CppFullySharedGenericStruct* (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, const RuntimeMethod*))OvrAvatarHelperExtensions_GetReadonlyPtr_TisIl2CppFullySharedGenericStruct_m9F0798CE0035AE16365D8D1557B191C1C29E501F_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)___array0, method);
+	return (JointPose_t469B8A86C56520D9A39DA487F942D1BF51DD141B*)il2cppRetVal;
 }
 // System.Void UnityEngine.Jobs.TransformAccess::set_localPosition(UnityEngine.Vector3)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TransformAccess_set_localPosition_m26E1B7E3D2394995AACC1FB134DC6080529CEA3B (TransformAccess_tF0D55E1C5B6B29B618E8A129AB633E2F1100D580* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___value0, const RuntimeMethod* method) ;
@@ -8733,54 +8378,60 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool OvrAvatarGazeTargetManager_CreateGazeTar
 // System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarGazeTarget>::Add(T)
 inline void List_1_Add_mA4BF786F55EF2CD2BFE77BCE86220E0059D4F6FD_inline (List_1_t298A59B64668684FFE38B1921C58D1E19AA0AF15* __this, OvrAvatarGazeTarget_tFB0DE23EB630E1FC01B90FC90302CDB775F40413* ___item0, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t298A59B64668684FFE38B1921C58D1E19AA0AF15*, OvrAvatarGazeTarget_tFB0DE23EB630E1FC01B90FC90302CDB775F40413*, const RuntimeMethod*))List_1_Add_mEBCF994CC3814631017F46A387B1A192ED6C85C7_gshared_inline)(__this, ___item0, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))List_1_Add_mD4F3498FBD3BDD3F03CBCFB38041CBAC9C28CAFC_gshared_inline)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.Int32 System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarGazeTarget>::IndexOf(T)
 inline int32_t List_1_IndexOf_m5E71B710DBE9441F606651F94405EB9FB9078F19 (List_1_t298A59B64668684FFE38B1921C58D1E19AA0AF15* __this, OvrAvatarGazeTarget_tFB0DE23EB630E1FC01B90FC90302CDB775F40413* ___item0, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (List_1_t298A59B64668684FFE38B1921C58D1E19AA0AF15*, OvrAvatarGazeTarget_tFB0DE23EB630E1FC01B90FC90302CDB775F40413*, const RuntimeMethod*))List_1_IndexOf_m378F61BA812B79DEE58D86FE8AA9F20E3FC7D85F_gshared)(__this, ___item0, method);
+	return ((  int32_t (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))List_1_IndexOf_m1FFA888B47CE3256B0AC301302FAD79AAAFC0818_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.Int32 System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarGazeTarget>::get_Count()
 inline int32_t List_1_get_Count_mD1C97C19CECBBC7E2F4F2E7E1EB8B8313DB8E341_inline (List_1_t298A59B64668684FFE38B1921C58D1E19AA0AF15* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (List_1_t298A59B64668684FFE38B1921C58D1E19AA0AF15*, const RuntimeMethod*))List_1_get_Count_m4407E4C389F22B8CEC282C15D56516658746C383_gshared_inline)(__this, method);
+	return ((  int32_t (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1_get_Count_mD2ED26ACAF3BAF386FFEA83893BA51DB9FD8BA30_gshared_inline)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // T System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarGazeTarget>::get_Item(System.Int32)
 inline OvrAvatarGazeTarget_tFB0DE23EB630E1FC01B90FC90302CDB775F40413* List_1_get_Item_mAE8D65389D145B5B328C138AD501CA324E819CEA (List_1_t298A59B64668684FFE38B1921C58D1E19AA0AF15* __this, int32_t ___index0, const RuntimeMethod* method)
 {
-	return ((  OvrAvatarGazeTarget_tFB0DE23EB630E1FC01B90FC90302CDB775F40413* (*) (List_1_t298A59B64668684FFE38B1921C58D1E19AA0AF15*, int32_t, const RuntimeMethod*))List_1_get_Item_m33561245D64798C2AB07584C0EC4F240E4839A38_gshared)(__this, ___index0, method);
+	OvrAvatarGazeTarget_tFB0DE23EB630E1FC01B90FC90302CDB775F40413* il2cppRetVal;
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, int32_t, Il2CppFullySharedGenericAny*, const RuntimeMethod*))List_1_get_Item_m6E4BA37C1FB558E4A62AE4324212E45D09C5C937_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, ___index0, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarGazeTarget>::set_Item(System.Int32,T)
 inline void List_1_set_Item_m2AF8A6B6400C93DB354EE608EEE83A302DA4AE8C (List_1_t298A59B64668684FFE38B1921C58D1E19AA0AF15* __this, int32_t ___index0, OvrAvatarGazeTarget_tFB0DE23EB630E1FC01B90FC90302CDB775F40413* ___value1, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t298A59B64668684FFE38B1921C58D1E19AA0AF15*, int32_t, OvrAvatarGazeTarget_tFB0DE23EB630E1FC01B90FC90302CDB775F40413*, const RuntimeMethod*))List_1_set_Item_m3C58DBC69A321AF2826595584FF3E9F43C07EA56_gshared)(__this, ___index0, ___value1, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, int32_t, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))List_1_set_Item_m9A958091885CC5363CCFE9F0BC472EAFCB56C813_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, ___index0, (Il2CppFullySharedGenericAny)___value1, method);
 }
 // System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarGazeTarget>::RemoveAt(System.Int32)
 inline void List_1_RemoveAt_mB646A7C11B47BD8A063D12CA9DD2BD1F3E84C271 (List_1_t298A59B64668684FFE38B1921C58D1E19AA0AF15* __this, int32_t ___index0, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t298A59B64668684FFE38B1921C58D1E19AA0AF15*, int32_t, const RuntimeMethod*))List_1_RemoveAt_m54F62297ADEE4D4FDA697F49ED807BF901201B54_gshared)(__this, ___index0, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, int32_t, const RuntimeMethod*))List_1_RemoveAt_mF6C23E9072D8CBE2872705E7E4D08BDB78770F5C_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, ___index0, method);
 }
 // System.Boolean Oculus.Avatar2.OvrAvatarGazeTargetManager::DestroyGazeTarget(Oculus.Avatar2.CAPI/ovrAvatar2GazeTarget)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool OvrAvatarGazeTargetManager_DestroyGazeTarget_mA1FEBF6ADE22BD725B98531FABE0A992B10C656F (ovrAvatar2GazeTarget_tB31E796F3E5CB9B50FD2DDF334DD148F3DBB0B1B ___target0, const RuntimeMethod* method) ;
 // System.Int32 System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarGazeTarget>::get_Capacity()
 inline int32_t List_1_get_Capacity_mF32D684CC63468386A7A57AFE2038F10788FF212 (List_1_t298A59B64668684FFE38B1921C58D1E19AA0AF15* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (List_1_t298A59B64668684FFE38B1921C58D1E19AA0AF15*, const RuntimeMethod*))List_1_get_Capacity_mF05ADA0EC0B9CC71EDE6D06F6A33A50705EEA32D_gshared)(__this, method);
+	return ((  int32_t (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1_get_Capacity_m5BE6D733C76E1AB093FB6D2783220A5B96EF61DF_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Collections.Generic.List`1/Enumerator<T> System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarGazeTarget>::GetEnumerator()
 inline Enumerator_t6D4364FFCF2D89BCC51050A01E5BCCECA21D29C8 List_1_GetEnumerator_mDE26515DC7BD5B06C41307056A66A34F2364B63C (List_1_t298A59B64668684FFE38B1921C58D1E19AA0AF15* __this, const RuntimeMethod* method)
 {
-	return ((  Enumerator_t6D4364FFCF2D89BCC51050A01E5BCCECA21D29C8 (*) (List_1_t298A59B64668684FFE38B1921C58D1E19AA0AF15*, const RuntimeMethod*))List_1_GetEnumerator_mD8294A7FA2BEB1929487127D476F8EC1CDC23BFC_gshared)(__this, method);
+	Enumerator_t6D4364FFCF2D89BCC51050A01E5BCCECA21D29C8 il2cppRetVal;
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))List_1_GetEnumerator_m8B2A92ACD4FBA5FBDC3F6F4F5C23A0DDF491DA61_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarGazeTarget>::Dispose()
 inline void Enumerator_Dispose_mA72532CA95F702F90839178C8D0C1DD67A3E86C2 (Enumerator_t6D4364FFCF2D89BCC51050A01E5BCCECA21D29C8* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Enumerator_t6D4364FFCF2D89BCC51050A01E5BCCECA21D29C8*, const RuntimeMethod*))Enumerator_Dispose_mD9DC3E3C3697830A4823047AB29A77DBBB5ED419_gshared)(__this, method);
+	((  void (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))Enumerator_Dispose_mFE1EBE6F6425283FEAEAE7C79D02CDE4F9D367E8_gshared)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, method);
 }
 // T System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarGazeTarget>::get_Current()
 inline OvrAvatarGazeTarget_tFB0DE23EB630E1FC01B90FC90302CDB775F40413* Enumerator_get_Current_m2AAA9FF57D81116D244ECE3CFAB884A113D37EEA_inline (Enumerator_t6D4364FFCF2D89BCC51050A01E5BCCECA21D29C8* __this, const RuntimeMethod* method)
 {
-	return ((  OvrAvatarGazeTarget_tFB0DE23EB630E1FC01B90FC90302CDB775F40413* (*) (Enumerator_t6D4364FFCF2D89BCC51050A01E5BCCECA21D29C8*, const RuntimeMethod*))Enumerator_get_Current_m6330F15D18EE4F547C05DF9BF83C5EB710376027_gshared_inline)(__this, method);
+	OvrAvatarGazeTarget_tFB0DE23EB630E1FC01B90FC90302CDB775F40413* il2cppRetVal;
+	((  void (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Enumerator_get_Current_m8B42D4B2DE853B9D11B997120CD0228D4780E394_gshared_inline)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Boolean Oculus.Avatar2.OvrAvatarGazeTarget::get_Dirty()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool OvrAvatarGazeTarget_get_Dirty_mB554D1137F24A0AADFA48AF5AED524CE51F89630 (OvrAvatarGazeTarget_tFB0DE23EB630E1FC01B90FC90302CDB775F40413* __this, const RuntimeMethod* method) ;
@@ -8789,7 +8440,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarGazeTarget_MarkClean_m89E499EE2
 // System.Boolean System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarGazeTarget>::MoveNext()
 inline bool Enumerator_MoveNext_mBAF7528988976FB3A1DC991EE00E4290C56AFAA3 (Enumerator_t6D4364FFCF2D89BCC51050A01E5BCCECA21D29C8* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Enumerator_t6D4364FFCF2D89BCC51050A01E5BCCECA21D29C8*, const RuntimeMethod*))Enumerator_MoveNext_mE921CC8F29FBBDE7CC3209A0ED0D921D58D00BCB_gshared)(__this, method);
+	return ((  bool (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))Enumerator_MoveNext_m8D8E5E878AF0A88A535AB1AB5BA4F23E151A678A_gshared)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, method);
 }
 // Oculus.Avatar2.CAPI/ovrAvatar2Result Oculus.Avatar2.CAPI::ovrAvatar2Behavior_UpdateGazeTargetPositions(Oculus.Avatar2.CAPI/ovrAvatar2GazeTarget*,System.Int32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t CAPI_ovrAvatar2Behavior_UpdateGazeTargetPositions_mC88319B2790FC810C674F8CF53E9576F86DC63BD (ovrAvatar2GazeTarget_tB31E796F3E5CB9B50FD2DDF334DD148F3DBB0B1B* ___targets0, int32_t ___targetCount1, const RuntimeMethod* method) ;
@@ -8802,7 +8453,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t CAPI_ovrAvatar2Behavior_DestroyGazeTa
 // System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarGazeTarget>::.ctor()
 inline void List_1__ctor_m79F05B27FBB477AB7081534B9875D2165BC4D246 (List_1_t298A59B64668684FFE38B1921C58D1E19AA0AF15* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t298A59B64668684FFE38B1921C58D1E19AA0AF15*, const RuntimeMethod*))List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // Oculus.Avatar2.CAPI/ovrAvatar2ControllerType Oculus.Avatar2.OvrAvatarManager::get_ControllerType()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t OvrAvatarManager_get_ControllerType_mB94144E4DE8EE7062E6C81D6C74A9C8BC29A670B_inline (OvrAvatarManager_t6C70B22ADC5B226C529297C56CE27DA0DDCC485B* __this, const RuntimeMethod* method) ;
@@ -8949,7 +8600,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR String_t* AssertStaticMessageBuil
 // System.String Oculus.Avatar2.OvrAvatarLog/AssertLessThanMessageBuilder`1<System.Int32>::Invoke(T& modreq(System.Runtime.InteropServices.InAttribute),T& modreq(System.Runtime.InteropServices.InAttribute))
 inline String_t* AssertLessThanMessageBuilder_1_Invoke_m760BBFF184B1874F08F9797614592D3166526C98_inline (AssertLessThanMessageBuilder_1_t2C55B15A9C2A758C92FAE5EF509A7B674B83686B* __this, int32_t* ___lhs0, int32_t* ___rhs1, const RuntimeMethod* method)
 {
-	return ((  String_t* (*) (AssertLessThanMessageBuilder_1_t2C55B15A9C2A758C92FAE5EF509A7B674B83686B*, int32_t*, int32_t*, const RuntimeMethod*))AssertLessThanMessageBuilder_1_Invoke_m760BBFF184B1874F08F9797614592D3166526C98_gshared_inline)(__this, ___lhs0, ___rhs1, method);
+	return ((  String_t* (*) (AssertLessThanMessageBuilder_1_tD2D8026BDEB9CCF7A4666CE8FA47E7FBD1FE0539*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType& modreq(System.Runtime.InteropServices.InAttribute)*/Il2CppFullySharedGenericAny*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType& modreq(System.Runtime.InteropServices.InAttribute)*/Il2CppFullySharedGenericAny*, const RuntimeMethod*))AssertLessThanMessageBuilder_1_Invoke_m53D46E53EA865E74BD06BA662928F46C486B8C72_gshared_inline)((AssertLessThanMessageBuilder_1_tD2D8026BDEB9CCF7A4666CE8FA47E7FBD1FE0539*)__this, (Il2CppFullySharedGenericAny*)___lhs0, (Il2CppFullySharedGenericAny*)___rhs1, method);
 }
 // System.Boolean System.String::Contains(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool String_Contains_m6D77B121FADA7CA5F397C0FABB65DA62DF03B6C3 (String_t* __this, String_t* ___value0, const RuntimeMethod* method) ;
@@ -9067,24 +8718,28 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool CAPI_OvrAvatar2_Update_m998DEDC2BC7C4CE6
 // System.Collections.Generic.List`1/Enumerator<T> System.Collections.Generic.List`1<System.String>::GetEnumerator()
 inline Enumerator_tA7A4B718FE1ED1D87565680D8C8195EC8AEAB3D1 List_1_GetEnumerator_m7692B5F182858B7D5C72C920D09AD48738D1E70D (List_1_tF470A3BE5C1B5B68E1325EF3F109D172E60BD7CD* __this, const RuntimeMethod* method)
 {
-	return ((  Enumerator_tA7A4B718FE1ED1D87565680D8C8195EC8AEAB3D1 (*) (List_1_tF470A3BE5C1B5B68E1325EF3F109D172E60BD7CD*, const RuntimeMethod*))List_1_GetEnumerator_mD8294A7FA2BEB1929487127D476F8EC1CDC23BFC_gshared)(__this, method);
+	Enumerator_tA7A4B718FE1ED1D87565680D8C8195EC8AEAB3D1 il2cppRetVal;
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))List_1_GetEnumerator_m8B2A92ACD4FBA5FBDC3F6F4F5C23A0DDF491DA61_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void System.Collections.Generic.List`1/Enumerator<System.String>::Dispose()
 inline void Enumerator_Dispose_m592BCCE7B7933454DED2130C810F059F8D85B1D7 (Enumerator_tA7A4B718FE1ED1D87565680D8C8195EC8AEAB3D1* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Enumerator_tA7A4B718FE1ED1D87565680D8C8195EC8AEAB3D1*, const RuntimeMethod*))Enumerator_Dispose_mD9DC3E3C3697830A4823047AB29A77DBBB5ED419_gshared)(__this, method);
+	((  void (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))Enumerator_Dispose_mFE1EBE6F6425283FEAEAE7C79D02CDE4F9D367E8_gshared)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, method);
 }
 // T System.Collections.Generic.List`1/Enumerator<System.String>::get_Current()
 inline String_t* Enumerator_get_Current_m143541DD8FBCD313E7554EA738FA813B8F4DB11A_inline (Enumerator_tA7A4B718FE1ED1D87565680D8C8195EC8AEAB3D1* __this, const RuntimeMethod* method)
 {
-	return ((  String_t* (*) (Enumerator_tA7A4B718FE1ED1D87565680D8C8195EC8AEAB3D1*, const RuntimeMethod*))Enumerator_get_Current_m6330F15D18EE4F547C05DF9BF83C5EB710376027_gshared_inline)(__this, method);
+	String_t* il2cppRetVal;
+	((  void (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Enumerator_get_Current_m8B42D4B2DE853B9D11B997120CD0228D4780E394_gshared_inline)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void Oculus.Avatar2.OvrAvatarManager::AddZipSource(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarManager_AddZipSource_m656268434BC735FC900C62790DE0A165496C4E73 (OvrAvatarManager_t6C70B22ADC5B226C529297C56CE27DA0DDCC485B* __this, String_t* ___file0, const RuntimeMethod* method) ;
 // System.Boolean System.Collections.Generic.List`1/Enumerator<System.String>::MoveNext()
 inline bool Enumerator_MoveNext_mDB47EEC4531D33B9C33FD2E70BA15E1535A0F3ED (Enumerator_tA7A4B718FE1ED1D87565680D8C8195EC8AEAB3D1* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Enumerator_tA7A4B718FE1ED1D87565680D8C8195EC8AEAB3D1*, const RuntimeMethod*))Enumerator_MoveNext_mE921CC8F29FBBDE7CC3209A0ED0D921D58D00BCB_gshared)(__this, method);
+	return ((  bool (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))Enumerator_MoveNext_m8D8E5E878AF0A88A535AB1AB5BA4F23E151A678A_gshared)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarManager::AddUniversalZipSource(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarManager_AddUniversalZipSource_mBEA92CDB2DDB14ED00F4300933E00E6CACF613A8 (OvrAvatarManager_t6C70B22ADC5B226C529297C56CE27DA0DDCC485B* __this, String_t* ___file0, const RuntimeMethod* method) ;
@@ -9108,12 +8763,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarManager_UpdateInternal_mFA8F8C6
 // System.Void* Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::GetUnsafePtr<Oculus.Avatar2.CAPI/ovrAvatar2EntityId>(Unity.Collections.NativeArray`1<T>)
 inline void* NativeArrayUnsafeUtility_GetUnsafePtr_TisovrAvatar2EntityId_tF8855A2B91F6286C1F0B29A41776FAB3EC69AFE8_mA96B8FCBF9796700EB4EA989FF98ECDCC3999B74 (NativeArray_1_t65D05AABF8550393A18AE07B5C61AB8465B94723 ___nativeArray0, const RuntimeMethod* method)
 {
-	return ((  void* (*) (NativeArray_1_t65D05AABF8550393A18AE07B5C61AB8465B94723, const RuntimeMethod*))NativeArrayUnsafeUtility_GetUnsafePtr_TisInt32Enum_tCBAC8BA2BFF3A845FA599F303093BBBA374B6F0C_mEE7B3ECD03DC7652CE142D844C76E71B0DC5DC1D_gshared)(___nativeArray0, method);
+	return ((  void* (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18, const RuntimeMethod*))NativeArrayUnsafeUtility_GetUnsafePtr_TisIl2CppFullySharedGenericStruct_m4AB802D5B1B296D0F976C1E7631699B0C4A4D00F_gshared)(il2cpp_codegen_cast_struct<NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18, NativeArray_1_t65D05AABF8550393A18AE07B5C61AB8465B94723>(&___nativeArray0), method);
 }
 // System.Void* Unity.Collections.LowLevel.Unsafe.NativeArrayUnsafeUtility::GetUnsafePtr<System.Boolean>(Unity.Collections.NativeArray`1<T>)
 inline void* NativeArrayUnsafeUtility_GetUnsafePtr_TisBoolean_t09A6377A54BE2F9E6985A8149F19234FD7DDFE22_m41896E2964C3EA3FA819964F34DD768F13ACE89C (NativeArray_1_t107C57D0357BCF9956A60495CD8FAADDF1D26AFB ___nativeArray0, const RuntimeMethod* method)
 {
-	return ((  void* (*) (NativeArray_1_t107C57D0357BCF9956A60495CD8FAADDF1D26AFB, const RuntimeMethod*))NativeArrayUnsafeUtility_GetUnsafePtr_TisBoolean_t09A6377A54BE2F9E6985A8149F19234FD7DDFE22_m41896E2964C3EA3FA819964F34DD768F13ACE89C_gshared)(___nativeArray0, method);
+	return ((  void* (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18, const RuntimeMethod*))NativeArrayUnsafeUtility_GetUnsafePtr_TisIl2CppFullySharedGenericStruct_m4AB802D5B1B296D0F976C1E7631699B0C4A4D00F_gshared)(il2cpp_codegen_cast_struct<NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18, NativeArray_1_t107C57D0357BCF9956A60495CD8FAADDF1D26AFB>(&___nativeArray0), method);
 }
 // Oculus.Avatar2.CAPI/ovrAvatar2Result Oculus.Avatar2.CAPI::ovrAvatar2Entity_GetActives(Oculus.Avatar2.CAPI/ovrAvatar2EntityId*,System.Boolean*,System.UInt32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t CAPI_ovrAvatar2Entity_GetActives_mC516C99C7356B4A6B9861A631DEF0F54C1112767 (int32_t* ___entityIds0, bool* ___isActives1, uint32_t ___numIds2, const RuntimeMethod* method) ;
@@ -9135,34 +8790,34 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AvatarLODManager_UpdateInternal_m15FCBD6
 // System.Int32 System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarEntity>::get_Count()
 inline int32_t List_1_get_Count_mC75E6BC2B74F19D6DFFD29B6071A6161BF89649F_inline (List_1_tCD7C2E929EE313A3CD9C1CA1ED76D701EA9F9770* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (List_1_tCD7C2E929EE313A3CD9C1CA1ED76D701EA9F9770*, const RuntimeMethod*))List_1_get_Count_m4407E4C389F22B8CEC282C15D56516658746C383_gshared_inline)(__this, method);
+	return ((  int32_t (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1_get_Count_mD2ED26ACAF3BAF386FFEA83893BA51DB9FD8BA30_gshared_inline)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void System.Array::Resize<Oculus.Avatar2.OvrAvatarEntity>(T[]&,System.Int32)
 inline void Array_Resize_TisOvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA_mCE52D8BC1405D67A31CA37CFC46A683B11EF8C2C (OvrAvatarEntityU5BU5D_t2EA28BD2CE57F4C6153D164731E84A0E7F3669C4** ___array0, int32_t ___newSize1, const RuntimeMethod* method)
 {
-	((  void (*) (OvrAvatarEntityU5BU5D_t2EA28BD2CE57F4C6153D164731E84A0E7F3669C4**, int32_t, const RuntimeMethod*))Array_Resize_TisRuntimeObject_mE8D92C287251BAF8256D85E5829F749359EC334E_gshared)(___array0, ___newSize1, method);
+	((  void (*) (__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC**, int32_t, const RuntimeMethod*))Array_Resize_TisIl2CppFullySharedGenericAny_m263FC41C8DB989397C43C86556D63CEBE13F4712_gshared)((__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC**)___array0, ___newSize1, method);
 }
 // System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarEntity>::CopyTo(T[])
 inline void List_1_CopyTo_mC15829F0E99F430749524947DC32D600A2687498 (List_1_tCD7C2E929EE313A3CD9C1CA1ED76D701EA9F9770* __this, OvrAvatarEntityU5BU5D_t2EA28BD2CE57F4C6153D164731E84A0E7F3669C4* ___array0, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_tCD7C2E929EE313A3CD9C1CA1ED76D701EA9F9770*, OvrAvatarEntityU5BU5D_t2EA28BD2CE57F4C6153D164731E84A0E7F3669C4*, const RuntimeMethod*))List_1_CopyTo_mDA4751F464411AB4C757C63C6EDBF4891BFD6891_gshared)(__this, ___array0, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC*, const RuntimeMethod*))List_1_CopyTo_m9632CAFAB9E06DBDE71886CC36E6C910F8350F9C_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC*)___array0, method);
 }
 // System.Void Unity.Collections.NativeArray`1<Oculus.Avatar2.CAPI/ovrAvatar2EntityId>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
 inline void NativeArray_1__ctor_m997F6CA1405F48C2697F0B736CB8D83FDFCF5F13 (NativeArray_1_t65D05AABF8550393A18AE07B5C61AB8465B94723* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method)
 {
-	((  void (*) (NativeArray_1_t65D05AABF8550393A18AE07B5C61AB8465B94723*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_m0D4D6107C1C882F6D813E0CC53744262582D6110_gshared)(__this, ___length0, ___allocator1, ___options2, method);
+	((  void (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_m788DE0F85C4051DDF092DDF96484DE655ACFB6F1_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)__this, ___length0, ___allocator1, ___options2, method);
 }
 // System.Void Unity.Collections.NativeArray`1<System.Boolean>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
 inline void NativeArray_1__ctor_m262609CCB123CE8BB59524B83D08D2CFA8C33A86 (NativeArray_1_t107C57D0357BCF9956A60495CD8FAADDF1D26AFB* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method)
 {
-	((  void (*) (NativeArray_1_t107C57D0357BCF9956A60495CD8FAADDF1D26AFB*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_m262609CCB123CE8BB59524B83D08D2CFA8C33A86_gshared)(__this, ___length0, ___allocator1, ___options2, method);
+	((  void (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_m788DE0F85C4051DDF092DDF96484DE655ACFB6F1_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)__this, ___length0, ___allocator1, ___options2, method);
 }
 // Oculus.Avatar2.CAPI/ovrAvatar2EntityId Oculus.Avatar2.OvrAvatarEntity::get_internalEntityId()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t OvrAvatarEntity_get_internalEntityId_mDCF242A982EEDCE20D84C6CCDADA4109B0CC39A3 (OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* __this, const RuntimeMethod* method) ;
 // System.Void Unity.Collections.NativeArray`1<Oculus.Avatar2.CAPI/ovrAvatar2Transform>::.ctor(System.Int32,Unity.Collections.Allocator,Unity.Collections.NativeArrayOptions)
 inline void NativeArray_1__ctor_mF5A17580467FF6F0011D164FE4C441C1688C1F49 (NativeArray_1_tA8A08AFF143B7319E7BD4C94856D04CB6F0A5C95* __this, int32_t ___length0, int32_t ___allocator1, int32_t ___options2, const RuntimeMethod* method)
 {
-	((  void (*) (NativeArray_1_tA8A08AFF143B7319E7BD4C94856D04CB6F0A5C95*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_mF5A17580467FF6F0011D164FE4C441C1688C1F49_gshared)(__this, ___length0, ___allocator1, ___options2, method);
+	((  void (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, int32_t, int32_t, int32_t, const RuntimeMethod*))NativeArray_1__ctor_m788DE0F85C4051DDF092DDF96484DE655ACFB6F1_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)__this, ___length0, ___allocator1, ___options2, method);
 }
 // System.Boolean Oculus.Avatar2.OvrAvatarManager::GetActives(Unity.Collections.NativeArray`1<Oculus.Avatar2.CAPI/ovrAvatar2EntityId>&,Unity.Collections.NativeArray`1<System.Boolean>&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool OvrAvatarManager_GetActives_m262A6065B51C94D9B45FA129C825FCA870E06C73 (OvrAvatarManager_t6C70B22ADC5B226C529297C56CE27DA0DDCC485B* __this, NativeArray_1_t65D05AABF8550393A18AE07B5C61AB8465B94723* ___entityIds0, NativeArray_1_t107C57D0357BCF9956A60495CD8FAADDF1D26AFB* ___actives1, const RuntimeMethod* method) ;
@@ -9171,12 +8826,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarEntity_PreSDKUpdateInternal_mB1
 // T* Oculus.Avatar2.OvrAvatarHelperExtensions::GetPtr<Oculus.Avatar2.CAPI/ovrAvatar2EntityId>(Unity.Collections.NativeArray`1<T>&)
 inline int32_t* OvrAvatarHelperExtensions_GetPtr_TisovrAvatar2EntityId_tF8855A2B91F6286C1F0B29A41776FAB3EC69AFE8_m190C9B648013B3DE878C1327951B0A78054456BA (NativeArray_1_t65D05AABF8550393A18AE07B5C61AB8465B94723* ___array0, const RuntimeMethod* method)
 {
-	return ((  int32_t* (*) (NativeArray_1_t65D05AABF8550393A18AE07B5C61AB8465B94723*, const RuntimeMethod*))OvrAvatarHelperExtensions_GetPtr_TisInt32Enum_tCBAC8BA2BFF3A845FA599F303093BBBA374B6F0C_m9174A4942B425842E9CDAE9302FEDE7028E7C6BD_gshared)(___array0, method);
+	Il2CppFullySharedGenericStruct* il2cppRetVal = ((  Il2CppFullySharedGenericStruct* (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, const RuntimeMethod*))OvrAvatarHelperExtensions_GetPtr_TisIl2CppFullySharedGenericStruct_m80D4AB5BC6B71EA78B7B6FE4383257BF05F52BF2_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)___array0, method);
+	return (int32_t*)il2cppRetVal;
 }
 // T* Oculus.Avatar2.OvrAvatarHelperExtensions::GetPtr<Oculus.Avatar2.CAPI/ovrAvatar2Transform>(Unity.Collections.NativeArray`1<T>&)
 inline ovrAvatar2Transform_tB3FB6C9DDF9E2C72D21992CCEA1B928DC9B5D554* OvrAvatarHelperExtensions_GetPtr_TisovrAvatar2Transform_tB3FB6C9DDF9E2C72D21992CCEA1B928DC9B5D554_m33036D17093751DD640DBF46737B4859218B9831 (NativeArray_1_tA8A08AFF143B7319E7BD4C94856D04CB6F0A5C95* ___array0, const RuntimeMethod* method)
 {
-	return ((  ovrAvatar2Transform_tB3FB6C9DDF9E2C72D21992CCEA1B928DC9B5D554* (*) (NativeArray_1_tA8A08AFF143B7319E7BD4C94856D04CB6F0A5C95*, const RuntimeMethod*))OvrAvatarHelperExtensions_GetPtr_TisovrAvatar2Transform_tB3FB6C9DDF9E2C72D21992CCEA1B928DC9B5D554_m33036D17093751DD640DBF46737B4859218B9831_gshared)(___array0, method);
+	Il2CppFullySharedGenericStruct* il2cppRetVal = ((  Il2CppFullySharedGenericStruct* (*) (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*, const RuntimeMethod*))OvrAvatarHelperExtensions_GetPtr_TisIl2CppFullySharedGenericStruct_m80D4AB5BC6B71EA78B7B6FE4383257BF05F52BF2_gshared)((NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18*)___array0, method);
+	return (ovrAvatar2Transform_tB3FB6C9DDF9E2C72D21992CCEA1B928DC9B5D554*)il2cppRetVal;
 }
 // Oculus.Avatar2.CAPI/ovrAvatar2Result Oculus.Avatar2.CAPI::ovrAvatar2Entity_SetRoots(Oculus.Avatar2.CAPI/ovrAvatar2EntityId*,Oculus.Avatar2.CAPI/ovrAvatar2Transform*,System.UInt32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t CAPI_ovrAvatar2Entity_SetRoots_m061E15CFC0CB484992491EAEDBC35409C21BC449 (int32_t* ___entityIds0, ovrAvatar2Transform_tB3FB6C9DDF9E2C72D21992CCEA1B928DC9B5D554* ___roots1, uint32_t ___numEntities2, const RuntimeMethod* method) ;
@@ -9185,24 +8842,24 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarEntity_PostSDKUpdateInternal_m9
 // System.Int32 System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarManager/LoadRequest>::get_Count()
 inline int32_t List_1_get_Count_mCDBE6F4870B2A2EDEA0872CF3B9250E386BE2423_inline (List_1_t9E4BD1D7C88F9F73EE7DD445FBC2860ADC0424F6* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (List_1_t9E4BD1D7C88F9F73EE7DD445FBC2860ADC0424F6*, const RuntimeMethod*))List_1_get_Count_m4407E4C389F22B8CEC282C15D56516658746C383_gshared_inline)(__this, method);
+	return ((  int32_t (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1_get_Count_mD2ED26ACAF3BAF386FFEA83893BA51DB9FD8BA30_gshared_inline)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void System.Array::Resize<Oculus.Avatar2.OvrAvatarManager/LoadRequest>(T[]&,System.Int32)
 inline void Array_Resize_TisLoadRequest_tEDD799C42938C1435A3327AC09CA77FD7949583B_mF5757A0E7C14D764D6F0E31C59916D429CD273C7 (LoadRequestU5BU5D_t71AA6C09B54C5A550292D209092783276307D983** ___array0, int32_t ___newSize1, const RuntimeMethod* method)
 {
-	((  void (*) (LoadRequestU5BU5D_t71AA6C09B54C5A550292D209092783276307D983**, int32_t, const RuntimeMethod*))Array_Resize_TisRuntimeObject_mE8D92C287251BAF8256D85E5829F749359EC334E_gshared)(___array0, ___newSize1, method);
+	((  void (*) (__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC**, int32_t, const RuntimeMethod*))Array_Resize_TisIl2CppFullySharedGenericAny_m263FC41C8DB989397C43C86556D63CEBE13F4712_gshared)((__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC**)___array0, ___newSize1, method);
 }
 // System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarManager/LoadRequest>::CopyTo(T[])
 inline void List_1_CopyTo_m10862165FE0AC58B20E2C1693D59F773DA34D7F7 (List_1_t9E4BD1D7C88F9F73EE7DD445FBC2860ADC0424F6* __this, LoadRequestU5BU5D_t71AA6C09B54C5A550292D209092783276307D983* ___array0, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t9E4BD1D7C88F9F73EE7DD445FBC2860ADC0424F6*, LoadRequestU5BU5D_t71AA6C09B54C5A550292D209092783276307D983*, const RuntimeMethod*))List_1_CopyTo_mDA4751F464411AB4C757C63C6EDBF4891BFD6891_gshared)(__this, ___array0, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC*, const RuntimeMethod*))List_1_CopyTo_m9632CAFAB9E06DBDE71886CC36E6C910F8350F9C_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC*)___array0, method);
 }
 // System.Boolean Oculus.Avatar2.OvrAvatarManager/LoadRequest::Update()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool LoadRequest_Update_m3BAB805AC33575EDB1974AB6AB1FF35A6A40260C (LoadRequest_tEDD799C42938C1435A3327AC09CA77FD7949583B* __this, const RuntimeMethod* method) ;
 // System.Boolean System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarManager/LoadRequest>::Remove(T)
 inline bool List_1_Remove_m928068FBE7642CDCB9A9AC0F6B1C464B81DF4F96 (List_1_t9E4BD1D7C88F9F73EE7DD445FBC2860ADC0424F6* __this, LoadRequest_tEDD799C42938C1435A3327AC09CA77FD7949583B* ___item0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (List_1_t9E4BD1D7C88F9F73EE7DD445FBC2860ADC0424F6*, LoadRequest_tEDD799C42938C1435A3327AC09CA77FD7949583B*, const RuntimeMethod*))List_1_Remove_m4DFA48F4CEB9169601E75FC28517C5C06EFA5AD7_gshared)(__this, ___item0, method);
+	return ((  bool (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))List_1_Remove_m9BCE8CEF94E6F2BF8624D65214FF4F3CA686D60C_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // Oculus.Avatar2.OvrAvatarGpuSkinningController Oculus.Avatar2.OvrAvatarManager::get_GpuSkinningController()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR OvrAvatarGpuSkinningController_t0876BEB04922C6323CB477609B924350F9E5F548* OvrAvatarManager_get_GpuSkinningController_m9CEFA970B72BCB1AB8C32DA4429EF4E29E7CF70E_inline (OvrAvatarManager_t6C70B22ADC5B226C529297C56CE27DA0DDCC485B* __this, const RuntimeMethod* method) ;
@@ -9223,44 +8880,49 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarManager_Permission_Update_m6F13
 // System.Collections.Generic.List`1/Enumerator<T> System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarEntity>::GetEnumerator()
 inline Enumerator_tDAA65BD45B7BE86D4D35C3F5ED0CAF6CFEFE9D3C List_1_GetEnumerator_m90EDD55C9ED1422902B9D10BBF8FB499858FE221 (List_1_tCD7C2E929EE313A3CD9C1CA1ED76D701EA9F9770* __this, const RuntimeMethod* method)
 {
-	return ((  Enumerator_tDAA65BD45B7BE86D4D35C3F5ED0CAF6CFEFE9D3C (*) (List_1_tCD7C2E929EE313A3CD9C1CA1ED76D701EA9F9770*, const RuntimeMethod*))List_1_GetEnumerator_mD8294A7FA2BEB1929487127D476F8EC1CDC23BFC_gshared)(__this, method);
+	Enumerator_tDAA65BD45B7BE86D4D35C3F5ED0CAF6CFEFE9D3C il2cppRetVal;
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))List_1_GetEnumerator_m8B2A92ACD4FBA5FBDC3F6F4F5C23A0DDF491DA61_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarEntity>::Dispose()
 inline void Enumerator_Dispose_m94D23792F8F6E767D8B515809B8BDB714B7F7A33 (Enumerator_tDAA65BD45B7BE86D4D35C3F5ED0CAF6CFEFE9D3C* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Enumerator_tDAA65BD45B7BE86D4D35C3F5ED0CAF6CFEFE9D3C*, const RuntimeMethod*))Enumerator_Dispose_mD9DC3E3C3697830A4823047AB29A77DBBB5ED419_gshared)(__this, method);
+	((  void (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))Enumerator_Dispose_mFE1EBE6F6425283FEAEAE7C79D02CDE4F9D367E8_gshared)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, method);
 }
 // T System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarEntity>::get_Current()
 inline OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* Enumerator_get_Current_m0CF314A3A261DBF20EB39B5AC96B3ED463B26FA8_inline (Enumerator_tDAA65BD45B7BE86D4D35C3F5ED0CAF6CFEFE9D3C* __this, const RuntimeMethod* method)
 {
-	return ((  OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* (*) (Enumerator_tDAA65BD45B7BE86D4D35C3F5ED0CAF6CFEFE9D3C*, const RuntimeMethod*))Enumerator_get_Current_m6330F15D18EE4F547C05DF9BF83C5EB710376027_gshared_inline)(__this, method);
+	OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* il2cppRetVal;
+	((  void (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Enumerator_get_Current_m8B42D4B2DE853B9D11B997120CD0228D4780E394_gshared_inline)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void Oculus.Avatar2.OvrAvatarEntity::Teardown()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarEntity_Teardown_mB361991F92C2D50301442A20BFE64FEA9C33F74E (OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* __this, const RuntimeMethod* method) ;
 // System.Boolean System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarEntity>::MoveNext()
 inline bool Enumerator_MoveNext_mA72CAFC3DF04BFBCC5ADA69A5C3126BA08F948A8 (Enumerator_tDAA65BD45B7BE86D4D35C3F5ED0CAF6CFEFE9D3C* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Enumerator_tDAA65BD45B7BE86D4D35C3F5ED0CAF6CFEFE9D3C*, const RuntimeMethod*))Enumerator_MoveNext_mE921CC8F29FBBDE7CC3209A0ED0D921D58D00BCB_gshared)(__this, method);
+	return ((  bool (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))Enumerator_MoveNext_m8D8E5E878AF0A88A535AB1AB5BA4F23E151A678A_gshared)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarEntity>::Clear()
 inline void List_1_Clear_m2246E36067A27D85CFCD9917EDB66B1A59E99C0A_inline (List_1_tCD7C2E929EE313A3CD9C1CA1ED76D701EA9F9770* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_tCD7C2E929EE313A3CD9C1CA1ED76D701EA9F9770*, const RuntimeMethod*))List_1_Clear_m16C1F2C61FED5955F10EB36BC1CB2DF34B128994_gshared_inline)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1_Clear_mD615D1BCB2C9DD91DAD86A2F9E5CF1DFFCBF7925_gshared_inline)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Int32 System.Collections.Generic.Dictionary`2<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarAssetBase>::get_Count()
 inline int32_t Dictionary_2_get_Count_m0C83CC1FA873623C67247DB3D6FB5B4AD1DE674B (Dictionary_2_tAA0D132EC6F82FB0AE83034CDC2BE815B946008F* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (Dictionary_2_tAA0D132EC6F82FB0AE83034CDC2BE815B946008F*, const RuntimeMethod*))Dictionary_2_get_Count_m44D61ECE58FF6B6BC5BB779226F0461383D152EF_gshared)(__this, method);
+	return ((  int32_t (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, const RuntimeMethod*))Dictionary_2_get_Count_mBB454C6743410D3E06D44D494D4D6FF4CBBBDB1E_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, method);
 }
 // System.Collections.Generic.Dictionary`2/ValueCollection<TKey,TValue> System.Collections.Generic.Dictionary`2<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarAssetBase>::get_Values()
 inline ValueCollection_t3C947B12527B6B75335CE5E159AA541F0D4ED9AE* Dictionary_2_get_Values_mB831703E927B143FA79005BF1181C73992A0E9C0 (Dictionary_2_tAA0D132EC6F82FB0AE83034CDC2BE815B946008F* __this, const RuntimeMethod* method)
 {
-	return ((  ValueCollection_t3C947B12527B6B75335CE5E159AA541F0D4ED9AE* (*) (Dictionary_2_tAA0D132EC6F82FB0AE83034CDC2BE815B946008F*, const RuntimeMethod*))Dictionary_2_get_Values_m88548D48A871D5B79DB4BAAB82C62D4D61568F64_gshared)(__this, method);
+	ValueCollection_tC492596681BD51AB34FC76FA76C15C9B3FFB7B40* il2cppRetVal = ((  ValueCollection_tC492596681BD51AB34FC76FA76C15C9B3FFB7B40* (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, const RuntimeMethod*))Dictionary_2_get_Values_mE06FB7381D8152E35F0716DC7FE13788362112A7_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, method);
+	return (ValueCollection_t3C947B12527B6B75335CE5E159AA541F0D4ED9AE*)il2cppRetVal;
 }
 // System.Void System.Collections.Generic.Dictionary`2/ValueCollection<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarAssetBase>::CopyTo(TValue[],System.Int32)
 inline void ValueCollection_CopyTo_m2E3BEBE3A427522A79654EE470DEC77B7BD9AF80 (ValueCollection_t3C947B12527B6B75335CE5E159AA541F0D4ED9AE* __this, OvrAvatarAssetBaseU5BU5D_t0D0212603C2C54FB6286661F29BCDF279253D1FD* ___array0, int32_t ___index1, const RuntimeMethod* method)
 {
-	((  void (*) (ValueCollection_t3C947B12527B6B75335CE5E159AA541F0D4ED9AE*, OvrAvatarAssetBaseU5BU5D_t0D0212603C2C54FB6286661F29BCDF279253D1FD*, int32_t, const RuntimeMethod*))ValueCollection_CopyTo_mEF6CF2DBA4E1381D8493C4F4165EF311C0810B61_gshared)(__this, ___array0, ___index1, method);
+	((  void (*) (ValueCollection_tC492596681BD51AB34FC76FA76C15C9B3FFB7B40*, __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC*, int32_t, const RuntimeMethod*))ValueCollection_CopyTo_m07B10CD2540C75750331E4ABF3792B35FAF94F99_gshared)((ValueCollection_tC492596681BD51AB34FC76FA76C15C9B3FFB7B40*)__this, (__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC*)___array0, ___index1, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarAssetBase::Dispose()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarAssetBase_Dispose_m9E9FD7E3ABC9B3575DC89FD18F7CC99E3941501A (OvrAvatarAssetBase_tC702E1EB18AC427168E2DFEB3D4D79DFBE47BE34* __this, const RuntimeMethod* method) ;
@@ -9269,34 +8931,40 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarGpuSkinningController_Dispose_m
 // System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> System.Collections.Generic.Dictionary`2<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarResourceLoader>::GetEnumerator()
 inline Enumerator_t2EFE3C107EEAC4C62604945D6A1C2D6F9D69CE8B Dictionary_2_GetEnumerator_m710153A38BF68E63A2FEBB31BA219AF52E90CA61 (Dictionary_2_t3F832D65F376E4182F58621C00D88EE1B9188B46* __this, const RuntimeMethod* method)
 {
-	return ((  Enumerator_t2EFE3C107EEAC4C62604945D6A1C2D6F9D69CE8B (*) (Dictionary_2_t3F832D65F376E4182F58621C00D88EE1B9188B46*, const RuntimeMethod*))Dictionary_2_GetEnumerator_m4126F9137DF46492CEB1563FCCD5A16C5F99D686_gshared)(__this, method);
+	Enumerator_t2EFE3C107EEAC4C62604945D6A1C2D6F9D69CE8B il2cppRetVal;
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*, const RuntimeMethod*))Dictionary_2_GetEnumerator_mEC4954B142C43B5CBAA045953EAD4E168FFCD492_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void System.Collections.Generic.Dictionary`2/Enumerator<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarResourceLoader>::Dispose()
 inline void Enumerator_Dispose_m8AD7287539AD64DE6856C678FD38C0AEDE802B88 (Enumerator_t2EFE3C107EEAC4C62604945D6A1C2D6F9D69CE8B* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Enumerator_t2EFE3C107EEAC4C62604945D6A1C2D6F9D69CE8B*, const RuntimeMethod*))Enumerator_Dispose_m183A70972A3287360EE9443997160D3AA6D4662D_gshared)(__this, method);
+	((  void (*) (Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*, const RuntimeMethod*))Enumerator_Dispose_m3D89F01AE65EC60062FFB578C0E771C098EF2CB7_gshared)((Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*)__this, method);
 }
 // System.Collections.Generic.KeyValuePair`2<TKey,TValue> System.Collections.Generic.Dictionary`2/Enumerator<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarResourceLoader>::get_Current()
 inline KeyValuePair_2_t864572569829FCB230C40B37E780E9F730B0A8A5 Enumerator_get_Current_mBB71E9E23C8E036822D247A0A399C46F9A57DA33_inline (Enumerator_t2EFE3C107EEAC4C62604945D6A1C2D6F9D69CE8B* __this, const RuntimeMethod* method)
 {
-	return ((  KeyValuePair_2_t864572569829FCB230C40B37E780E9F730B0A8A5 (*) (Enumerator_t2EFE3C107EEAC4C62604945D6A1C2D6F9D69CE8B*, const RuntimeMethod*))Enumerator_get_Current_m12EE850D56E586DF121B059557CEAF4A7472995B_gshared_inline)(__this, method);
+	KeyValuePair_2_t864572569829FCB230C40B37E780E9F730B0A8A5 il2cppRetVal;
+	((  void (*) (Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*, KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669*, const RuntimeMethod*))Enumerator_get_Current_m26AF82C275C82180BB7F23C7E408BC1FEB9A38EE_gshared_inline)((Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*)__this, (KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // TValue System.Collections.Generic.KeyValuePair`2<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarResourceLoader>::get_Value()
 inline OvrAvatarResourceLoader_tD0092FC9BFC2E9EBDC1C805B25757CCA231DEA4C* KeyValuePair_2_get_Value_mA8D1A7BAE5C51A2EB963BA1397571FDE77C4E769_inline (KeyValuePair_2_t864572569829FCB230C40B37E780E9F730B0A8A5* __this, const RuntimeMethod* method)
 {
-	return ((  OvrAvatarResourceLoader_tD0092FC9BFC2E9EBDC1C805B25757CCA231DEA4C* (*) (KeyValuePair_2_t864572569829FCB230C40B37E780E9F730B0A8A5*, const RuntimeMethod*))KeyValuePair_2_get_Value_m415A21240AEF58C2E0A2FBA97E2BB75637781DB5_gshared_inline)(__this, method);
+	OvrAvatarResourceLoader_tD0092FC9BFC2E9EBDC1C805B25757CCA231DEA4C* il2cppRetVal;
+	((  void (*) (KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))KeyValuePair_2_get_Value_mFA1964BF56AA214EE0D491CC197F61BC9E5F1F7A_gshared_inline)((KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void Oculus.Avatar2.OvrAvatarResourceLoader::Dispose()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarResourceLoader_Dispose_mE39C29B84F70D51A28040675F179150CE797910E (OvrAvatarResourceLoader_tD0092FC9BFC2E9EBDC1C805B25757CCA231DEA4C* __this, const RuntimeMethod* method) ;
 // System.Boolean System.Collections.Generic.Dictionary`2/Enumerator<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarResourceLoader>::MoveNext()
 inline bool Enumerator_MoveNext_mD6E6685A7234D06F6EDF903C402C642CB70665FD (Enumerator_t2EFE3C107EEAC4C62604945D6A1C2D6F9D69CE8B* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Enumerator_t2EFE3C107EEAC4C62604945D6A1C2D6F9D69CE8B*, const RuntimeMethod*))Enumerator_MoveNext_m48EC022EB2EB605F29EE19F3A0A79E3CB05FD283_gshared)(__this, method);
+	return ((  bool (*) (Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*, const RuntimeMethod*))Enumerator_MoveNext_m97783F73CDB1D0083A2F7D26A51847BF0843ADEA_gshared)((Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*)__this, method);
 }
 // System.Void System.Collections.Generic.Dictionary`2<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarResourceLoader>::Clear()
 inline void Dictionary_2_Clear_m990E7B273AC8F20F3C128D36AA4A72B2A80289C6 (Dictionary_2_t3F832D65F376E4182F58621C00D88EE1B9188B46* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_t3F832D65F376E4182F58621C00D88EE1B9188B46*, const RuntimeMethod*))Dictionary_2_Clear_m763AA956A8325F527F831F49E2563FF2871A680E_gshared)(__this, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, const RuntimeMethod*))Dictionary_2_Clear_m935B3F117860376DC854C9E0C80CBD99BE77EEA4_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarCallbackContextBase::DisposeAll()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarCallbackContextBase_DisposeAll_m5E8E1C5F0BC6D54500B9B9F0F7D2931F3EDAD55F (const RuntimeMethod* method) ;
@@ -9309,12 +8977,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool CAPI_OvrGpuSkinning_Shutdown_mA13ADF2FDD
 // T[] System.Array::Empty<Oculus.Avatar2.OvrAvatarEntity>()
 inline OvrAvatarEntityU5BU5D_t2EA28BD2CE57F4C6153D164731E84A0E7F3669C4* Array_Empty_TisOvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA_mB1E58DC839D6D3A783675B8A7FF092D96D1B0D66_inline (const RuntimeMethod* method)
 {
-	return ((  OvrAvatarEntityU5BU5D_t2EA28BD2CE57F4C6153D164731E84A0E7F3669C4* (*) (const RuntimeMethod*))Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_gshared_inline)(method);
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* il2cppRetVal = ((  __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* (*) (const RuntimeMethod*))Array_Empty_TisIl2CppFullySharedGenericAny_m244E2A51B33F845A2093F0862FBCE502E4FDD868_gshared_inline)(method);
+	return (OvrAvatarEntityU5BU5D_t2EA28BD2CE57F4C6153D164731E84A0E7F3669C4*)il2cppRetVal;
 }
 // System.Void System.Collections.Generic.Dictionary`2<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarAssetBase>::Clear()
 inline void Dictionary_2_Clear_mDA0D6BEE18E81350996271667FB877A107723627 (Dictionary_2_tAA0D132EC6F82FB0AE83034CDC2BE815B946008F* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_tAA0D132EC6F82FB0AE83034CDC2BE815B946008F*, const RuntimeMethod*))Dictionary_2_Clear_m763AA956A8325F527F831F49E2563FF2871A680E_gshared)(__this, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, const RuntimeMethod*))Dictionary_2_Clear_m935B3F117860376DC854C9E0C80CBD99BE77EEA4_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarManager::_ShutdownSingleton<Oculus.Avatar2.GpuSkinningConfiguration>(T)
 inline void OvrAvatarManager__ShutdownSingleton_TisGpuSkinningConfiguration_tF0035D975DEFFFACEA302EDD214AA9357D8CCC5E_m0C339A82A3735809D51C1259622AEEA39797BF14 (OvrAvatarManager_t6C70B22ADC5B226C529297C56CE27DA0DDCC485B* __this, GpuSkinningConfiguration_tF0035D975DEFFFACEA302EDD214AA9357D8CCC5E* ___singletonInstance0, const RuntimeMethod* method)
@@ -9331,17 +9000,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrTime_CancelAll_m6C7CBBC0B830FFDBCE530
 // System.Boolean System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarEntity>::Contains(T)
 inline bool List_1_Contains_m133CCCB4CC05E0F8877D064600ED44E0BBD3BF21 (List_1_tCD7C2E929EE313A3CD9C1CA1ED76D701EA9F9770* __this, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* ___item0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (List_1_tCD7C2E929EE313A3CD9C1CA1ED76D701EA9F9770*, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA*, const RuntimeMethod*))List_1_Contains_m4C9139C2A6B23E9343D3F87807B32C6E2CFE660D_gshared)(__this, ___item0, method);
+	return ((  bool (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))List_1_Contains_m8DA550B703DFB328B69C4712064C667D7CA33DF1_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarEntity>::Add(T)
 inline void List_1_Add_mD7711DA801BDCBAE4E90D0FFEF25AA2CA1E5F2AF_inline (List_1_tCD7C2E929EE313A3CD9C1CA1ED76D701EA9F9770* __this, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* ___item0, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_tCD7C2E929EE313A3CD9C1CA1ED76D701EA9F9770*, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA*, const RuntimeMethod*))List_1_Add_mEBCF994CC3814631017F46A387B1A192ED6C85C7_gshared_inline)(__this, ___item0, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))List_1_Add_mD4F3498FBD3BDD3F03CBCFB38041CBAC9C28CAFC_gshared_inline)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.Boolean System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarEntity>::Remove(T)
 inline bool List_1_Remove_m7AE32F8F706D0F600E334F68F0A16DFA7DDCA39F (List_1_tCD7C2E929EE313A3CD9C1CA1ED76D701EA9F9770* __this, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* ___item0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (List_1_tCD7C2E929EE313A3CD9C1CA1ED76D701EA9F9770*, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA*, const RuntimeMethod*))List_1_Remove_m4DFA48F4CEB9169601E75FC28517C5C06EFA5AD7_gshared)(__this, ___item0, method);
+	return ((  bool (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))List_1_Remove_m9BCE8CEF94E6F2BF8624D65214FF4F3CA686D60C_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.String Oculus.Avatar2.OvrAvatarManager::GetPlatformPostfix(System.Boolean)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* OvrAvatarManager_GetPlatformPostfix_m1F4E82A14BA3670337267F5DCB13EBCD1035D74F (OvrAvatarManager_t6C70B22ADC5B226C529297C56CE27DA0DDCC485B* __this, bool ___isFromZip0, const RuntimeMethod* method) ;
@@ -9360,46 +9029,50 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t CAPI_ovrAvatar2_AddZipSourceFile_m941
 // System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<TResult> System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarRequestResultCode>::Create()
 inline AsyncTaskMethodBuilder_1_t2C0AA33886681E127320588BD0BF1D1B65C5CB41 AsyncTaskMethodBuilder_1_Create_m8E198DCBAB792DC4C298D95F70D9C9E223D98060 (const RuntimeMethod* method)
 {
-	return ((  AsyncTaskMethodBuilder_1_t2C0AA33886681E127320588BD0BF1D1B65C5CB41 (*) (const RuntimeMethod*))AsyncTaskMethodBuilder_1_Create_mA40B8A53C4AB16DDDC272E1BD7361CEB160C2A03_gshared)(method);
+	AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4 il2cppRetVal = ((  AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4 (*) (const RuntimeMethod*))AsyncTaskMethodBuilder_1_Create_m852C283F3EAD7381A0CC8D14204899C192BDC20A_gshared)(method);
+	return il2cpp_codegen_cast_struct<AsyncTaskMethodBuilder_1_t2C0AA33886681E127320588BD0BF1D1B65C5CB41, AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4>(&il2cppRetVal);
 }
 // System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarRequestResultCode>::Start<Oculus.Avatar2.OvrAvatarManager/<UserHasAvatarAsync>d__121>(TStateMachine&)
 inline void AsyncTaskMethodBuilder_1_Start_TisU3CUserHasAvatarAsyncU3Ed__121_t23267F826001B73CF923DA986D5444DE710770FC_m380B80BF231D59701F4ED849906CFE9BC9F3C888 (AsyncTaskMethodBuilder_1_t2C0AA33886681E127320588BD0BF1D1B65C5CB41* __this, U3CUserHasAvatarAsyncU3Ed__121_t23267F826001B73CF923DA986D5444DE710770FC* ___stateMachine0, const RuntimeMethod* method)
 {
-	((  void (*) (AsyncTaskMethodBuilder_1_t2C0AA33886681E127320588BD0BF1D1B65C5CB41*, U3CUserHasAvatarAsyncU3Ed__121_t23267F826001B73CF923DA986D5444DE710770FC*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_Start_TisU3CUserHasAvatarAsyncU3Ed__121_t23267F826001B73CF923DA986D5444DE710770FC_mAB68F5B767AB98C7C35DB12BAAE5BFB8A835E3D9_gshared)(__this, ___stateMachine0, method);
+	((  void (*) (AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_Start_TisIl2CppFullySharedGenericAny_m81177143E3D9118AF316E4C8E5D2AB2BF16C4E80_gshared)((AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*)__this, (Il2CppFullySharedGenericAny*)___stateMachine0, method);
 }
 // System.Threading.Tasks.Task`1<TResult> System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarRequestResultCode>::get_Task()
 inline Task_1_t7A345830A44DE8C634017FA1015B87124397D4BF* AsyncTaskMethodBuilder_1_get_Task_m3ED28A2D5EF7FBE2B26DA91CEE605D6120283554 (AsyncTaskMethodBuilder_1_t2C0AA33886681E127320588BD0BF1D1B65C5CB41* __this, const RuntimeMethod* method)
 {
-	return ((  Task_1_t7A345830A44DE8C634017FA1015B87124397D4BF* (*) (AsyncTaskMethodBuilder_1_t2C0AA33886681E127320588BD0BF1D1B65C5CB41*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_get_Task_m228C453A630CC50C7517D9F9A31BFAFBBD0DDBA8_gshared)(__this, method);
+	Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9* il2cppRetVal = ((  Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9* (*) (AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_get_Task_m90B072626CA4BF0F567616D4A035739B97F46D8B_gshared)((AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*)__this, method);
+	return (Task_1_t7A345830A44DE8C634017FA1015B87124397D4BF*)il2cppRetVal;
 }
 // System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<TResult> System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarChangedRequestResultCode>::Create()
 inline AsyncTaskMethodBuilder_1_t186B8B64B93D4DA888C517A8CBD9EF0A79FF6478 AsyncTaskMethodBuilder_1_Create_mD13329E58B1E1EB990DA2AA822F2D9D56CFCECEE (const RuntimeMethod* method)
 {
-	return ((  AsyncTaskMethodBuilder_1_t186B8B64B93D4DA888C517A8CBD9EF0A79FF6478 (*) (const RuntimeMethod*))AsyncTaskMethodBuilder_1_Create_mA40B8A53C4AB16DDDC272E1BD7361CEB160C2A03_gshared)(method);
+	AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4 il2cppRetVal = ((  AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4 (*) (const RuntimeMethod*))AsyncTaskMethodBuilder_1_Create_m852C283F3EAD7381A0CC8D14204899C192BDC20A_gshared)(method);
+	return il2cpp_codegen_cast_struct<AsyncTaskMethodBuilder_1_t186B8B64B93D4DA888C517A8CBD9EF0A79FF6478, AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4>(&il2cppRetVal);
 }
 // System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarChangedRequestResultCode>::Start<Oculus.Avatar2.OvrAvatarManager/<SendHasAvatarChangedRequestAsync>d__122>(TStateMachine&)
 inline void AsyncTaskMethodBuilder_1_Start_TisU3CSendHasAvatarChangedRequestAsyncU3Ed__122_t263504CA6BEF5583159DC5CF94DD891FA2725ED2_mEA49E556DB77E26CD8F8A4D7A0F220109278A2D6 (AsyncTaskMethodBuilder_1_t186B8B64B93D4DA888C517A8CBD9EF0A79FF6478* __this, U3CSendHasAvatarChangedRequestAsyncU3Ed__122_t263504CA6BEF5583159DC5CF94DD891FA2725ED2* ___stateMachine0, const RuntimeMethod* method)
 {
-	((  void (*) (AsyncTaskMethodBuilder_1_t186B8B64B93D4DA888C517A8CBD9EF0A79FF6478*, U3CSendHasAvatarChangedRequestAsyncU3Ed__122_t263504CA6BEF5583159DC5CF94DD891FA2725ED2*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_Start_TisU3CSendHasAvatarChangedRequestAsyncU3Ed__122_t263504CA6BEF5583159DC5CF94DD891FA2725ED2_mCE2096E276A81222D6CAEBD42A0CC18F1DC71D28_gshared)(__this, ___stateMachine0, method);
+	((  void (*) (AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_Start_TisIl2CppFullySharedGenericAny_m81177143E3D9118AF316E4C8E5D2AB2BF16C4E80_gshared)((AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*)__this, (Il2CppFullySharedGenericAny*)___stateMachine0, method);
 }
 // System.Threading.Tasks.Task`1<TResult> System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarChangedRequestResultCode>::get_Task()
 inline Task_1_t3E26BA4FF944DB60FE41DEB3C32DA04781024E8C* AsyncTaskMethodBuilder_1_get_Task_m08935C80D63B335AD845B5670714BE4DB4C5B56B (AsyncTaskMethodBuilder_1_t186B8B64B93D4DA888C517A8CBD9EF0A79FF6478* __this, const RuntimeMethod* method)
 {
-	return ((  Task_1_t3E26BA4FF944DB60FE41DEB3C32DA04781024E8C* (*) (AsyncTaskMethodBuilder_1_t186B8B64B93D4DA888C517A8CBD9EF0A79FF6478*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_get_Task_m228C453A630CC50C7517D9F9A31BFAFBBD0DDBA8_gshared)(__this, method);
+	Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9* il2cppRetVal = ((  Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9* (*) (AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_get_Task_m90B072626CA4BF0F567616D4A035739B97F46D8B_gshared)((AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*)__this, method);
+	return (Task_1_t3E26BA4FF944DB60FE41DEB3C32DA04781024E8C*)il2cppRetVal;
 }
 // System.Void Oculus.Avatar2.OvrAvatarManager/<>c__DisplayClass123_0::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass123_0__ctor_m1200F60CB1F090089A3092F3B49E14B2E742901B (U3CU3Ec__DisplayClass123_0_tCC1B0047545EBEEEC417A31AABDDD099B907EBFF* __this, const RuntimeMethod* method) ;
 // System.Void System.Threading.Tasks.TaskCompletionSource`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>::.ctor()
 inline void TaskCompletionSource_1__ctor_m710366962F3693AE0F6E8A0828FC57B007DC27FF (TaskCompletionSource_1_tF20E8618AD32D085EFBAC9E127CDB77B996C483C* __this, const RuntimeMethod* method)
 {
-	((  void (*) (TaskCompletionSource_1_tF20E8618AD32D085EFBAC9E127CDB77B996C483C*, const RuntimeMethod*))TaskCompletionSource_1__ctor_m710366962F3693AE0F6E8A0828FC57B007DC27FF_gshared)(__this, method);
+	((  void (*) (TaskCompletionSource_1_t8A40BE53A167B6D71D5640881A7A894D8DA94970*, const RuntimeMethod*))TaskCompletionSource_1__ctor_mD6DB19F66035FC77675F1ED9FE696A65CF9C0F23_gshared)((TaskCompletionSource_1_t8A40BE53A167B6D71D5640881A7A894D8DA94970*)__this, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarManager/RequestDelegate::.ctor(System.Object,System.IntPtr)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RequestDelegate__ctor_m4ED68CE80368D59AB593A47421835743F06378E9 (RequestDelegate_tB2F7C340385FC48D71DD0390685F248660867D48* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
 // System.Void System.Collections.Generic.Dictionary`2<Oculus.Avatar2.CAPI/ovrAvatar2RequestId,Oculus.Avatar2.OvrAvatarManager/RequestDelegate>::Add(TKey,TValue)
 inline void Dictionary_2_Add_mB6A4D6F9A018CF80C3AE52392B3F1865055DF862 (Dictionary_2_tF1F7690F907D127209C338D34D2A1A645B0F6A08* __this, int32_t ___key0, RequestDelegate_tB2F7C340385FC48D71DD0390685F248660867D48* ___value1, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_tF1F7690F907D127209C338D34D2A1A645B0F6A08*, int32_t, RequestDelegate_tB2F7C340385FC48D71DD0390685F248660867D48*, const RuntimeMethod*))Dictionary_2_Add_mC515884C0546021A29DC0A00DBCABD89B1B65872_gshared)(__this, ___key0, ___value1, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Dictionary_2_Add_m54D479280472DEA042DB3933AF547E666B017333_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)&___key0, (Il2CppFullySharedGenericAny)___value1, method);
 }
 // Oculus.Avatar2.CAPI/ovrAvatar2Result Oculus.Avatar2.CAPI::ovrAvatar2_UpdateNetworkSettings(System.Int64,System.Int64,System.Int64)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t CAPI_ovrAvatar2_UpdateNetworkSettings_m08BD3373FB049687157104CB846826941BBD7191 (int64_t ___maxNetworkSendBytesPerSecond0, int64_t ___maxNetworkReceiveBytesPerSecond1, int64_t ___maxNetworkRequests2, const RuntimeMethod* method) ;
@@ -9410,7 +9083,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool CAPI_OvrAvatar2_QueryNetworkStats_m7E9AF
 // System.Void System.ValueTuple`4<System.UInt64,System.UInt64,System.UInt64,System.UInt64>::.ctor(T1,T2,T3,T4)
 inline void ValueTuple_4__ctor_m9270B567BD31A8BB18A2B4CDED68F53C75D21BEA (ValueTuple_4_tEFDD577311961F01B82627ABB705050B07AC2FFA* __this, uint64_t ___item10, uint64_t ___item21, uint64_t ___item32, uint64_t ___item43, const RuntimeMethod* method)
 {
-	((  void (*) (ValueTuple_4_tEFDD577311961F01B82627ABB705050B07AC2FFA*, uint64_t, uint64_t, uint64_t, uint64_t, const RuntimeMethod*))ValueTuple_4__ctor_m9270B567BD31A8BB18A2B4CDED68F53C75D21BEA_gshared)(__this, ___item10, ___item21, ___item32, ___item43, method);
+	((  void (*) (ValueTuple_4_t8725FCE32886281FCF0441F1DAE319DADD76B78F*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))ValueTuple_4__ctor_mFF0D3A69E30DE69A5DB3A2559A8901F1E9851FCB_gshared)((ValueTuple_4_t8725FCE32886281FCF0441F1DAE319DADD76B78F*)__this, (Il2CppFullySharedGenericAny)&___item10, (Il2CppFullySharedGenericAny)&___item21, (Il2CppFullySharedGenericAny)&___item32, (Il2CppFullySharedGenericAny)&___item43, method);
 }
 // System.String System.String::ToLower()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_ToLower_m6191ABA3DC514ED47C10BDA23FD0DDCEAE7ACFBD (String_t* __this, const RuntimeMethod* method) ;
@@ -9454,136 +9127,146 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarManager_QueueResourceLoad_mB5E9
 // System.Boolean System.Collections.Generic.Dictionary`2<Oculus.Avatar2.CAPI/ovrAvatar2RequestId,Oculus.Avatar2.OvrAvatarManager/RequestDelegate>::TryGetValue(TKey,TValue&)
 inline bool Dictionary_2_TryGetValue_m1B15FB01B5D9531FF2899ED88D4CD62FA009D055 (Dictionary_2_tF1F7690F907D127209C338D34D2A1A645B0F6A08* __this, int32_t ___key0, RequestDelegate_tB2F7C340385FC48D71DD0390685F248660867D48** ___value1, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Dictionary_2_tF1F7690F907D127209C338D34D2A1A645B0F6A08*, int32_t, RequestDelegate_tB2F7C340385FC48D71DD0390685F248660867D48**, const RuntimeMethod*))Dictionary_2_TryGetValue_mD8A6CDD5C954C86D2150FCFF1B76EB62F35A881D_gshared)(__this, ___key0, ___value1, method);
+	return ((  bool (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny*, const RuntimeMethod*))Dictionary_2_TryGetValue_m7519D765EAF1E8A7D3137C2F1B7B3A01D15A1692_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)&___key0, (Il2CppFullySharedGenericAny*)___value1, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarManager/RequestDelegate::Invoke(Oculus.Avatar2.CAPI/ovrAvatar2Result,System.IntPtr)
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void RequestDelegate_Invoke_m158C512A38BC68881EB66C1ED4227EA7EA8BBD93_inline (RequestDelegate_tB2F7C340385FC48D71DD0390685F248660867D48* __this, int32_t ___result0, intptr_t ___userContext1, const RuntimeMethod* method) ;
 // System.Boolean System.Collections.Generic.Dictionary`2<Oculus.Avatar2.CAPI/ovrAvatar2RequestId,Oculus.Avatar2.OvrAvatarManager/RequestDelegate>::Remove(TKey)
 inline bool Dictionary_2_Remove_m3A0E0F28749613260B26F2C499ED0E99B5EF8CF5 (Dictionary_2_tF1F7690F907D127209C338D34D2A1A645B0F6A08* __this, int32_t ___key0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Dictionary_2_tF1F7690F907D127209C338D34D2A1A645B0F6A08*, int32_t, const RuntimeMethod*))Dictionary_2_Remove_mA2D94572DAE1E370288187F54B99416C7DB26A5B_gshared)(__this, ___key0, method);
+	return ((  bool (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Dictionary_2_Remove_m583C4F0E2926B584BE6EC6008195360FC631C14C_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)&___key0, method);
 }
 // System.Boolean System.Collections.Generic.Dictionary`2<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarAssetBase>::ContainsKey(TKey)
 inline bool Dictionary_2_ContainsKey_m726D5BD2089EA73E24DD5B052CD681B0A3B89DC3 (Dictionary_2_tAA0D132EC6F82FB0AE83034CDC2BE815B946008F* __this, int32_t ___key0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Dictionary_2_tAA0D132EC6F82FB0AE83034CDC2BE815B946008F*, int32_t, const RuntimeMethod*))Dictionary_2_ContainsKey_m874C59716993973F0A52C848B20C70C26DB9BCF7_gshared)(__this, ___key0, method);
+	return ((  bool (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Dictionary_2_ContainsKey_mA268E9B914DCE838DD0CD9D879BAAEECD0C677AA_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)&___key0, method);
 }
 // System.Void System.Collections.Generic.Dictionary`2<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarAssetBase>::Add(TKey,TValue)
 inline void Dictionary_2_Add_mCB8E1AC108231CA0BD920B3B4311C48BA2E5B9BF (Dictionary_2_tAA0D132EC6F82FB0AE83034CDC2BE815B946008F* __this, int32_t ___key0, OvrAvatarAssetBase_tC702E1EB18AC427168E2DFEB3D4D79DFBE47BE34* ___value1, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_tAA0D132EC6F82FB0AE83034CDC2BE815B946008F*, int32_t, OvrAvatarAssetBase_tC702E1EB18AC427168E2DFEB3D4D79DFBE47BE34*, const RuntimeMethod*))Dictionary_2_Add_mC515884C0546021A29DC0A00DBCABD89B1B65872_gshared)(__this, ___key0, ___value1, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Dictionary_2_Add_m54D479280472DEA042DB3933AF547E666B017333_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)&___key0, (Il2CppFullySharedGenericAny)___value1, method);
 }
 // System.Boolean System.Collections.Generic.Dictionary`2<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarAssetBase>::Remove(TKey)
 inline bool Dictionary_2_Remove_m2BD04AEAA64FD608D3C1AAFFF8A78FC93F36993F (Dictionary_2_tAA0D132EC6F82FB0AE83034CDC2BE815B946008F* __this, int32_t ___key0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Dictionary_2_tAA0D132EC6F82FB0AE83034CDC2BE815B946008F*, int32_t, const RuntimeMethod*))Dictionary_2_Remove_mA2D94572DAE1E370288187F54B99416C7DB26A5B_gshared)(__this, ___key0, method);
+	return ((  bool (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Dictionary_2_Remove_m583C4F0E2926B584BE6EC6008195360FC631C14C_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)&___key0, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarManager/LoadRequest::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LoadRequest__ctor_mCF2D195A9429705268AB6D0C51EDB82B96A5E212 (LoadRequest_tEDD799C42938C1435A3327AC09CA77FD7949583B* __this, const RuntimeMethod* method) ;
 // System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarManager/LoadRequest>::Add(T)
 inline void List_1_Add_m65C86C713DAC96CA038ED5BB3A69AF2B5FDB3F5F_inline (List_1_t9E4BD1D7C88F9F73EE7DD445FBC2860ADC0424F6* __this, LoadRequest_tEDD799C42938C1435A3327AC09CA77FD7949583B* ___item0, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t9E4BD1D7C88F9F73EE7DD445FBC2860ADC0424F6*, LoadRequest_tEDD799C42938C1435A3327AC09CA77FD7949583B*, const RuntimeMethod*))List_1_Add_mEBCF994CC3814631017F46A387B1A192ED6C85C7_gshared_inline)(__this, ___item0, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))List_1_Add_mD4F3498FBD3BDD3F03CBCFB38041CBAC9C28CAFC_gshared_inline)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // T System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarManager/LoadRequest>::get_Item(System.Int32)
 inline LoadRequest_tEDD799C42938C1435A3327AC09CA77FD7949583B* List_1_get_Item_mE44289639348491D7CC830798F3FF9076364BEF4 (List_1_t9E4BD1D7C88F9F73EE7DD445FBC2860ADC0424F6* __this, int32_t ___index0, const RuntimeMethod* method)
 {
-	return ((  LoadRequest_tEDD799C42938C1435A3327AC09CA77FD7949583B* (*) (List_1_t9E4BD1D7C88F9F73EE7DD445FBC2860ADC0424F6*, int32_t, const RuntimeMethod*))List_1_get_Item_m33561245D64798C2AB07584C0EC4F240E4839A38_gshared)(__this, ___index0, method);
+	LoadRequest_tEDD799C42938C1435A3327AC09CA77FD7949583B* il2cppRetVal;
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, int32_t, Il2CppFullySharedGenericAny*, const RuntimeMethod*))List_1_get_Item_m6E4BA37C1FB558E4A62AE4324212E45D09C5C937_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, ___index0, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarManager/LoadRequest>::RemoveAt(System.Int32)
 inline void List_1_RemoveAt_mC8E742FF014BFDC84F68B7E91C289EFD08C61D4E (List_1_t9E4BD1D7C88F9F73EE7DD445FBC2860ADC0424F6* __this, int32_t ___index0, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t9E4BD1D7C88F9F73EE7DD445FBC2860ADC0424F6*, int32_t, const RuntimeMethod*))List_1_RemoveAt_m54F62297ADEE4D4FDA697F49ED807BF901201B54_gshared)(__this, ___index0, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, int32_t, const RuntimeMethod*))List_1_RemoveAt_mF6C23E9072D8CBE2872705E7E4D08BDB78770F5C_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, ___index0, method);
 }
 // T System.Collections.Generic.Queue`1<Oculus.Avatar2.OvrAvatarEntity>::Dequeue()
 inline OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* Queue_1_Dequeue_mA0187C5D3079586C03282B8153D1BCD7ED7DC768 (Queue_1_t036E5DB94EA60938804DC7C6741B1DE2B0D85728* __this, const RuntimeMethod* method)
 {
-	return ((  OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* (*) (Queue_1_t036E5DB94EA60938804DC7C6741B1DE2B0D85728*, const RuntimeMethod*))Queue_1_Dequeue_m86B243DF9EC238316EC3D27DF3E0AB8DB0987E84_gshared)(__this, method);
+	OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* il2cppRetVal;
+	((  void (*) (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Queue_1_Dequeue_m80C152387A53656EC4AEF450BCBA9087DC51EEE3_gshared)((Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Boolean System.Collections.Generic.Dictionary`2<Oculus.Avatar2.OvrAvatarEntity,System.Action>::TryGetValue(TKey,TValue&)
 inline bool Dictionary_2_TryGetValue_m3774A3100DCE3867ABE72E9A1FCC2ECB47EE4179 (Dictionary_2_t31FE541D5577DAD3F1B96D43085E089BB6F6A9A4* __this, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* ___key0, Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07** ___value1, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Dictionary_2_t31FE541D5577DAD3F1B96D43085E089BB6F6A9A4*, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA*, Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07**, const RuntimeMethod*))Dictionary_2_TryGetValue_mD15380A4ED7CDEE99EA45881577D26BA9CE1B849_gshared)(__this, ___key0, ___value1, method);
+	return ((  bool (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny*, const RuntimeMethod*))Dictionary_2_TryGetValue_m7519D765EAF1E8A7D3137C2F1B7B3A01D15A1692_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)___key0, (Il2CppFullySharedGenericAny*)___value1, method);
 }
 // System.Boolean System.Collections.Generic.Dictionary`2<Oculus.Avatar2.OvrAvatarEntity,System.Action>::Remove(TKey)
 inline bool Dictionary_2_Remove_m95EF96E1A1D4591ACAE0262DD514D74CC5214D9B (Dictionary_2_t31FE541D5577DAD3F1B96D43085E089BB6F6A9A4* __this, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* ___key0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Dictionary_2_t31FE541D5577DAD3F1B96D43085E089BB6F6A9A4*, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA*, const RuntimeMethod*))Dictionary_2_Remove_m5C7C45E75D951A75843F3F7AADD56ECD64F6BC86_gshared)(__this, ___key0, method);
+	return ((  bool (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Dictionary_2_Remove_m583C4F0E2926B584BE6EC6008195360FC631C14C_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)___key0, method);
 }
 // System.Int32 System.Collections.Generic.Queue`1<Oculus.Avatar2.OvrAvatarEntity>::get_Count()
 inline int32_t Queue_1_get_Count_mE120DDDBEEB09E68C2D7B8FE86453B9493FF853A_inline (Queue_1_t036E5DB94EA60938804DC7C6741B1DE2B0D85728* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (Queue_1_t036E5DB94EA60938804DC7C6741B1DE2B0D85728*, const RuntimeMethod*))Queue_1_get_Count_m1768ADA9855B7CDA14C9C42E098A287F1A39C3A2_gshared_inline)(__this, method);
+	return ((  int32_t (*) (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*, const RuntimeMethod*))Queue_1_get_Count_mE6103188ACDEC07F90F2D2986554730D18029750_gshared_inline)((Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*)__this, method);
 }
 // System.Void System.Action::Invoke()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_Invoke_m7126A54DACA72B845424072887B5F3A51FC3808E_inline (Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* __this, const RuntimeMethod* method) ;
 // System.Void System.Collections.Generic.Dictionary`2<Oculus.Avatar2.OvrAvatarEntity,System.Action>::Add(TKey,TValue)
 inline void Dictionary_2_Add_mEA28522D4D1B0C5E6EA8C42617F5129C0CE80CA9 (Dictionary_2_t31FE541D5577DAD3F1B96D43085E089BB6F6A9A4* __this, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* ___key0, Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* ___value1, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_t31FE541D5577DAD3F1B96D43085E089BB6F6A9A4*, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA*, Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07*, const RuntimeMethod*))Dictionary_2_Add_m93FFFABE8FCE7FA9793F0915E2A8842C7CD0C0C1_gshared)(__this, ___key0, ___value1, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Dictionary_2_Add_m54D479280472DEA042DB3933AF547E666B017333_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)___key0, (Il2CppFullySharedGenericAny)___value1, method);
 }
 // System.Void System.Collections.Generic.Queue`1<Oculus.Avatar2.OvrAvatarEntity>::Enqueue(T)
 inline void Queue_1_Enqueue_mE4AA842A1A97558C577A37251CA8C19BE1BB99EF (Queue_1_t036E5DB94EA60938804DC7C6741B1DE2B0D85728* __this, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* ___item0, const RuntimeMethod* method)
 {
-	((  void (*) (Queue_1_t036E5DB94EA60938804DC7C6741B1DE2B0D85728*, OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA*, const RuntimeMethod*))Queue_1_Enqueue_m5CB8CF3906F1289F92036F0973EC5BE3450402EF_gshared)(__this, ___item0, method);
+	((  void (*) (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Queue_1_Enqueue_m9159DC6A9BC5528A3444329C408F4101004CF652_gshared)((Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // T System.Collections.Generic.Queue`1<Oculus.Avatar2.OvrAvatarEntity>::Peek()
 inline OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* Queue_1_Peek_m0638E4405DCA4DF76120201CBE40FEC3537CFCEE (Queue_1_t036E5DB94EA60938804DC7C6741B1DE2B0D85728* __this, const RuntimeMethod* method)
 {
-	return ((  OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* (*) (Queue_1_t036E5DB94EA60938804DC7C6741B1DE2B0D85728*, const RuntimeMethod*))Queue_1_Peek_mBCFFD1AF751385D78C4EA93D62857F936CD03866_gshared)(__this, method);
+	OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA* il2cppRetVal;
+	((  void (*) (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Queue_1_Peek_mC16DCF76985FF167BAB542F92D9AA03C1E210D8C_gshared)((Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void Oculus.Avatar2.OvrAvatarResourceLoader::StartLoad()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarResourceLoader_StartLoad_mCEBD5F40A667F178480B7350094B1D4AE2772C99 (OvrAvatarResourceLoader_tD0092FC9BFC2E9EBDC1C805B25757CCA231DEA4C* __this, const RuntimeMethod* method) ;
 // System.Void System.Collections.Generic.Queue`1<Oculus.Avatar2.OvrAvatarResourceLoader>::Enqueue(T)
 inline void Queue_1_Enqueue_mF364330D4C3B85DAA863ED7F60016FB260FE5A4E (Queue_1_tA08C8922EE0939ECC23E955072533F3023914245* __this, OvrAvatarResourceLoader_tD0092FC9BFC2E9EBDC1C805B25757CCA231DEA4C* ___item0, const RuntimeMethod* method)
 {
-	((  void (*) (Queue_1_tA08C8922EE0939ECC23E955072533F3023914245*, OvrAvatarResourceLoader_tD0092FC9BFC2E9EBDC1C805B25757CCA231DEA4C*, const RuntimeMethod*))Queue_1_Enqueue_m5CB8CF3906F1289F92036F0973EC5BE3450402EF_gshared)(__this, ___item0, method);
+	((  void (*) (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Queue_1_Enqueue_m9159DC6A9BC5528A3444329C408F4101004CF652_gshared)((Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarManager::ResourceLoadEnded(Oculus.Avatar2.OvrAvatarResourceLoader)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarManager_ResourceLoadEnded_m21795D6861805CB8859EEBA04657C6040C18246D (OvrAvatarManager_t6C70B22ADC5B226C529297C56CE27DA0DDCC485B* __this, OvrAvatarResourceLoader_tD0092FC9BFC2E9EBDC1C805B25757CCA231DEA4C* ___finishedLoader0, const RuntimeMethod* method) ;
 // T System.Collections.Generic.Queue`1<Oculus.Avatar2.OvrAvatarResourceLoader>::Dequeue()
 inline OvrAvatarResourceLoader_tD0092FC9BFC2E9EBDC1C805B25757CCA231DEA4C* Queue_1_Dequeue_m6BE3A3ACF35C456E8080E5EB00AD0B8F83A87341 (Queue_1_tA08C8922EE0939ECC23E955072533F3023914245* __this, const RuntimeMethod* method)
 {
-	return ((  OvrAvatarResourceLoader_tD0092FC9BFC2E9EBDC1C805B25757CCA231DEA4C* (*) (Queue_1_tA08C8922EE0939ECC23E955072533F3023914245*, const RuntimeMethod*))Queue_1_Dequeue_m86B243DF9EC238316EC3D27DF3E0AB8DB0987E84_gshared)(__this, method);
+	OvrAvatarResourceLoader_tD0092FC9BFC2E9EBDC1C805B25757CCA231DEA4C* il2cppRetVal;
+	((  void (*) (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Queue_1_Dequeue_m80C152387A53656EC4AEF450BCBA9087DC51EEE3_gshared)((Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Boolean Oculus.Avatar2.OvrAvatarResourceLoader::get_CanLoad()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool OvrAvatarResourceLoader_get_CanLoad_m55B2F2228C37E8F556DFAE7BF5DFCC5E6F335432 (OvrAvatarResourceLoader_tD0092FC9BFC2E9EBDC1C805B25757CCA231DEA4C* __this, const RuntimeMethod* method) ;
 // System.Int32 System.Collections.Generic.Queue`1<Oculus.Avatar2.OvrAvatarResourceLoader>::get_Count()
 inline int32_t Queue_1_get_Count_m2186E6440B54C5AAE179CBDB2D711C958953268D_inline (Queue_1_tA08C8922EE0939ECC23E955072533F3023914245* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (Queue_1_tA08C8922EE0939ECC23E955072533F3023914245*, const RuntimeMethod*))Queue_1_get_Count_m1768ADA9855B7CDA14C9C42E098A287F1A39C3A2_gshared_inline)(__this, method);
+	return ((  int32_t (*) (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*, const RuntimeMethod*))Queue_1_get_Count_mE6103188ACDEC07F90F2D2986554730D18029750_gshared_inline)((Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*)__this, method);
 }
 // System.Void System.Collections.Generic.Dictionary`2<System.String,Oculus.Avatar2.OvrAvatarManager/PermissionState>::set_Item(TKey,TValue)
 inline void Dictionary_2_set_Item_m6CAB43B2ABA85508E56531C6F207845B14CCFB74 (Dictionary_2_tABA5E7ACDA2137DC4EFAD01D82364BC51D639D67* __this, String_t* ___key0, int32_t ___value1, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_tABA5E7ACDA2137DC4EFAD01D82364BC51D639D67*, String_t*, int32_t, const RuntimeMethod*))Dictionary_2_set_Item_mC0F84089707699016E685213CFF60997BC7CB12B_gshared)(__this, ___key0, ___value1, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Dictionary_2_set_Item_m4C6841170DD11AED683D2D71919F362A4CFF4A80_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)___key0, (Il2CppFullySharedGenericAny)&___value1, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarManager::QueuePermissionRequest(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarManager_QueuePermissionRequest_m3076A380C11DB5ABB45CD7B0507F3C1EAF7C8422 (OvrAvatarManager_t6C70B22ADC5B226C529297C56CE27DA0DDCC485B* __this, String_t* ___perm0, const RuntimeMethod* method) ;
 // System.Boolean System.Collections.Generic.Queue`1<System.String>::Contains(T)
 inline bool Queue_1_Contains_m90854C11AD9D8DE8686447920396BCC844F1898D (Queue_1_t55768C6731D974992BF9775CEA33AAFE7F51CF31* __this, String_t* ___item0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Queue_1_t55768C6731D974992BF9775CEA33AAFE7F51CF31*, String_t*, const RuntimeMethod*))Queue_1_Contains_m2005E02D4DC2C3186E5BA0722C8435C966AB7B0E_gshared)(__this, ___item0, method);
+	return ((  bool (*) (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Queue_1_Contains_m18A922A2A41A33641FC69FAB29C41657375E682F_gshared)((Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.Boolean System.Collections.Generic.Dictionary`2<System.String,Oculus.Avatar2.OvrAvatarManager/PermissionState>::ContainsKey(TKey)
 inline bool Dictionary_2_ContainsKey_mFB7BF5016720C4958AFEC2524DD4F16D33C28ED2 (Dictionary_2_tABA5E7ACDA2137DC4EFAD01D82364BC51D639D67* __this, String_t* ___key0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Dictionary_2_tABA5E7ACDA2137DC4EFAD01D82364BC51D639D67*, String_t*, const RuntimeMethod*))Dictionary_2_ContainsKey_m480A9507410375C999B20A1E0FA56C7E41489974_gshared)(__this, ___key0, method);
+	return ((  bool (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Dictionary_2_ContainsKey_mA268E9B914DCE838DD0CD9D879BAAEECD0C677AA_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)___key0, method);
 }
 // System.Void System.Collections.Generic.Queue`1<System.String>::Enqueue(T)
 inline void Queue_1_Enqueue_mE91EF674187E035F117B16FDF3B5F0815BD67832 (Queue_1_t55768C6731D974992BF9775CEA33AAFE7F51CF31* __this, String_t* ___item0, const RuntimeMethod* method)
 {
-	((  void (*) (Queue_1_t55768C6731D974992BF9775CEA33AAFE7F51CF31*, String_t*, const RuntimeMethod*))Queue_1_Enqueue_m5CB8CF3906F1289F92036F0973EC5BE3450402EF_gshared)(__this, ___item0, method);
+	((  void (*) (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Queue_1_Enqueue_m9159DC6A9BC5528A3444329C408F4101004CF652_gshared)((Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.Int32 System.Collections.Generic.Queue`1<System.String>::get_Count()
 inline int32_t Queue_1_get_Count_m4764E86DDE9F43FD517EF8675D1240B9B4A41B5D_inline (Queue_1_t55768C6731D974992BF9775CEA33AAFE7F51CF31* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (Queue_1_t55768C6731D974992BF9775CEA33AAFE7F51CF31*, const RuntimeMethod*))Queue_1_get_Count_m1768ADA9855B7CDA14C9C42E098A287F1A39C3A2_gshared_inline)(__this, method);
+	return ((  int32_t (*) (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*, const RuntimeMethod*))Queue_1_get_Count_mE6103188ACDEC07F90F2D2986554730D18029750_gshared_inline)((Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*)__this, method);
 }
 // T System.Collections.Generic.Queue`1<System.String>::Dequeue()
 inline String_t* Queue_1_Dequeue_mD1CC66D4AA0E4AA615FBD01B897BCB42EE89E9DB (Queue_1_t55768C6731D974992BF9775CEA33AAFE7F51CF31* __this, const RuntimeMethod* method)
 {
-	return ((  String_t* (*) (Queue_1_t55768C6731D974992BF9775CEA33AAFE7F51CF31*, const RuntimeMethod*))Queue_1_Dequeue_m86B243DF9EC238316EC3D27DF3E0AB8DB0987E84_gshared)(__this, method);
+	String_t* il2cppRetVal;
+	((  void (*) (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Queue_1_Dequeue_m80C152387A53656EC4AEF450BCBA9087DC51EEE3_gshared)((Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Boolean UnityEngine.Android.Permission::HasUserAuthorizedPermission(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Permission_HasUserAuthorizedPermission_mF4C90E13124E28F6F672200E489CC25A9B645B8B (String_t* ___permission0, const RuntimeMethod* method) ;
@@ -9592,7 +9275,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PermissionCallbacks__ctor_m91B14BBBC8913
 // System.Void System.Action`1<System.String>::.ctor(System.Object,System.IntPtr)
 inline void Action_1__ctor_m9DC2953C55C4D7D4B7BEFE03D84DA1F9362D652C (Action_1_t3CB5D1A819C3ED3F99E9E39F890F18633253949A* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Action_1_t3CB5D1A819C3ED3F99E9E39F890F18633253949A*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_1__ctor_m2E1DFA67718FC1A0B6E5DFEB78831FFE9C059EB4_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_1__ctor_m685A441EC9FAC9D554B26FA83A08F4BEF96DFF0E_gshared)((Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*)__this, ___object0, ___method1, method);
 }
 // System.Void UnityEngine.Android.PermissionCallbacks::add_PermissionGranted(System.Action`1<System.String>)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PermissionCallbacks_add_PermissionGranted_m74335D4200D9B1A7C80AB9C133F95C61FCDCDF89 (PermissionCallbacks_t6C5002298E6649261FCB52C244695459E5C9890F* __this, Action_1_t3CB5D1A819C3ED3F99E9E39F890F18633253949A* ___value0, const RuntimeMethod* method) ;
@@ -9605,7 +9288,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Permission_RequestUserPermission_m7B8E81
 // TValue System.Collections.Generic.Dictionary`2<System.String,Oculus.Avatar2.OvrAvatarManager/PermissionState>::get_Item(TKey)
 inline int32_t Dictionary_2_get_Item_m31E58F1898BBA93BEAFB031DCEF84A46F64EDFA8 (Dictionary_2_tABA5E7ACDA2137DC4EFAD01D82364BC51D639D67* __this, String_t* ___key0, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (Dictionary_2_tABA5E7ACDA2137DC4EFAD01D82364BC51D639D67*, String_t*, const RuntimeMethod*))Dictionary_2_get_Item_m14B4D7B4BDD73D1A4985E09747AF5B2B6A6444D1_gshared)(__this, ___key0, method);
+	int32_t il2cppRetVal;
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Dictionary_2_get_Item_m2E96908E9716367701CD737FA54C884EB2A8C3EA_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)___key0, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.String System.Enum::ToString()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* Enum_ToString_m946B0B83C4470457D0FF555D862022C72BB55741 (RuntimeObject* __this, const RuntimeMethod* method) ;
@@ -9620,69 +9305,71 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t QualitySettings_get_skinWeights_m6D1D
 // System.Void System.Collections.Generic.Dictionary`2<Oculus.Avatar2.OvrAvatarEntity,System.Action>::.ctor()
 inline void Dictionary_2__ctor_m0204796963B81B1E288FE3C45867AA9B02C45CF9 (Dictionary_2_t31FE541D5577DAD3F1B96D43085E089BB6F6A9A4* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_t31FE541D5577DAD3F1B96D43085E089BB6F6A9A4*, const RuntimeMethod*))Dictionary_2__ctor_m5B32FBC624618211EB461D59CFBB10E987FD1329_gshared)(__this, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, const RuntimeMethod*))Dictionary_2__ctor_m7745B6ED71E47C95E1BFCE647C4F026A404C668F_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, method);
 }
 // System.Void System.Collections.Generic.Queue`1<Oculus.Avatar2.OvrAvatarEntity>::.ctor()
 inline void Queue_1__ctor_mEB32D5FB610017A4D872F92DA5878B0015920801 (Queue_1_t036E5DB94EA60938804DC7C6741B1DE2B0D85728* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Queue_1_t036E5DB94EA60938804DC7C6741B1DE2B0D85728*, const RuntimeMethod*))Queue_1__ctor_m6E2A5A8173E0CC524496D5155C737DF8FD10D0EB_gshared)(__this, method);
+	((  void (*) (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*, const RuntimeMethod*))Queue_1__ctor_m657BFA58DFD6AB5B1B4B69AA6E963CD569637EAD_gshared)((Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*)__this, method);
 }
 // System.Void System.Collections.Generic.Queue`1<Oculus.Avatar2.OvrAvatarResourceLoader>::.ctor()
 inline void Queue_1__ctor_m558DAD075D8557B6ADDD4750939B264272EA2651 (Queue_1_tA08C8922EE0939ECC23E955072533F3023914245* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Queue_1_tA08C8922EE0939ECC23E955072533F3023914245*, const RuntimeMethod*))Queue_1__ctor_m6E2A5A8173E0CC524496D5155C737DF8FD10D0EB_gshared)(__this, method);
+	((  void (*) (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*, const RuntimeMethod*))Queue_1__ctor_m657BFA58DFD6AB5B1B4B69AA6E963CD569637EAD_gshared)((Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<System.String>::.ctor()
 inline void List_1__ctor_mCA8DD57EAC70C2B5923DBB9D5A77CEAC22E7068E (List_1_tF470A3BE5C1B5B68E1325EF3F109D172E60BD7CD* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_tF470A3BE5C1B5B68E1325EF3F109D172E60BD7CD*, const RuntimeMethod*))List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void UnityEngine.Color::.ctor(System.Single,System.Single,System.Single)
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Color__ctor_mCD6889CDE39F18704CD6EA8E2EFBFA48BA3E13B0_inline (Color_tD001788D726C3A7F1379BEED0260B9591F440C1F* __this, float ___r0, float ___g1, float ___b2, const RuntimeMethod* method) ;
 // System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarEntity>::.ctor(System.Int32)
 inline void List_1__ctor_mC1F9764C43CB4440B7516C7F50F6731600D1987A (List_1_tCD7C2E929EE313A3CD9C1CA1ED76D701EA9F9770* __this, int32_t ___capacity0, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_tCD7C2E929EE313A3CD9C1CA1ED76D701EA9F9770*, int32_t, const RuntimeMethod*))List_1__ctor_m76CBBC3E2F0583F5AD30CE592CEA1225C06A0428_gshared)(__this, ___capacity0, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, int32_t, const RuntimeMethod*))List_1__ctor_m3069CACB5775E013107F559C825422266A09F9E8_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, ___capacity0, method);
 }
 // System.Void System.Collections.Generic.Dictionary`2<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarAssetBase>::.ctor()
 inline void Dictionary_2__ctor_m95720A283848A75690FFC15BD17BAA641CD71A27 (Dictionary_2_tAA0D132EC6F82FB0AE83034CDC2BE815B946008F* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_tAA0D132EC6F82FB0AE83034CDC2BE815B946008F*, const RuntimeMethod*))Dictionary_2__ctor_mCC9983804D8DC41E938E080075F9EA7BDD0C7059_gshared)(__this, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, const RuntimeMethod*))Dictionary_2__ctor_m7745B6ED71E47C95E1BFCE647C4F026A404C668F_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, method);
 }
 // System.Void System.Collections.Generic.Dictionary`2<Oculus.Avatar2.CAPI/ovrAvatar2Id,Oculus.Avatar2.OvrAvatarResourceLoader>::.ctor()
 inline void Dictionary_2__ctor_m200BAEA2A7974CC5C971CB10E04D25C5773BB083 (Dictionary_2_t3F832D65F376E4182F58621C00D88EE1B9188B46* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_t3F832D65F376E4182F58621C00D88EE1B9188B46*, const RuntimeMethod*))Dictionary_2__ctor_mCC9983804D8DC41E938E080075F9EA7BDD0C7059_gshared)(__this, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, const RuntimeMethod*))Dictionary_2__ctor_m7745B6ED71E47C95E1BFCE647C4F026A404C668F_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, method);
 }
 // System.Void System.Collections.Generic.Dictionary`2<Oculus.Avatar2.CAPI/ovrAvatar2RequestId,Oculus.Avatar2.OvrAvatarManager/RequestDelegate>::.ctor()
 inline void Dictionary_2__ctor_m702125F463046B33492059CB41E07A5AB324ADF9 (Dictionary_2_tF1F7690F907D127209C338D34D2A1A645B0F6A08* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_tF1F7690F907D127209C338D34D2A1A645B0F6A08*, const RuntimeMethod*))Dictionary_2__ctor_mCC9983804D8DC41E938E080075F9EA7BDD0C7059_gshared)(__this, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, const RuntimeMethod*))Dictionary_2__ctor_m7745B6ED71E47C95E1BFCE647C4F026A404C668F_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarManager/LoadRequest>::.ctor()
 inline void List_1__ctor_m718F484B8753DBF49E1B10286CB62C7B1FF78893 (List_1_t9E4BD1D7C88F9F73EE7DD445FBC2860ADC0424F6* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t9E4BD1D7C88F9F73EE7DD445FBC2860ADC0424F6*, const RuntimeMethod*))List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // T[] System.Array::Empty<Oculus.Avatar2.OvrAvatarManager/LoadRequest>()
 inline LoadRequestU5BU5D_t71AA6C09B54C5A550292D209092783276307D983* Array_Empty_TisLoadRequest_tEDD799C42938C1435A3327AC09CA77FD7949583B_m65503C505E62A1BD857FC970CD065845A84E02FF_inline (const RuntimeMethod* method)
 {
-	return ((  LoadRequestU5BU5D_t71AA6C09B54C5A550292D209092783276307D983* (*) (const RuntimeMethod*))Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_gshared_inline)(method);
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* il2cppRetVal = ((  __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* (*) (const RuntimeMethod*))Array_Empty_TisIl2CppFullySharedGenericAny_m244E2A51B33F845A2093F0862FBCE502E4FDD868_gshared_inline)(method);
+	return (LoadRequestU5BU5D_t71AA6C09B54C5A550292D209092783276307D983*)il2cppRetVal;
 }
 // System.Void System.Collections.Generic.Queue`1<System.String>::.ctor()
 inline void Queue_1__ctor_mDDCE4EE6A52F7D218F7DD54BDA1F1649606C70AE (Queue_1_t55768C6731D974992BF9775CEA33AAFE7F51CF31* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Queue_1_t55768C6731D974992BF9775CEA33AAFE7F51CF31*, const RuntimeMethod*))Queue_1__ctor_m6E2A5A8173E0CC524496D5155C737DF8FD10D0EB_gshared)(__this, method);
+	((  void (*) (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*, const RuntimeMethod*))Queue_1__ctor_m657BFA58DFD6AB5B1B4B69AA6E963CD569637EAD_gshared)((Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41*)__this, method);
 }
 // System.Void System.Collections.Generic.Dictionary`2<System.String,Oculus.Avatar2.OvrAvatarManager/PermissionState>::.ctor()
 inline void Dictionary_2__ctor_m731F71A1E111C428C9CD92894DB1FE1025030824 (Dictionary_2_tABA5E7ACDA2137DC4EFAD01D82364BC51D639D67* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_tABA5E7ACDA2137DC4EFAD01D82364BC51D639D67*, const RuntimeMethod*))Dictionary_2__ctor_mE0470880427DED948EF413AD5E9525F41CAF7D1D_gshared)(__this, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, const RuntimeMethod*))Dictionary_2__ctor_m7745B6ED71E47C95E1BFCE647C4F026A404C668F_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, method);
 }
 // T[] System.Array::Empty<UnityEngine.SkinQuality>()
 inline SkinQualityU5BU5D_tA59134352E4DBDB6C504F8C57EE662DA9E7CB42A* Array_Empty_TisSkinQuality_tFFFBBA855612EBEAC68BFEBCD1D8F62B26DE3827_m3C26D3825CAD7F562BB5B7C49D98CD21F9493112_inline (const RuntimeMethod* method)
 {
-	return ((  SkinQualityU5BU5D_tA59134352E4DBDB6C504F8C57EE662DA9E7CB42A* (*) (const RuntimeMethod*))Array_Empty_TisInt32Enum_tCBAC8BA2BFF3A845FA599F303093BBBA374B6F0C_m94E12BB613D748D2EEB9E1ABD961630D2F970385_gshared_inline)(method);
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* il2cppRetVal = ((  __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* (*) (const RuntimeMethod*))Array_Empty_TisIl2CppFullySharedGenericAny_m244E2A51B33F845A2093F0862FBCE502E4FDD868_gshared_inline)(method);
+	return (SkinQualityU5BU5D_tA59134352E4DBDB6C504F8C57EE662DA9E7CB42A*)il2cppRetVal;
 }
 // System.Void Oculus.Avatar2.OvrSingletonBehaviour`1<Oculus.Avatar2.OvrAvatarManager>::.ctor()
 inline void OvrSingletonBehaviour_1__ctor_m32C7494FFB7F31E8E89310B32C36DF793F8FBC0E (OvrSingletonBehaviour_1_t590913F31226562E7C87A8DDE719C5DC047D3A1C* __this, const RuntimeMethod* method)
@@ -9706,59 +9393,67 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR TaskCompletionSource_1_tF20E8618AD32D085EFBAC
 // System.Threading.Tasks.Task`1<TResult> System.Threading.Tasks.TaskCompletionSource`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>::get_Task()
 inline Task_1_tD337C15ECE0EB22DACBE88D74A3CEAE3E87499DF* TaskCompletionSource_1_get_Task_m1745E0B89C73F8CD76D4EEEF40B531D30CE1C43C_inline (TaskCompletionSource_1_tF20E8618AD32D085EFBAC9E127CDB77B996C483C* __this, const RuntimeMethod* method)
 {
-	return ((  Task_1_tD337C15ECE0EB22DACBE88D74A3CEAE3E87499DF* (*) (TaskCompletionSource_1_tF20E8618AD32D085EFBAC9E127CDB77B996C483C*, const RuntimeMethod*))TaskCompletionSource_1_get_Task_m1745E0B89C73F8CD76D4EEEF40B531D30CE1C43C_gshared_inline)(__this, method);
+	Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9* il2cppRetVal = ((  Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9* (*) (TaskCompletionSource_1_t8A40BE53A167B6D71D5640881A7A894D8DA94970*, const RuntimeMethod*))TaskCompletionSource_1_get_Task_m4994989AA2174905CF517397D0F6B082ADC29EE9_gshared_inline)((TaskCompletionSource_1_t8A40BE53A167B6D71D5640881A7A894D8DA94970*)__this, method);
+	return (Task_1_tD337C15ECE0EB22DACBE88D74A3CEAE3E87499DF*)il2cppRetVal;
 }
 // System.Runtime.CompilerServices.TaskAwaiter`1<TResult> System.Threading.Tasks.Task`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>::GetAwaiter()
 inline TaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6 Task_1_GetAwaiter_m5031E879D397E47172C12137096A8EEA86EB70B9 (Task_1_tD337C15ECE0EB22DACBE88D74A3CEAE3E87499DF* __this, const RuntimeMethod* method)
 {
-	return ((  TaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6 (*) (Task_1_tD337C15ECE0EB22DACBE88D74A3CEAE3E87499DF*, const RuntimeMethod*))Task_1_GetAwaiter_m5031E879D397E47172C12137096A8EEA86EB70B9_gshared)(__this, method);
+	TaskAwaiter_1_t274550A5F4BB61F8D62C9C83AF92995FCCE549C8 il2cppRetVal = ((  TaskAwaiter_1_t274550A5F4BB61F8D62C9C83AF92995FCCE549C8 (*) (/*System.Threading.Tasks.Task`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>*/Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9*, const RuntimeMethod*))Task_1_GetAwaiter_mADB36AF74C602F4C81E4752994696EA21CB0C0B6_gshared)((Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9*)__this, method);
+	return il2cpp_codegen_cast_struct<TaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6, TaskAwaiter_1_t274550A5F4BB61F8D62C9C83AF92995FCCE549C8>(&il2cppRetVal);
 }
 // System.Boolean System.Runtime.CompilerServices.TaskAwaiter`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>::get_IsCompleted()
 inline bool TaskAwaiter_1_get_IsCompleted_m537DFC3EE4F461F7C9F3DCECBD3F73F13B67EEC7 (TaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (TaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6*, const RuntimeMethod*))TaskAwaiter_1_get_IsCompleted_m537DFC3EE4F461F7C9F3DCECBD3F73F13B67EEC7_gshared)(__this, method);
+	return ((  bool (*) (TaskAwaiter_1_t274550A5F4BB61F8D62C9C83AF92995FCCE549C8*, const RuntimeMethod*))TaskAwaiter_1_get_IsCompleted_m7F153D4DF6456F60BABB1E7663CDDF3EFE172007_gshared)((TaskAwaiter_1_t274550A5F4BB61F8D62C9C83AF92995FCCE549C8*)__this, method);
 }
 // System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarRequestResultCode>::AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>,Oculus.Avatar2.OvrAvatarManager/<UserHasAvatarAsync>d__121>(TAwaiter&,TStateMachine&)
 inline void AsyncTaskMethodBuilder_1_AwaitUnsafeOnCompleted_TisTaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6_TisU3CUserHasAvatarAsyncU3Ed__121_t23267F826001B73CF923DA986D5444DE710770FC_mD1361DE3A73576A110F7442509608E599675715C (AsyncTaskMethodBuilder_1_t2C0AA33886681E127320588BD0BF1D1B65C5CB41* __this, TaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6* ___awaiter0, U3CUserHasAvatarAsyncU3Ed__121_t23267F826001B73CF923DA986D5444DE710770FC* ___stateMachine1, const RuntimeMethod* method)
 {
-	((  void (*) (AsyncTaskMethodBuilder_1_t2C0AA33886681E127320588BD0BF1D1B65C5CB41*, TaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6*, U3CUserHasAvatarAsyncU3Ed__121_t23267F826001B73CF923DA986D5444DE710770FC*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_AwaitUnsafeOnCompleted_TisTaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6_TisU3CUserHasAvatarAsyncU3Ed__121_t23267F826001B73CF923DA986D5444DE710770FC_mE56F0AF43F82B42B0DF455B62D4F920AF54955AA_gshared)(__this, ___awaiter0, ___stateMachine1, method);
+	((  void (*) (AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_AwaitUnsafeOnCompleted_TisIl2CppFullySharedGenericAny_TisIl2CppFullySharedGenericAny_m0B984271E33D944D547FB29917733016C411E5EB_gshared)((AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*)__this, (Il2CppFullySharedGenericAny*)___awaiter0, (Il2CppFullySharedGenericAny*)___stateMachine1, method);
 }
 // TResult System.Runtime.CompilerServices.TaskAwaiter`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>::GetResult()
 inline AvatarRequestBoolResults_t9AB81E0E9EE20CC1D65BAF42796EAD5ABDCFD670 TaskAwaiter_1_GetResult_m05FE27E35871DBE16D00043DE4DA19AB4C3EA5A0 (TaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6* __this, const RuntimeMethod* method)
 {
-	return ((  AvatarRequestBoolResults_t9AB81E0E9EE20CC1D65BAF42796EAD5ABDCFD670 (*) (TaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6*, const RuntimeMethod*))TaskAwaiter_1_GetResult_m05FE27E35871DBE16D00043DE4DA19AB4C3EA5A0_gshared)(__this, method);
+	AvatarRequestBoolResults_t9AB81E0E9EE20CC1D65BAF42796EAD5ABDCFD670 il2cppRetVal;
+	((  void (*) (TaskAwaiter_1_t274550A5F4BB61F8D62C9C83AF92995FCCE549C8*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))TaskAwaiter_1_GetResult_mA0FDEC1F33CAC08401C6F3B9E5A5C6F1B4503EEB_gshared)((TaskAwaiter_1_t274550A5F4BB61F8D62C9C83AF92995FCCE549C8*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // TResult System.Threading.Tasks.Task`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>::get_Result()
 inline AvatarRequestBoolResults_t9AB81E0E9EE20CC1D65BAF42796EAD5ABDCFD670 Task_1_get_Result_mCDA80F331F61E8D550FF944589A074E95FDD3DD1 (Task_1_tD337C15ECE0EB22DACBE88D74A3CEAE3E87499DF* __this, const RuntimeMethod* method)
 {
-	return ((  AvatarRequestBoolResults_t9AB81E0E9EE20CC1D65BAF42796EAD5ABDCFD670 (*) (Task_1_tD337C15ECE0EB22DACBE88D74A3CEAE3E87499DF*, const RuntimeMethod*))Task_1_get_Result_mCDA80F331F61E8D550FF944589A074E95FDD3DD1_gshared)(__this, method);
+	AvatarRequestBoolResults_t9AB81E0E9EE20CC1D65BAF42796EAD5ABDCFD670 il2cppRetVal;
+	((  void (*) (/*System.Threading.Tasks.Task`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>*/Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Task_1_get_Result_mF84A04F573B3700E098DF189233DA4CB3E14D53C_gshared)((Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Boolean System.Nullable`1<System.Boolean>::get_HasValue()
 inline bool Nullable_1_get_HasValue_m6B76D139692C43B2AF7C695FAB044B16ACFAF355_inline (Nullable_1_t78F453FADB4A9F50F267A4E349019C34410D1A01* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Nullable_1_t78F453FADB4A9F50F267A4E349019C34410D1A01*, const RuntimeMethod*))Nullable_1_get_HasValue_m6B76D139692C43B2AF7C695FAB044B16ACFAF355_gshared_inline)(__this, method);
+	return ((  bool (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, const RuntimeMethod*))Nullable_1_get_HasValue_m14F273FB376DF00D727434CDCD28AB4EDCC14C3C_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, method);
 }
 // T System.Nullable`1<System.Boolean>::get_Value()
 inline bool Nullable_1_get_Value_mE2C54C6AE9FC9F05BF44CD9D7D61DC6CD56E3E28 (Nullable_1_t78F453FADB4A9F50F267A4E349019C34410D1A01* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Nullable_1_t78F453FADB4A9F50F267A4E349019C34410D1A01*, const RuntimeMethod*))Nullable_1_get_Value_mE2C54C6AE9FC9F05BF44CD9D7D61DC6CD56E3E28_gshared)(__this, method);
+	bool il2cppRetVal;
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, Il2CppFullySharedGenericStruct*, const RuntimeMethod*))Nullable_1_get_Value_mA083C4D9192050DC38513BDD9D364C5C68A3A675_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarRequestResultCode>::SetException(System.Exception)
 inline void AsyncTaskMethodBuilder_1_SetException_m36FDADFD5733E9F1294FFBEB8E564B33D2049EAD (AsyncTaskMethodBuilder_1_t2C0AA33886681E127320588BD0BF1D1B65C5CB41* __this, Exception_t* ___exception0, const RuntimeMethod* method)
 {
-	((  void (*) (AsyncTaskMethodBuilder_1_t2C0AA33886681E127320588BD0BF1D1B65C5CB41*, Exception_t*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_SetException_m2E575629BCD46EA73D32EA85764E79315C353E13_gshared)(__this, ___exception0, method);
+	((  void (*) (AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*, Exception_t*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_SetException_m25948BB842FBF253D89FE8399CCB2325B491EE34_gshared)((AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*)__this, ___exception0, method);
 }
 // System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarRequestResultCode>::SetResult(TResult)
 inline void AsyncTaskMethodBuilder_1_SetResult_m889F2E207A8974DEAFA290BDDE2F89F58B4482EB (AsyncTaskMethodBuilder_1_t2C0AA33886681E127320588BD0BF1D1B65C5CB41* __this, int32_t ___result0, const RuntimeMethod* method)
 {
-	((  void (*) (AsyncTaskMethodBuilder_1_t2C0AA33886681E127320588BD0BF1D1B65C5CB41*, int32_t, const RuntimeMethod*))AsyncTaskMethodBuilder_1_SetResult_m718D4EE45CDBF257976C193933CBE5478FFC14E3_gshared)(__this, ___result0, method);
+	((  void (*) (AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))AsyncTaskMethodBuilder_1_SetResult_mC5A4FB0746878FC882C792D8BCAF5277E1F24778_gshared)((AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*)__this, (Il2CppFullySharedGenericAny)&___result0, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarManager/<UserHasAvatarAsync>d__121::MoveNext()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CUserHasAvatarAsyncU3Ed__121_MoveNext_m663C958091492022F2E8B2D9FA8C3014F711A81B (U3CUserHasAvatarAsyncU3Ed__121_t23267F826001B73CF923DA986D5444DE710770FC* __this, const RuntimeMethod* method) ;
 // System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarRequestResultCode>::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
 inline void AsyncTaskMethodBuilder_1_SetStateMachine_m30AECE05187658C6FD032B9C33F5FF97D086790E (AsyncTaskMethodBuilder_1_t2C0AA33886681E127320588BD0BF1D1B65C5CB41* __this, RuntimeObject* ___stateMachine0, const RuntimeMethod* method)
 {
-	((  void (*) (AsyncTaskMethodBuilder_1_t2C0AA33886681E127320588BD0BF1D1B65C5CB41*, RuntimeObject*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_SetStateMachine_mBE5F26838D7801B8250806F352A6915A7F9AA2E5_gshared)(__this, ___stateMachine0, method);
+	((  void (*) (AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*, RuntimeObject*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_SetStateMachine_m7EF377C3A25FB4388DAF14ECAFC18E1C9F3EEA4A_gshared)((AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*)__this, ___stateMachine0, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarManager/<UserHasAvatarAsync>d__121::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CUserHasAvatarAsyncU3Ed__121_SetStateMachine_m92D6DEEE448BFE6B2FC618E33D1E2CBB8FA12B1E (U3CUserHasAvatarAsyncU3Ed__121_t23267F826001B73CF923DA986D5444DE710770FC* __this, RuntimeObject* ___stateMachine0, const RuntimeMethod* method) ;
@@ -9767,24 +9462,24 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool CAPI_OvrAvatar2_HasAvatarChanged_m8334AE
 // System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarChangedRequestResultCode>::AwaitUnsafeOnCompleted<System.Runtime.CompilerServices.TaskAwaiter`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>,Oculus.Avatar2.OvrAvatarManager/<SendHasAvatarChangedRequestAsync>d__122>(TAwaiter&,TStateMachine&)
 inline void AsyncTaskMethodBuilder_1_AwaitUnsafeOnCompleted_TisTaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6_TisU3CSendHasAvatarChangedRequestAsyncU3Ed__122_t263504CA6BEF5583159DC5CF94DD891FA2725ED2_m7499DEB844B59F782E586B93CBEFF5D540DED0BB (AsyncTaskMethodBuilder_1_t186B8B64B93D4DA888C517A8CBD9EF0A79FF6478* __this, TaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6* ___awaiter0, U3CSendHasAvatarChangedRequestAsyncU3Ed__122_t263504CA6BEF5583159DC5CF94DD891FA2725ED2* ___stateMachine1, const RuntimeMethod* method)
 {
-	((  void (*) (AsyncTaskMethodBuilder_1_t186B8B64B93D4DA888C517A8CBD9EF0A79FF6478*, TaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6*, U3CSendHasAvatarChangedRequestAsyncU3Ed__122_t263504CA6BEF5583159DC5CF94DD891FA2725ED2*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_AwaitUnsafeOnCompleted_TisTaskAwaiter_1_tD11BF9DED0BAB58E724ED95C5A46B61A75E7FAD6_TisU3CSendHasAvatarChangedRequestAsyncU3Ed__122_t263504CA6BEF5583159DC5CF94DD891FA2725ED2_mB61BE17699E4E6C179D7EAAD2072CDC99CED9965_gshared)(__this, ___awaiter0, ___stateMachine1, method);
+	((  void (*) (AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_AwaitUnsafeOnCompleted_TisIl2CppFullySharedGenericAny_TisIl2CppFullySharedGenericAny_m0B984271E33D944D547FB29917733016C411E5EB_gshared)((AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*)__this, (Il2CppFullySharedGenericAny*)___awaiter0, (Il2CppFullySharedGenericAny*)___stateMachine1, method);
 }
 // System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarChangedRequestResultCode>::SetException(System.Exception)
 inline void AsyncTaskMethodBuilder_1_SetException_m66DE9C3FCA42D0411F2844498741339E86C55385 (AsyncTaskMethodBuilder_1_t186B8B64B93D4DA888C517A8CBD9EF0A79FF6478* __this, Exception_t* ___exception0, const RuntimeMethod* method)
 {
-	((  void (*) (AsyncTaskMethodBuilder_1_t186B8B64B93D4DA888C517A8CBD9EF0A79FF6478*, Exception_t*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_SetException_m2E575629BCD46EA73D32EA85764E79315C353E13_gshared)(__this, ___exception0, method);
+	((  void (*) (AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*, Exception_t*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_SetException_m25948BB842FBF253D89FE8399CCB2325B491EE34_gshared)((AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*)__this, ___exception0, method);
 }
 // System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarChangedRequestResultCode>::SetResult(TResult)
 inline void AsyncTaskMethodBuilder_1_SetResult_m4901D0E87F1C48F45B17492FF50118EA61417D5B (AsyncTaskMethodBuilder_1_t186B8B64B93D4DA888C517A8CBD9EF0A79FF6478* __this, int32_t ___result0, const RuntimeMethod* method)
 {
-	((  void (*) (AsyncTaskMethodBuilder_1_t186B8B64B93D4DA888C517A8CBD9EF0A79FF6478*, int32_t, const RuntimeMethod*))AsyncTaskMethodBuilder_1_SetResult_m718D4EE45CDBF257976C193933CBE5478FFC14E3_gshared)(__this, ___result0, method);
+	((  void (*) (AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))AsyncTaskMethodBuilder_1_SetResult_mC5A4FB0746878FC882C792D8BCAF5277E1F24778_gshared)((AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*)__this, (Il2CppFullySharedGenericAny)&___result0, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarManager/<SendHasAvatarChangedRequestAsync>d__122::MoveNext()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CSendHasAvatarChangedRequestAsyncU3Ed__122_MoveNext_mEEFF4203461058CAB8B1C9B20F626A93A9A4E48B (U3CSendHasAvatarChangedRequestAsyncU3Ed__122_t263504CA6BEF5583159DC5CF94DD891FA2725ED2* __this, const RuntimeMethod* method) ;
 // System.Void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarChangedRequestResultCode>::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
 inline void AsyncTaskMethodBuilder_1_SetStateMachine_m3D7734DFC3B4E3683C5E4C4EF02581FE5A4E8C39 (AsyncTaskMethodBuilder_1_t186B8B64B93D4DA888C517A8CBD9EF0A79FF6478* __this, RuntimeObject* ___stateMachine0, const RuntimeMethod* method)
 {
-	((  void (*) (AsyncTaskMethodBuilder_1_t186B8B64B93D4DA888C517A8CBD9EF0A79FF6478*, RuntimeObject*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_SetStateMachine_mBE5F26838D7801B8250806F352A6915A7F9AA2E5_gshared)(__this, ___stateMachine0, method);
+	((  void (*) (AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*, RuntimeObject*, const RuntimeMethod*))AsyncTaskMethodBuilder_1_SetStateMachine_m7EF377C3A25FB4388DAF14ECAFC18E1C9F3EEA4A_gshared)((AsyncTaskMethodBuilder_1_t9A3ADCFF6503F4230FFD38F6C333EBCF1A034AF4*)__this, ___stateMachine0, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarManager/<SendHasAvatarChangedRequestAsync>d__122::SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CSendHasAvatarChangedRequestAsyncU3Ed__122_SetStateMachine_m2DB36A4507E3A877A37848E2920F124B5537BE4C (U3CSendHasAvatarChangedRequestAsyncU3Ed__122_t263504CA6BEF5583159DC5CF94DD891FA2725ED2* __this, RuntimeObject* ___stateMachine0, const RuntimeMethod* method) ;
@@ -9793,59 +9488,59 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool CAPI_OvrAvatar_GetRequestBool_mF9D71FC28
 // System.Void System.Nullable`1<System.Boolean>::.ctor(T)
 inline void Nullable_1__ctor_m4FAA8281CB4EFFD8B817734351FB3AC20A0CD6F5 (Nullable_1_t78F453FADB4A9F50F267A4E349019C34410D1A01* __this, bool ___value0, const RuntimeMethod* method)
 {
-	((  void (*) (Nullable_1_t78F453FADB4A9F50F267A4E349019C34410D1A01*, bool, const RuntimeMethod*))Nullable_1__ctor_m4FAA8281CB4EFFD8B817734351FB3AC20A0CD6F5_gshared)(__this, ___value0, method);
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, const RuntimeMethod*))Nullable_1__ctor_m4257D7FF23A495D1B204F20330FBDED58248E4CC_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct)&___value0, method);
 }
 // System.Void System.Threading.Tasks.TaskCompletionSource`1<Oculus.Avatar2.OvrAvatarManager/AvatarRequestBoolResults>::SetResult(TResult)
 inline void TaskCompletionSource_1_SetResult_mB0E94BE9C416B41D0AA791C42E8A444D4E20C4A4 (TaskCompletionSource_1_tF20E8618AD32D085EFBAC9E127CDB77B996C483C* __this, AvatarRequestBoolResults_t9AB81E0E9EE20CC1D65BAF42796EAD5ABDCFD670 ___result0, const RuntimeMethod* method)
 {
-	((  void (*) (TaskCompletionSource_1_tF20E8618AD32D085EFBAC9E127CDB77B996C483C*, AvatarRequestBoolResults_t9AB81E0E9EE20CC1D65BAF42796EAD5ABDCFD670, const RuntimeMethod*))TaskCompletionSource_1_SetResult_mB0E94BE9C416B41D0AA791C42E8A444D4E20C4A4_gshared)(__this, ___result0, method);
+	((  void (*) (TaskCompletionSource_1_t8A40BE53A167B6D71D5640881A7A894D8DA94970*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))TaskCompletionSource_1_SetResult_m20A3A9EACC332D8ECC8AA9E690B90E6C56835CED_gshared)((TaskCompletionSource_1_t8A40BE53A167B6D71D5640881A7A894D8DA94970*)__this, (Il2CppFullySharedGenericAny)&___result0, method);
 }
 // System.Void System.Collections.Generic.Dictionary`2<System.Int32,System.ValueTuple`2<System.Object,Oculus.Avatar2.OvrAvatarMaterial/PropertyType>>::.ctor()
 inline void Dictionary_2__ctor_m7C01E86B681EE6A9F67927C3F9B00F910C8AEC71 (Dictionary_2_tE32C1852A07CF79B831595C3A13047DF1CB649B6* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_tE32C1852A07CF79B831595C3A13047DF1CB649B6*, const RuntimeMethod*))Dictionary_2__ctor_mD549C9A43A8C96F392C8F83EE8C3484FE924DDD2_gshared)(__this, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, const RuntimeMethod*))Dictionary_2__ctor_m7745B6ED71E47C95E1BFCE647C4F026A404C668F_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, method);
 }
 // System.Void System.Collections.Generic.Dictionary`2<System.String,System.Boolean>::.ctor()
 inline void Dictionary_2__ctor_mB1DEDB98863C609565E181823298E467E110B43D (Dictionary_2_t17D0D125440AC627FCF80F189C6CBCB02856063C* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_t17D0D125440AC627FCF80F189C6CBCB02856063C*, const RuntimeMethod*))Dictionary_2__ctor_m0D0F99974D7435C4E08FE9A9A632C9E5430F8454_gshared)(__this, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, const RuntimeMethod*))Dictionary_2__ctor_m7745B6ED71E47C95E1BFCE647C4F026A404C668F_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, method);
 }
 // System.Void UnityEngine.MaterialPropertyBlock::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MaterialPropertyBlock__ctor_m14C3432585F7BB65028BCD64A0FD6607A1B490FB (MaterialPropertyBlock_t2308669579033A857EFE6E4831909F638B27411D* __this, const RuntimeMethod* method) ;
 // System.Void System.Collections.Generic.Dictionary`2<System.String,System.Int32>::.ctor()
 inline void Dictionary_2__ctor_mA3C3860EDE2CDD08BBD68C389377BC89D029D968 (Dictionary_2_t5C8F46F5D57502270DD9E1DA8303B23C7FE85588* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_t5C8F46F5D57502270DD9E1DA8303B23C7FE85588*, const RuntimeMethod*))Dictionary_2__ctor_m517E7F9D104FEAE6646EABDDC9C852510E86077C_gshared)(__this, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, const RuntimeMethod*))Dictionary_2__ctor_m7745B6ED71E47C95E1BFCE647C4F026A404C668F_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, method);
 }
 // System.Void System.Collections.Generic.Dictionary`2<System.Int32,System.ValueTuple`2<System.Object,Oculus.Avatar2.OvrAvatarMaterial/PropertyType>>::Clear()
 inline void Dictionary_2_Clear_m0F3704E8277EB3AE9552207CD3C8501E1EF5A094 (Dictionary_2_tE32C1852A07CF79B831595C3A13047DF1CB649B6* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_tE32C1852A07CF79B831595C3A13047DF1CB649B6*, const RuntimeMethod*))Dictionary_2_Clear_mAD9FFAA503553B14735A89B73F0619A4615774DA_gshared)(__this, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, const RuntimeMethod*))Dictionary_2_Clear_m935B3F117860376DC854C9E0C80CBD99BE77EEA4_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, method);
 }
 // System.Void System.Collections.Generic.Dictionary`2<System.String,System.Boolean>::Clear()
 inline void Dictionary_2_Clear_m2268DD12B7885752414F69316A2585C31B339BBF (Dictionary_2_t17D0D125440AC627FCF80F189C6CBCB02856063C* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_t17D0D125440AC627FCF80F189C6CBCB02856063C*, const RuntimeMethod*))Dictionary_2_Clear_mE0E8184DB358BEB3549E33D6EEA31FF45B89D99F_gshared)(__this, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, const RuntimeMethod*))Dictionary_2_Clear_m935B3F117860376DC854C9E0C80CBD99BE77EEA4_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, method);
 }
 // System.Boolean System.Collections.Generic.Dictionary`2<System.String,System.Boolean>::TryGetValue(TKey,TValue&)
 inline bool Dictionary_2_TryGetValue_mF3B5E05F3C15CF53A05AB1002D93376293F6B23E (Dictionary_2_t17D0D125440AC627FCF80F189C6CBCB02856063C* __this, String_t* ___key0, bool* ___value1, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Dictionary_2_t17D0D125440AC627FCF80F189C6CBCB02856063C*, String_t*, bool*, const RuntimeMethod*))Dictionary_2_TryGetValue_m9AAE125D6298B2B6B9D2F150C841A70872BF887B_gshared)(__this, ___key0, ___value1, method);
+	return ((  bool (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny*, const RuntimeMethod*))Dictionary_2_TryGetValue_m7519D765EAF1E8A7D3137C2F1B7B3A01D15A1692_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)___key0, (Il2CppFullySharedGenericAny*)___value1, method);
 }
 // System.Boolean System.Collections.Generic.Dictionary`2<System.String,System.Boolean>::ContainsKey(TKey)
 inline bool Dictionary_2_ContainsKey_mB58A1ED30A4979126B249E60D66D4391F6FF65F6 (Dictionary_2_t17D0D125440AC627FCF80F189C6CBCB02856063C* __this, String_t* ___key0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Dictionary_2_t17D0D125440AC627FCF80F189C6CBCB02856063C*, String_t*, const RuntimeMethod*))Dictionary_2_ContainsKey_mBEDE43E001DFC228FF4DA06FBCA7CC215C8E7C73_gshared)(__this, ___key0, method);
+	return ((  bool (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Dictionary_2_ContainsKey_mA268E9B914DCE838DD0CD9D879BAAEECD0C677AA_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)___key0, method);
 }
 // System.Void System.Collections.Generic.Dictionary`2<System.String,System.Boolean>::set_Item(TKey,TValue)
 inline void Dictionary_2_set_Item_mF6B9323B3D7DCD5B236DAB212C1CFDD805BB563D (Dictionary_2_t17D0D125440AC627FCF80F189C6CBCB02856063C* __this, String_t* ___key0, bool ___value1, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_t17D0D125440AC627FCF80F189C6CBCB02856063C*, String_t*, bool, const RuntimeMethod*))Dictionary_2_set_Item_mF1A7BA3C1568A00A32A43BCD889038FE080F77BF_gshared)(__this, ___key0, ___value1, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Dictionary_2_set_Item_m4C6841170DD11AED683D2D71919F362A4CFF4A80_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)___key0, (Il2CppFullySharedGenericAny)&___value1, method);
 }
 // System.Boolean System.Collections.Generic.Dictionary`2<System.String,System.Boolean>::Remove(TKey)
 inline bool Dictionary_2_Remove_m458C89B39D1B27C85ECD461431511CB6E76FE562 (Dictionary_2_t17D0D125440AC627FCF80F189C6CBCB02856063C* __this, String_t* ___key0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Dictionary_2_t17D0D125440AC627FCF80F189C6CBCB02856063C*, String_t*, const RuntimeMethod*))Dictionary_2_Remove_m3410C28AE4E1AB9B3387CC479F63A8C8BF22AEEF_gshared)(__this, ___key0, method);
+	return ((  bool (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Dictionary_2_Remove_m583C4F0E2926B584BE6EC6008195360FC631C14C_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)___key0, method);
 }
 // System.Int32 Oculus.Avatar2.OvrAvatarMaterial::GetShaderIDForProperty(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t OvrAvatarMaterial_GetShaderIDForProperty_m56ADC194CA01F711DC6D7454C264051BA6A88BFE (String_t* ___propertyName0, const RuntimeMethod* method) ;
@@ -9854,7 +9549,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Color_tD001788D726C3A7F1379BEED0260B9591F440C
 // TValue System.Collections.Generic.Dictionary`2<System.Int32,System.ValueTuple`2<System.Object,Oculus.Avatar2.OvrAvatarMaterial/PropertyType>>::get_Item(TKey)
 inline ValueTuple_2_t9F1221051994FC4B9DE9C99AF2D30E5813D8C8F6 Dictionary_2_get_Item_m6B1E7C71F6D88EE0749B5FFE2C078ACBA403E53E (Dictionary_2_tE32C1852A07CF79B831595C3A13047DF1CB649B6* __this, int32_t ___key0, const RuntimeMethod* method)
 {
-	return ((  ValueTuple_2_t9F1221051994FC4B9DE9C99AF2D30E5813D8C8F6 (*) (Dictionary_2_tE32C1852A07CF79B831595C3A13047DF1CB649B6*, int32_t, const RuntimeMethod*))Dictionary_2_get_Item_mD81738454855B8A868544A34A158BEBF21BF1382_gshared)(__this, ___key0, method);
+	ValueTuple_2_t9F1221051994FC4B9DE9C99AF2D30E5813D8C8F6 il2cppRetVal;
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Dictionary_2_get_Item_m2E96908E9716367701CD737FA54C884EB2A8C3EA_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)&___key0, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Single Oculus.Avatar2.OvrAvatarMaterial::GetFloat(System.Int32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR float OvrAvatarMaterial_GetFloat_m0A9664A672A0336AF39FE5A3ADDFAF1CAB36CA71 (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, const RuntimeMethod* method) ;
@@ -9875,56 +9572,56 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarMaterial_SetColor_m900CC03BE4F3
 // System.Void Oculus.Avatar2.OvrAvatarMaterial::SetProperty<UnityEngine.Color>(System.Int32,T&,Oculus.Avatar2.OvrAvatarMaterial/PropertyType)
 inline void OvrAvatarMaterial_SetProperty_TisColor_tD001788D726C3A7F1379BEED0260B9591F440C1F_m0ECBF3D9BA57E56851DF7CE4C0C03CEDFB4F5813 (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, Color_tD001788D726C3A7F1379BEED0260B9591F440C1F* ___val1, int32_t ___type2, const RuntimeMethod* method)
 {
-	((  void (*) (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*, int32_t, Color_tD001788D726C3A7F1379BEED0260B9591F440C1F*, int32_t, const RuntimeMethod*))OvrAvatarMaterial_SetProperty_TisColor_tD001788D726C3A7F1379BEED0260B9591F440C1F_m0ECBF3D9BA57E56851DF7CE4C0C03CEDFB4F5813_gshared)(__this, ___nameID0, ___val1, ___type2, method);
+	((  void (*) (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*, int32_t, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny*, int32_t, const RuntimeMethod*))OvrAvatarMaterial_SetProperty_TisIl2CppFullySharedGenericAny_m2C969C6E77B881522DBC51C59AAE9196F19B1B9B_gshared)((OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*)__this, ___nameID0, (Il2CppFullySharedGenericAny*)___val1, ___type2, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarMaterial::SetFloat(System.Int32,System.Single)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarMaterial_SetFloat_mA5C4F12BC643BEFE986732D928F955841B5968E9 (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, float ___floatValue1, const RuntimeMethod* method) ;
 // System.Void Oculus.Avatar2.OvrAvatarMaterial::SetProperty<System.Single>(System.Int32,T&,Oculus.Avatar2.OvrAvatarMaterial/PropertyType)
 inline void OvrAvatarMaterial_SetProperty_TisSingle_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_m935B599931A054D2FFCF51DE8D0B0E5454C0E2E0 (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, float* ___val1, int32_t ___type2, const RuntimeMethod* method)
 {
-	((  void (*) (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*, int32_t, float*, int32_t, const RuntimeMethod*))OvrAvatarMaterial_SetProperty_TisSingle_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_m935B599931A054D2FFCF51DE8D0B0E5454C0E2E0_gshared)(__this, ___nameID0, ___val1, ___type2, method);
+	((  void (*) (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*, int32_t, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny*, int32_t, const RuntimeMethod*))OvrAvatarMaterial_SetProperty_TisIl2CppFullySharedGenericAny_m2C969C6E77B881522DBC51C59AAE9196F19B1B9B_gshared)((OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*)__this, ___nameID0, (Il2CppFullySharedGenericAny*)___val1, ___type2, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarMaterial::SetFloatArray(System.Int32,System.Single[])
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarMaterial_SetFloatArray_m7BE956A2746F9441687E54FC3E5B9CAECAFC684C (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C* ___floatArrayValues1, const RuntimeMethod* method) ;
 // System.Void Oculus.Avatar2.OvrAvatarMaterial::SetProperty<System.Single[]>(System.Int32,T&,Oculus.Avatar2.OvrAvatarMaterial/PropertyType)
 inline void OvrAvatarMaterial_SetProperty_TisSingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C_m49E213B918D2F067383558BB3BFCEF4A5BBE36CF (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C** ___val1, int32_t ___type2, const RuntimeMethod* method)
 {
-	((  void (*) (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*, int32_t, SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C**, int32_t, const RuntimeMethod*))OvrAvatarMaterial_SetProperty_TisRuntimeObject_mE19F18E2499B8E20C5AC3C09200D909DF4D0E893_gshared)(__this, ___nameID0, ___val1, ___type2, method);
+	((  void (*) (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*, int32_t, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny*, int32_t, const RuntimeMethod*))OvrAvatarMaterial_SetProperty_TisIl2CppFullySharedGenericAny_m2C969C6E77B881522DBC51C59AAE9196F19B1B9B_gshared)((OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*)__this, ___nameID0, (Il2CppFullySharedGenericAny*)___val1, ___type2, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarMaterial::SetInt(System.Int32,System.Int32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarMaterial_SetInt_m711D7525BE4DE5EEF09BF788B67DF62586055BF7 (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, int32_t ___intValue1, const RuntimeMethod* method) ;
 // System.Void Oculus.Avatar2.OvrAvatarMaterial::SetProperty<System.Int32>(System.Int32,T&,Oculus.Avatar2.OvrAvatarMaterial/PropertyType)
 inline void OvrAvatarMaterial_SetProperty_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_m90D168BE8F0B574EA57A0BC544E7F9B1EFA04A9D (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, int32_t* ___val1, int32_t ___type2, const RuntimeMethod* method)
 {
-	((  void (*) (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*, int32_t, int32_t*, int32_t, const RuntimeMethod*))OvrAvatarMaterial_SetProperty_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_m90D168BE8F0B574EA57A0BC544E7F9B1EFA04A9D_gshared)(__this, ___nameID0, ___val1, ___type2, method);
+	((  void (*) (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*, int32_t, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny*, int32_t, const RuntimeMethod*))OvrAvatarMaterial_SetProperty_TisIl2CppFullySharedGenericAny_m2C969C6E77B881522DBC51C59AAE9196F19B1B9B_gshared)((OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*)__this, ___nameID0, (Il2CppFullySharedGenericAny*)___val1, ___type2, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarMaterial::SetMatrix(System.Int32,UnityEngine.Matrix4x4)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarMaterial_SetMatrix_m249931CC34BCF9B49A629129030BC8EC82820B66 (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, Matrix4x4_tDB70CF134A14BA38190C59AA700BCE10E2AED3E6 ___matValue1, const RuntimeMethod* method) ;
 // System.Void Oculus.Avatar2.OvrAvatarMaterial::SetProperty<UnityEngine.Matrix4x4>(System.Int32,T&,Oculus.Avatar2.OvrAvatarMaterial/PropertyType)
 inline void OvrAvatarMaterial_SetProperty_TisMatrix4x4_tDB70CF134A14BA38190C59AA700BCE10E2AED3E6_mCB0C7D4E3A72C0851B154E4E610F68F8C0496B3D (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, Matrix4x4_tDB70CF134A14BA38190C59AA700BCE10E2AED3E6* ___val1, int32_t ___type2, const RuntimeMethod* method)
 {
-	((  void (*) (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*, int32_t, Matrix4x4_tDB70CF134A14BA38190C59AA700BCE10E2AED3E6*, int32_t, const RuntimeMethod*))OvrAvatarMaterial_SetProperty_TisMatrix4x4_tDB70CF134A14BA38190C59AA700BCE10E2AED3E6_mCB0C7D4E3A72C0851B154E4E610F68F8C0496B3D_gshared)(__this, ___nameID0, ___val1, ___type2, method);
+	((  void (*) (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*, int32_t, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny*, int32_t, const RuntimeMethod*))OvrAvatarMaterial_SetProperty_TisIl2CppFullySharedGenericAny_m2C969C6E77B881522DBC51C59AAE9196F19B1B9B_gshared)((OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*)__this, ___nameID0, (Il2CppFullySharedGenericAny*)___val1, ___type2, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarMaterial::SetTexture(System.Int32,UnityEngine.Texture)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarMaterial_SetTexture_m2AB3CF98EE05E75A93E7489EFD5151617794A70F (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, Texture_t791CBB51219779964E0E8A2ED7C1AA5F92A4A700* ___textureValue1, const RuntimeMethod* method) ;
 // System.Void Oculus.Avatar2.OvrAvatarMaterial::SetProperty<UnityEngine.Texture>(System.Int32,T&,Oculus.Avatar2.OvrAvatarMaterial/PropertyType)
 inline void OvrAvatarMaterial_SetProperty_TisTexture_t791CBB51219779964E0E8A2ED7C1AA5F92A4A700_m3928B95F2F7A6347CA7E198AEB973D89331D7D0C (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, Texture_t791CBB51219779964E0E8A2ED7C1AA5F92A4A700** ___val1, int32_t ___type2, const RuntimeMethod* method)
 {
-	((  void (*) (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*, int32_t, Texture_t791CBB51219779964E0E8A2ED7C1AA5F92A4A700**, int32_t, const RuntimeMethod*))OvrAvatarMaterial_SetProperty_TisRuntimeObject_mE19F18E2499B8E20C5AC3C09200D909DF4D0E893_gshared)(__this, ___nameID0, ___val1, ___type2, method);
+	((  void (*) (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*, int32_t, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny*, int32_t, const RuntimeMethod*))OvrAvatarMaterial_SetProperty_TisIl2CppFullySharedGenericAny_m2C969C6E77B881522DBC51C59AAE9196F19B1B9B_gshared)((OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*)__this, ___nameID0, (Il2CppFullySharedGenericAny*)___val1, ___type2, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarMaterial::SetVector(System.Int32,UnityEngine.Vector4)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarMaterial_SetVector_mFE17FF842B39EC78EFFF70CD219979A78C572C91 (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 ___vec4Value1, const RuntimeMethod* method) ;
 // System.Void Oculus.Avatar2.OvrAvatarMaterial::SetProperty<UnityEngine.Vector4>(System.Int32,T&,Oculus.Avatar2.OvrAvatarMaterial/PropertyType)
 inline void OvrAvatarMaterial_SetProperty_TisVector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3_m40FD947BEB9349257B2FCBC01C4A6313FAF3432E (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3* ___val1, int32_t ___type2, const RuntimeMethod* method)
 {
-	((  void (*) (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*, int32_t, Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3*, int32_t, const RuntimeMethod*))OvrAvatarMaterial_SetProperty_TisVector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3_m40FD947BEB9349257B2FCBC01C4A6313FAF3432E_gshared)(__this, ___nameID0, ___val1, ___type2, method);
+	((  void (*) (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*, int32_t, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny*, int32_t, const RuntimeMethod*))OvrAvatarMaterial_SetProperty_TisIl2CppFullySharedGenericAny_m2C969C6E77B881522DBC51C59AAE9196F19B1B9B_gshared)((OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*)__this, ___nameID0, (Il2CppFullySharedGenericAny*)___val1, ___type2, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarMaterial::SetVectorArray(System.Int32,UnityEngine.Vector4[])
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarMaterial_SetVectorArray_mB279C08CD9D9F6B71E89083B51543E5C9D9CCC06 (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, Vector4U5BU5D_tC0F3A7115F85007510F6D173968200CD31BCF7AD* ___vec4Values1, const RuntimeMethod* method) ;
 // System.Void Oculus.Avatar2.OvrAvatarMaterial::SetProperty<UnityEngine.Vector4[]>(System.Int32,T&,Oculus.Avatar2.OvrAvatarMaterial/PropertyType)
 inline void OvrAvatarMaterial_SetProperty_TisVector4U5BU5D_tC0F3A7115F85007510F6D173968200CD31BCF7AD_mC6A911981D8CA8D1D9A87D89350F526887627E12 (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137* __this, int32_t ___nameID0, Vector4U5BU5D_tC0F3A7115F85007510F6D173968200CD31BCF7AD** ___val1, int32_t ___type2, const RuntimeMethod* method)
 {
-	((  void (*) (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*, int32_t, Vector4U5BU5D_tC0F3A7115F85007510F6D173968200CD31BCF7AD**, int32_t, const RuntimeMethod*))OvrAvatarMaterial_SetProperty_TisRuntimeObject_mE19F18E2499B8E20C5AC3C09200D909DF4D0E893_gshared)(__this, ___nameID0, ___val1, ___type2, method);
+	((  void (*) (OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*, int32_t, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny*, int32_t, const RuntimeMethod*))OvrAvatarMaterial_SetProperty_TisIl2CppFullySharedGenericAny_m2C969C6E77B881522DBC51C59AAE9196F19B1B9B_gshared)((OvrAvatarMaterial_tA71BFDBD0158C48E872041E0DE66772153BFE137*)__this, ___nameID0, (Il2CppFullySharedGenericAny*)___val1, ___type2, method);
 }
 // UnityEngine.Renderer Oculus.Avatar2.OvrAvatarRenderable::get_rendererComponent()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Renderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF* OvrAvatarRenderable_get_rendererComponent_m206D84DD9020A603D1931E5FAB04A4DF66F3CA8C_inline (OvrAvatarRenderable_t6A160B0805AD93B2153702F98E0952038648F1E7* __this, const RuntimeMethod* method) ;
@@ -9935,59 +9632,75 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarRenderable_SetShader_m69631D90A
 // System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> System.Collections.Generic.Dictionary`2<System.String,System.Boolean>::GetEnumerator()
 inline Enumerator_tD1EEDE565BC0380945286625C34F4F872BC3821C Dictionary_2_GetEnumerator_mF1EF3EBE8E3AD852DACF68EB32C1EA646288ED22 (Dictionary_2_t17D0D125440AC627FCF80F189C6CBCB02856063C* __this, const RuntimeMethod* method)
 {
-	return ((  Enumerator_tD1EEDE565BC0380945286625C34F4F872BC3821C (*) (Dictionary_2_t17D0D125440AC627FCF80F189C6CBCB02856063C*, const RuntimeMethod*))Dictionary_2_GetEnumerator_mC7827569955B8266DAC471AC8CBCADC6416AB941_gshared)(__this, method);
+	Enumerator_tD1EEDE565BC0380945286625C34F4F872BC3821C il2cppRetVal;
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*, const RuntimeMethod*))Dictionary_2_GetEnumerator_mEC4954B142C43B5CBAA045953EAD4E168FFCD492_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void System.Collections.Generic.Dictionary`2/Enumerator<System.String,System.Boolean>::Dispose()
 inline void Enumerator_Dispose_mAA92A709B68DE27536A8C66FADE01B63FC565B14 (Enumerator_tD1EEDE565BC0380945286625C34F4F872BC3821C* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Enumerator_tD1EEDE565BC0380945286625C34F4F872BC3821C*, const RuntimeMethod*))Enumerator_Dispose_m47DDE5BF12A9FCE3120292E1B2F352CDDD214EEF_gshared)(__this, method);
+	((  void (*) (Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*, const RuntimeMethod*))Enumerator_Dispose_m3D89F01AE65EC60062FFB578C0E771C098EF2CB7_gshared)((Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*)__this, method);
 }
 // System.Collections.Generic.KeyValuePair`2<TKey,TValue> System.Collections.Generic.Dictionary`2/Enumerator<System.String,System.Boolean>::get_Current()
 inline KeyValuePair_2_t6FBA699E626F0DB5D988252D056F02A4938CF89C Enumerator_get_Current_mFBA428AA59DC9319F94DD19765071FE5AE457E9C_inline (Enumerator_tD1EEDE565BC0380945286625C34F4F872BC3821C* __this, const RuntimeMethod* method)
 {
-	return ((  KeyValuePair_2_t6FBA699E626F0DB5D988252D056F02A4938CF89C (*) (Enumerator_tD1EEDE565BC0380945286625C34F4F872BC3821C*, const RuntimeMethod*))Enumerator_get_Current_m90E0638FF1812FE1DDE8D13CC607F4CD161D12C1_gshared_inline)(__this, method);
+	KeyValuePair_2_t6FBA699E626F0DB5D988252D056F02A4938CF89C il2cppRetVal;
+	((  void (*) (Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*, KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669*, const RuntimeMethod*))Enumerator_get_Current_m26AF82C275C82180BB7F23C7E408BC1FEB9A38EE_gshared_inline)((Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*)__this, (KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // TKey System.Collections.Generic.KeyValuePair`2<System.String,System.Boolean>::get_Key()
 inline String_t* KeyValuePair_2_get_Key_m6BEF534E92E19F6138AF24B4F759D2D181F38BC0_inline (KeyValuePair_2_t6FBA699E626F0DB5D988252D056F02A4938CF89C* __this, const RuntimeMethod* method)
 {
-	return ((  String_t* (*) (KeyValuePair_2_t6FBA699E626F0DB5D988252D056F02A4938CF89C*, const RuntimeMethod*))KeyValuePair_2_get_Key_m94A9BD1AEA6EA0A8BEE3739A3881F479181638C4_gshared_inline)(__this, method);
+	String_t* il2cppRetVal;
+	((  void (*) (KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))KeyValuePair_2_get_Key_mBE75BF8983618BC1ACEC20F94C1BFF85C8AA50F1_gshared_inline)((KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // TValue System.Collections.Generic.KeyValuePair`2<System.String,System.Boolean>::get_Value()
 inline bool KeyValuePair_2_get_Value_mE1DC07B8A2496F1389E87AC01B53A247272C8FDD_inline (KeyValuePair_2_t6FBA699E626F0DB5D988252D056F02A4938CF89C* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (KeyValuePair_2_t6FBA699E626F0DB5D988252D056F02A4938CF89C*, const RuntimeMethod*))KeyValuePair_2_get_Value_mC3C5F83458F19B6276D6E090A86CFDADE6EFAAD8_gshared_inline)(__this, method);
+	bool il2cppRetVal;
+	((  void (*) (KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))KeyValuePair_2_get_Value_mFA1964BF56AA214EE0D491CC197F61BC9E5F1F7A_gshared_inline)((KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void Oculus.Avatar2.OvrAvatarRenderable::SetMaterialKeyword(System.String,System.Boolean)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarRenderable_SetMaterialKeyword_m0AE73BFAAFC74094CEC416E882745EF9B714F659 (OvrAvatarRenderable_t6A160B0805AD93B2153702F98E0952038648F1E7* __this, String_t* ___keyword0, bool ___enable1, const RuntimeMethod* method) ;
 // System.Boolean System.Collections.Generic.Dictionary`2/Enumerator<System.String,System.Boolean>::MoveNext()
 inline bool Enumerator_MoveNext_m483F1A7F088BB7BA068F7690D7F1A6D9D7A5A7B2 (Enumerator_tD1EEDE565BC0380945286625C34F4F872BC3821C* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Enumerator_tD1EEDE565BC0380945286625C34F4F872BC3821C*, const RuntimeMethod*))Enumerator_MoveNext_m0712867110707C27D0A2D46D9735F066C9BA48A2_gshared)(__this, method);
+	return ((  bool (*) (Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*, const RuntimeMethod*))Enumerator_MoveNext_m97783F73CDB1D0083A2F7D26A51847BF0843ADEA_gshared)((Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*)__this, method);
 }
 // System.Collections.Generic.Dictionary`2/Enumerator<TKey,TValue> System.Collections.Generic.Dictionary`2<System.Int32,System.ValueTuple`2<System.Object,Oculus.Avatar2.OvrAvatarMaterial/PropertyType>>::GetEnumerator()
 inline Enumerator_tE2406962D544D3AB446EC0EEBE803A4BE3E07C51 Dictionary_2_GetEnumerator_m6046ABC3B9BBA290910C5708EFE7128AE843A6AE (Dictionary_2_tE32C1852A07CF79B831595C3A13047DF1CB649B6* __this, const RuntimeMethod* method)
 {
-	return ((  Enumerator_tE2406962D544D3AB446EC0EEBE803A4BE3E07C51 (*) (Dictionary_2_tE32C1852A07CF79B831595C3A13047DF1CB649B6*, const RuntimeMethod*))Dictionary_2_GetEnumerator_m5E4699CF7ACE90EB0876F8A9A061706DF292CB5F_gshared)(__this, method);
+	Enumerator_tE2406962D544D3AB446EC0EEBE803A4BE3E07C51 il2cppRetVal;
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*, const RuntimeMethod*))Dictionary_2_GetEnumerator_mEC4954B142C43B5CBAA045953EAD4E168FFCD492_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void System.Collections.Generic.Dictionary`2/Enumerator<System.Int32,System.ValueTuple`2<System.Object,Oculus.Avatar2.OvrAvatarMaterial/PropertyType>>::Dispose()
 inline void Enumerator_Dispose_m0A3A7EEDF44309370276EAB06CA7819EA9FD1215 (Enumerator_tE2406962D544D3AB446EC0EEBE803A4BE3E07C51* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Enumerator_tE2406962D544D3AB446EC0EEBE803A4BE3E07C51*, const RuntimeMethod*))Enumerator_Dispose_mB366F3A2EF0882D3DBC9E3AD80F17574EB749710_gshared)(__this, method);
+	((  void (*) (Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*, const RuntimeMethod*))Enumerator_Dispose_m3D89F01AE65EC60062FFB578C0E771C098EF2CB7_gshared)((Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*)__this, method);
 }
 // System.Collections.Generic.KeyValuePair`2<TKey,TValue> System.Collections.Generic.Dictionary`2/Enumerator<System.Int32,System.ValueTuple`2<System.Object,Oculus.Avatar2.OvrAvatarMaterial/PropertyType>>::get_Current()
 inline KeyValuePair_2_t1FD314B8CA0FF784E5B8243EA96F1E78B73012B4 Enumerator_get_Current_m333AEFC5BE27F00DF6B72AD195D51694E4900C0E_inline (Enumerator_tE2406962D544D3AB446EC0EEBE803A4BE3E07C51* __this, const RuntimeMethod* method)
 {
-	return ((  KeyValuePair_2_t1FD314B8CA0FF784E5B8243EA96F1E78B73012B4 (*) (Enumerator_tE2406962D544D3AB446EC0EEBE803A4BE3E07C51*, const RuntimeMethod*))Enumerator_get_Current_m05E35A6939ADA91CC61D511C39FF55428BA7E2EC_gshared_inline)(__this, method);
+	KeyValuePair_2_t1FD314B8CA0FF784E5B8243EA96F1E78B73012B4 il2cppRetVal;
+	((  void (*) (Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*, KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669*, const RuntimeMethod*))Enumerator_get_Current_m26AF82C275C82180BB7F23C7E408BC1FEB9A38EE_gshared_inline)((Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*)__this, (KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // TValue System.Collections.Generic.KeyValuePair`2<System.Int32,System.ValueTuple`2<System.Object,Oculus.Avatar2.OvrAvatarMaterial/PropertyType>>::get_Value()
 inline ValueTuple_2_t9F1221051994FC4B9DE9C99AF2D30E5813D8C8F6 KeyValuePair_2_get_Value_mCEE66E8599E8B333BAF11CC3956734DCAEA36993_inline (KeyValuePair_2_t1FD314B8CA0FF784E5B8243EA96F1E78B73012B4* __this, const RuntimeMethod* method)
 {
-	return ((  ValueTuple_2_t9F1221051994FC4B9DE9C99AF2D30E5813D8C8F6 (*) (KeyValuePair_2_t1FD314B8CA0FF784E5B8243EA96F1E78B73012B4*, const RuntimeMethod*))KeyValuePair_2_get_Value_m45DA0F8C6C1FDB139DF0932F2CB94B6E1155EB3E_gshared_inline)(__this, method);
+	ValueTuple_2_t9F1221051994FC4B9DE9C99AF2D30E5813D8C8F6 il2cppRetVal;
+	((  void (*) (KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))KeyValuePair_2_get_Value_mFA1964BF56AA214EE0D491CC197F61BC9E5F1F7A_gshared_inline)((KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // TKey System.Collections.Generic.KeyValuePair`2<System.Int32,System.ValueTuple`2<System.Object,Oculus.Avatar2.OvrAvatarMaterial/PropertyType>>::get_Key()
 inline int32_t KeyValuePair_2_get_Key_mA98B08CB7CF965060C3BCE4D1562B4FABC870294_inline (KeyValuePair_2_t1FD314B8CA0FF784E5B8243EA96F1E78B73012B4* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (KeyValuePair_2_t1FD314B8CA0FF784E5B8243EA96F1E78B73012B4*, const RuntimeMethod*))KeyValuePair_2_get_Key_m04221D37F542255AE07CD4D0A9E59AAD49D01CA5_gshared_inline)(__this, method);
+	int32_t il2cppRetVal;
+	((  void (*) (KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))KeyValuePair_2_get_Key_mBE75BF8983618BC1ACEC20F94C1BFF85C8AA50F1_gshared_inline)((KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void UnityEngine.MaterialPropertyBlock::SetInt(System.Int32,System.Int32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MaterialPropertyBlock_SetInt_mB07015BD8FF1A7D2FF70D7FB89C0FDFAE06B86F8 (MaterialPropertyBlock_t2308669579033A857EFE6E4831909F638B27411D* __this, int32_t ___nameID0, int32_t ___value1, const RuntimeMethod* method) ;
@@ -10008,21 +9721,21 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MaterialPropertyBlock_SetVectorArray_m5C
 // System.Boolean System.Collections.Generic.Dictionary`2/Enumerator<System.Int32,System.ValueTuple`2<System.Object,Oculus.Avatar2.OvrAvatarMaterial/PropertyType>>::MoveNext()
 inline bool Enumerator_MoveNext_mF60BF06886CD597BCC438112D99B6B76B577625B (Enumerator_tE2406962D544D3AB446EC0EEBE803A4BE3E07C51* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Enumerator_tE2406962D544D3AB446EC0EEBE803A4BE3E07C51*, const RuntimeMethod*))Enumerator_MoveNext_mAB2F2583CCD1674BE4DEF7B84C3767A93B8F0771_gshared)(__this, method);
+	return ((  bool (*) (Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*, const RuntimeMethod*))Enumerator_MoveNext_m97783F73CDB1D0083A2F7D26A51847BF0843ADEA_gshared)((Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1*)__this, method);
 }
 // System.Void UnityEngine.Renderer::SetPropertyBlock(UnityEngine.MaterialPropertyBlock)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Renderer_SetPropertyBlock_mF565698782FE54580B17CC0BFF9B0C4F0D68DF50 (Renderer_t320575F223BCB177A982E5DDB5DB19FAA89E7FBF* __this, MaterialPropertyBlock_t2308669579033A857EFE6E4831909F638B27411D* ___properties0, const RuntimeMethod* method) ;
 // System.Boolean System.Collections.Generic.Dictionary`2<System.String,System.Int32>::TryGetValue(TKey,TValue&)
 inline bool Dictionary_2_TryGetValue_m835BB1E6EA8A8BF1242B51E28FD65B43FEF68E2A (Dictionary_2_t5C8F46F5D57502270DD9E1DA8303B23C7FE85588* __this, String_t* ___key0, int32_t* ___value1, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Dictionary_2_t5C8F46F5D57502270DD9E1DA8303B23C7FE85588*, String_t*, int32_t*, const RuntimeMethod*))Dictionary_2_TryGetValue_m4B8EE45640C70BBFD6F3EFF1040983404C098342_gshared)(__this, ___key0, ___value1, method);
+	return ((  bool (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType&*/Il2CppFullySharedGenericAny*, const RuntimeMethod*))Dictionary_2_TryGetValue_m7519D765EAF1E8A7D3137C2F1B7B3A01D15A1692_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)___key0, (Il2CppFullySharedGenericAny*)___value1, method);
 }
 // System.Int32 UnityEngine.Shader::PropertyToID(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Shader_PropertyToID_mE98523D50F5656CAE89B30695C458253EB8956CA (String_t* ___name0, const RuntimeMethod* method) ;
 // System.Void System.Collections.Generic.Dictionary`2<System.String,System.Int32>::Add(TKey,TValue)
 inline void Dictionary_2_Add_m2FE98C9C3763E31D7CB55207ED3A46B33BF64883 (Dictionary_2_t5C8F46F5D57502270DD9E1DA8303B23C7FE85588* __this, String_t* ___key0, int32_t ___value1, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_t5C8F46F5D57502270DD9E1DA8303B23C7FE85588*, String_t*, int32_t, const RuntimeMethod*))Dictionary_2_Add_m63897227AFA7035F1772315ABBBE7FD0A250E10C_gshared)(__this, ___key0, ___value1, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Dictionary_2_Add_m54D479280472DEA042DB3933AF547E666B017333_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)___key0, (Il2CppFullySharedGenericAny)&___value1, method);
 }
 // System.Text.Encoding System.Text.Encoding::get_ASCII()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Encoding_t65CDEF28CF20A7B8C92E85A4E808920C2465F095* Encoding_get_ASCII_mCC61B512D320FD4E2E71CC0DFDF8DDF3CD215C65 (const RuntimeMethod* method) ;
@@ -10123,7 +9836,9 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void OvrAvatarRenderable_set_rend
 // T UnityEngine.Component::GetComponent<UnityEngine.MeshFilter>()
 inline MeshFilter_t6D1CE2473A1E45AC73013400585A1163BF66B2F5* Component_GetComponent_TisMeshFilter_t6D1CE2473A1E45AC73013400585A1163BF66B2F5_mB82F66059DFB5715DD85BDED1D90BC03A6C9E623 (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, const RuntimeMethod* method)
 {
-	return ((  MeshFilter_t6D1CE2473A1E45AC73013400585A1163BF66B2F5* (*) (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*, const RuntimeMethod*))Component_GetComponent_TisRuntimeObject_m7181F81CAEC2CF53F5D2BC79B7425C16E1F80D33_gshared)(__this, method);
+	MeshFilter_t6D1CE2473A1E45AC73013400585A1163BF66B2F5* il2cppRetVal;
+	((  void (*) (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Component_GetComponent_TisIl2CppFullySharedGenericAny_m47CBDD147982125387F078ABBFDAAB92D397A6C2_gshared)((Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // UnityEngine.Mesh UnityEngine.MeshFilter::get_sharedMesh()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Mesh_t6D9C539763A09BC2B12AEAEF36F6DFFC98AE63D4* MeshFilter_get_sharedMesh_mE4ED3E7E31C1DE5097E4980DA996E620F7D7CB8C (MeshFilter_t6D1CE2473A1E45AC73013400585A1163BF66B2F5* __this, const RuntimeMethod* method) ;
@@ -10153,31 +9868,31 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarShaderManagerBase__ctor_mD9864D
 // System.Int32 Oculus.Avatar2.OvrSpan`1<Oculus.Avatar2.CAPI/ovrAvatar2Transform>::get_Length()
 inline int32_t OvrSpan_1_get_Length_m72758F7E0A4F839B4538BAE2C15127E328648503_inline (OvrSpan_1_t7E6A202CDD3092B36A9ED503F62A2FE6CE96E618* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (OvrSpan_1_t7E6A202CDD3092B36A9ED503F62A2FE6CE96E618*, const RuntimeMethod*))OvrSpan_1_get_Length_m72758F7E0A4F839B4538BAE2C15127E328648503_gshared_inline)(__this, method);
+	return ((  int32_t (*) (OvrSpan_1_tABCF10E9E40CF31C1378EB23141B1D48DD8C9BF8*, const RuntimeMethod*))OvrSpan_1_get_Length_mFB123E739F216FC9BB34F03F39A0154D2B39F312_gshared_inline)((OvrSpan_1_tABCF10E9E40CF31C1378EB23141B1D48DD8C9BF8*)__this, method);
 }
 // System.IntPtr Oculus.Avatar2.OvrSpan`1<Oculus.Avatar2.CAPI/ovrAvatar2Transform>::get_Address()
 inline intptr_t OvrSpan_1_get_Address_m9819614A7EDC39544E7DF67A05953BDCEBB2A94C_inline (OvrSpan_1_t7E6A202CDD3092B36A9ED503F62A2FE6CE96E618* __this, const RuntimeMethod* method)
 {
-	return ((  intptr_t (*) (OvrSpan_1_t7E6A202CDD3092B36A9ED503F62A2FE6CE96E618*, const RuntimeMethod*))OvrSpan_1_get_Address_m9819614A7EDC39544E7DF67A05953BDCEBB2A94C_gshared_inline)(__this, method);
+	return ((  intptr_t (*) (OvrSpan_1_tABCF10E9E40CF31C1378EB23141B1D48DD8C9BF8*, const RuntimeMethod*))OvrSpan_1_get_Address_m31042E5B147C0EC559627BAC974A95DE3338B197_gshared_inline)((OvrSpan_1_tABCF10E9E40CF31C1378EB23141B1D48DD8C9BF8*)__this, method);
 }
 // System.Void* System.IntPtr::op_Explicit(System.IntPtr)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void* IntPtr_op_Explicit_m2728CBA081E79B97DDCF1D4FAD77B309CA1E94BF (intptr_t ___value0, const RuntimeMethod* method) ;
 // System.Void Oculus.Avatar2.OvrSpan`1<Oculus.Avatar2.CAPI/ovrAvatar2Transform>::.ctor(System.Void*,System.Int32)
 inline void OvrSpan_1__ctor_mAA376225A455149DD57E5D0896EF6560D9071D53 (OvrSpan_1_t7E6A202CDD3092B36A9ED503F62A2FE6CE96E618* __this, void* ___ptr0, int32_t ___length1, const RuntimeMethod* method)
 {
-	((  void (*) (OvrSpan_1_t7E6A202CDD3092B36A9ED503F62A2FE6CE96E618*, void*, int32_t, const RuntimeMethod*))OvrSpan_1__ctor_mAA376225A455149DD57E5D0896EF6560D9071D53_gshared)(__this, ___ptr0, ___length1, method);
+	((  void (*) (OvrSpan_1_tABCF10E9E40CF31C1378EB23141B1D48DD8C9BF8*, void*, int32_t, const RuntimeMethod*))OvrSpan_1__ctor_mB888C6B370887CFF16DCC49768FCF9995235F039_gshared)((OvrSpan_1_tABCF10E9E40CF31C1378EB23141B1D48DD8C9BF8*)__this, ___ptr0, ___length1, method);
 }
 // System.Void Oculus.Avatar2.CAPI/ovrAvatar2TrackingBodyPose::.ctor(Oculus.Avatar2.CAPI/ovrAvatar2Transform*,System.UInt32,Oculus.Avatar2.CAPI/ovrAvatar2Space,System.Single,System.Single)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ovrAvatar2TrackingBodyPose__ctor_m526E411D6F8A8C320A0B9A847816F4F9EF42DC24 (ovrAvatar2TrackingBodyPose_t76E92A258678C554C31999A7E234477F88AD9E61* __this, ovrAvatar2Transform_tB3FB6C9DDF9E2C72D21992CCEA1B928DC9B5D554* ___bones0, uint32_t ___numBones1, int32_t ___space2, float ___leftHandScale3, float ___rightHandScale4, const RuntimeMethod* method) ;
 // System.Int32 Oculus.Avatar2.OvrSpan`1<Oculus.Avatar2.CAPI/ovrAvatar2Bone>::get_Length()
 inline int32_t OvrSpan_1_get_Length_m2D537204D3654A26AC967D7E77AD084C43C92136_inline (OvrSpan_1_tC4E8D46BC68C39FFC86330749394042C5B3D55FC* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (OvrSpan_1_tC4E8D46BC68C39FFC86330749394042C5B3D55FC*, const RuntimeMethod*))OvrSpan_1_get_Length_m2D537204D3654A26AC967D7E77AD084C43C92136_gshared_inline)(__this, method);
+	return ((  int32_t (*) (OvrSpan_1_tABCF10E9E40CF31C1378EB23141B1D48DD8C9BF8*, const RuntimeMethod*))OvrSpan_1_get_Length_mFB123E739F216FC9BB34F03F39A0154D2B39F312_gshared_inline)((OvrSpan_1_tABCF10E9E40CF31C1378EB23141B1D48DD8C9BF8*)__this, method);
 }
 // System.IntPtr Oculus.Avatar2.OvrSpan`1<Oculus.Avatar2.CAPI/ovrAvatar2Bone>::get_Address()
 inline intptr_t OvrSpan_1_get_Address_m69EB5B170713430217181197C1D9AF5496F60671_inline (OvrSpan_1_tC4E8D46BC68C39FFC86330749394042C5B3D55FC* __this, const RuntimeMethod* method)
 {
-	return ((  intptr_t (*) (OvrSpan_1_tC4E8D46BC68C39FFC86330749394042C5B3D55FC*, const RuntimeMethod*))OvrSpan_1_get_Address_m69EB5B170713430217181197C1D9AF5496F60671_gshared_inline)(__this, method);
+	return ((  intptr_t (*) (OvrSpan_1_tABCF10E9E40CF31C1378EB23141B1D48DD8C9BF8*, const RuntimeMethod*))OvrSpan_1_get_Address_m31042E5B147C0EC559627BAC974A95DE3338B197_gshared_inline)((OvrSpan_1_tABCF10E9E40CF31C1378EB23141B1D48DD8C9BF8*)__this, method);
 }
 // System.Void* System.IntPtr::ToPointer()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void* IntPtr_ToPointer_m1A0612EED3A1C8B8850BE2943CFC42523064B4F6_inline (intptr_t* __this, const RuntimeMethod* method) ;
@@ -10186,7 +9901,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarTrackingPose__ctor_mEAD44384315
 // System.Void Oculus.Avatar2.OvrSpan`1<Oculus.Avatar2.CAPI/ovrAvatar2Bone>::.ctor(System.Void*,System.Int32)
 inline void OvrSpan_1__ctor_mCECF55AB834B1C48E3CD6A3F4EF1D39D1CAED19B (OvrSpan_1_tC4E8D46BC68C39FFC86330749394042C5B3D55FC* __this, void* ___ptr0, int32_t ___length1, const RuntimeMethod* method)
 {
-	((  void (*) (OvrSpan_1_tC4E8D46BC68C39FFC86330749394042C5B3D55FC*, void*, int32_t, const RuntimeMethod*))OvrSpan_1__ctor_mCECF55AB834B1C48E3CD6A3F4EF1D39D1CAED19B_gshared)(__this, ___ptr0, ___length1, method);
+	((  void (*) (OvrSpan_1_tABCF10E9E40CF31C1378EB23141B1D48DD8C9BF8*, void*, int32_t, const RuntimeMethod*))OvrSpan_1__ctor_mB888C6B370887CFF16DCC49768FCF9995235F039_gshared)((OvrSpan_1_tABCF10E9E40CF31C1378EB23141B1D48DD8C9BF8*)__this, ___ptr0, ___length1, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarTrackingPose::CopyToNative(Oculus.Avatar2.CAPI/ovrAvatar2TrackingBodyPose&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarTrackingPose_CopyToNative_m0CF1959263C9EA5004F23F85653A61AE8423CDE9 (OvrAvatarTrackingPose_tA813623CA0C72F2F212C128A3AD6651CB2D05909* __this, ovrAvatar2TrackingBodyPose_t76E92A258678C554C31999A7E234477F88AD9E61* ___native0, const RuntimeMethod* method) ;
@@ -10255,12 +9970,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Nullable_1_tA58BFAB7679D2EBDCF2E4537F4048819F
 // System.Boolean System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2LipSyncContext>::get_HasValue()
 inline bool Nullable_1_get_HasValue_mA247264B7B76B281F4855D711D276ADAF1ED603D_inline (Nullable_1_tA58BFAB7679D2EBDCF2E4537F4048819F4FED053* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Nullable_1_tA58BFAB7679D2EBDCF2E4537F4048819F4FED053*, const RuntimeMethod*))Nullable_1_get_HasValue_mA247264B7B76B281F4855D711D276ADAF1ED603D_gshared_inline)(__this, method);
+	return ((  bool (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, const RuntimeMethod*))Nullable_1_get_HasValue_m14F273FB376DF00D727434CDCD28AB4EDCC14C3C_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, method);
 }
 // T System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2LipSyncContext>::get_Value()
 inline ovrAvatar2LipSyncContext_t6BD4A5C7CE68A2224A9AA7F1E3601CC420767AFA Nullable_1_get_Value_m70F3C2E8C83D859A6BECC93D9FAC64C301DD2F6B (Nullable_1_tA58BFAB7679D2EBDCF2E4537F4048819F4FED053* __this, const RuntimeMethod* method)
 {
-	return ((  ovrAvatar2LipSyncContext_t6BD4A5C7CE68A2224A9AA7F1E3601CC420767AFA (*) (Nullable_1_tA58BFAB7679D2EBDCF2E4537F4048819F4FED053*, const RuntimeMethod*))Nullable_1_get_Value_m70F3C2E8C83D859A6BECC93D9FAC64C301DD2F6B_gshared)(__this, method);
+	ovrAvatar2LipSyncContext_t6BD4A5C7CE68A2224A9AA7F1E3601CC420767AFA il2cppRetVal;
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, Il2CppFullySharedGenericStruct*, const RuntimeMethod*))Nullable_1_get_Value_mA083C4D9192050DC38513BDD9D364C5C68A3A675_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // Oculus.Avatar2.CAPI/ovrAvatar2Result Oculus.Avatar2.CAPI::ovrAvatar2LipSync_InitializeContextNative(System.IntPtr,Oculus.Avatar2.CAPI/ovrAvatar2LipSyncContextNative&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t CAPI_ovrAvatar2LipSync_InitializeContextNative_m66CCBD352DDB20EC0B0724BD5C748D898C08AB51 (intptr_t ___lipsyncProvider0, ovrAvatar2LipSyncContextNative_t4DF3F67F2158D7EC45A1BD7072E08E3010530549* ___lipSyncContext1, const RuntimeMethod* method) ;
@@ -10269,17 +9986,18 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarVisemeContext_FeedAudio_mDC863F
 // T[] System.ArraySegment`1<System.Single>::get_Array()
 inline SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C* ArraySegment_1_get_Array_m1E527B0219936D6E63F60F321794D4A41AE9FA96_inline (ArraySegment_1_t8BFB82736DF7396993D8AC314453598665A24BA4* __this, const RuntimeMethod* method)
 {
-	return ((  SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C* (*) (ArraySegment_1_t8BFB82736DF7396993D8AC314453598665A24BA4*, const RuntimeMethod*))ArraySegment_1_get_Array_m1E527B0219936D6E63F60F321794D4A41AE9FA96_gshared_inline)(__this, method);
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* il2cppRetVal = ((  __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* (*) (ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178*, const RuntimeMethod*))ArraySegment_1_get_Array_mE4A35DFD81ABF447350B9A05C0F4BF0248A3CFF2_gshared_inline)((ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178*)__this, method);
+	return (SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C*)il2cppRetVal;
 }
 // System.Int32 System.ArraySegment`1<System.Single>::get_Offset()
 inline int32_t ArraySegment_1_get_Offset_mDDFD5262CBC72F51E3E18D6869FBA03A86FB7A8B_inline (ArraySegment_1_t8BFB82736DF7396993D8AC314453598665A24BA4* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (ArraySegment_1_t8BFB82736DF7396993D8AC314453598665A24BA4*, const RuntimeMethod*))ArraySegment_1_get_Offset_mDDFD5262CBC72F51E3E18D6869FBA03A86FB7A8B_gshared_inline)(__this, method);
+	return ((  int32_t (*) (ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178*, const RuntimeMethod*))ArraySegment_1_get_Offset_m4FAFF061AB36BF278BA8DC37B6D13718A06301E6_gshared_inline)((ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178*)__this, method);
 }
 // System.Int32 System.ArraySegment`1<System.Single>::get_Count()
 inline int32_t ArraySegment_1_get_Count_mABA070861BE134EF962A6E80D53B885A5F9C020E_inline (ArraySegment_1_t8BFB82736DF7396993D8AC314453598665A24BA4* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (ArraySegment_1_t8BFB82736DF7396993D8AC314453598665A24BA4*, const RuntimeMethod*))ArraySegment_1_get_Count_mABA070861BE134EF962A6E80D53B885A5F9C020E_gshared_inline)(__this, method);
+	return ((  int32_t (*) (ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178*, const RuntimeMethod*))ArraySegment_1_get_Count_mEF96248898C14F3687A5C72B920F841701E4E13C_gshared_inline)((ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178*)__this, method);
 }
 // System.Runtime.InteropServices.GCHandle System.Runtime.InteropServices.GCHandle::Alloc(System.Object,System.Runtime.InteropServices.GCHandleType)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR GCHandle_tC44F6F72EE68BD4CFABA24309DA7A179D41127DC GCHandle_Alloc_m3BFD398427352FC756FFE078F01A504B681352EC (RuntimeObject* ___value0, int32_t ___type1, const RuntimeMethod* method) ;
@@ -10296,17 +10014,18 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarVisemeContext_FeedAudio_mAB2B17
 // T[] System.ArraySegment`1<System.Int16>::get_Array()
 inline Int16U5BU5D_t8175CE8DD9C9F9FB0CF4F58E45BC570575B43CFB* ArraySegment_1_get_Array_m1B023530CEE9F0816934FDDD167983DBB0922B76_inline (ArraySegment_1_t271440F313890A1EEC1AC75D1EEDADCAC42BC779* __this, const RuntimeMethod* method)
 {
-	return ((  Int16U5BU5D_t8175CE8DD9C9F9FB0CF4F58E45BC570575B43CFB* (*) (ArraySegment_1_t271440F313890A1EEC1AC75D1EEDADCAC42BC779*, const RuntimeMethod*))ArraySegment_1_get_Array_m1B023530CEE9F0816934FDDD167983DBB0922B76_gshared_inline)(__this, method);
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* il2cppRetVal = ((  __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* (*) (ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178*, const RuntimeMethod*))ArraySegment_1_get_Array_mE4A35DFD81ABF447350B9A05C0F4BF0248A3CFF2_gshared_inline)((ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178*)__this, method);
+	return (Int16U5BU5D_t8175CE8DD9C9F9FB0CF4F58E45BC570575B43CFB*)il2cppRetVal;
 }
 // System.Int32 System.ArraySegment`1<System.Int16>::get_Offset()
 inline int32_t ArraySegment_1_get_Offset_m9EDC1C082C701B6700DA92CC1ED247B410CA800A_inline (ArraySegment_1_t271440F313890A1EEC1AC75D1EEDADCAC42BC779* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (ArraySegment_1_t271440F313890A1EEC1AC75D1EEDADCAC42BC779*, const RuntimeMethod*))ArraySegment_1_get_Offset_m9EDC1C082C701B6700DA92CC1ED247B410CA800A_gshared_inline)(__this, method);
+	return ((  int32_t (*) (ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178*, const RuntimeMethod*))ArraySegment_1_get_Offset_m4FAFF061AB36BF278BA8DC37B6D13718A06301E6_gshared_inline)((ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178*)__this, method);
 }
 // System.Int32 System.ArraySegment`1<System.Int16>::get_Count()
 inline int32_t ArraySegment_1_get_Count_m64BBFC1B7C10D59EAA1CC499435362A37F3EAE6F_inline (ArraySegment_1_t271440F313890A1EEC1AC75D1EEDADCAC42BC779* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (ArraySegment_1_t271440F313890A1EEC1AC75D1EEDADCAC42BC779*, const RuntimeMethod*))ArraySegment_1_get_Count_m64BBFC1B7C10D59EAA1CC499435362A37F3EAE6F_gshared_inline)(__this, method);
+	return ((  int32_t (*) (ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178*, const RuntimeMethod*))ArraySegment_1_get_Count_mEF96248898C14F3687A5C72B920F841701E4E13C_gshared_inline)((ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178*)__this, method);
 }
 // System.Void Oculus.Avatar2.OvrAvatarVisemeContext::Reconfigure()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrAvatarVisemeContext_Reconfigure_m540FD2857F1C55667C69A21F6B849F164FC05ACB (OvrAvatarVisemeContext_t5F6CDA7223BC721FD68DA1A992A24D0CCCE216E1* __this, const RuntimeMethod* method) ;
@@ -10325,7 +10044,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t CAPI_ovrAvatar2LipSync_InitializeCont
 // System.Void System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2LipSyncContext>::.ctor(T)
 inline void Nullable_1__ctor_m3327CB3C01E870D190546E22AC6FFB2A6CF590D9 (Nullable_1_tA58BFAB7679D2EBDCF2E4537F4048819F4FED053* __this, ovrAvatar2LipSyncContext_t6BD4A5C7CE68A2224A9AA7F1E3601CC420767AFA ___value0, const RuntimeMethod* method)
 {
-	((  void (*) (Nullable_1_tA58BFAB7679D2EBDCF2E4537F4048819F4FED053*, ovrAvatar2LipSyncContext_t6BD4A5C7CE68A2224A9AA7F1E3601CC420767AFA, const RuntimeMethod*))Nullable_1__ctor_m3327CB3C01E870D190546E22AC6FFB2A6CF590D9_gshared)(__this, ___value0, method);
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, const RuntimeMethod*))Nullable_1__ctor_m4257D7FF23A495D1B204F20330FBDED58248E4CC_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct)&___value0, method);
 }
 // System.Boolean System.IntPtr::op_Equality(System.IntPtr,System.IntPtr)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool IntPtr_op_Equality_m7D9CDCDE9DC2A0C2C614633F4921E90187FAB271 (intptr_t ___value10, intptr_t ___value21, const RuntimeMethod* method) ;
@@ -10352,42 +10071,42 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool OvrPluginTracking_ovrpTracking_CreateFac
 // System.Void System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2FacePoseProvider>::.ctor(T)
 inline void Nullable_1__ctor_m2A28F69F74DFA754B2CDC9A1CAB112BF95C89818 (Nullable_1_t97052EC4CAE1859E0A2AE4946E2175C8E83FD3C5* __this, ovrAvatar2FacePoseProvider_tA68FC38CB3F773D61092FCE2C6B726A231F74893 ___value0, const RuntimeMethod* method)
 {
-	((  void (*) (Nullable_1_t97052EC4CAE1859E0A2AE4946E2175C8E83FD3C5*, ovrAvatar2FacePoseProvider_tA68FC38CB3F773D61092FCE2C6B726A231F74893, const RuntimeMethod*))Nullable_1__ctor_m2A28F69F74DFA754B2CDC9A1CAB112BF95C89818_gshared)(__this, ___value0, method);
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, const RuntimeMethod*))Nullable_1__ctor_m4257D7FF23A495D1B204F20330FBDED58248E4CC_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct)&___value0, method);
 }
 // System.Boolean Oculus.Avatar2.OvrPluginTracking::ovrpTracking_CreateFaceTrackingContextNative(Oculus.Avatar2.CAPI/ovrAvatar2FacePoseProviderNative&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool OvrPluginTracking_ovrpTracking_CreateFaceTrackingContextNative_m1D3733830B177A4E07C113CF9A1F7F753FF8F2BF (ovrAvatar2FacePoseProviderNative_tEA0EC66161D7F09057E0093F013BDBB1BB208A46* ___outContext0, const RuntimeMethod* method) ;
 // System.Void System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2FacePoseProviderNative>::.ctor(T)
 inline void Nullable_1__ctor_mA37775A88970FDEE0AAFDB1D6C4B0DD59DC9514C (Nullable_1_t46C943179743F64FCDDAE4F17DA41E9F22632C2D* __this, ovrAvatar2FacePoseProviderNative_tEA0EC66161D7F09057E0093F013BDBB1BB208A46 ___value0, const RuntimeMethod* method)
 {
-	((  void (*) (Nullable_1_t46C943179743F64FCDDAE4F17DA41E9F22632C2D*, ovrAvatar2FacePoseProviderNative_tEA0EC66161D7F09057E0093F013BDBB1BB208A46, const RuntimeMethod*))Nullable_1__ctor_mA37775A88970FDEE0AAFDB1D6C4B0DD59DC9514C_gshared)(__this, ___value0, method);
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, const RuntimeMethod*))Nullable_1__ctor_m4257D7FF23A495D1B204F20330FBDED58248E4CC_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct)&___value0, method);
 }
 // System.Boolean Oculus.Avatar2.OvrPluginTracking::ovrpTracking_CreateEyeTrackingContext(Oculus.Avatar2.CAPI/ovrAvatar2EyePoseProvider&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool OvrPluginTracking_ovrpTracking_CreateEyeTrackingContext_m3A2F27781513988DA7011A58D6DE20C9CC7FAF51 (ovrAvatar2EyePoseProvider_t9D47F05FB988F93F58BADFCAF2536D6772133C51* ___outContext0, const RuntimeMethod* method) ;
 // System.Void System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2EyePoseProvider>::.ctor(T)
 inline void Nullable_1__ctor_m2F2D785EAD6A430694FBA1464F1AF3302A30E743 (Nullable_1_tF24391CCCB57E71A77DCFA9C86475AD02E26DA45* __this, ovrAvatar2EyePoseProvider_t9D47F05FB988F93F58BADFCAF2536D6772133C51 ___value0, const RuntimeMethod* method)
 {
-	((  void (*) (Nullable_1_tF24391CCCB57E71A77DCFA9C86475AD02E26DA45*, ovrAvatar2EyePoseProvider_t9D47F05FB988F93F58BADFCAF2536D6772133C51, const RuntimeMethod*))Nullable_1__ctor_m2F2D785EAD6A430694FBA1464F1AF3302A30E743_gshared)(__this, ___value0, method);
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, const RuntimeMethod*))Nullable_1__ctor_m4257D7FF23A495D1B204F20330FBDED58248E4CC_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct)&___value0, method);
 }
 // System.Boolean Oculus.Avatar2.OvrPluginTracking::ovrpTracking_CreateEyeTrackingContextNative(Oculus.Avatar2.CAPI/ovrAvatar2EyePoseProviderNative&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool OvrPluginTracking_ovrpTracking_CreateEyeTrackingContextNative_m84748D81BEB9D22594C228A7633BC161EFF5D1CF (ovrAvatar2EyePoseProviderNative_t05B83364EF1DFA7FBD70B0E40B8CD01032D20015* ___outContext0, const RuntimeMethod* method) ;
 // System.Void System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2EyePoseProviderNative>::.ctor(T)
 inline void Nullable_1__ctor_m130D76C67EA5CA284061F783C5A0507614EFB6E7 (Nullable_1_t29C62B03879BFC156513A1129906548DD701E233* __this, ovrAvatar2EyePoseProviderNative_t05B83364EF1DFA7FBD70B0E40B8CD01032D20015 ___value0, const RuntimeMethod* method)
 {
-	((  void (*) (Nullable_1_t29C62B03879BFC156513A1129906548DD701E233*, ovrAvatar2EyePoseProviderNative_t05B83364EF1DFA7FBD70B0E40B8CD01032D20015, const RuntimeMethod*))Nullable_1__ctor_m130D76C67EA5CA284061F783C5A0507614EFB6E7_gshared)(__this, ___value0, method);
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, const RuntimeMethod*))Nullable_1__ctor_m4257D7FF23A495D1B204F20330FBDED58248E4CC_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct)&___value0, method);
 }
 // System.Boolean Oculus.Avatar2.OvrPluginTracking::ovrpTracking_CreateHandTrackingContext(Oculus.Avatar2.CAPI/ovrAvatar2HandTrackingDataContext&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool OvrPluginTracking_ovrpTracking_CreateHandTrackingContext_m00F1AB29DA1103967B110AF052F9F995AB7E90A1 (ovrAvatar2HandTrackingDataContext_t5EC3698D6C7970CC0E8A2F43BEDC90FBC2D3CE1C* ___outContext0, const RuntimeMethod* method) ;
 // System.Void System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2HandTrackingDataContext>::.ctor(T)
 inline void Nullable_1__ctor_m8A7E147073318BE266229B925DA7C2401E286735 (Nullable_1_tE5220701AA78449627E5EDCB47F075FC51064441* __this, ovrAvatar2HandTrackingDataContext_t5EC3698D6C7970CC0E8A2F43BEDC90FBC2D3CE1C ___value0, const RuntimeMethod* method)
 {
-	((  void (*) (Nullable_1_tE5220701AA78449627E5EDCB47F075FC51064441*, ovrAvatar2HandTrackingDataContext_t5EC3698D6C7970CC0E8A2F43BEDC90FBC2D3CE1C, const RuntimeMethod*))Nullable_1__ctor_m8A7E147073318BE266229B925DA7C2401E286735_gshared)(__this, ___value0, method);
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, const RuntimeMethod*))Nullable_1__ctor_m4257D7FF23A495D1B204F20330FBDED58248E4CC_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct)&___value0, method);
 }
 // System.Boolean Oculus.Avatar2.OvrPluginTracking::ovrpTracking_CreateHandTrackingContextNative(Oculus.Avatar2.CAPI/ovrAvatar2HandTrackingDataContextNative&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool OvrPluginTracking_ovrpTracking_CreateHandTrackingContextNative_m0A20765F1CBD6C17545FE0BFFCBA707764E3AFB3 (ovrAvatar2HandTrackingDataContextNative_t3DACE582507E7E8CC2DDA0AC828911BC8EC6BF58* ___outContext0, const RuntimeMethod* method) ;
 // System.Void System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2HandTrackingDataContextNative>::.ctor(T)
 inline void Nullable_1__ctor_m5B2A3D77370D6479E3F4F3FA5886B0E60DE0A895 (Nullable_1_t0C948DF63099F187195361F0AD280D05D8D3392C* __this, ovrAvatar2HandTrackingDataContextNative_t3DACE582507E7E8CC2DDA0AC828911BC8EC6BF58 ___value0, const RuntimeMethod* method)
 {
-	((  void (*) (Nullable_1_t0C948DF63099F187195361F0AD280D05D8D3392C*, ovrAvatar2HandTrackingDataContextNative_t3DACE582507E7E8CC2DDA0AC828911BC8EC6BF58, const RuntimeMethod*))Nullable_1__ctor_m5B2A3D77370D6479E3F4F3FA5886B0E60DE0A895_gshared)(__this, ___value0, method);
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericStructType*/Il2CppFullySharedGenericStruct, const RuntimeMethod*))Nullable_1__ctor_m4257D7FF23A495D1B204F20330FBDED58248E4CC_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct)&___value0, method);
 }
 // System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2HandTrackingDataContext> Oculus.Avatar2.OvrPluginTracking::CreateHandTrackingContext()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Nullable_1_tE5220701AA78449627E5EDCB47F075FC51064441 OvrPluginTracking_CreateHandTrackingContext_m43AF0901DF1BFEEC7BC7BAE30E8C784E3A423E85 (const RuntimeMethod* method) ;
@@ -10396,22 +10115,26 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Nullable_1_t0C948DF63099F187195361F0AD280D05D
 // System.Boolean System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2HandTrackingDataContext>::get_HasValue()
 inline bool Nullable_1_get_HasValue_mDB254396B32D86AC6F8E1C1F12CB1476AF1121F6_inline (Nullable_1_tE5220701AA78449627E5EDCB47F075FC51064441* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Nullable_1_tE5220701AA78449627E5EDCB47F075FC51064441*, const RuntimeMethod*))Nullable_1_get_HasValue_mDB254396B32D86AC6F8E1C1F12CB1476AF1121F6_gshared_inline)(__this, method);
+	return ((  bool (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, const RuntimeMethod*))Nullable_1_get_HasValue_m14F273FB376DF00D727434CDCD28AB4EDCC14C3C_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, method);
 }
 // System.Boolean System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2HandTrackingDataContextNative>::get_HasValue()
 inline bool Nullable_1_get_HasValue_mC26A9457141F71E294D0FE939CF1A0A07F352A3B_inline (Nullable_1_t0C948DF63099F187195361F0AD280D05D8D3392C* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Nullable_1_t0C948DF63099F187195361F0AD280D05D8D3392C*, const RuntimeMethod*))Nullable_1_get_HasValue_mC26A9457141F71E294D0FE939CF1A0A07F352A3B_gshared_inline)(__this, method);
+	return ((  bool (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, const RuntimeMethod*))Nullable_1_get_HasValue_m14F273FB376DF00D727434CDCD28AB4EDCC14C3C_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, method);
 }
 // T System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2HandTrackingDataContext>::get_Value()
 inline ovrAvatar2HandTrackingDataContext_t5EC3698D6C7970CC0E8A2F43BEDC90FBC2D3CE1C Nullable_1_get_Value_mAAB5EDE76A824BD95525A6857FBFE0B450818331 (Nullable_1_tE5220701AA78449627E5EDCB47F075FC51064441* __this, const RuntimeMethod* method)
 {
-	return ((  ovrAvatar2HandTrackingDataContext_t5EC3698D6C7970CC0E8A2F43BEDC90FBC2D3CE1C (*) (Nullable_1_tE5220701AA78449627E5EDCB47F075FC51064441*, const RuntimeMethod*))Nullable_1_get_Value_mAAB5EDE76A824BD95525A6857FBFE0B450818331_gshared)(__this, method);
+	ovrAvatar2HandTrackingDataContext_t5EC3698D6C7970CC0E8A2F43BEDC90FBC2D3CE1C il2cppRetVal;
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, Il2CppFullySharedGenericStruct*, const RuntimeMethod*))Nullable_1_get_Value_mA083C4D9192050DC38513BDD9D364C5C68A3A675_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // T System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2HandTrackingDataContextNative>::get_Value()
 inline ovrAvatar2HandTrackingDataContextNative_t3DACE582507E7E8CC2DDA0AC828911BC8EC6BF58 Nullable_1_get_Value_mD074CD26B9C2890B01000576F69634B74519ED5F (Nullable_1_t0C948DF63099F187195361F0AD280D05D8D3392C* __this, const RuntimeMethod* method)
 {
-	return ((  ovrAvatar2HandTrackingDataContextNative_t3DACE582507E7E8CC2DDA0AC828911BC8EC6BF58 (*) (Nullable_1_t0C948DF63099F187195361F0AD280D05D8D3392C*, const RuntimeMethod*))Nullable_1_get_Value_mD074CD26B9C2890B01000576F69634B74519ED5F_gshared)(__this, method);
+	ovrAvatar2HandTrackingDataContextNative_t3DACE582507E7E8CC2DDA0AC828911BC8EC6BF58 il2cppRetVal;
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, Il2CppFullySharedGenericStruct*, const RuntimeMethod*))Nullable_1_get_Value_mA083C4D9192050DC38513BDD9D364C5C68A3A675_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void Oculus.Avatar2.OvrPluginTracking/HandTrackingDelegate::.ctor(Oculus.Avatar2.CAPI/ovrAvatar2HandTrackingDataContext,Oculus.Avatar2.CAPI/ovrAvatar2HandTrackingDataContextNative)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void HandTrackingDelegate__ctor_mF263893898B54C855A00574D7EF2ED60083D3BEA (HandTrackingDelegate_t36E58A6D0CA0A57269334B828949652C38B0071B* __this, ovrAvatar2HandTrackingDataContext_t5EC3698D6C7970CC0E8A2F43BEDC90FBC2D3CE1C ___context0, ovrAvatar2HandTrackingDataContextNative_t3DACE582507E7E8CC2DDA0AC828911BC8EC6BF58 ___native1, const RuntimeMethod* method) ;
@@ -10422,22 +10145,26 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Nullable_1_t46C943179743F64FCDDAE4F17DA41E9F2
 // System.Boolean System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2FacePoseProvider>::get_HasValue()
 inline bool Nullable_1_get_HasValue_m6F6F4D562A6DB4CFA84A3AFCCAA8AFC74D21F751_inline (Nullable_1_t97052EC4CAE1859E0A2AE4946E2175C8E83FD3C5* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Nullable_1_t97052EC4CAE1859E0A2AE4946E2175C8E83FD3C5*, const RuntimeMethod*))Nullable_1_get_HasValue_m6F6F4D562A6DB4CFA84A3AFCCAA8AFC74D21F751_gshared_inline)(__this, method);
+	return ((  bool (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, const RuntimeMethod*))Nullable_1_get_HasValue_m14F273FB376DF00D727434CDCD28AB4EDCC14C3C_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, method);
 }
 // System.Boolean System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2FacePoseProviderNative>::get_HasValue()
 inline bool Nullable_1_get_HasValue_m2DE652F35AE393E3A5789EB9DC263D9F62EA81E5_inline (Nullable_1_t46C943179743F64FCDDAE4F17DA41E9F22632C2D* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Nullable_1_t46C943179743F64FCDDAE4F17DA41E9F22632C2D*, const RuntimeMethod*))Nullable_1_get_HasValue_m2DE652F35AE393E3A5789EB9DC263D9F62EA81E5_gshared_inline)(__this, method);
+	return ((  bool (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, const RuntimeMethod*))Nullable_1_get_HasValue_m14F273FB376DF00D727434CDCD28AB4EDCC14C3C_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, method);
 }
 // T System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2FacePoseProvider>::get_Value()
 inline ovrAvatar2FacePoseProvider_tA68FC38CB3F773D61092FCE2C6B726A231F74893 Nullable_1_get_Value_m912673F9B453609C545CFC8DCBFD5A2BAF315051 (Nullable_1_t97052EC4CAE1859E0A2AE4946E2175C8E83FD3C5* __this, const RuntimeMethod* method)
 {
-	return ((  ovrAvatar2FacePoseProvider_tA68FC38CB3F773D61092FCE2C6B726A231F74893 (*) (Nullable_1_t97052EC4CAE1859E0A2AE4946E2175C8E83FD3C5*, const RuntimeMethod*))Nullable_1_get_Value_m912673F9B453609C545CFC8DCBFD5A2BAF315051_gshared)(__this, method);
+	ovrAvatar2FacePoseProvider_tA68FC38CB3F773D61092FCE2C6B726A231F74893 il2cppRetVal;
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, Il2CppFullySharedGenericStruct*, const RuntimeMethod*))Nullable_1_get_Value_mA083C4D9192050DC38513BDD9D364C5C68A3A675_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // T System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2FacePoseProviderNative>::get_Value()
 inline ovrAvatar2FacePoseProviderNative_tEA0EC66161D7F09057E0093F013BDBB1BB208A46 Nullable_1_get_Value_m213AF71CF82C56D41FE4CFA95E9CEFE265F09A95 (Nullable_1_t46C943179743F64FCDDAE4F17DA41E9F22632C2D* __this, const RuntimeMethod* method)
 {
-	return ((  ovrAvatar2FacePoseProviderNative_tEA0EC66161D7F09057E0093F013BDBB1BB208A46 (*) (Nullable_1_t46C943179743F64FCDDAE4F17DA41E9F22632C2D*, const RuntimeMethod*))Nullable_1_get_Value_m213AF71CF82C56D41FE4CFA95E9CEFE265F09A95_gshared)(__this, method);
+	ovrAvatar2FacePoseProviderNative_tEA0EC66161D7F09057E0093F013BDBB1BB208A46 il2cppRetVal;
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, Il2CppFullySharedGenericStruct*, const RuntimeMethod*))Nullable_1_get_Value_mA083C4D9192050DC38513BDD9D364C5C68A3A675_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void Oculus.Avatar2.OvrPluginTracking/OvrPluginFaceTrackingProvider::.ctor(Oculus.Avatar2.CAPI/ovrAvatar2FacePoseProvider,Oculus.Avatar2.CAPI/ovrAvatar2FacePoseProviderNative)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrPluginFaceTrackingProvider__ctor_m2F244A115749D588D889C9D247ACE61ABE4F3009 (OvrPluginFaceTrackingProvider_t8DD5CD305B872AA6774A33B80943C660EB6DC1D7* __this, ovrAvatar2FacePoseProvider_tA68FC38CB3F773D61092FCE2C6B726A231F74893 ___context0, ovrAvatar2FacePoseProviderNative_tEA0EC66161D7F09057E0093F013BDBB1BB208A46 ___nativeContext1, const RuntimeMethod* method) ;
@@ -10448,22 +10175,26 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Nullable_1_t29C62B03879BFC156513A1129906548DD
 // System.Boolean System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2EyePoseProvider>::get_HasValue()
 inline bool Nullable_1_get_HasValue_m9C74EFC542CA7DAF4DCE50AD5447E2DC598B85DB_inline (Nullable_1_tF24391CCCB57E71A77DCFA9C86475AD02E26DA45* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Nullable_1_tF24391CCCB57E71A77DCFA9C86475AD02E26DA45*, const RuntimeMethod*))Nullable_1_get_HasValue_m9C74EFC542CA7DAF4DCE50AD5447E2DC598B85DB_gshared_inline)(__this, method);
+	return ((  bool (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, const RuntimeMethod*))Nullable_1_get_HasValue_m14F273FB376DF00D727434CDCD28AB4EDCC14C3C_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, method);
 }
 // System.Boolean System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2EyePoseProviderNative>::get_HasValue()
 inline bool Nullable_1_get_HasValue_m73318857A0A02716ABFBFC239C82D32CEF47A213_inline (Nullable_1_t29C62B03879BFC156513A1129906548DD701E233* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Nullable_1_t29C62B03879BFC156513A1129906548DD701E233*, const RuntimeMethod*))Nullable_1_get_HasValue_m73318857A0A02716ABFBFC239C82D32CEF47A213_gshared_inline)(__this, method);
+	return ((  bool (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, const RuntimeMethod*))Nullable_1_get_HasValue_m14F273FB376DF00D727434CDCD28AB4EDCC14C3C_gshared_inline)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, method);
 }
 // T System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2EyePoseProvider>::get_Value()
 inline ovrAvatar2EyePoseProvider_t9D47F05FB988F93F58BADFCAF2536D6772133C51 Nullable_1_get_Value_m4A57F46A973643C3034C470101373E9A81CB22D7 (Nullable_1_tF24391CCCB57E71A77DCFA9C86475AD02E26DA45* __this, const RuntimeMethod* method)
 {
-	return ((  ovrAvatar2EyePoseProvider_t9D47F05FB988F93F58BADFCAF2536D6772133C51 (*) (Nullable_1_tF24391CCCB57E71A77DCFA9C86475AD02E26DA45*, const RuntimeMethod*))Nullable_1_get_Value_m4A57F46A973643C3034C470101373E9A81CB22D7_gshared)(__this, method);
+	ovrAvatar2EyePoseProvider_t9D47F05FB988F93F58BADFCAF2536D6772133C51 il2cppRetVal;
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, Il2CppFullySharedGenericStruct*, const RuntimeMethod*))Nullable_1_get_Value_mA083C4D9192050DC38513BDD9D364C5C68A3A675_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // T System.Nullable`1<Oculus.Avatar2.CAPI/ovrAvatar2EyePoseProviderNative>::get_Value()
 inline ovrAvatar2EyePoseProviderNative_t05B83364EF1DFA7FBD70B0E40B8CD01032D20015 Nullable_1_get_Value_m9351FACCFF77AD0FB617A29E0A0E892E158A2CE3 (Nullable_1_t29C62B03879BFC156513A1129906548DD701E233* __this, const RuntimeMethod* method)
 {
-	return ((  ovrAvatar2EyePoseProviderNative_t05B83364EF1DFA7FBD70B0E40B8CD01032D20015 (*) (Nullable_1_t29C62B03879BFC156513A1129906548DD701E233*, const RuntimeMethod*))Nullable_1_get_Value_m9351FACCFF77AD0FB617A29E0A0E892E158A2CE3_gshared)(__this, method);
+	ovrAvatar2EyePoseProviderNative_t05B83364EF1DFA7FBD70B0E40B8CD01032D20015 il2cppRetVal;
+	((  void (*) (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*, Il2CppFullySharedGenericStruct*, const RuntimeMethod*))Nullable_1_get_Value_mA083C4D9192050DC38513BDD9D364C5C68A3A675_gshared)((Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339*)__this, (Il2CppFullySharedGenericStruct*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void Oculus.Avatar2.OvrPluginTracking/OvrPluginEyeTrackingProvider::.ctor(Oculus.Avatar2.CAPI/ovrAvatar2EyePoseProvider,Oculus.Avatar2.CAPI/ovrAvatar2EyePoseProviderNative)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OvrPluginEyeTrackingProvider__ctor_m710BDC1A4346CFB5C2B0A24ADF63D8882A6A6BEE (OvrPluginEyeTrackingProvider_t2A3FDA7A5F9A20E357173C2352CE10C38ADC74E5* __this, ovrAvatar2EyePoseProvider_t9D47F05FB988F93F58BADFCAF2536D6772133C51 ___context0, ovrAvatar2EyePoseProviderNative_t05B83364EF1DFA7FBD70B0E40B8CD01032D20015 ___nativeContext1, const RuntimeMethod* method) ;
@@ -10508,29 +10239,35 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t CAPI_ovrAvatar2Primitive_GetNumEntrie
 // System.Collections.Generic.List`1/Enumerator<T> System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector3>>::GetEnumerator()
 inline Enumerator_tCA9F2278D555C08735E4D82B5E0AEA718FD84E16 List_1_GetEnumerator_m1B93DAC0D19488602175BD91AFED03E5A7FF991D (List_1_t39ADBAF6BCCB03EE530D05F996A684735270E45B* __this, const RuntimeMethod* method)
 {
-	return ((  Enumerator_tCA9F2278D555C08735E4D82B5E0AEA718FD84E16 (*) (List_1_t39ADBAF6BCCB03EE530D05F996A684735270E45B*, const RuntimeMethod*))List_1_GetEnumerator_m1B93DAC0D19488602175BD91AFED03E5A7FF991D_gshared)(__this, method);
+	Enumerator_tCA9F2278D555C08735E4D82B5E0AEA718FD84E16 il2cppRetVal;
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))List_1_GetEnumerator_m8B2A92ACD4FBA5FBDC3F6F4F5C23A0DDF491DA61_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector3>>::Dispose()
 inline void Enumerator_Dispose_m489C4DFC924BCB103B141882E6E52EAEBFA6A7C1 (Enumerator_tCA9F2278D555C08735E4D82B5E0AEA718FD84E16* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Enumerator_tCA9F2278D555C08735E4D82B5E0AEA718FD84E16*, const RuntimeMethod*))Enumerator_Dispose_m489C4DFC924BCB103B141882E6E52EAEBFA6A7C1_gshared)(__this, method);
+	((  void (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))Enumerator_Dispose_mFE1EBE6F6425283FEAEAE7C79D02CDE4F9D367E8_gshared)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, method);
 }
 // T System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector3>>::get_Current()
 inline ExtensionEntry_1_t3122008635A0240B51467C3F8B72DB740693D3E7 Enumerator_get_Current_m03423C06EF234C1EE724D929117C2509B4CDBB5F_inline (Enumerator_tCA9F2278D555C08735E4D82B5E0AEA718FD84E16* __this, const RuntimeMethod* method)
 {
-	return ((  ExtensionEntry_1_t3122008635A0240B51467C3F8B72DB740693D3E7 (*) (Enumerator_tCA9F2278D555C08735E4D82B5E0AEA718FD84E16*, const RuntimeMethod*))Enumerator_get_Current_m03423C06EF234C1EE724D929117C2509B4CDBB5F_gshared_inline)(__this, method);
+	ExtensionEntry_1_t3122008635A0240B51467C3F8B72DB740693D3E7 il2cppRetVal;
+	((  void (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Enumerator_get_Current_m8B42D4B2DE853B9D11B997120CD0228D4780E394_gshared_inline)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.String Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector3>::get_Name()
 inline String_t* ExtensionEntry_1_get_Name_m55839CECDF72E2CDCDEDCAEFC6A819C3DC7546F7_inline (ExtensionEntry_1_t3122008635A0240B51467C3F8B72DB740693D3E7* __this, const RuntimeMethod* method)
 {
-	return ((  String_t* (*) (ExtensionEntry_1_t3122008635A0240B51467C3F8B72DB740693D3E7*, const RuntimeMethod*))ExtensionEntry_1_get_Name_m55839CECDF72E2CDCDEDCAEFC6A819C3DC7546F7_gshared_inline)(__this, method);
+	return ((  String_t* (*) (ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*, const RuntimeMethod*))ExtensionEntry_1_get_Name_m334759304121FB3A8712E97BDA20F13362CD15CA_gshared_inline)((ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*)__this, method);
 }
 // System.Boolean Oculus.Avatar2.OvrAvatarMaterialExtensionConfig::TryGetNameInShader(System.String,System.String,System.String&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool OvrAvatarMaterialExtensionConfig_TryGetNameInShader_m9A58187BB67C129D31ED0FDE7E63687E17D26FF3 (OvrAvatarMaterialExtensionConfig_tAA2E3F35C1C1646BE38A08E374EEF0981B2E6420* __this, String_t* ___extensionName0, String_t* ___entryName1, String_t** ___nameInShader2, const RuntimeMethod* method) ;
 // T Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector3>::get_Payload()
 inline Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ExtensionEntry_1_get_Payload_m50DF091492CA32D7CA9D5F1334AE8999B6EE8475_inline (ExtensionEntry_1_t3122008635A0240B51467C3F8B72DB740693D3E7* __this, const RuntimeMethod* method)
 {
-	return ((  Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 (*) (ExtensionEntry_1_t3122008635A0240B51467C3F8B72DB740693D3E7*, const RuntimeMethod*))ExtensionEntry_1_get_Payload_m50DF091492CA32D7CA9D5F1334AE8999B6EE8475_gshared_inline)(__this, method);
+	Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 il2cppRetVal;
+	((  void (*) (ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))ExtensionEntry_1_get_Payload_m8EF45BCCCD281E510E68B35571A095FCEE32104B_gshared_inline)((ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // UnityEngine.Vector4 UnityEngine.Vector4::op_Implicit(UnityEngine.Vector3)
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 Vector4_op_Implicit_m2ECA73F345A7AD84144133E9E51657204002B12D_inline (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___v0, const RuntimeMethod* method) ;
@@ -10539,158 +10276,182 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Material_SetVector_m69444B8040D955821F24
 // System.Boolean System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector3>>::MoveNext()
 inline bool Enumerator_MoveNext_m270F510DCEAE5D2992E250F128D9A3D5A0B1E6D1 (Enumerator_tCA9F2278D555C08735E4D82B5E0AEA718FD84E16* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Enumerator_tCA9F2278D555C08735E4D82B5E0AEA718FD84E16*, const RuntimeMethod*))Enumerator_MoveNext_m270F510DCEAE5D2992E250F128D9A3D5A0B1E6D1_gshared)(__this, method);
+	return ((  bool (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))Enumerator_MoveNext_m8D8E5E878AF0A88A535AB1AB5BA4F23E151A678A_gshared)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, method);
 }
 // System.Collections.Generic.List`1/Enumerator<T> System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector4>>::GetEnumerator()
 inline Enumerator_tDFC366BCC918F6C416A85E882432787BE9693F29 List_1_GetEnumerator_m4BB89DEC1466EC2082FBC57D1B47B005BCAF0B37 (List_1_t9CEEFCCC9B23A162158811AC97949D814329569E* __this, const RuntimeMethod* method)
 {
-	return ((  Enumerator_tDFC366BCC918F6C416A85E882432787BE9693F29 (*) (List_1_t9CEEFCCC9B23A162158811AC97949D814329569E*, const RuntimeMethod*))List_1_GetEnumerator_m4BB89DEC1466EC2082FBC57D1B47B005BCAF0B37_gshared)(__this, method);
+	Enumerator_tDFC366BCC918F6C416A85E882432787BE9693F29 il2cppRetVal;
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))List_1_GetEnumerator_m8B2A92ACD4FBA5FBDC3F6F4F5C23A0DDF491DA61_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector4>>::Dispose()
 inline void Enumerator_Dispose_m49912DFE4D3013CA5896DF41DE5A5418A6B259B4 (Enumerator_tDFC366BCC918F6C416A85E882432787BE9693F29* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Enumerator_tDFC366BCC918F6C416A85E882432787BE9693F29*, const RuntimeMethod*))Enumerator_Dispose_m49912DFE4D3013CA5896DF41DE5A5418A6B259B4_gshared)(__this, method);
+	((  void (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))Enumerator_Dispose_mFE1EBE6F6425283FEAEAE7C79D02CDE4F9D367E8_gshared)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, method);
 }
 // T System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector4>>::get_Current()
 inline ExtensionEntry_1_tB2BE801FD5C4993FB45DEE1343D057605BBFF0F2 Enumerator_get_Current_m34E9B065B89A1D0E484FC4A1111CEA0ADA536803_inline (Enumerator_tDFC366BCC918F6C416A85E882432787BE9693F29* __this, const RuntimeMethod* method)
 {
-	return ((  ExtensionEntry_1_tB2BE801FD5C4993FB45DEE1343D057605BBFF0F2 (*) (Enumerator_tDFC366BCC918F6C416A85E882432787BE9693F29*, const RuntimeMethod*))Enumerator_get_Current_m34E9B065B89A1D0E484FC4A1111CEA0ADA536803_gshared_inline)(__this, method);
+	ExtensionEntry_1_tB2BE801FD5C4993FB45DEE1343D057605BBFF0F2 il2cppRetVal;
+	((  void (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Enumerator_get_Current_m8B42D4B2DE853B9D11B997120CD0228D4780E394_gshared_inline)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.String Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector4>::get_Name()
 inline String_t* ExtensionEntry_1_get_Name_mFEB2AB5ED15C18A86C5A75C03E2D9EC0B21486B7_inline (ExtensionEntry_1_tB2BE801FD5C4993FB45DEE1343D057605BBFF0F2* __this, const RuntimeMethod* method)
 {
-	return ((  String_t* (*) (ExtensionEntry_1_tB2BE801FD5C4993FB45DEE1343D057605BBFF0F2*, const RuntimeMethod*))ExtensionEntry_1_get_Name_mFEB2AB5ED15C18A86C5A75C03E2D9EC0B21486B7_gshared_inline)(__this, method);
+	return ((  String_t* (*) (ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*, const RuntimeMethod*))ExtensionEntry_1_get_Name_m334759304121FB3A8712E97BDA20F13362CD15CA_gshared_inline)((ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*)__this, method);
 }
 // T Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector4>::get_Payload()
 inline Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 ExtensionEntry_1_get_Payload_m7CDF2DD4A589D3B997E5F3EB4F5F1D6164A8D2CC_inline (ExtensionEntry_1_tB2BE801FD5C4993FB45DEE1343D057605BBFF0F2* __this, const RuntimeMethod* method)
 {
-	return ((  Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 (*) (ExtensionEntry_1_tB2BE801FD5C4993FB45DEE1343D057605BBFF0F2*, const RuntimeMethod*))ExtensionEntry_1_get_Payload_m7CDF2DD4A589D3B997E5F3EB4F5F1D6164A8D2CC_gshared_inline)(__this, method);
+	Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 il2cppRetVal;
+	((  void (*) (ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))ExtensionEntry_1_get_Payload_m8EF45BCCCD281E510E68B35571A095FCEE32104B_gshared_inline)((ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Boolean System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector4>>::MoveNext()
 inline bool Enumerator_MoveNext_m078DF5194805449C6F4A498D0F57A0301AE71D9C (Enumerator_tDFC366BCC918F6C416A85E882432787BE9693F29* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Enumerator_tDFC366BCC918F6C416A85E882432787BE9693F29*, const RuntimeMethod*))Enumerator_MoveNext_m078DF5194805449C6F4A498D0F57A0301AE71D9C_gshared)(__this, method);
+	return ((  bool (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))Enumerator_MoveNext_m8D8E5E878AF0A88A535AB1AB5BA4F23E151A678A_gshared)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, method);
 }
 // System.Collections.Generic.List`1/Enumerator<T> System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Single>>::GetEnumerator()
 inline Enumerator_t69D2B438661A4BF53F5826356D3635489039FA26 List_1_GetEnumerator_mA76B898CBFC5D5E84B500BC436933F35D2228854 (List_1_t3D2138A7C2EB312C0132190151D7E29594071BA0* __this, const RuntimeMethod* method)
 {
-	return ((  Enumerator_t69D2B438661A4BF53F5826356D3635489039FA26 (*) (List_1_t3D2138A7C2EB312C0132190151D7E29594071BA0*, const RuntimeMethod*))List_1_GetEnumerator_mA76B898CBFC5D5E84B500BC436933F35D2228854_gshared)(__this, method);
+	Enumerator_t69D2B438661A4BF53F5826356D3635489039FA26 il2cppRetVal;
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))List_1_GetEnumerator_m8B2A92ACD4FBA5FBDC3F6F4F5C23A0DDF491DA61_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Single>>::Dispose()
 inline void Enumerator_Dispose_m443586E5DE0B38DEDDE6ABD522412238CE87F8D8 (Enumerator_t69D2B438661A4BF53F5826356D3635489039FA26* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Enumerator_t69D2B438661A4BF53F5826356D3635489039FA26*, const RuntimeMethod*))Enumerator_Dispose_m443586E5DE0B38DEDDE6ABD522412238CE87F8D8_gshared)(__this, method);
+	((  void (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))Enumerator_Dispose_mFE1EBE6F6425283FEAEAE7C79D02CDE4F9D367E8_gshared)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, method);
 }
 // T System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Single>>::get_Current()
 inline ExtensionEntry_1_tA92D0E18425FA6278BFDE762213B76BE8DC0FBF8 Enumerator_get_Current_m18A19E28A3B18D607FD63937E8D0986CB423508D_inline (Enumerator_t69D2B438661A4BF53F5826356D3635489039FA26* __this, const RuntimeMethod* method)
 {
-	return ((  ExtensionEntry_1_tA92D0E18425FA6278BFDE762213B76BE8DC0FBF8 (*) (Enumerator_t69D2B438661A4BF53F5826356D3635489039FA26*, const RuntimeMethod*))Enumerator_get_Current_m18A19E28A3B18D607FD63937E8D0986CB423508D_gshared_inline)(__this, method);
+	ExtensionEntry_1_tA92D0E18425FA6278BFDE762213B76BE8DC0FBF8 il2cppRetVal;
+	((  void (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Enumerator_get_Current_m8B42D4B2DE853B9D11B997120CD0228D4780E394_gshared_inline)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.String Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Single>::get_Name()
 inline String_t* ExtensionEntry_1_get_Name_m95214DAB1A67FC0F92C3457BD76DFD7377D9B6A5_inline (ExtensionEntry_1_tA92D0E18425FA6278BFDE762213B76BE8DC0FBF8* __this, const RuntimeMethod* method)
 {
-	return ((  String_t* (*) (ExtensionEntry_1_tA92D0E18425FA6278BFDE762213B76BE8DC0FBF8*, const RuntimeMethod*))ExtensionEntry_1_get_Name_m95214DAB1A67FC0F92C3457BD76DFD7377D9B6A5_gshared_inline)(__this, method);
+	return ((  String_t* (*) (ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*, const RuntimeMethod*))ExtensionEntry_1_get_Name_m334759304121FB3A8712E97BDA20F13362CD15CA_gshared_inline)((ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*)__this, method);
 }
 // T Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Single>::get_Payload()
 inline float ExtensionEntry_1_get_Payload_m2275CB9A8FA28F13945D5F12F886145921BDABE8_inline (ExtensionEntry_1_tA92D0E18425FA6278BFDE762213B76BE8DC0FBF8* __this, const RuntimeMethod* method)
 {
-	return ((  float (*) (ExtensionEntry_1_tA92D0E18425FA6278BFDE762213B76BE8DC0FBF8*, const RuntimeMethod*))ExtensionEntry_1_get_Payload_m2275CB9A8FA28F13945D5F12F886145921BDABE8_gshared_inline)(__this, method);
+	float il2cppRetVal;
+	((  void (*) (ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))ExtensionEntry_1_get_Payload_m8EF45BCCCD281E510E68B35571A095FCEE32104B_gshared_inline)((ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Boolean System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Single>>::MoveNext()
 inline bool Enumerator_MoveNext_m0BECA3C68218162A418233CEBCF617BB1B78A422 (Enumerator_t69D2B438661A4BF53F5826356D3635489039FA26* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Enumerator_t69D2B438661A4BF53F5826356D3635489039FA26*, const RuntimeMethod*))Enumerator_MoveNext_m0BECA3C68218162A418233CEBCF617BB1B78A422_gshared)(__this, method);
+	return ((  bool (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))Enumerator_MoveNext_m8D8E5E878AF0A88A535AB1AB5BA4F23E151A678A_gshared)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, method);
 }
 // System.Collections.Generic.List`1/Enumerator<T> System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Int32>>::GetEnumerator()
 inline Enumerator_t0E54B2E53E88A97C042EE85F413A7CF50692D0C9 List_1_GetEnumerator_mE26FFC2D25B4C3519127949453FE2CF41D2F71E1 (List_1_t941E36F7444B6E85114CF22035CB833E55C9D086* __this, const RuntimeMethod* method)
 {
-	return ((  Enumerator_t0E54B2E53E88A97C042EE85F413A7CF50692D0C9 (*) (List_1_t941E36F7444B6E85114CF22035CB833E55C9D086*, const RuntimeMethod*))List_1_GetEnumerator_mE26FFC2D25B4C3519127949453FE2CF41D2F71E1_gshared)(__this, method);
+	Enumerator_t0E54B2E53E88A97C042EE85F413A7CF50692D0C9 il2cppRetVal;
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))List_1_GetEnumerator_m8B2A92ACD4FBA5FBDC3F6F4F5C23A0DDF491DA61_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Int32>>::Dispose()
 inline void Enumerator_Dispose_mB0FE0D6B3EB93EDBB0B822E5E17742163EED3140 (Enumerator_t0E54B2E53E88A97C042EE85F413A7CF50692D0C9* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Enumerator_t0E54B2E53E88A97C042EE85F413A7CF50692D0C9*, const RuntimeMethod*))Enumerator_Dispose_mB0FE0D6B3EB93EDBB0B822E5E17742163EED3140_gshared)(__this, method);
+	((  void (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))Enumerator_Dispose_mFE1EBE6F6425283FEAEAE7C79D02CDE4F9D367E8_gshared)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, method);
 }
 // T System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Int32>>::get_Current()
 inline ExtensionEntry_1_tF2C4369D973C4DBC0C068E5D57B9696534CCDA19 Enumerator_get_Current_mBED8585C3D5FF52D6D9B4B01167654F96E23C02C_inline (Enumerator_t0E54B2E53E88A97C042EE85F413A7CF50692D0C9* __this, const RuntimeMethod* method)
 {
-	return ((  ExtensionEntry_1_tF2C4369D973C4DBC0C068E5D57B9696534CCDA19 (*) (Enumerator_t0E54B2E53E88A97C042EE85F413A7CF50692D0C9*, const RuntimeMethod*))Enumerator_get_Current_mBED8585C3D5FF52D6D9B4B01167654F96E23C02C_gshared_inline)(__this, method);
+	ExtensionEntry_1_tF2C4369D973C4DBC0C068E5D57B9696534CCDA19 il2cppRetVal;
+	((  void (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Enumerator_get_Current_m8B42D4B2DE853B9D11B997120CD0228D4780E394_gshared_inline)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.String Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Int32>::get_Name()
 inline String_t* ExtensionEntry_1_get_Name_m6285FEC42161D27BF14DB4564F8FACFAB3024FAC_inline (ExtensionEntry_1_tF2C4369D973C4DBC0C068E5D57B9696534CCDA19* __this, const RuntimeMethod* method)
 {
-	return ((  String_t* (*) (ExtensionEntry_1_tF2C4369D973C4DBC0C068E5D57B9696534CCDA19*, const RuntimeMethod*))ExtensionEntry_1_get_Name_m6285FEC42161D27BF14DB4564F8FACFAB3024FAC_gshared_inline)(__this, method);
+	return ((  String_t* (*) (ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*, const RuntimeMethod*))ExtensionEntry_1_get_Name_m334759304121FB3A8712E97BDA20F13362CD15CA_gshared_inline)((ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*)__this, method);
 }
 // T Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Int32>::get_Payload()
 inline int32_t ExtensionEntry_1_get_Payload_mA537FBD130CBD4BCDD00792F58BFA62F2D2B9964_inline (ExtensionEntry_1_tF2C4369D973C4DBC0C068E5D57B9696534CCDA19* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (ExtensionEntry_1_tF2C4369D973C4DBC0C068E5D57B9696534CCDA19*, const RuntimeMethod*))ExtensionEntry_1_get_Payload_mA537FBD130CBD4BCDD00792F58BFA62F2D2B9964_gshared_inline)(__this, method);
+	int32_t il2cppRetVal;
+	((  void (*) (ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))ExtensionEntry_1_get_Payload_m8EF45BCCCD281E510E68B35571A095FCEE32104B_gshared_inline)((ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void UnityEngine.Material::SetInt(System.String,System.Int32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Material_SetInt_m41DF5404A9942239265888105E1DC83F2FBF901A (Material_t18053F08F347D0DCA5E1140EC7EC4533DD8A14E3* __this, String_t* ___name0, int32_t ___value1, const RuntimeMethod* method) ;
 // System.Boolean System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Int32>>::MoveNext()
 inline bool Enumerator_MoveNext_mAD1BFF18BD21300CD02B79A12E91817903CC4630 (Enumerator_t0E54B2E53E88A97C042EE85F413A7CF50692D0C9* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Enumerator_t0E54B2E53E88A97C042EE85F413A7CF50692D0C9*, const RuntimeMethod*))Enumerator_MoveNext_mAD1BFF18BD21300CD02B79A12E91817903CC4630_gshared)(__this, method);
+	return ((  bool (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))Enumerator_MoveNext_m8D8E5E878AF0A88A535AB1AB5BA4F23E151A678A_gshared)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, method);
 }
 // System.Collections.Generic.List`1/Enumerator<T> System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Texture2D>>::GetEnumerator()
 inline Enumerator_t5D44032F2D5A4414AE6653D0E878E49496B63FAE List_1_GetEnumerator_mB3691D97878EE8E41A40C9A5CD5188FA4FDCDA71 (List_1_t087A9CD6ECE16049438D0BA69E67668E8EABBD90* __this, const RuntimeMethod* method)
 {
-	return ((  Enumerator_t5D44032F2D5A4414AE6653D0E878E49496B63FAE (*) (List_1_t087A9CD6ECE16049438D0BA69E67668E8EABBD90*, const RuntimeMethod*))List_1_GetEnumerator_m932403EBB764B5760621C84643D3800D74A62296_gshared)(__this, method);
+	Enumerator_t5D44032F2D5A4414AE6653D0E878E49496B63FAE il2cppRetVal;
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))List_1_GetEnumerator_m8B2A92ACD4FBA5FBDC3F6F4F5C23A0DDF491DA61_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Texture2D>>::Dispose()
 inline void Enumerator_Dispose_m145AB2F7A21553C647C041F0F6F36150DA36D856 (Enumerator_t5D44032F2D5A4414AE6653D0E878E49496B63FAE* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Enumerator_t5D44032F2D5A4414AE6653D0E878E49496B63FAE*, const RuntimeMethod*))Enumerator_Dispose_mF58E8D592F9B2F8F9D7FFDE71AD78EAD52975820_gshared)(__this, method);
+	((  void (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))Enumerator_Dispose_mFE1EBE6F6425283FEAEAE7C79D02CDE4F9D367E8_gshared)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, method);
 }
 // T System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Texture2D>>::get_Current()
 inline ExtensionEntry_1_t556C9F7F04149A0284287CF87282BBC4599FEA6F Enumerator_get_Current_m23E9084B4B7362FF927504166E8E056568731AA5_inline (Enumerator_t5D44032F2D5A4414AE6653D0E878E49496B63FAE* __this, const RuntimeMethod* method)
 {
-	return ((  ExtensionEntry_1_t556C9F7F04149A0284287CF87282BBC4599FEA6F (*) (Enumerator_t5D44032F2D5A4414AE6653D0E878E49496B63FAE*, const RuntimeMethod*))Enumerator_get_Current_m71CB410F523ACAF815B3241BF90C4DE0B3BE4CE2_gshared_inline)(__this, method);
+	ExtensionEntry_1_t556C9F7F04149A0284287CF87282BBC4599FEA6F il2cppRetVal;
+	((  void (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Enumerator_get_Current_m8B42D4B2DE853B9D11B997120CD0228D4780E394_gshared_inline)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.String Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Texture2D>::get_Name()
 inline String_t* ExtensionEntry_1_get_Name_mF7A09B1E058B7F36505F35DCC3F1C0E24E1B66E7_inline (ExtensionEntry_1_t556C9F7F04149A0284287CF87282BBC4599FEA6F* __this, const RuntimeMethod* method)
 {
-	return ((  String_t* (*) (ExtensionEntry_1_t556C9F7F04149A0284287CF87282BBC4599FEA6F*, const RuntimeMethod*))ExtensionEntry_1_get_Name_m520A58F18C50A01B9A6875133784FB0CB29ACECE_gshared_inline)(__this, method);
+	return ((  String_t* (*) (ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*, const RuntimeMethod*))ExtensionEntry_1_get_Name_m334759304121FB3A8712E97BDA20F13362CD15CA_gshared_inline)((ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*)__this, method);
 }
 // T Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Texture2D>::get_Payload()
 inline Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4* ExtensionEntry_1_get_Payload_mEAC469CD3AD029E5AEA904C7CF7C8D93BC17253C_inline (ExtensionEntry_1_t556C9F7F04149A0284287CF87282BBC4599FEA6F* __this, const RuntimeMethod* method)
 {
-	return ((  Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4* (*) (ExtensionEntry_1_t556C9F7F04149A0284287CF87282BBC4599FEA6F*, const RuntimeMethod*))ExtensionEntry_1_get_Payload_m1F6BFA44C6CF16A30A60E200A461967E101306EA_gshared_inline)(__this, method);
+	Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4* il2cppRetVal;
+	((  void (*) (ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))ExtensionEntry_1_get_Payload_m8EF45BCCCD281E510E68B35571A095FCEE32104B_gshared_inline)((ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void UnityEngine.Material::SetTexture(System.String,UnityEngine.Texture)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Material_SetTexture_m06083C3F52EF02FFB1177901D9907314F280F9A5 (Material_t18053F08F347D0DCA5E1140EC7EC4533DD8A14E3* __this, String_t* ___name0, Texture_t791CBB51219779964E0E8A2ED7C1AA5F92A4A700* ___value1, const RuntimeMethod* method) ;
 // System.Boolean System.Collections.Generic.List`1/Enumerator<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Texture2D>>::MoveNext()
 inline bool Enumerator_MoveNext_m410B4BD3E2575518B07F9F9AE0FF983C17E85AA8 (Enumerator_t5D44032F2D5A4414AE6653D0E878E49496B63FAE* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (Enumerator_t5D44032F2D5A4414AE6653D0E878E49496B63FAE*, const RuntimeMethod*))Enumerator_MoveNext_m01A3B753AB17921E972FE2EE7179F70CD9E334E9_gshared)(__this, method);
+	return ((  bool (*) (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*, const RuntimeMethod*))Enumerator_MoveNext_m8D8E5E878AF0A88A535AB1AB5BA4F23E151A678A_gshared)((Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF*)__this, method);
 }
 // System.Boolean Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntries::GetEntryMetaData(Oculus.Avatar2.CAPI/ovrAvatar2Id,System.UInt32,System.UInt32,Oculus.Avatar2.CAPI/ovrAvatar2MaterialExtensionEntry&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ExtensionEntries_GetEntryMetaData_mB06F0FC82BC017E3D3291266B9B69CCEA7678EFF (int32_t ___primitiveId0, uint32_t ___extensionIdx1, uint32_t ___entryIdx2, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C* ___metaData3, const RuntimeMethod* method) ;
 // System.Boolean Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntries::StoreNameAndPayloadForEntry<System.Single>(Oculus.Avatar2.CAPI/ovrAvatar2Id,System.UInt32,System.UInt32,Oculus.Avatar2.CAPI/ovrAvatar2MaterialExtensionEntry&,System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<T>>&)
 inline bool ExtensionEntries_StoreNameAndPayloadForEntry_TisSingle_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_m06F124B3CD2D998A101517AACEC9354D870D8A92 (int32_t ___primitiveId0, uint32_t ___extensionIdx1, uint32_t ___entryIdx2, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C* ___metaData3, List_1_t3D2138A7C2EB312C0132190151D7E29594071BA0** ___listToStoreInto4, const RuntimeMethod* method)
 {
-	return ((  bool (*) (int32_t, uint32_t, uint32_t, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C*, List_1_t3D2138A7C2EB312C0132190151D7E29594071BA0**, const RuntimeMethod*))ExtensionEntries_StoreNameAndPayloadForEntry_TisSingle_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_m06F124B3CD2D998A101517AACEC9354D870D8A92_gshared)(___primitiveId0, ___extensionIdx1, ___entryIdx2, ___metaData3, ___listToStoreInto4, method);
+	return ((  bool (*) (int32_t, uint32_t, uint32_t, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C*, List_1_t5D2D70E87EB982F476DEC43ABD920F7C607E008A**, const RuntimeMethod*))ExtensionEntries_StoreNameAndPayloadForEntry_TisIl2CppFullySharedGenericStruct_m508335D8D494B4DBD6AFAD30AC79C5C378D1AB86_gshared)(___primitiveId0, ___extensionIdx1, ___entryIdx2, ___metaData3, (List_1_t5D2D70E87EB982F476DEC43ABD920F7C607E008A**)___listToStoreInto4, method);
 }
 // System.Boolean Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntries::StoreNameAndPayloadForEntry<System.Int32>(Oculus.Avatar2.CAPI/ovrAvatar2Id,System.UInt32,System.UInt32,Oculus.Avatar2.CAPI/ovrAvatar2MaterialExtensionEntry&,System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<T>>&)
 inline bool ExtensionEntries_StoreNameAndPayloadForEntry_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_m1208013433D04DA4F0C65F5D958CF7E196B3068B (int32_t ___primitiveId0, uint32_t ___extensionIdx1, uint32_t ___entryIdx2, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C* ___metaData3, List_1_t941E36F7444B6E85114CF22035CB833E55C9D086** ___listToStoreInto4, const RuntimeMethod* method)
 {
-	return ((  bool (*) (int32_t, uint32_t, uint32_t, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C*, List_1_t941E36F7444B6E85114CF22035CB833E55C9D086**, const RuntimeMethod*))ExtensionEntries_StoreNameAndPayloadForEntry_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_m1208013433D04DA4F0C65F5D958CF7E196B3068B_gshared)(___primitiveId0, ___extensionIdx1, ___entryIdx2, ___metaData3, ___listToStoreInto4, method);
+	return ((  bool (*) (int32_t, uint32_t, uint32_t, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C*, List_1_t5D2D70E87EB982F476DEC43ABD920F7C607E008A**, const RuntimeMethod*))ExtensionEntries_StoreNameAndPayloadForEntry_TisIl2CppFullySharedGenericStruct_m508335D8D494B4DBD6AFAD30AC79C5C378D1AB86_gshared)(___primitiveId0, ___extensionIdx1, ___entryIdx2, ___metaData3, (List_1_t5D2D70E87EB982F476DEC43ABD920F7C607E008A**)___listToStoreInto4, method);
 }
 // System.Boolean Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntries::StoreNameAndPayloadForEntry<UnityEngine.Vector3>(Oculus.Avatar2.CAPI/ovrAvatar2Id,System.UInt32,System.UInt32,Oculus.Avatar2.CAPI/ovrAvatar2MaterialExtensionEntry&,System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<T>>&)
 inline bool ExtensionEntries_StoreNameAndPayloadForEntry_TisVector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2_m46C47BA449DD0CEAA4166202380A4D11FC92B537 (int32_t ___primitiveId0, uint32_t ___extensionIdx1, uint32_t ___entryIdx2, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C* ___metaData3, List_1_t39ADBAF6BCCB03EE530D05F996A684735270E45B** ___listToStoreInto4, const RuntimeMethod* method)
 {
-	return ((  bool (*) (int32_t, uint32_t, uint32_t, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C*, List_1_t39ADBAF6BCCB03EE530D05F996A684735270E45B**, const RuntimeMethod*))ExtensionEntries_StoreNameAndPayloadForEntry_TisVector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2_m46C47BA449DD0CEAA4166202380A4D11FC92B537_gshared)(___primitiveId0, ___extensionIdx1, ___entryIdx2, ___metaData3, ___listToStoreInto4, method);
+	return ((  bool (*) (int32_t, uint32_t, uint32_t, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C*, List_1_t5D2D70E87EB982F476DEC43ABD920F7C607E008A**, const RuntimeMethod*))ExtensionEntries_StoreNameAndPayloadForEntry_TisIl2CppFullySharedGenericStruct_m508335D8D494B4DBD6AFAD30AC79C5C378D1AB86_gshared)(___primitiveId0, ___extensionIdx1, ___entryIdx2, ___metaData3, (List_1_t5D2D70E87EB982F476DEC43ABD920F7C607E008A**)___listToStoreInto4, method);
 }
 // System.Boolean Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntries::StoreNameAndPayloadForEntry<UnityEngine.Vector4>(Oculus.Avatar2.CAPI/ovrAvatar2Id,System.UInt32,System.UInt32,Oculus.Avatar2.CAPI/ovrAvatar2MaterialExtensionEntry&,System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<T>>&)
 inline bool ExtensionEntries_StoreNameAndPayloadForEntry_TisVector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3_m3E2E1D40D41A2BC54BE7A8269BDA3FB5AD455EE2 (int32_t ___primitiveId0, uint32_t ___extensionIdx1, uint32_t ___entryIdx2, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C* ___metaData3, List_1_t9CEEFCCC9B23A162158811AC97949D814329569E** ___listToStoreInto4, const RuntimeMethod* method)
 {
-	return ((  bool (*) (int32_t, uint32_t, uint32_t, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C*, List_1_t9CEEFCCC9B23A162158811AC97949D814329569E**, const RuntimeMethod*))ExtensionEntries_StoreNameAndPayloadForEntry_TisVector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3_m3E2E1D40D41A2BC54BE7A8269BDA3FB5AD455EE2_gshared)(___primitiveId0, ___extensionIdx1, ___entryIdx2, ___metaData3, ___listToStoreInto4, method);
+	return ((  bool (*) (int32_t, uint32_t, uint32_t, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C*, List_1_t5D2D70E87EB982F476DEC43ABD920F7C607E008A**, const RuntimeMethod*))ExtensionEntries_StoreNameAndPayloadForEntry_TisIl2CppFullySharedGenericStruct_m508335D8D494B4DBD6AFAD30AC79C5C378D1AB86_gshared)(___primitiveId0, ___extensionIdx1, ___entryIdx2, ___metaData3, (List_1_t5D2D70E87EB982F476DEC43ABD920F7C607E008A**)___listToStoreInto4, method);
 }
 // System.Boolean Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntries::GetNameAndPayloadForEntry<Oculus.Avatar2.CAPI/ovrAvatar2Id>(Oculus.Avatar2.CAPI/ovrAvatar2Id,System.UInt32,System.UInt32,Oculus.Avatar2.CAPI/ovrAvatar2MaterialExtensionEntry&,System.String&,T*)
 inline bool ExtensionEntries_GetNameAndPayloadForEntry_TisovrAvatar2Id_t8A70A1B3A8373FB32C423711A451E391C79C20E2_mBD5ADF97733F4214C44BE9D5B34B79DB467AA45F (int32_t ___primitiveId0, uint32_t ___extensionIndex1, uint32_t ___entryIndex2, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C* ___metaData3, String_t** ___entryName4, int32_t* ___outPayload5, const RuntimeMethod* method)
 {
-	return ((  bool (*) (int32_t, uint32_t, uint32_t, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C*, String_t**, int32_t*, const RuntimeMethod*))ExtensionEntries_GetNameAndPayloadForEntry_TisInt32Enum_tCBAC8BA2BFF3A845FA599F303093BBBA374B6F0C_m5E31C164CBFE93BB3602ED1BC794BF341B4702F3_gshared)(___primitiveId0, ___extensionIndex1, ___entryIndex2, ___metaData3, ___entryName4, ___outPayload5, method);
+	return ((  bool (*) (int32_t, uint32_t, uint32_t, ovrAvatar2MaterialExtensionEntry_t8A7243B808BCE6CCA508C75E1E4AB8E170A3146C*, String_t**, Il2CppFullySharedGenericStruct*, const RuntimeMethod*))ExtensionEntries_GetNameAndPayloadForEntry_TisIl2CppFullySharedGenericStruct_mA360948C1AC10DE18963504E150E7F8064ED3570_gshared)(___primitiveId0, ___extensionIndex1, ___entryIndex2, ___metaData3, ___entryName4, (Il2CppFullySharedGenericStruct*)___outPayload5, method);
 }
 // System.Boolean Oculus.Avatar2.OvrAvatarManager::GetOvrAvatarAsset<Oculus.Avatar2.OvrAvatarImage>(Oculus.Avatar2.CAPI/ovrAvatar2Id,T&)
 inline bool OvrAvatarManager_GetOvrAvatarAsset_TisOvrAvatarImage_tF5C2482049992D239E981A225EF34227CADD3825_mC36E8DE13D76E32B16DE1272E1E2E8787B23BF1F (int32_t ___assetId0, OvrAvatarImage_tF5C2482049992D239E981A225EF34227CADD3825** ___asset1, const RuntimeMethod* method)
@@ -10702,12 +10463,12 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Texture2D_tE6505BC111DD8A424A9DBE
 // System.Void Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Texture2D>::.ctor(System.String,T)
 inline void ExtensionEntry_1__ctor_m4579351E8451D930DAB785EEB52F8EDA6AA019B5 (ExtensionEntry_1_t556C9F7F04149A0284287CF87282BBC4599FEA6F* __this, String_t* ___name0, Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4* ___payload1, const RuntimeMethod* method)
 {
-	((  void (*) (ExtensionEntry_1_t556C9F7F04149A0284287CF87282BBC4599FEA6F*, String_t*, Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4*, const RuntimeMethod*))ExtensionEntry_1__ctor_m6D82C6CF5F4EB7CA0DDDFD11588B2D9535009A50_gshared)(__this, ___name0, ___payload1, method);
+	((  void (*) (ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*, String_t*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))ExtensionEntry_1__ctor_m62A94AA7B85C799AB929D2983E7855161F4408D0_gshared)((ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3*)__this, ___name0, (Il2CppFullySharedGenericAny)___payload1, method);
 }
 // System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Texture2D>>::Add(T)
 inline void List_1_Add_m5A695BC8CD3A18736F24938A709D0D9D3CAC95A0_inline (List_1_t087A9CD6ECE16049438D0BA69E67668E8EABBD90* __this, ExtensionEntry_1_t556C9F7F04149A0284287CF87282BBC4599FEA6F ___item0, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t087A9CD6ECE16049438D0BA69E67668E8EABBD90*, ExtensionEntry_1_t556C9F7F04149A0284287CF87282BBC4599FEA6F, const RuntimeMethod*))List_1_Add_m22A268C731500AFE2F467D52C1A23FA75BBF55C7_gshared_inline)(__this, ___item0, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))List_1_Add_mD4F3498FBD3BDD3F03CBCFB38041CBAC9C28CAFC_gshared_inline)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Il2CppFullySharedGenericAny)&___item0, method);
 }
 // System.String System.String::Format(System.String,System.Object,System.Object,System.Object)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_Format_mA0534D6E2AE4D67A6BD8D45B3321323930EB930C (String_t* ___format0, RuntimeObject* ___arg01, RuntimeObject* ___arg12, RuntimeObject* ___arg23, const RuntimeMethod* method) ;
@@ -10716,27 +10477,27 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool CAPI_OvrAvatar2Primitive_MaterialExtensi
 // System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector3>>::.ctor()
 inline void List_1__ctor_m3C31D7825EF313F3275A2B153A617C0216584254 (List_1_t39ADBAF6BCCB03EE530D05F996A684735270E45B* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t39ADBAF6BCCB03EE530D05F996A684735270E45B*, const RuntimeMethod*))List_1__ctor_m3C31D7825EF313F3275A2B153A617C0216584254_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Vector4>>::.ctor()
 inline void List_1__ctor_mE72FBDB7DC9958CB42AFDDFAE3F0F71347C53895 (List_1_t9CEEFCCC9B23A162158811AC97949D814329569E* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t9CEEFCCC9B23A162158811AC97949D814329569E*, const RuntimeMethod*))List_1__ctor_mE72FBDB7DC9958CB42AFDDFAE3F0F71347C53895_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Single>>::.ctor()
 inline void List_1__ctor_m80C85254CEF25CECE1A697BC96E6D6B9B4786F6E (List_1_t3D2138A7C2EB312C0132190151D7E29594071BA0* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t3D2138A7C2EB312C0132190151D7E29594071BA0*, const RuntimeMethod*))List_1__ctor_m80C85254CEF25CECE1A697BC96E6D6B9B4786F6E_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<System.Int32>>::.ctor()
 inline void List_1__ctor_m51B43A0561404628438B1C4DCA240723CE475CB0 (List_1_t941E36F7444B6E85114CF22035CB833E55C9D086* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t941E36F7444B6E85114CF22035CB833E55C9D086*, const RuntimeMethod*))List_1__ctor_m51B43A0561404628438B1C4DCA240723CE475CB0_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<Oculus.Avatar2.OvrAvatarMaterialExtension/ExtensionEntry`1<UnityEngine.Texture2D>>::.ctor()
 inline void List_1__ctor_m8D94D650F3C0A79F6EA2C07609BFFC88C639564C (List_1_t087A9CD6ECE16049438D0BA69E67668E8EABBD90* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t087A9CD6ECE16049438D0BA69E67668E8EABBD90*, const RuntimeMethod*))List_1__ctor_mB28E8BB6720669BD8707301CA0AEDFD00F2688D1_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void UnityEngine.Quaternion::.ctor(System.Single,System.Single,System.Single,System.Single)
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Quaternion__ctor_m868FD60AA65DD5A8AC0C5DEB0608381A8D85FCD8_inline (Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974* __this, float ___x0, float ___y1, float ___z2, float ___w3, const RuntimeMethod* method) ;
@@ -36532,38 +36293,40 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Texture2D_tE6505BC111DD8A424A9DBE
 		return L_0;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_mCD69EFFC135329B265E578E50CBDAFD4E8258B53_gshared_inline (Nullable_1_tEE876B0A383DEE0B818E0DD33CD2721195BC5AD4* __this, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_m14F273FB376DF00D727434CDCD28AB4EDCC14C3C_gshared_inline (Nullable_1_t71C4EA4E848DBD7A4A97704069FB951159A3A339* __this, const RuntimeMethod* method) 
 {
 	{
-		bool L_0 = (bool)__this->___hasValue_0;
+		bool L_0 = *(bool*)il2cpp_codegen_get_instance_field_data_pointer(__this, il2cpp_rgctx_field(il2cpp_rgctx_data(InitializedTypeInfo(method->klass)->rgctx_data, 1),0));
 		return L_0;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Clear_m16C1F2C61FED5955F10EB36BC1CB2DF34B128994_gshared_inline (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Clear_mD615D1BCB2C9DD91DAD86A2F9E5CF1DFFCBF7925_gshared_inline (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
 	{
 		int32_t L_0 = (int32_t)__this->____version_3;
 		__this->____version_3 = ((int32_t)il2cpp_codegen_add(L_0, 1));
-		if (!true)
+		bool L_1;
+		L_1 = il2cpp_codegen_is_reference_or_contains_references(il2cpp_rgctx_method(method->klass->rgctx_data, 25));
+		if (!L_1)
 		{
 			goto IL_0035;
 		}
 	}
 	{
-		int32_t L_1 = (int32_t)__this->____size_2;
-		V_0 = L_1;
+		int32_t L_2 = (int32_t)__this->____size_2;
+		V_0 = L_2;
 		__this->____size_2 = 0;
-		int32_t L_2 = V_0;
-		if ((((int32_t)L_2) <= ((int32_t)0)))
+		int32_t L_3 = V_0;
+		if ((((int32_t)L_3) <= ((int32_t)0)))
 		{
 			goto IL_003c;
 		}
 	}
 	{
-		ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_3 = (ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918*)__this->____items_1;
-		int32_t L_4 = V_0;
-		Array_Clear_m50BAA3751899858B097D3FF2ED31F284703FE5CB((RuntimeArray*)L_3, 0, L_4, NULL);
+		__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* L_4 = (__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC*)__this->____items_1;
+		int32_t L_5 = V_0;
+		Array_Clear_m50BAA3751899858B097D3FF2ED31F284703FE5CB((RuntimeArray*)L_4, 0, L_5, NULL);
 		return;
 	}
 
@@ -36577,25 +36340,31 @@ IL_003c:
 		return;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t HashSet_1_get_Count_m41CC85EEB7855CEFA3BC7A32F115387939318ED3_gshared_inline (HashSet_1_t2F33BEB06EEA4A872E2FAF464382422AA39AE885* __this, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t HashSet_1_get_Count_mA764DCA3CB14CB2CBDF742A163492FF4DA515B63_gshared_inline (HashSet_1_t2E820DA94CC6D5A61CA29EBD9BE297C43D691C87* __this, const RuntimeMethod* method) 
 {
 	{
 		int32_t L_0 = (int32_t)__this->____count_9;
 		return L_0;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* Enumerator_get_Current_m76B0ECD4B03E606A1CE3DF60589D2E97130B02CA_gshared_inline (Enumerator_tF9B1C7464F1BFE1675CFE608CC62D4507968CF08* __this, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Enumerator_get_Current_m77681472C32B9ABB97AE602C0D4C365A0A8E8ACE_gshared_inline (Enumerator_tEEF12A9EDAAA0461A72ED9491F6AC20B22440222* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) 
 {
+	// sizeof(TValue)
+	const uint32_t SizeOf_TValue_t000C678F2AD05088377B639A262C97D1B73DA1E8 = il2cpp_codegen_sizeof(il2cpp_rgctx_data(InitializedTypeInfo(method->klass)->rgctx_data, 2));
+	// TValue
+	const Il2CppFullySharedGenericAny L_0 = alloca(SizeOf_TValue_t000C678F2AD05088377B639A262C97D1B73DA1E8);
 	{
-		RuntimeObject* L_0 = (RuntimeObject*)__this->____currentValue_3;
-		return L_0;
+		il2cpp_codegen_memcpy(L_0, il2cpp_codegen_get_instance_field_data_pointer(__this, il2cpp_rgctx_field(il2cpp_rgctx_data(InitializedTypeInfo(method->klass)->rgctx_data, 1),3)), SizeOf_TValue_t000C678F2AD05088377B639A262C97D1B73DA1E8);
+		il2cpp_codegen_memcpy(il2cppRetVal, L_0, SizeOf_TValue_t000C678F2AD05088377B639A262C97D1B73DA1E8);
+		return;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_gshared_inline (const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* Array_Empty_TisIl2CppFullySharedGenericAny_m244E2A51B33F845A2093F0862FBCE502E4FDD868_gshared_inline (const RuntimeMethod* method) 
 {
+	il2cpp_rgctx_method_init(method);
 	{
-		il2cpp_codegen_runtime_class_init_inline(il2cpp_rgctx_data(method->rgctx_data, 0));
-		ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_0 = ((EmptyArray_1_tDF0DD7256B115243AA6BD5558417387A734240EE_StaticFields*)il2cpp_codegen_static_fields_for(il2cpp_rgctx_data(method->rgctx_data, 0)))->___Value_0;
+		il2cpp_codegen_runtime_class_init_inline(il2cpp_rgctx_data(method->rgctx_data, 2));
+		__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* L_0 = ((EmptyArray_1_tF69A5F6BAD1150A16C4C98B346D6122FE3751C80_StaticFields*)il2cpp_codegen_static_fields_for(il2cpp_rgctx_data(method->rgctx_data, 2)))->___Value_0;
 		return L_0;
 	}
 }
@@ -36607,19 +36376,24 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* OvrSingletonBehavi
 		return L_0;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Add_mEBCF994CC3814631017F46A387B1A192ED6C85C7_gshared_inline (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, RuntimeObject* ___item0, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Add_mD4F3498FBD3BDD3F03CBCFB38041CBAC9C28CAFC_gshared_inline (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) 
 {
-	ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* V_0 = NULL;
+	// sizeof(T)
+	const uint32_t SizeOf_T_t664E2061A913AF1FEE499655BC64F0FDE10D2A5E = il2cpp_codegen_sizeof(il2cpp_rgctx_data(method->klass->rgctx_data, 9));
+	// T
+	const Il2CppFullySharedGenericAny L_8 = alloca(SizeOf_T_t664E2061A913AF1FEE499655BC64F0FDE10D2A5E);
+	const Il2CppFullySharedGenericAny L_9 = L_8;
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* V_0 = NULL;
 	int32_t V_1 = 0;
 	{
 		int32_t L_0 = (int32_t)__this->____version_3;
 		__this->____version_3 = ((int32_t)il2cpp_codegen_add(L_0, 1));
-		ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_1 = (ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918*)__this->____items_1;
+		__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* L_1 = (__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC*)__this->____items_1;
 		V_0 = L_1;
 		int32_t L_2 = (int32_t)__this->____size_2;
 		V_1 = L_2;
 		int32_t L_3 = V_1;
-		ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_4 = V_0;
+		__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* L_4 = V_0;
 		NullCheck(L_4);
 		if ((!(((uint32_t)L_3) < ((uint32_t)((int32_t)(((RuntimeArray*)L_4)->max_length))))))
 		{
@@ -36629,397 +36403,151 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Add_mEBCF994CC3814631
 	{
 		int32_t L_5 = V_1;
 		__this->____size_2 = ((int32_t)il2cpp_codegen_add(L_5, 1));
-		ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_6 = V_0;
+		__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* L_6 = V_0;
 		int32_t L_7 = V_1;
-		RuntimeObject* L_8 = ___item0;
+		il2cpp_codegen_memcpy(L_8, (il2cpp_codegen_class_is_value_type(il2cpp_rgctx_data(method->klass->rgctx_data, 9)) ? ___item0 : &___item0), SizeOf_T_t664E2061A913AF1FEE499655BC64F0FDE10D2A5E);
 		NullCheck(L_6);
-		(L_6)->SetAt(static_cast<il2cpp_array_size_t>(L_7), (RuntimeObject*)L_8);
+		il2cpp_codegen_memcpy((L_6)->GetAddressAt(static_cast<il2cpp_array_size_t>(L_7)), L_8, SizeOf_T_t664E2061A913AF1FEE499655BC64F0FDE10D2A5E);
+		Il2CppCodeGenWriteBarrierForClass(il2cpp_rgctx_data(method->klass->rgctx_data, 9), (void**)(L_6)->GetAddressAt(static_cast<il2cpp_array_size_t>(L_7)), (void*)L_8);
 		return;
 	}
 
 IL_0034:
 	{
-		RuntimeObject* L_9 = ___item0;
-		((  void (*) (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D*, RuntimeObject*, const RuntimeMethod*))il2cpp_codegen_get_method_pointer(il2cpp_rgctx_method(method->klass->rgctx_data, 11)))(__this, L_9, il2cpp_rgctx_method(method->klass->rgctx_data, 11));
+		il2cpp_codegen_memcpy(L_9, (il2cpp_codegen_class_is_value_type(il2cpp_rgctx_data(method->klass->rgctx_data, 9)) ? ___item0 : &___item0), SizeOf_T_t664E2061A913AF1FEE499655BC64F0FDE10D2A5E);
+		InvokerActionInvoker1< Il2CppFullySharedGenericAny >::Invoke(il2cpp_codegen_get_direct_method_pointer(il2cpp_rgctx_method(method->klass->rgctx_data, 14)), il2cpp_rgctx_method(method->klass->rgctx_data, 14), __this, (il2cpp_codegen_class_is_value_type(il2cpp_rgctx_data(method->klass->rgctx_data, 9)) ? L_9: *(void**)L_9));
 		return;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t List_1_get_Count_m4407E4C389F22B8CEC282C15D56516658746C383_gshared_inline (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t List_1_get_Count_mD2ED26ACAF3BAF386FFEA83893BA51DB9FD8BA30_gshared_inline (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, const RuntimeMethod* method) 
 {
 	{
 		int32_t L_0 = (int32_t)__this->____size_2;
 		return L_0;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* Enumerator_get_Current_m6330F15D18EE4F547C05DF9BF83C5EB710376027_gshared_inline (Enumerator_t9473BAB568A27E2339D48C1F91319E0F6D244D7A* __this, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Enumerator_get_Current_m8B42D4B2DE853B9D11B997120CD0228D4780E394_gshared_inline (Enumerator_tF5AC6CD19D283FBD724440520CEE68FE2602F7AF* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) 
 {
+	// sizeof(T)
+	const uint32_t SizeOf_T_t010616E3077234188F9BB4FAF369F8571BC5F2E1 = il2cpp_codegen_sizeof(il2cpp_rgctx_data(InitializedTypeInfo(method->klass)->rgctx_data, 2));
+	// T
+	const Il2CppFullySharedGenericAny L_0 = alloca(SizeOf_T_t010616E3077234188F9BB4FAF369F8571BC5F2E1);
 	{
-		RuntimeObject* L_0 = (RuntimeObject*)__this->____current_3;
-		return L_0;
+		il2cpp_codegen_memcpy(L_0, il2cpp_codegen_get_instance_field_data_pointer(__this, il2cpp_rgctx_field(il2cpp_rgctx_data(InitializedTypeInfo(method->klass)->rgctx_data, 1),3)), SizeOf_T_t010616E3077234188F9BB4FAF369F8571BC5F2E1);
+		il2cpp_codegen_memcpy(il2cppRetVal, L_0, SizeOf_T_t010616E3077234188F9BB4FAF369F8571BC5F2E1);
+		return;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR String_t* AssertLessThanMessageBuilder_1_Invoke_m760BBFF184B1874F08F9797614592D3166526C98_gshared_inline (AssertLessThanMessageBuilder_1_t2C55B15A9C2A758C92FAE5EF509A7B674B83686B* __this, int32_t* ___lhs0, int32_t* ___rhs1, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR String_t* AssertLessThanMessageBuilder_1_Invoke_m53D46E53EA865E74BD06BA662928F46C486B8C72_gshared_inline (AssertLessThanMessageBuilder_1_tD2D8026BDEB9CCF7A4666CE8FA47E7FBD1FE0539* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType& modreq(System.Runtime.InteropServices.InAttribute)*/Il2CppFullySharedGenericAny* ___lhs0, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType& modreq(System.Runtime.InteropServices.InAttribute)*/Il2CppFullySharedGenericAny* ___rhs1, const RuntimeMethod* method) 
 {
-	typedef String_t* (*FunctionPointerType) (RuntimeObject*, int32_t*, int32_t*, const RuntimeMethod*);
+	typedef String_t* (*FunctionPointerType) (RuntimeObject*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType& modreq(System.Runtime.InteropServices.InAttribute)*/Il2CppFullySharedGenericAny*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType& modreq(System.Runtime.InteropServices.InAttribute)*/Il2CppFullySharedGenericAny*, const RuntimeMethod*);
 	return ((FunctionPointerType)__this->___invoke_impl_1)((Il2CppObject*)__this->___method_code_6, ___lhs0, ___rhs1, reinterpret_cast<RuntimeMethod*>(__this->___method_3));
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR KeyValuePair_2_tF70DDE0C5A349727371FB070D433FA147032A13B Enumerator_get_Current_m12EE850D56E586DF121B059557CEAF4A7472995B_gshared_inline (Enumerator_t72F234BE749BE6BA202FC41626B5E819E4F208B4* __this, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Enumerator_get_Current_m26AF82C275C82180BB7F23C7E408BC1FEB9A38EE_gshared_inline (Enumerator_tB3750C37D2E2D54A46142439AF83A76EC665D9B1* __this, KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669* il2cppRetVal, const RuntimeMethod* method) 
 {
+	// sizeof(System.Collections.Generic.KeyValuePair`2<TKey,TValue>)
+	const uint32_t SizeOf_KeyValuePair_2_t23F299E80A87656CF35AA5186B375FDE51A801EF = il2cpp_codegen_sizeof(il2cpp_rgctx_data(InitializedTypeInfo(method->klass)->rgctx_data, 2));
+	// System.Collections.Generic.KeyValuePair`2<TKey,TValue>
+	const KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669 L_0 = alloca(SizeOf_KeyValuePair_2_t23F299E80A87656CF35AA5186B375FDE51A801EF);
 	{
-		KeyValuePair_2_tF70DDE0C5A349727371FB070D433FA147032A13B L_0 = (KeyValuePair_2_tF70DDE0C5A349727371FB070D433FA147032A13B)__this->____current_3;
-		return L_0;
+		il2cpp_codegen_memcpy(L_0, il2cpp_codegen_get_instance_field_data_pointer(__this, il2cpp_rgctx_field(il2cpp_rgctx_data(InitializedTypeInfo(method->klass)->rgctx_data, 1),3)), SizeOf_KeyValuePair_2_t23F299E80A87656CF35AA5186B375FDE51A801EF);
+		il2cpp_codegen_memcpy(il2cppRetVal, L_0, SizeOf_KeyValuePair_2_t23F299E80A87656CF35AA5186B375FDE51A801EF);
+		return;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* KeyValuePair_2_get_Value_m415A21240AEF58C2E0A2FBA97E2BB75637781DB5_gshared_inline (KeyValuePair_2_tF70DDE0C5A349727371FB070D433FA147032A13B* __this, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void KeyValuePair_2_get_Value_mFA1964BF56AA214EE0D491CC197F61BC9E5F1F7A_gshared_inline (KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) 
 {
+	// sizeof(TValue)
+	const uint32_t SizeOf_TValue_tAEA6D09BCD56B8A100F4F042BC143BC0266C28B7 = il2cpp_codegen_sizeof(il2cpp_rgctx_data(InitializedTypeInfo(method->klass)->rgctx_data, 2));
+	// TValue
+	const Il2CppFullySharedGenericAny L_0 = alloca(SizeOf_TValue_tAEA6D09BCD56B8A100F4F042BC143BC0266C28B7);
 	{
-		RuntimeObject* L_0 = (RuntimeObject*)__this->___value_1;
-		return L_0;
+		il2cpp_codegen_memcpy(L_0, il2cpp_codegen_get_instance_field_data_pointer(__this, il2cpp_rgctx_field(il2cpp_rgctx_data(InitializedTypeInfo(method->klass)->rgctx_data, 1),1)), SizeOf_TValue_tAEA6D09BCD56B8A100F4F042BC143BC0266C28B7);
+		il2cpp_codegen_memcpy(il2cppRetVal, L_0, SizeOf_TValue_tAEA6D09BCD56B8A100F4F042BC143BC0266C28B7);
+		return;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t Queue_1_get_Count_m1768ADA9855B7CDA14C9C42E098A287F1A39C3A2_gshared_inline (Queue_1_tE9EF546915795972C3BFD68FBB8FA859D3BAF3B5* __this, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t Queue_1_get_Count_mE6103188ACDEC07F90F2D2986554730D18029750_gshared_inline (Queue_1_t00794C5F46E3254E713B03F949E6AB3A1AB1FD41* __this, const RuntimeMethod* method) 
 {
 	{
 		int32_t L_0 = (int32_t)__this->____size_3;
 		return L_0;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Int32EnumU5BU5D_t87B7DB802810C38016332669039EF42C487A081F* Array_Empty_TisInt32Enum_tCBAC8BA2BFF3A845FA599F303093BBBA374B6F0C_m94E12BB613D748D2EEB9E1ABD961630D2F970385_gshared_inline (const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9* TaskCompletionSource_1_get_Task_m4994989AA2174905CF517397D0F6B082ADC29EE9_gshared_inline (TaskCompletionSource_1_t8A40BE53A167B6D71D5640881A7A894D8DA94970* __this, const RuntimeMethod* method) 
 {
 	{
-		il2cpp_codegen_runtime_class_init_inline(il2cpp_rgctx_data(method->rgctx_data, 0));
-		Int32EnumU5BU5D_t87B7DB802810C38016332669039EF42C487A081F* L_0 = ((EmptyArray_1_t0A27D963887A48FA040C718B868C2455F9AD84FA_StaticFields*)il2cpp_codegen_static_fields_for(il2cpp_rgctx_data(method->rgctx_data, 0)))->___Value_0;
+		Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9* L_0 = (Task_1_tDF1FF540D7D2248A08580387A39717B7FB7A9CF9*)__this->____task_0;
 		return L_0;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Task_1_tD337C15ECE0EB22DACBE88D74A3CEAE3E87499DF* TaskCompletionSource_1_get_Task_m1745E0B89C73F8CD76D4EEEF40B531D30CE1C43C_gshared_inline (TaskCompletionSource_1_tF20E8618AD32D085EFBAC9E127CDB77B996C483C* __this, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void KeyValuePair_2_get_Key_mBE75BF8983618BC1ACEC20F94C1BFF85C8AA50F1_gshared_inline (KeyValuePair_2_t28EF90BF7804CE5D7F99A364266351E7DC652669* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) 
 {
+	// sizeof(TKey)
+	const uint32_t SizeOf_TKey_tAE1541CEBE7E523E393A46E588568F4BD8337859 = il2cpp_codegen_sizeof(il2cpp_rgctx_data(InitializedTypeInfo(method->klass)->rgctx_data, 0));
+	// TKey
+	const Il2CppFullySharedGenericAny L_0 = alloca(SizeOf_TKey_tAE1541CEBE7E523E393A46E588568F4BD8337859);
 	{
-		Task_1_tD337C15ECE0EB22DACBE88D74A3CEAE3E87499DF* L_0 = (Task_1_tD337C15ECE0EB22DACBE88D74A3CEAE3E87499DF*)__this->____task_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_m6B76D139692C43B2AF7C695FAB044B16ACFAF355_gshared_inline (Nullable_1_t78F453FADB4A9F50F267A4E349019C34410D1A01* __this, const RuntimeMethod* method) 
-{
-	{
-		bool L_0 = (bool)__this->___hasValue_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR KeyValuePair_2_t7E5E41B933054DBF6F52C6CDF0BC2CB4B1606423 Enumerator_get_Current_m90E0638FF1812FE1DDE8D13CC607F4CD161D12C1_gshared_inline (Enumerator_tD5E26031CE205BBE3214F599A38680F6E87A011B* __this, const RuntimeMethod* method) 
-{
-	{
-		KeyValuePair_2_t7E5E41B933054DBF6F52C6CDF0BC2CB4B1606423 L_0 = (KeyValuePair_2_t7E5E41B933054DBF6F52C6CDF0BC2CB4B1606423)__this->____current_3;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* KeyValuePair_2_get_Key_m94A9BD1AEA6EA0A8BEE3739A3881F479181638C4_gshared_inline (KeyValuePair_2_t7E5E41B933054DBF6F52C6CDF0BC2CB4B1606423* __this, const RuntimeMethod* method) 
-{
-	{
-		RuntimeObject* L_0 = (RuntimeObject*)__this->___key_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool KeyValuePair_2_get_Value_mC3C5F83458F19B6276D6E090A86CFDADE6EFAAD8_gshared_inline (KeyValuePair_2_t7E5E41B933054DBF6F52C6CDF0BC2CB4B1606423* __this, const RuntimeMethod* method) 
-{
-	{
-		bool L_0 = (bool)__this->___value_1;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR KeyValuePair_2_t77D15A38C6197D8EF2F3685102450E1FB48F13C7 Enumerator_get_Current_m05E35A6939ADA91CC61D511C39FF55428BA7E2EC_gshared_inline (Enumerator_t38F8FFEADA820481EE033B58C2FBCEC243555C0B* __this, const RuntimeMethod* method) 
-{
-	{
-		KeyValuePair_2_t77D15A38C6197D8EF2F3685102450E1FB48F13C7 L_0 = (KeyValuePair_2_t77D15A38C6197D8EF2F3685102450E1FB48F13C7)__this->____current_3;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ValueTuple_2_tDFEF5D5D0F51624CEA17371BAD6D70276931BC49 KeyValuePair_2_get_Value_m45DA0F8C6C1FDB139DF0932F2CB94B6E1155EB3E_gshared_inline (KeyValuePair_2_t77D15A38C6197D8EF2F3685102450E1FB48F13C7* __this, const RuntimeMethod* method) 
-{
-	{
-		ValueTuple_2_tDFEF5D5D0F51624CEA17371BAD6D70276931BC49 L_0 = (ValueTuple_2_tDFEF5D5D0F51624CEA17371BAD6D70276931BC49)__this->___value_1;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t KeyValuePair_2_get_Key_m04221D37F542255AE07CD4D0A9E59AAD49D01CA5_gshared_inline (KeyValuePair_2_t77D15A38C6197D8EF2F3685102450E1FB48F13C7* __this, const RuntimeMethod* method) 
-{
-	{
-		int32_t L_0 = (int32_t)__this->___key_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t OvrSpan_1_get_Length_m72758F7E0A4F839B4538BAE2C15127E328648503_gshared_inline (OvrSpan_1_t7E6A202CDD3092B36A9ED503F62A2FE6CE96E618* __this, const RuntimeMethod* method) 
-{
-	{
-		// public int Length => _length;
-		int32_t L_0 = (int32_t)__this->____length_1;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t OvrSpan_1_get_Address_m9819614A7EDC39544E7DF67A05953BDCEBB2A94C_gshared_inline (OvrSpan_1_t7E6A202CDD3092B36A9ED503F62A2FE6CE96E618* __this, const RuntimeMethod* method) 
-{
-	{
-		// public IntPtr Address => _ptr;
-		intptr_t L_0 = (intptr_t)__this->____ptr_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t OvrSpan_1_get_Length_m2D537204D3654A26AC967D7E77AD084C43C92136_gshared_inline (OvrSpan_1_tC4E8D46BC68C39FFC86330749394042C5B3D55FC* __this, const RuntimeMethod* method) 
-{
-	{
-		// public int Length => _length;
-		int32_t L_0 = (int32_t)__this->____length_1;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t OvrSpan_1_get_Address_m69EB5B170713430217181197C1D9AF5496F60671_gshared_inline (OvrSpan_1_tC4E8D46BC68C39FFC86330749394042C5B3D55FC* __this, const RuntimeMethod* method) 
-{
-	{
-		// public IntPtr Address => _ptr;
-		intptr_t L_0 = (intptr_t)__this->____ptr_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_mA247264B7B76B281F4855D711D276ADAF1ED603D_gshared_inline (Nullable_1_tA58BFAB7679D2EBDCF2E4537F4048819F4FED053* __this, const RuntimeMethod* method) 
-{
-	{
-		bool L_0 = (bool)__this->___hasValue_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C* ArraySegment_1_get_Array_m1E527B0219936D6E63F60F321794D4A41AE9FA96_gshared_inline (ArraySegment_1_t8BFB82736DF7396993D8AC314453598665A24BA4* __this, const RuntimeMethod* method) 
-{
-	{
-		SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C* L_0 = (SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C*)__this->____array_1;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ArraySegment_1_get_Offset_mDDFD5262CBC72F51E3E18D6869FBA03A86FB7A8B_gshared_inline (ArraySegment_1_t8BFB82736DF7396993D8AC314453598665A24BA4* __this, const RuntimeMethod* method) 
-{
-	{
-		int32_t L_0 = (int32_t)__this->____offset_2;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ArraySegment_1_get_Count_mABA070861BE134EF962A6E80D53B885A5F9C020E_gshared_inline (ArraySegment_1_t8BFB82736DF7396993D8AC314453598665A24BA4* __this, const RuntimeMethod* method) 
-{
-	{
-		int32_t L_0 = (int32_t)__this->____count_3;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Int16U5BU5D_t8175CE8DD9C9F9FB0CF4F58E45BC570575B43CFB* ArraySegment_1_get_Array_m1B023530CEE9F0816934FDDD167983DBB0922B76_gshared_inline (ArraySegment_1_t271440F313890A1EEC1AC75D1EEDADCAC42BC779* __this, const RuntimeMethod* method) 
-{
-	{
-		Int16U5BU5D_t8175CE8DD9C9F9FB0CF4F58E45BC570575B43CFB* L_0 = (Int16U5BU5D_t8175CE8DD9C9F9FB0CF4F58E45BC570575B43CFB*)__this->____array_1;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ArraySegment_1_get_Offset_m9EDC1C082C701B6700DA92CC1ED247B410CA800A_gshared_inline (ArraySegment_1_t271440F313890A1EEC1AC75D1EEDADCAC42BC779* __this, const RuntimeMethod* method) 
-{
-	{
-		int32_t L_0 = (int32_t)__this->____offset_2;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ArraySegment_1_get_Count_m64BBFC1B7C10D59EAA1CC499435362A37F3EAE6F_gshared_inline (ArraySegment_1_t271440F313890A1EEC1AC75D1EEDADCAC42BC779* __this, const RuntimeMethod* method) 
-{
-	{
-		int32_t L_0 = (int32_t)__this->____count_3;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_mDB254396B32D86AC6F8E1C1F12CB1476AF1121F6_gshared_inline (Nullable_1_tE5220701AA78449627E5EDCB47F075FC51064441* __this, const RuntimeMethod* method) 
-{
-	{
-		bool L_0 = (bool)__this->___hasValue_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_mC26A9457141F71E294D0FE939CF1A0A07F352A3B_gshared_inline (Nullable_1_t0C948DF63099F187195361F0AD280D05D8D3392C* __this, const RuntimeMethod* method) 
-{
-	{
-		bool L_0 = (bool)__this->___hasValue_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_m6F6F4D562A6DB4CFA84A3AFCCAA8AFC74D21F751_gshared_inline (Nullable_1_t97052EC4CAE1859E0A2AE4946E2175C8E83FD3C5* __this, const RuntimeMethod* method) 
-{
-	{
-		bool L_0 = (bool)__this->___hasValue_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_m2DE652F35AE393E3A5789EB9DC263D9F62EA81E5_gshared_inline (Nullable_1_t46C943179743F64FCDDAE4F17DA41E9F22632C2D* __this, const RuntimeMethod* method) 
-{
-	{
-		bool L_0 = (bool)__this->___hasValue_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_m9C74EFC542CA7DAF4DCE50AD5447E2DC598B85DB_gshared_inline (Nullable_1_tF24391CCCB57E71A77DCFA9C86475AD02E26DA45* __this, const RuntimeMethod* method) 
-{
-	{
-		bool L_0 = (bool)__this->___hasValue_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool Nullable_1_get_HasValue_m73318857A0A02716ABFBFC239C82D32CEF47A213_gshared_inline (Nullable_1_t29C62B03879BFC156513A1129906548DD701E233* __this, const RuntimeMethod* method) 
-{
-	{
-		bool L_0 = (bool)__this->___hasValue_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ExtensionEntry_1_t3122008635A0240B51467C3F8B72DB740693D3E7 Enumerator_get_Current_m03423C06EF234C1EE724D929117C2509B4CDBB5F_gshared_inline (Enumerator_tCA9F2278D555C08735E4D82B5E0AEA718FD84E16* __this, const RuntimeMethod* method) 
-{
-	{
-		ExtensionEntry_1_t3122008635A0240B51467C3F8B72DB740693D3E7 L_0 = (ExtensionEntry_1_t3122008635A0240B51467C3F8B72DB740693D3E7)__this->____current_3;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR String_t* ExtensionEntry_1_get_Name_m55839CECDF72E2CDCDEDCAEFC6A819C3DC7546F7_gshared_inline (ExtensionEntry_1_t3122008635A0240B51467C3F8B72DB740693D3E7* __this, const RuntimeMethod* method) 
-{
-	{
-		// public string Name => _name;
-		String_t* L_0 = (String_t*)__this->____name_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ExtensionEntry_1_get_Payload_m50DF091492CA32D7CA9D5F1334AE8999B6EE8475_gshared_inline (ExtensionEntry_1_t3122008635A0240B51467C3F8B72DB740693D3E7* __this, const RuntimeMethod* method) 
-{
-	{
-		// public T Payload => _payload;
-		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_0 = (Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2)__this->____payload_1;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ExtensionEntry_1_tB2BE801FD5C4993FB45DEE1343D057605BBFF0F2 Enumerator_get_Current_m34E9B065B89A1D0E484FC4A1111CEA0ADA536803_gshared_inline (Enumerator_tDFC366BCC918F6C416A85E882432787BE9693F29* __this, const RuntimeMethod* method) 
-{
-	{
-		ExtensionEntry_1_tB2BE801FD5C4993FB45DEE1343D057605BBFF0F2 L_0 = (ExtensionEntry_1_tB2BE801FD5C4993FB45DEE1343D057605BBFF0F2)__this->____current_3;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR String_t* ExtensionEntry_1_get_Name_mFEB2AB5ED15C18A86C5A75C03E2D9EC0B21486B7_gshared_inline (ExtensionEntry_1_tB2BE801FD5C4993FB45DEE1343D057605BBFF0F2* __this, const RuntimeMethod* method) 
-{
-	{
-		// public string Name => _name;
-		String_t* L_0 = (String_t*)__this->____name_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 ExtensionEntry_1_get_Payload_m7CDF2DD4A589D3B997E5F3EB4F5F1D6164A8D2CC_gshared_inline (ExtensionEntry_1_tB2BE801FD5C4993FB45DEE1343D057605BBFF0F2* __this, const RuntimeMethod* method) 
-{
-	{
-		// public T Payload => _payload;
-		Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3 L_0 = (Vector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3)__this->____payload_1;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ExtensionEntry_1_tA92D0E18425FA6278BFDE762213B76BE8DC0FBF8 Enumerator_get_Current_m18A19E28A3B18D607FD63937E8D0986CB423508D_gshared_inline (Enumerator_t69D2B438661A4BF53F5826356D3635489039FA26* __this, const RuntimeMethod* method) 
-{
-	{
-		ExtensionEntry_1_tA92D0E18425FA6278BFDE762213B76BE8DC0FBF8 L_0 = (ExtensionEntry_1_tA92D0E18425FA6278BFDE762213B76BE8DC0FBF8)__this->____current_3;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR String_t* ExtensionEntry_1_get_Name_m95214DAB1A67FC0F92C3457BD76DFD7377D9B6A5_gshared_inline (ExtensionEntry_1_tA92D0E18425FA6278BFDE762213B76BE8DC0FBF8* __this, const RuntimeMethod* method) 
-{
-	{
-		// public string Name => _name;
-		String_t* L_0 = (String_t*)__this->____name_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float ExtensionEntry_1_get_Payload_m2275CB9A8FA28F13945D5F12F886145921BDABE8_gshared_inline (ExtensionEntry_1_tA92D0E18425FA6278BFDE762213B76BE8DC0FBF8* __this, const RuntimeMethod* method) 
-{
-	{
-		// public T Payload => _payload;
-		float L_0 = (float)__this->____payload_1;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ExtensionEntry_1_tF2C4369D973C4DBC0C068E5D57B9696534CCDA19 Enumerator_get_Current_mBED8585C3D5FF52D6D9B4B01167654F96E23C02C_gshared_inline (Enumerator_t0E54B2E53E88A97C042EE85F413A7CF50692D0C9* __this, const RuntimeMethod* method) 
-{
-	{
-		ExtensionEntry_1_tF2C4369D973C4DBC0C068E5D57B9696534CCDA19 L_0 = (ExtensionEntry_1_tF2C4369D973C4DBC0C068E5D57B9696534CCDA19)__this->____current_3;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR String_t* ExtensionEntry_1_get_Name_m6285FEC42161D27BF14DB4564F8FACFAB3024FAC_gshared_inline (ExtensionEntry_1_tF2C4369D973C4DBC0C068E5D57B9696534CCDA19* __this, const RuntimeMethod* method) 
-{
-	{
-		// public string Name => _name;
-		String_t* L_0 = (String_t*)__this->____name_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ExtensionEntry_1_get_Payload_mA537FBD130CBD4BCDD00792F58BFA62F2D2B9964_gshared_inline (ExtensionEntry_1_tF2C4369D973C4DBC0C068E5D57B9696534CCDA19* __this, const RuntimeMethod* method) 
-{
-	{
-		// public T Payload => _payload;
-		int32_t L_0 = (int32_t)__this->____payload_1;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1 Enumerator_get_Current_m71CB410F523ACAF815B3241BF90C4DE0B3BE4CE2_gshared_inline (Enumerator_tEF9AB955C5A9CB26AD5E865D88965D515AF2E8EB* __this, const RuntimeMethod* method) 
-{
-	{
-		ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1 L_0 = (ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1)__this->____current_3;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR String_t* ExtensionEntry_1_get_Name_m520A58F18C50A01B9A6875133784FB0CB29ACECE_gshared_inline (ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1* __this, const RuntimeMethod* method) 
-{
-	{
-		// public string Name => _name;
-		String_t* L_0 = (String_t*)__this->____name_0;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* ExtensionEntry_1_get_Payload_m1F6BFA44C6CF16A30A60E200A461967E101306EA_gshared_inline (ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1* __this, const RuntimeMethod* method) 
-{
-	{
-		// public T Payload => _payload;
-		RuntimeObject* L_0 = (RuntimeObject*)__this->____payload_1;
-		return L_0;
-	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Add_m22A268C731500AFE2F467D52C1A23FA75BBF55C7_gshared_inline (List_1_t03C5C2BE7A26C11DCF0C0BD79075EAEE62EF967B* __this, ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1 ___item0, const RuntimeMethod* method) 
-{
-	ExtensionEntry_1U5BU5D_t58ADB2727CD608F7B5074931EAAA085F94A912F4* V_0 = NULL;
-	int32_t V_1 = 0;
-	{
-		int32_t L_0 = (int32_t)__this->____version_3;
-		__this->____version_3 = ((int32_t)il2cpp_codegen_add(L_0, 1));
-		ExtensionEntry_1U5BU5D_t58ADB2727CD608F7B5074931EAAA085F94A912F4* L_1 = (ExtensionEntry_1U5BU5D_t58ADB2727CD608F7B5074931EAAA085F94A912F4*)__this->____items_1;
-		V_0 = L_1;
-		int32_t L_2 = (int32_t)__this->____size_2;
-		V_1 = L_2;
-		int32_t L_3 = V_1;
-		ExtensionEntry_1U5BU5D_t58ADB2727CD608F7B5074931EAAA085F94A912F4* L_4 = V_0;
-		NullCheck(L_4);
-		if ((!(((uint32_t)L_3) < ((uint32_t)((int32_t)(((RuntimeArray*)L_4)->max_length))))))
-		{
-			goto IL_0034;
-		}
-	}
-	{
-		int32_t L_5 = V_1;
-		__this->____size_2 = ((int32_t)il2cpp_codegen_add(L_5, 1));
-		ExtensionEntry_1U5BU5D_t58ADB2727CD608F7B5074931EAAA085F94A912F4* L_6 = V_0;
-		int32_t L_7 = V_1;
-		ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1 L_8 = ___item0;
-		NullCheck(L_6);
-		(L_6)->SetAt(static_cast<il2cpp_array_size_t>(L_7), (ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1)L_8);
+		il2cpp_codegen_memcpy(L_0, il2cpp_codegen_get_instance_field_data_pointer(__this, il2cpp_rgctx_field(il2cpp_rgctx_data(InitializedTypeInfo(method->klass)->rgctx_data, 1),0)), SizeOf_TKey_tAE1541CEBE7E523E393A46E588568F4BD8337859);
+		il2cpp_codegen_memcpy(il2cppRetVal, L_0, SizeOf_TKey_tAE1541CEBE7E523E393A46E588568F4BD8337859);
 		return;
 	}
-
-IL_0034:
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t OvrSpan_1_get_Length_mFB123E739F216FC9BB34F03F39A0154D2B39F312_gshared_inline (OvrSpan_1_tABCF10E9E40CF31C1378EB23141B1D48DD8C9BF8* __this, const RuntimeMethod* method) 
+{
 	{
-		ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1 L_9 = ___item0;
-		((  void (*) (List_1_t03C5C2BE7A26C11DCF0C0BD79075EAEE62EF967B*, ExtensionEntry_1_t7EF94A0C40ACA6B3711317FC66BCF5B17322D0C1, const RuntimeMethod*))il2cpp_codegen_get_method_pointer(il2cpp_rgctx_method(method->klass->rgctx_data, 11)))(__this, L_9, il2cpp_rgctx_method(method->klass->rgctx_data, 11));
+		// public int Length => _length;
+		int32_t L_0 = (int32_t)__this->____length_1;
+		return L_0;
+	}
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR intptr_t OvrSpan_1_get_Address_m31042E5B147C0EC559627BAC974A95DE3338B197_gshared_inline (OvrSpan_1_tABCF10E9E40CF31C1378EB23141B1D48DD8C9BF8* __this, const RuntimeMethod* method) 
+{
+	{
+		// public IntPtr Address => _ptr;
+		intptr_t L_0 = (intptr_t)__this->____ptr_0;
+		return L_0;
+	}
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* ArraySegment_1_get_Array_mE4A35DFD81ABF447350B9A05C0F4BF0248A3CFF2_gshared_inline (ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178* __this, const RuntimeMethod* method) 
+{
+	{
+		__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* L_0 = (__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC*)__this->____array_1;
+		return L_0;
+	}
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ArraySegment_1_get_Offset_m4FAFF061AB36BF278BA8DC37B6D13718A06301E6_gshared_inline (ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178* __this, const RuntimeMethod* method) 
+{
+	{
+		int32_t L_0 = (int32_t)__this->____offset_2;
+		return L_0;
+	}
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t ArraySegment_1_get_Count_mEF96248898C14F3687A5C72B920F841701E4E13C_gshared_inline (ArraySegment_1_t00CCB00D2C671984CD055C219135EB0500C79178* __this, const RuntimeMethod* method) 
+{
+	{
+		int32_t L_0 = (int32_t)__this->____count_3;
+		return L_0;
+	}
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR String_t* ExtensionEntry_1_get_Name_m334759304121FB3A8712E97BDA20F13362CD15CA_gshared_inline (ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3* __this, const RuntimeMethod* method) 
+{
+	{
+		// public string Name => _name;
+		String_t* L_0 = *(String_t**)il2cpp_codegen_get_instance_field_data_pointer(__this, il2cpp_rgctx_field(il2cpp_rgctx_data(InitializedTypeInfo(method->klass)->rgctx_data, 0),0));
+		return L_0;
+	}
+}
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void ExtensionEntry_1_get_Payload_m8EF45BCCCD281E510E68B35571A095FCEE32104B_gshared_inline (ExtensionEntry_1_t4CBAD1F015148798EBBC660C59E8B032A5F45ED3* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) 
+{
+	// sizeof(T)
+	const uint32_t SizeOf_T_tF374C790D67963E1216A6B28A19A83DF52859821 = il2cpp_codegen_sizeof(il2cpp_rgctx_data(InitializedTypeInfo(method->klass)->rgctx_data, 1));
+	// T
+	const Il2CppFullySharedGenericAny L_0 = alloca(SizeOf_T_tF374C790D67963E1216A6B28A19A83DF52859821);
+	{
+		// public T Payload => _payload;
+		il2cpp_codegen_memcpy(L_0, il2cpp_codegen_get_instance_field_data_pointer(__this, il2cpp_rgctx_field(il2cpp_rgctx_data(InitializedTypeInfo(method->klass)->rgctx_data, 0),1)), SizeOf_T_tF374C790D67963E1216A6B28A19A83DF52859821);
+		il2cpp_codegen_memcpy(il2cppRetVal, L_0, SizeOf_T_tF374C790D67963E1216A6B28A19A83DF52859821);
 		return;
 	}
 }
