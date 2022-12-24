@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NetworkManager : MonoBehaviour
+using Photon.Pun;
+
+public class LobbyManager : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
     void Start()
