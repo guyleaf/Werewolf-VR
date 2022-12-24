@@ -466,12 +466,15 @@ namespace Werewolf.Game
             recorder = GameObject.Find("Voice").GetComponent<Recorder>();
             voteUI = GameObject.Find("Vote UI");
             sectionUI = GameObject.Find("Section UI");
-            resultUI = GameObject.Find("Result UI");
+            //resultUI = GameObject.Find("Result UI");
+            resultUI = GameObject.Find("Background UI");
             endGameUI = GameObject.Find("EndGame UI");
             blackScreen = GameObject.Find("Black Screen");
             timeText = GameObject.Find("Text (TMP)-Time").GetComponent<TextMeshProUGUI>();
             timeText.SetText(sectionTime.ToString("#.0"));
-            messageText = GameObject.Find("Text (TMP)-ResultMessage").GetComponent<TextMeshProUGUI>();
+            //messageText = GameObject.Find("Text (TMP)-ResultMessage").GetComponent<TextMeshProUGUI>();
+            messageText = GameObject.Find("Text (TMP)-NotifyMessage").GetComponent<TextMeshProUGUI>();
+            
             //messageText.SetText("Player X is dead, here is the last message!");
             sectionMessageText = GameObject.Find("Text (TMP)-SectionMessage").GetComponent<TextMeshProUGUI>();
             //sectionMessageText.SetText("Section: X Turn \nTimer: X s");
@@ -509,7 +512,7 @@ namespace Werewolf.Game
                     playerCount += 1;
                 }
                 Debug.LogWarning("Gameflow update player: " + playerCount);
-                if(playerCount > 1)
+                if(playerCount >= 1)
                 {
                     if (!syncTime)
                     {
