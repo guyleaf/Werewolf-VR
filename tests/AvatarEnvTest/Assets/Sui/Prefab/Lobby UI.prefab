@@ -1361,7 +1361,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5178714226865656217}
   - component: {fileID: 6903674830922471033}
-  - component: {fileID: 415735834227153408}
   m_Layer: 0
   m_Name: Lobby UI
   m_TagString: Untagged
@@ -1406,7 +1405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 447ec9c6a140edc4e8796b9bdeace4e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataSource: {fileID: 415735834227153408}
+  dataSource: {fileID: 0}
   pageText: {fileID: 8242667896363777764}
   roomsText:
   - {fileID: 7054515459902346323}
@@ -1415,18 +1414,6 @@ MonoBehaviour:
   - {fileID: 5162146417476374172}
   - {fileID: 8012772864563700571}
   - {fileID: 1253991248041799358}
---- !u!114 &415735834227153408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5178714226865656222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 792dfafabecd91b4184425f339a58a5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6414317792477676623
 GameObject:
   m_ObjectHideFlags: 0

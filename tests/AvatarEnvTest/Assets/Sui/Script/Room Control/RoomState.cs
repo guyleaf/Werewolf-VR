@@ -1,14 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public abstract class LobbyDataSource : MonoBehaviour
-{
-    public abstract int NumOfRooms(); // return num of rooms 
-    public abstract RoomState StateOfRooms(int roomIdx); // return num of rooms 
-    public abstract void UpdateData(); // it will be called when view need latest data
-}
-
 public class RoomState
 {
     private int _roomId; // room id 
@@ -25,9 +14,10 @@ public class RoomState
         get { return _roomId; }
     }
 
-    public int numPlayer // only get
+    public int numPlayer
     {
         get { return _numPlayer; }
+        set { if(_maxPlayer >= value && value >= 0) _numPlayer = value; }
     }
 
     public int maxPlayer // only get
