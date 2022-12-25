@@ -20,7 +20,7 @@ public class Progressbar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        progressText.text = titleString + ": " + remainTime.ToString() + "s";
+        progressText.text = titleString + ": " + ((int)remainTime).ToString() + "s";
         var theBarRectTransform = progressBar.transform as RectTransform;
         theBarRectTransform.sizeDelta = new Vector2(barWidth * remainTime / totalTime, theBarRectTransform.sizeDelta.y);
     }

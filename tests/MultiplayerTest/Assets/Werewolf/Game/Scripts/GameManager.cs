@@ -26,7 +26,8 @@ namespace Werewolf.Game
         public bool dayTurn = false;
         public bool syncTime = false;
         public static float deltaTime;  // get time consume of a frame
-        public TextMeshProUGUI timeText;
+        // public TextMeshProUGUI timeText;
+        public Progressbar voteProgressBar;
         public TextMeshProUGUI messageText;
         public TextMeshProUGUI sectionMessageText;
         public TextMeshProUGUI endGameMessageText;
@@ -221,8 +222,9 @@ namespace Werewolf.Game
         [PunRPC] //send timer to players
         void RpcSyncTimer(float timerToAll, PhotonMessageInfo info)
         {
-            //Debug.Log($"Gameflow received timer: {timerToAll}");
-            timeText.SetText(((int)timerToAll).ToString());
+            // Debug.Log($"Gameflow received timer: {timerToAll}");
+            // timeText.SetText(((int)timerToAll).ToString());
+            voteProgressBar.remainTime = timerToAll;
         }
 
         [PunRPC] //send first message to players
@@ -521,8 +523,15 @@ namespace Werewolf.Game
             //notifyUI = GameObject.Find("Notify UI");
             endGameUI = GameObject.Find("EndGame UI");
             blackScreen = GameObject.Find("Black Screen");
-            timeText = GameObject.Find("Text (TMP)-Time").GetComponent<TextMeshProUGUI>();
-            timeText.SetText(sectionTime.ToString("#.0"));
+
+            // timeText = GameObject.Find("Text (TMP)-Time").GetComponent<TextMeshProUGUI>();
+            // timeText.SetText(sectionTime.ToString("#.0"));
+            
+            voteProgressBar = GameObject.Find("VoteProgressbar").GetComponent<Progressbar>();
+            // You Need To Re-Set Your Total Time When Stage Is Change 
+            // Otherwise The Bra Will Not Show Correctly
+            voteProgressBar.totalTime = 30;
+
             messageText = GameObject.Find("Text (TMP)-ResultMessage").GetComponent<TextMeshProUGUI>();
             //messageText = GameObject.Find("Text (TMP)-NotifyMessage").GetComponent<TextMeshProUGUI>();
             

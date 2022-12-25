@@ -320,7 +320,7 @@ MonoBehaviour:
   timer: 0
   dayTurn: 0
   syncTime: 0
-  timeText: {fileID: 0}
+  voteProgressBar: {fileID: 0}
   messageText: {fileID: 0}
   sectionMessageText: {fileID: 0}
   endGameMessageText: {fileID: 0}
@@ -2580,7 +2580,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2063938836333530066, guid: 93f6d765bb6623042835f45ce4633838, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2063938836333530067, guid: 93f6d765bb6623042835f45ce4633838, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2652,7 +2652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2063938837432765837, guid: 93f6d765bb6623042835f45ce4633838, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2063938837432765838, guid: 93f6d765bb6623042835f45ce4633838, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2669,6 +2669,10 @@ PrefabInstance:
     - target: {fileID: 6620145878489365356, guid: 93f6d765bb6623042835f45ce4633838, type: 3}
       propertyPath: remainTime
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871110542310228540, guid: 93f6d765bb6623042835f45ce4633838, type: 3}
+      propertyPath: m_Name
+      value: VoteProgressbar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93f6d765bb6623042835f45ce4633838, type: 3}
