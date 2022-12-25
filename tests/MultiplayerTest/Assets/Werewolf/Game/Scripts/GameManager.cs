@@ -73,6 +73,7 @@ namespace Werewolf.Game
         private SpeechSeq speechSeq;
         private string message = "";
         private string sectionMessage = "";
+        private string voteMessage = "";
 
         //vote
         private Dictionary<int, List<int>> voteDict = new();
@@ -375,11 +376,14 @@ namespace Werewolf.Game
             maxVotePlayer = 0;
             foreach (var dictItem in voteDict)  //voteDict: key(player), value(voted player)
             {
-                //Debug.Log($"dict Foreach key: {dictItem.Key}");
+                voteMessage += $"Player {dictItem.Key} got voted from Player ";
+                Debug.Log($"dict Foreach key voteMessage: {dictItem.Key}");
                 foreach (var listItem in dictItem.Value)
                 {
+                    voteMessage += $"{listItem}, ";
                     Debug.Log($"Gameflow received dict Foreach key: {dictItem.Key}, value: {listItem}");  //, count: {dictItem.Value.Count} ");
                 }
+                voteMessage += "\n";
                 Debug.LogWarning($"Gameflow received dict key {dictItem.Key} have votes count: {dictItem.Value.Count}");
                 if (maxVote < dictItem.Value.Count)  // count player have max votes
                 {
@@ -466,14 +470,14 @@ namespace Werewolf.Game
             recorder = GameObject.Find("Voice").GetComponent<Recorder>();
             voteUI = GameObject.Find("Vote UI");
             sectionUI = GameObject.Find("Section UI");
-            //resultUI = GameObject.Find("Result UI");
-            resultUI = GameObject.Find("Background UI");
+            resultUI = GameObject.Find("Result UI");
+            //resultUI = GameObject.Find("Notify UI");
             endGameUI = GameObject.Find("EndGame UI");
             blackScreen = GameObject.Find("Black Screen");
             timeText = GameObject.Find("Text (TMP)-Time").GetComponent<TextMeshProUGUI>();
             timeText.SetText(sectionTime.ToString("#.0"));
-            //messageText = GameObject.Find("Text (TMP)-ResultMessage").GetComponent<TextMeshProUGUI>();
-            messageText = GameObject.Find("Text (TMP)-NotifyMessage").GetComponent<TextMeshProUGUI>();
+            messageText = GameObject.Find("Text (TMP)-ResultMessage").GetComponent<TextMeshProUGUI>();
+            //messageText = GameObject.Find("Text (TMP)-NotifyMessage").GetComponent<TextMeshProUGUI>();
             
             //messageText.SetText("Player X is dead, here is the last message!");
             sectionMessageText = GameObject.Find("Text (TMP)-SectionMessage").GetComponent<TextMeshProUGUI>();
@@ -525,7 +529,7 @@ namespace Werewolf.Game
                         switch (character)
                         {
                             case Character.WEREWOLF:
-                                sectionMessage = $"Section: Werewolf Turn\nTimer: {(int)timerToAll} s";
+                                sectionMessage = $"Section: Werewolf Turn"; //\nTimer: {(int)timerToAll} s";
                                 _gm.CallRpcGameControlToAll(roleList[0], roleList[1], timerToAll, message, sectionMessage);
                                 if (playerList.Contains(roleList[0]) || playerList.Contains(roleList[1]))
                                 {
@@ -551,7 +555,7 @@ namespace Werewolf.Game
                                 }  
                                 break;
                             case Character.SEER:
-                                sectionMessage = $"Section: Seer Turn \nTimer: {(int)timerToAll} s";
+                                sectionMessage = $"Section: Seer Turn"; // \nTimer: {(int)timerToAll} s";
                                 _gm.CallRpcGameControlToAll(roleList[2], 0, timerToAll, message, sectionMessage);
                                 if (playerList.Contains(roleList[2]))
                                 {
@@ -606,7 +610,7 @@ namespace Werewolf.Game
                                 }
                                 break;
                             case Character.SAVIOR:
-                                sectionMessage = $"Section: Savior Turn \nTimer: {(int)timerToAll} s";
+                                sectionMessage = $"Section: Savior Turn"; // \nTimer: {(int)timerToAll} s";
                                 _gm.CallRpcGameControlToAll(roleList[3], 0, timerToAll, message, sectionMessage);
                                 if (playerList.Contains(roleList[3]))
                                 {
@@ -627,6 +631,7 @@ namespace Werewolf.Game
                                             playerList.Remove(maxVotePlayer);
                                             maxVotePlayer = 0;
                                         }
+                                        voteMessage = "";
                                         voted = false;
                                         _gm.CallRpcRecorderEnableToAll(playerList);
                                     }
@@ -784,14 +789,15 @@ namespace Werewolf.Game
                                     votedPlayer = 0;
                                     if (maxVotePlayer == 0)
                                     {
-                                        message = $"No one was ejected!";
+                                        message = $"{voteMessage}No one was ejected!";
                                     }
                                     else
                                     {
-                                        message = $"Player {maxVotePlayer} was ejected, here is the last message!";
+                                        message = $"{voteMessage}Player {maxVotePlayer} was ejected, here is the last message!";
                                         playerList.Remove(maxVotePlayer);
                                         maxVotePlayer = 0;
                                     }
+                                    voteMessage = "";
                                     voted = false;
                                     allVoted = false;
                                     _gm.CallRpcRecorderControlToAll(maxVotePlayer);
@@ -925,16 +931,19 @@ namespace Werewolf.Game
             {
                 endGame = true;
                 message = $"All werewolfs dead, villagers win! ";
+                Debug.Log("All werewolfs dead, villagers win! ");
             }
             else if (!(playerList.Contains(roleList[2]) || playerList.Contains(roleList[3])))
             {
                 endGame = true;
                 message = $"All special roles dead, werewolf win! ";
+                Debug.Log("All special roles dead, werewolf win! ");
             }
             else if (!(playerList.Contains(roleList[4]) || playerList.Contains(roleList[5])))
             {
                 endGame = true;
                 message = $"All villagers dead, werewolf win! ";
+                Debug.Log("All villagers dead, werewolf win! ");
             }
             _gm.CallRpcEndGame(endGame, message);
         }
