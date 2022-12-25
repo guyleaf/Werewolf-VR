@@ -7,6 +7,8 @@ using UnityEngine.Assertions;
 using System.Linq;
 using UnityEngine.UI;
 using Photon.Realtime;
+using Werewolf.UI;
+using Werewolf.Player;
 
 namespace Werewolf.Lobby
 {
@@ -24,6 +26,8 @@ namespace Werewolf.Lobby
         public Button ContinueButtonForAvatarUI;
 
         public GameObject LobbyUI;
+
+        public GameObject RoomUI;
     }
 
     public sealed class LobbyManager : MonoBehaviourPunCallbacks
@@ -31,99 +35,124 @@ namespace Werewolf.Lobby
         [SerializeField]
         private UICollection _uICollection;
 
+        [SerializeField]
+        private RoomListController _roomListController;
+
+        [SerializeField]
+        private PlayerAvatarEntity _playerAvatarEntity;
+
         private BaseLobbyState _state;
 
-        public AvatarLobbyState AvatarState => new();
+        // FIXME: Bad smell, this breaks ecapsulation
+        public UICollection UICollection => _uICollection;
 
-        public NetworkLobbyState NetworkState => new();
+        public RoomListController RoomListController => _roomListController;
+
+        public PlayerAvatarEntity PlayerAvatarEntity => _playerAvatarEntity;
+
+        public InAvatarState InAvatarState => new();
+
+        public InLobbyState InLobbyState => new();
+
+        public InRoomState InRoomState => new();
 
         #region Unity Callbacks
-
         void Awake()
         {
-            var isAllValid = _uICollection
+            var isAllValid = UICollection
                 .GetType().GetProperties()
                 .AsParallel()
                 .All(ui => ui != null);
             Assert.IsTrue(isAllValid);
+            Assert.IsNotNull(_roomListController);
+
+            _state = InAvatarState;
+
+            #if UNITY_EDITOR
+            PlayerPrefs.DeleteAll();
+            #endif
         }
 
         // Start is called before the first frame update
         void Start()
         {
-            _state = AvatarState;
-            _state.EnsureState(this, _uICollection);
+            _state.EnsureState(this);
         }
-
         #endregion
 
         #region Photon Callbacks
         public override void OnConnectedToMaster()
         {
-            _state.OnConnectedToMaster(this, _uICollection);
+            _state.OnConnectedToMaster(this);
         }
 
         public override void OnJoinedLobby()
         {
-            base.OnJoinedLobby();
+            _state.OnJoinedLobby(this);
+        }
+
+        public override void OnRoomListUpdate(List<RoomInfo> roomList)
+        {
+            _state.OnRoomListUpdate(this, roomList);
         }
 
         public override void OnCreatedRoom()
         {
-            base.OnCreatedRoom();
+            _state.OnCreatedRoom(this);
         }
 
         public override void OnJoinedRoom()
         {
-            base.OnJoinedRoom();
+            _state.OnJoinedRoom(this);
         }
 
         public override void OnLeftRoom()
         {
-            base.OnLeftRoom();
+            _state.OnLeftRoom(this);
         }
 
         public override void OnDisconnected(DisconnectCause cause)
         {
-            base.OnDisconnected(cause);
+            _state.OnDisconnected(this, cause);
         }
 
         public override void OnCreateRoomFailed(short returnCode, string message)
         {
-            base.OnCreateRoomFailed(returnCode, message);
+            _state.OnCreateRoomFailed(this, returnCode, message);
         }
 
         public override void OnJoinRoomFailed(short returnCode, string message)
         {
-            base.OnJoinRoomFailed(returnCode, message);
+            _state.OnJoinRoomFailed(this, returnCode, message);
         }
         #endregion
 
         #region Public Methods
         public void OnAvatarFoundEvent()
         {
-            _state.OnAvatarFoundEvent(this, _uICollection);
+            _state.OnAvatarFoundEvent(this);
         }
 
         public void OnAvatarNotFoundEvent()
         {
-            _state.OnAvatarNotFoundEvent(this, _uICollection);
+            _state.OnAvatarNotFoundEvent(this);
         }
 
         public void OnAvatarUIEditButtonClickedEvent()
         {
-            _state.OnAvatarUIEditButtonClickedEvent(this, _uICollection);
+            _state.OnAvatarUIEditButtonClickedEvent(this);
         }
 
         public void OnAvatarUIContinueButtonClickedEvent()
         {
-            _state.OnAvatarUIContinueButtonClickedEvent(this, _uICollection);
+            _state.OnAvatarUIContinueButtonClickedEvent(this);
         }
 
         public void SwitchState(BaseLobbyState state)
         {
+            _state.LeaveState(this);
             _state = state;
-            _state.EnsureState(this, _uICollection);
+            _state.EnsureState(this);
         }
 
         public void RaiseError(string message)

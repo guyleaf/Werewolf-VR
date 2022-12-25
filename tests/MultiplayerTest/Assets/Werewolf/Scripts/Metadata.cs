@@ -19,7 +19,7 @@ namespace Werewolf
 
         public static class PlayerPrefs
         {
-            public const string PlayedBefore = "PlayedBefore";
+            public const string IsEnteredLobbyBefore = "IsEnteredLobbyBefore";
         }
     }
 }
