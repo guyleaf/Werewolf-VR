@@ -816,9 +816,9 @@ MonoBehaviour:
   _pointableElement: {fileID: 7120076345161932985}
   _surface: {fileID: 8307738940796659033}
   _proximityField: {fileID: 8307738939439699318}
-  _maxDistance: 0.1
+  _maxDistance: 0.05
   _enterHoverDistance: 0
-  _releaseDistance: 0.25
+  _releaseDistance: 0.05
   _tiebreakerScore: 0
   _volumeMask: {fileID: 0}
   _dragThresholding:

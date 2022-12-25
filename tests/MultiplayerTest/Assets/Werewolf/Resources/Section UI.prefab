@@ -229,9 +229,9 @@ MonoBehaviour:
   _pointableElement: {fileID: 5554481793303382907}
   _surface: {fileID: 5554481793754991069}
   _proximityField: {fileID: 5554481794729535126}
-  _maxDistance: 0.1
+  _maxDistance: 0.05
   _enterHoverDistance: 0
-  _releaseDistance: 0.25
+  _releaseDistance: 0.05
   _tiebreakerScore: 0
   _volumeMask: {fileID: 0}
   _dragThresholding:

@@ -8,6 +8,7 @@ public class Progressbar : MonoBehaviour
     [SerializeField] public float totalTime;
     [SerializeField] public string titleString="Remain Time";
 
+    [SerializeField] private float barWidth;
     [SerializeField] private TMPro.TextMeshProUGUI progressText;
     [SerializeField] private GameObject progressBar;
     // Start is called before the first frame update
@@ -21,6 +22,6 @@ public class Progressbar : MonoBehaviour
     {
         progressText.text = titleString + ": " + remainTime.ToString() + "s";
         var theBarRectTransform = progressBar.transform as RectTransform;
-        theBarRectTransform.sizeDelta = new Vector2(theBarRectTransform.rect.width * remainTime / totalTime, theBarRectTransform.sizeDelta.y);
+        theBarRectTransform.sizeDelta = new Vector2(barWidth * remainTime / totalTime, theBarRectTransform.sizeDelta.y);
     }
 }
