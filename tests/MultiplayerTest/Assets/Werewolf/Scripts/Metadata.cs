@@ -16,5 +16,10 @@ namespace Werewolf
             public const string Player = "Player";
             public const string GameController = "GameController";
         }
+
+        public static class PlayerPrefs
+        {
+            public const string PlayedBefore = "PlayedBefore";
+        }
     }
 }

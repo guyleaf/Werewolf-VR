@@ -906,6 +906,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3440582731702762702, guid: df64bf5efda75be4db0c812f9277d678, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3521968754766621221, guid: df64bf5efda75be4db0c812f9277d678, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1935,6 +1939,12 @@ MonoBehaviour:
   _hidden: 0
   useRenderLods: 1
   _isLocal: 1
+  OnUserAvatarFoundEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUserAvatarNotFoundEvent:
+    m_PersistentCalls:
+      m_Calls: []
   _autoLoad: 1
   _assets:
   - source: 0
