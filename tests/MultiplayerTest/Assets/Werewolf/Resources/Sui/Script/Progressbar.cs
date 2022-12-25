@@ -5,7 +5,7 @@ using UnityEngine;
 public class Progressbar : MonoBehaviour
 {
     [SerializeField] public float remainTime;
-    [SerializeField] private float totalTime;
+    [SerializeField] public float totalTime;
     [SerializeField] public string titleString="Remain Time";
 
     [SerializeField] private TMPro.TextMeshProUGUI progressText;
@@ -21,6 +21,6 @@ public class Progressbar : MonoBehaviour
     {
         progressText.text = titleString + ": " + remainTime.ToString() + "s";
         var theBarRectTransform = progressBar.transform as RectTransform;
-        theBarRectTransform.sizeDelta = new Vector2(390 * remainTime / totalTime, theBarRectTransform.sizeDelta.y);
+        theBarRectTransform.sizeDelta = new Vector2(theBarRectTransform.rect.width * remainTime / totalTime, theBarRectTransform.sizeDelta.y);
     }
 }
