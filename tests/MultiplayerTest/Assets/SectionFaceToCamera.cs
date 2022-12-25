@@ -6,7 +6,7 @@ public class SectionFaceToCamera : MonoBehaviour
 {
     public Transform mLookAt;
     private Transform localTrans;
-    private float distanceFromCamera = 0.2f;
+    private float distanceFromCamera = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
