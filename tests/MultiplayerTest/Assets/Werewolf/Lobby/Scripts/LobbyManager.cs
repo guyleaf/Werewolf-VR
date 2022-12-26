@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using Photon.Realtime;
 using Werewolf.UI;
 using Werewolf.Player;
+using System;
 
 namespace Werewolf.Lobby
 {
@@ -41,6 +42,9 @@ namespace Werewolf.Lobby
         [SerializeField]
         private PlayerAvatarEntity _playerAvatarEntity;
 
+        [SerializeField]
+        private bool _jumpToLobby = false;
+
         private BaseLobbyState _state;
 
         // FIXME: Bad smell, this breaks ecapsulation
@@ -67,16 +71,35 @@ namespace Werewolf.Lobby
             Assert.IsNotNull(_roomListController);
 
             _state = InAvatarState;
+            if (_jumpToLobby)
+            {
+                _state = InLobbyState;
+            }
 
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             PlayerPrefs.DeleteAll();
-            #endif
+#endif
         }
 
         // Start is called before the first frame update
         void Start()
         {
+            if (_jumpToLobby)
+            {
+                StartCoroutine(PlayerAvatarEntity.LoadAvatar());
+            }
+
             _state.EnsureState(this);
+        }
+
+        void Update()
+        {
+            _state.Update(this);
+        }
+
+        void OnApplicationPause(bool isPaused)
+        {
+            _state.OnApplicationPause(this, isPaused);
         }
         #endregion
 
@@ -125,27 +148,47 @@ namespace Werewolf.Lobby
         {
             _state.OnJoinRoomFailed(this, returnCode, message);
         }
+
+        public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
+        {
+            _state.OnPlayerEnteredRoom(this, newPlayer);
+        }
+
+        public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
+        {
+            _state.OnPlayerLeftRoom(this, otherPlayer);
+        }
         #endregion
 
         #region Public Methods
-        public void OnAvatarFoundEvent()
+        public void OnAvatarFound()
         {
-            _state.OnAvatarFoundEvent(this);
+            _state.OnAvatarFound(this);
         }
 
-        public void OnAvatarNotFoundEvent()
+        public void OnAvatarNotFound()
         {
-            _state.OnAvatarNotFoundEvent(this);
+            _state.OnAvatarNotFound(this);
         }
 
-        public void OnAvatarUIEditButtonClickedEvent()
+        public void OnEditAvatar()
         {
-            _state.OnAvatarUIEditButtonClickedEvent(this);
+            _state.OnEditAvatar(this);
         }
 
-        public void OnAvatarUIContinueButtonClickedEvent()
+        public void OnAvatarUIContinueButtonClicked()
         {
-            _state.OnAvatarUIContinueButtonClickedEvent(this);
+            _state.OnAvatarUIContinueButtonClicked(this);
+        }
+
+        public void OnJoinRoom(RoomInfo roomInfo)
+        {
+            _state.OnJoinRoom(this, roomInfo);
+        }
+
+        public void OnCreateRoom()
+        {
+            _state.OnCreateRoom(this);
         }
 
         public void SwitchState(BaseLobbyState state)

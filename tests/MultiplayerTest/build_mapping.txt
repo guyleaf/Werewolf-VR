@@ -241,11 +241,6 @@ com.unity3d.player.R$id -> com.unity3d.player.R$id:
     int unitySurfaceView -> unitySurfaceView
     void <init>() -> <init>
 com.unity3d.player.R$string -> com.unity3d.player.R$string:
-    int FreeformWindowOrientation_landscape -> FreeformWindowOrientation_landscape
-    int FreeformWindowOrientation_portrait -> FreeformWindowOrientation_portrait
-    int FreeformWindowSize_maximize -> FreeformWindowSize_maximize
-    int FreeformWindowSize_phone -> FreeformWindowSize_phone
-    int FreeformWindowSize_tablet -> FreeformWindowSize_tablet
     int app_name -> app_name
     void <init>() -> <init>
 com.unity3d.player.R$style -> com.unity3d.player.R$style:

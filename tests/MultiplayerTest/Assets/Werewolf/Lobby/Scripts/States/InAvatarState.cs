@@ -42,7 +42,7 @@ namespace Werewolf.Lobby
             uICollection.AvatarUI.SetActive(false);
         }
 
-        public override void OnAvatarFoundEvent(LobbyManager manager)
+        public override void OnAvatarFound(LobbyManager manager)
         {
             var uICollection = manager.UICollection;
             uICollection.ContinueButtonForAvatarUI.interactable = true;
@@ -56,7 +56,7 @@ namespace Werewolf.Lobby
             }
         }
 
-        public override void OnAvatarNotFoundEvent(LobbyManager manager)
+        public override void OnAvatarNotFound(LobbyManager manager)
         {
             if (!this._isAvatarEditorOpened)
             {
@@ -69,7 +69,7 @@ namespace Werewolf.Lobby
             }
         }
 
-        public override void OnAvatarUIContinueButtonClickedEvent(LobbyManager manager)
+        public override void OnAvatarUIContinueButtonClicked(LobbyManager manager)
         {
             IsEnteredLobbyBefore = true;
             manager.SwitchState(manager.InLobbyState);

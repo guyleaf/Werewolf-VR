@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,63 @@ namespace Werewolf.Lobby
 {
     public class InLobbyState : BaseLobbyState
     {
-        private readonly ConcurrentDictionary<string, RoomInfo> _cachedRoomList = new();
+        private readonly TypedLobby lobby = new("Werewolf-VR", LobbyType.Default);
+        private readonly RandomNameGeneratorLibrary.PlaceNameGenerator generator = new();
+
+        private IEnumerator Connect()
+        {
+            while (!PhotonNetwork.ConnectUsingSettings())
+            {
+                Debug.LogWarning("Connect failed, trying...");
+                yield return new WaitForSeconds(3);
+            }
+
+            if (!MetaPlatform.IsUserLoggedIn)
+            {
+                yield return MetaPlatform.Instance.LogIn();
+            }
+
+            PhotonNetwork.NickName = MetaPlatform.UserName;
+        }
+
+        private void RecoverConnection(LobbyManager manager)
+        {
+            if (!PhotonNetwork.Reconnect())
+            {
+                Debug.LogWarning("Reconnect failed, trying ConnectUsingSettings");
+                manager.StartCoroutine(Connect());
+            }
+        }
+
+        private void SwitchLobbyUI(LobbyManager manager, bool on)
+        {
+            var uICollection = manager.UICollection;
+            uICollection.LoadingUI.SetActive(!on);
+            uICollection.LobbyUI.SetActive(on);
+        }
+
+        public override void Update(LobbyManager manager)
+        {
+#if UNITY_EDITOR
+            Debug.Log($"Is Connected: {PhotonNetwork.IsConnected}");
+            Debug.Log($"In Lobby: {PhotonNetwork.InLobby}");
+#endif
+        }
+
+        public override void OnApplicationPause(LobbyManager manager, bool isPaused)
+        {
+            if (!isPaused)
+            {
+                if (!PhotonNetwork.IsConnected)
+                {
+                    RecoverConnection(manager);
+                }
+                else if (!PhotonNetwork.InLobby)
+                {
+                    PhotonNetwork.JoinLobby(lobby);
+                }
+            }
+        }
 
         public override void EnsureState(LobbyManager manager)
         {
@@ -22,59 +79,92 @@ namespace Werewolf.Lobby
                 return;
             }
 
-            var uICollection = manager.UICollection;
-            uICollection.LoadingUI.SetActive(true);
-            uICollection.AvatarUI.SetActive(false);
-            uICollection.LobbyUI.SetActive(false);
-
+            var inRoom = PhotonNetwork.InLobby;
             if (!PhotonNetwork.IsConnected)
             {
-                PhotonNetwork.ConnectUsingSettings();
+                manager.StartCoroutine(Connect());
             }
+            else if (!inRoom)
+            {
+                PhotonNetwork.JoinLobby(lobby);
+            }
+
+            var uICollection = manager.UICollection;
+            uICollection.LoadingUI.SetActive(!inRoom);
+            uICollection.AvatarUI.SetActive(false);
+            uICollection.LobbyUI.SetActive(inRoom);
         }
 
         public override void LeaveState(LobbyManager manager)
         {
-            var uICollection = manager.UICollection;
-            uICollection.LoadingUI.SetActive(false);
-            uICollection.AvatarUI.SetActive(false);
-            uICollection.LobbyUI.SetActive(false);
+            SwitchLobbyUI(manager, false);
         }
 
         public override void OnConnectedToMaster(LobbyManager manager)
         {
-            PhotonNetwork.JoinLobby();
+            PhotonNetwork.JoinLobby(lobby);
         }
 
         public override void OnJoinedLobby(LobbyManager manager)
         {
-            _cachedRoomList.Clear();
-
             Debug.Log("OnJoinedLobby");
-            var uICollection = manager.UICollection;
-            uICollection.LoadingUI.SetActive(false);
-            uICollection.LobbyUI.SetActive(true);
+            SwitchLobbyUI(manager, true);
         }
 
         public override void OnRoomListUpdate(LobbyManager manager, List<RoomInfo> roomList)
         {
-            roomList
-            .AsParallel()
-            .ForAll(room =>
+            roomList.Sort((room1, room2) => room1.Name.CompareTo(room2.Name));
+            manager.RoomListController.UpdateRoomList(roomList);
+        }
+
+        public override void OnJoinRoom(LobbyManager manager, RoomInfo roomInfo)
+        {
+            SwitchLobbyUI(manager, false);
+            PhotonNetwork.JoinRoom(roomInfo.Name);
+        }
+
+        public override void OnJoinedRoom(LobbyManager manager)
+        {
+            manager.SwitchState(manager.InRoomState);
+        }
+
+        public override void OnJoinRoomFailed(LobbyManager manager, short returnCode, string message)
+        {
+            Debug.LogWarning(message);
+            SwitchLobbyUI(manager, true);
+        }
+
+        public override void OnCreateRoom(LobbyManager manager)
+        {
+            SwitchLobbyUI(manager, false);
+
+            var roomName = generator.GenerateRandomPlaceName();
+            var roomOptions = new RoomOptions
             {
-                if (room.RemovedFromList)
-                {
-                    if (!_cachedRoomList.TryRemove(room.Name, out var _))
-                    {
-                        Debug.LogWarning("Cannot remove room from room list.");
-                    }
-                }
-                else
-                {
-                    _cachedRoomList.AddOrUpdate(room.Name, room, (_, _) => room);
-                }
-            });
-            manager.RoomListController.InjectDataSource(new PhotonRoomListDataSource(_cachedRoomList.Values.ToList()));
+                MaxPlayers = 6,
+                PlayerTtl = 10000,
+                EmptyRoomTtl = 100,
+                PublishUserId = true
+            };
+            PhotonNetwork.CreateRoom(roomName, roomOptions, lobby);
+        }
+
+        public override void OnCreatedRoom(LobbyManager manager)
+        {
+            manager.SwitchState(manager.InRoomState);
+        }
+
+        public override void OnCreateRoomFailed(LobbyManager manager, short returnCode, string message)
+        {
+            Debug.LogWarning(message);
+            SwitchLobbyUI(manager, true);
+        }
+
+        public override void OnDisconnected(LobbyManager manager, DisconnectCause cause)
+        {
+            Debug.LogWarning(cause);
+            SwitchLobbyUI(manager, false);
+            RecoverConnection(manager);
         }
     }
 }

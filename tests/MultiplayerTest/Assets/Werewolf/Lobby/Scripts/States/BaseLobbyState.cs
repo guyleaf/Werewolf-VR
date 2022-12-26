@@ -9,6 +9,14 @@ namespace Werewolf.Lobby
 
         public abstract void LeaveState(LobbyManager manager);
 
+        public virtual void Update(LobbyManager manager)
+        {
+        }
+
+        public virtual void OnApplicationPause(LobbyManager manager, bool isPaused)
+        {
+        }
+
         #region Network
         public virtual void OnConnectedToMaster(LobbyManager manager)
         {
@@ -45,23 +53,39 @@ namespace Werewolf.Lobby
         public virtual void OnJoinRoomFailed(LobbyManager manager, short returnCode, string message)
         {
         }
+
+        public virtual void OnJoinRoom(LobbyManager manager, RoomInfo roomInfo)
+        {
+        }
+
+        public virtual void OnCreateRoom(LobbyManager manager)
+        {
+        }
+
+        public virtual void OnPlayerEnteredRoom(LobbyManager manager, Photon.Realtime.Player newPlayer)
+        {
+        }
+
+        public virtual void OnPlayerLeftRoom(LobbyManager manager, Photon.Realtime.Player otherPlayer)
+        {
+        }
         #endregion
 
         #region Avatar
-        public virtual void OnAvatarFoundEvent(LobbyManager manager)
+        public virtual void OnAvatarFound(LobbyManager manager)
         {
         }
 
-        public virtual void OnAvatarNotFoundEvent(LobbyManager manager)
+        public virtual void OnAvatarNotFound(LobbyManager manager)
         {
         }
 
-        public virtual void OnAvatarUIEditButtonClickedEvent(LobbyManager manager)
+        public virtual void OnEditAvatar(LobbyManager manager)
         {
             AvatarEditorDeeplink.LaunchAvatarEditor();
         }
 
-        public virtual void OnAvatarUIContinueButtonClickedEvent(LobbyManager manager)
+        public virtual void OnAvatarUIContinueButtonClicked(LobbyManager manager)
         {
         }
         #endregion
