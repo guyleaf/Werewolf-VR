@@ -12,6 +12,9 @@ using Application = UnityEngine.Application;
 using Unity.Jobs;
 using UnityEngine.Profiling;
 using Debug = UnityEngine.Debug;
+using Unity.Collections;
+using static Oculus.Avatar2.CAPI;
+using Unity.Collections.LowLevel.Unsafe;
 
 
 
@@ -63,6 +66,9 @@ namespace Oculus.Avatar2
 #else
             false;
 #endif
+
+        // Default setting for UseExperimentalSystems
+        private const bool ExperimentalSystemsDefaultValue = false;
 
         public CAPI.ovrAvatar2Platform Platform { get; private set; } = CAPI.ovrAvatar2Platform.Invalid;
         public CAPI.ovrAvatar2ControllerType ControllerType { get; private set; } = CAPI.ovrAvatar2ControllerType.Invalid;
@@ -316,6 +322,10 @@ Roughly equal to number of cores used")]
         [SerializeField]
         public bool UseFastLoadAvatar = false;
 
+        [Tooltip(@"Enable experimental systems.")]
+        [SerializeField]
+        private DefaultableBool _useExperimentalSystems = DefaultableBool.Default;
+        
         [Header("Debug")]
         [SerializeField]
         private CAPI.ovrAvatar2LogLevel _ovrLogLevel = CAPI.ovrAvatar2LogLevel.Verbose;
@@ -330,6 +340,9 @@ Roughly equal to number of cores used")]
         /// Desired level for console logging.
         public CAPI.ovrAvatar2LogLevel ovrLogLevel => _ovrLogLevel;
 
+        /// Effective setting for activating experimental systems, accounting for runtime config and compile time defaults
+        public bool UseExperimentalSystems => _useExperimentalSystems.GetValue(ExperimentalSystemsDefaultValue);
+        
         public void SetLogLevel(CAPI.ovrAvatar2LogLevel logLevel)
         {
             if (_ovrLogLevel != logLevel)
@@ -414,7 +427,7 @@ Roughly equal to number of cores used")]
             var clientAppVersionString = $"{Application.version}+{Application.unityVersion}";
 
             var platform = GetPlatform();
-            OvrAvatarLog.LogInfo($"OvrAvatarManager initializing for app {clientName}::{clientAppVersionString} on platform '{platform}'"
+            OvrAvatarLog.LogInfo($"OvrAvatarManager initializing for app {clientName}::{clientAppVersionString} on platform '{CAPI.ovrAvatar2PlatformToString(platform)}'"
                 , logScope, this);
 
             var initInfo = CAPI.OvrAvatar_DefaultInitInfo(clientAppVersionString, platform);
@@ -426,7 +439,7 @@ Roughly equal to number of cores used")]
                 initInfo.requestCallback = RequestCallback;
                 initInfo.resourceLoadCallback = ResourceCallback;
                 initInfo.resourceLoadContext = IntPtr.Zero;
-                initInfo.fallbackPathToOvrAvatar2AssetsZip = GetAssetPathForFile(ovrAvatar2AssetFolder);
+                initInfo.fallbackPathToOvrAvatar2AssetsZip = GetAssetPathForFile(ovrAvatar2AssetFolder, true);
                 initInfo.numWorkerThreads = 1;
                 initInfo.fileOpenCallback = null;
                 initInfo.fileReadCallback = null;
@@ -449,6 +462,20 @@ Roughly equal to number of cores used")]
                 initInfo.clientSpaceUpAxis = UnityEngine.Vector3.up;
                 initInfo.clientSpaceForwardAxis = -UnityEngine.Vector3.forward;
 #endif
+            }
+
+            if (UseExperimentalSystems
+            )
+            {
+                // All bits used by application during initialization (0-3)
+                const ovrAvatar2InitializeFlags appFlags
+                    = (ovrAvatar2InitializeFlags)(((int)ovrAvatar2InitializeFlags.Last << 1) - 1);
+                // Set of non-debug bits (0-29)
+                const ovrAvatar2InitializeFlags allSystemFlags = (ovrAvatar2InitializeFlags)((1 << 29) - 1);
+
+                // Specifics bits to set for experimental features (4-28)
+                const ovrAvatar2InitializeFlags experimentalMask = allSystemFlags & ~appFlags;
+                initInfo.flags |= experimentalMask;
             }
 
 #if USING_XR_SDK
@@ -553,7 +580,7 @@ Roughly equal to number of cores used")]
             AvatarLODManager.Instantiate();
 
             // TODO: This was done in SampleManager after initialization. What is the effect?
-            CAPI.OvrAvatar_Update();
+            CAPI.OvrAvatar2_Update();
 
             //Preload zip files
             foreach (var filePath in _preloadZipFiles)
@@ -599,6 +626,16 @@ Roughly equal to number of cores used")]
             UpdateInternal(deltaSeconds);
         }
 
+        private bool GetActives(in NativeArray<ovrAvatar2EntityId> entityIds, ref NativeArray<bool> actives)
+        {
+            Debug.Assert(entityIds.Length == actives.Length);
+            unsafe
+            {
+                return CAPI.ovrAvatar2Entity_GetActives((ovrAvatar2EntityId*)entityIds.GetUnsafePtr(), (bool*)actives.GetUnsafePtr(), (uint)entityIds.Length)
+                        .EnsureSuccess("ovrAvatar2Entity_GetActives", logScope, this);
+            }
+        }
+
         private void UpdateInternal(float deltaSeconds)
         {
             if (!initialized) { return; }
@@ -637,21 +674,46 @@ Roughly equal to number of cores used")]
                 Profiler.EndSample();
             }
 
-            Profiler.BeginSample("OvrAvatarManager.PreSDKUpdates");
-            foreach (var trackedEntity in _entityUpdateArray)
+            var entityIds = new NativeArray<ovrAvatar2EntityId>(_entityUpdateArray.Length, Allocator.Temp, NativeArrayOptions.UninitializedMemory);
+            var actives = new NativeArray<bool>(_entityUpdateArray.Length, Allocator.Temp, NativeArrayOptions.UninitializedMemory);
+            unsafe
             {
-                trackedEntity.PreSDKUpdateInternal();
+                var ids = (ovrAvatar2EntityId*)entityIds.GetUnsafePtr();
+                for (int i = 0; i < _entityUpdateArray.Length; i++)
+                {
+                    ids[i] = _entityUpdateArray[i].internalEntityId;
+                }
+            }
+
+            Profiler.BeginSample("OvrAvatarManager.PreSDKUpdates");
+            var transforms = new NativeArray<CAPI.ovrAvatar2Transform>(_entityUpdateArray.Length, Allocator.Temp, NativeArrayOptions.UninitializedMemory);
+            uint nextTransformIndex = 0;
+            if (GetActives(entityIds, ref actives))
+            {
+                for (int i = 0; i < _entityUpdateArray.Length; i++)
+                {
+                    _entityUpdateArray[i].PreSDKUpdateInternal(actives[i], ref transforms, nextTransformIndex++);
+                }
+                unsafe
+                {
+                    CAPI.ovrAvatar2Entity_SetRoots(entityIds.GetPtr<ovrAvatar2EntityId>(), transforms.GetPtr<CAPI.ovrAvatar2Transform>(), nextTransformIndex);
+                }
             }
             Profiler.EndSample();
 
-            Profiler.BeginSample("CAPI.OvrAvatar_Update");
-            CAPI.OvrAvatar_Update(deltaSeconds);
-            Profiler.EndSample(); // "CAPI.OvrAvatar_Update"
+            Profiler.BeginSample("CAPI.OvrAvatar2_Update");
+            CAPI.OvrAvatar2_Update(deltaSeconds);
+            Profiler.EndSample(); // "CAPI.OvrAvatar2_Update"
 
             Profiler.BeginSample("OvrAvatarManager.PostSDKUpdates");
-            foreach (var trackedEntity in _entityUpdateArray)
+            // DOD to OOP mismatch makes for pain, going to have to read and then write 64 bytes
+            // for every single avatar, just to set one bit's worth of info :(
+            if (GetActives(entityIds, ref actives))
             {
-                trackedEntity.PostSDKUpdateInternal();
+                for (int i = 0; i < _entityUpdateArray.Length; i++)
+                {
+                    _entityUpdateArray[i].PostSDKUpdateInternal(actives[i]);
+                }
             }
             Profiler.EndSample();
 
@@ -794,26 +856,27 @@ Roughly equal to number of cores used")]
          */
         public void AddZipSource(string file)
         {
-            string filePath = GetAssetPathForFile(file);
-            string postfix = GetPlatformPostfix(true);
-            string fastPath = GetAssetPathForFile(file);
+            string platformPostfix = GetPlatformPostfix(true);
             string fastPostfix = GetFastLoadPostfix(true);
 
-            if (postfix.Length > 0)
+            string filePath;
+            if (platformPostfix.Length > 0)
             {
                 // Remove extension so we can insert postfix
-                filePath = Path.ChangeExtension(filePath, null);
-                filePath += $"_{postfix}.zip";
+                filePath = Path.ChangeExtension(file, null);
+                filePath += $"_{platformPostfix}.zip";
             }
             else
             {
                 // Otherwise, simply ensure the filename ends with ".zip"
-                filePath = Path.ChangeExtension(filePath, "zip");
+                filePath = Path.ChangeExtension(file, "zip");
             }
+            filePath = GetAssetPathForFile(filePath);
             AddRawZipSource(filePath);
 
-            fastPath = Path.ChangeExtension(fastPath, null);
+            string fastPath = Path.ChangeExtension(file, null);
             fastPath += $"_{fastPostfix}.zip";
+            fastPath = GetAssetPathForFile(fastPath);
             AddRawZipSource(fastPath);
         }
 
@@ -826,9 +889,9 @@ Roughly equal to number of cores used")]
          */
         public void AddUniversalZipSource(string file)
         {
-            string filePath = GetAssetPathForFile(file);
-            filePath = Path.ChangeExtension(filePath, "zip");
-            AddRawZipSource(filePath);
+            file = Path.ChangeExtension(file, "zip");
+            file = GetAssetPathForFile(file);
+            AddRawZipSource(file);
         }
 
         private void AddRawZipSource(string filePath)
@@ -860,7 +923,7 @@ Roughly equal to number of cores used")]
                 return HasAvatarRequestResultCode.BadParameter;
             }
 
-            if (!OvrAvatarEntitlement.AccessTokenIsValid)
+            if (!OvrAvatarEntitlement.AccessTokenIsValid())
             {
                 OvrAvatarLog.LogError("UserHasAvatarAsync failed: no valid access token", logScope, this);
                 return HasAvatarRequestResultCode.BadParameter;
@@ -1114,8 +1177,22 @@ Roughly equal to number of cores used")]
             return isFromZip ? zipPostfixFastLoad : streamingAssetPostfixFastLoad;
         }
 
-        private string GetAssetPathForFile(string file)
+
+        private string GetAssetPathForFile(string file, bool suppressNonExistentWarning = false)
         {
+            if (Application.isEditor)
+            {
+                var path = Path.Combine(Application.dataPath, "Oculus", "Avatar2", "StreamingAssets", file);
+                if (!File.Exists(path))
+                {
+                    if (!suppressNonExistentWarning)
+                    {
+                        OvrAvatarLog.LogWarning("Asset doesn't exist: " + path, logScope);
+                    }
+                }
+                return path;
+            }
+
             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             return IsAndroidStandalone ? file : Path.Combine(Application.streamingAssetsPath, file);
         }

@@ -7,7 +7,7 @@ public class LightManager : MonoBehaviour
     [SerializeField] private LightPreset DayNightPreset, LampPreset;
     private List<Light> SpotLights = new List<Light>();
 
-    [SerializeField, Range(0, 1440), Header("Modifiers"), Tooltip("The game's current time of day")] private float TimeOfDay;
+    [SerializeField, Range(0, 1440), Header("Modifiers"), Tooltip("The game's current time of day")] public float TimeOfDay;
     [SerializeField, Tooltip("Angle to rotate the sun")] private float SunDirection = 170f;
     [SerializeField, Tooltip("How fast time will go")] private float TimeMultiplier = 1;
     [SerializeField] private bool ControlLights = true;

@@ -134,6 +134,8 @@ namespace Oculus.Avatar2
             public NativeArray<T> array;
             public bool IsCreated => array.IsCreated;
 
+            public int Length => array.Length;
+
             public void Dispose()
             {
                 if (array.IsCreated)

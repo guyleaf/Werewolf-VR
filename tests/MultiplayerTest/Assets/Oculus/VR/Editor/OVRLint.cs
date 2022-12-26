@@ -553,6 +553,11 @@ public class OVRLint : EditorWindow
 		for (int i = 0; i < sources.Length; ++i)
 		{
 			AudioSource audioSource = sources[i];
+            if (audioSource.clip == null)
+            {
+                continue;
+            }
+
 			if (audioSource.clip.loadType == AudioClipLoadType.DecompressOnLoad)
 			{
 				AddFix(eRecordType.StaticCommon, "Audio Loading", "For fast loading, please don't use decompress on load for audio clips", delegate (UnityEngine.Object obj, bool last, int selected)

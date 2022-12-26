@@ -98,9 +98,6 @@ namespace Werewolf.Game
         private int seerSelected = 0;
         private int saviorSelected = 0;
 
-        //photon network
-        PhotonView _pv;
-
         public static GameManager Instance { get; private set; }
 
         public void LeaveRoom()
@@ -120,81 +117,40 @@ namespace Werewolf.Game
 
         #region Photon Callbacks
 
-        public override void OnConnectedToMaster()
-        {
-            PhotonNetwork.JoinLobby();
-            Debug.Log("Connecting to Lobby...");
-        }
-
-        public override void OnJoinedLobby()
-        {
-            var roomOptions = new RoomOptions
-            {
-                MaxPlayers = 6,
-                PublishUserId = true
-            };
-            PhotonNetwork.JoinOrCreateRoom("room", roomOptions, TypedLobby.Default);
-        }
-
-        public override void OnJoinedRoom()
-        {
-            string roomName = PhotonNetwork.CurrentRoom.Name;
-            Debug.Log("Joined room with name " + roomName);
-            Debug.Log("Number of Player:" + PhotonNetwork.CurrentRoom.Players.Count);
-            foreach(Photon.Realtime.Player player in PhotonNetwork.PlayerList)
-            {
-                Debug.Log("Player: " + player);
-                Debug.Log("Player isLocal: " + player.IsLocal);
-                Debug.Log("Player actorNumber: " + player.ActorNumber);
-                Debug.Log("Player userID: " + player.UserId);
-                Debug.Log("Next Player: " + player.GetNext());
-                Debug.Log("Next Player: " + PhotonNetwork.LocalPlayer);
-                if (player.IsLocal)
-                {
-                    actorNumber = player.ActorNumber;
-                }
-            }
-            actorNumber = PhotonNetwork.LocalPlayer.ActorNumber;
-            Debug.Log("Players List:" + PhotonNetwork.PlayerList);
-            Debug.Log("Master Client: " + PhotonNetwork.IsMasterClient);
-            //_isMasterClient = PhotonNetwork.IsMasterClient;
-            //playerCount = PhotonNetwork.CountOfPlayers;
-        }
-
         // Message send to others/all, 
         public void CallRpcSyncDayNightTimeToAll(int _daytimer)
         {
-            _pv.RPC("RpcSyncDayNightTimer", RpcTarget.AllBufferedViaServer, _daytimer);  // sync time to client
-            _pv.RPC("RpcSyncDayNight", RpcTarget.AllBufferedViaServer, dayTurn);  // send Day or night message to clients
+            photonView.RPC("RpcSyncDayNightTimer", RpcTarget.AllBufferedViaServer, _daytimer);  // sync time to client
+            photonView.RPC("RpcSyncDayNight", RpcTarget.AllBufferedViaServer, dayTurn);  // send Day or night message to clients
         }
 
         public void CallRpcStartGameToAll(int role1, int role2, float timerToAll, float totalTime, string sectionMessage)
         {
-            _pv.RPC("RpcGameControl", RpcTarget.AllViaServer, role1, role2);
-            _pv.RPC("RpcSyncTimer", RpcTarget.AllViaServer, timerToAll, totalTime);
-            _pv.RPC("RpcSendSectionMessage", RpcTarget.AllViaServer, sectionMessage);
-            _pv.RPC("RpcStartGameMessageToAll", RpcTarget.AllViaServer);
+            photonView.RPC("RpcGameControl", RpcTarget.AllViaServer, role1, role2);
+            photonView.RPC("RpcSyncTimer", RpcTarget.AllViaServer, timerToAll, totalTime);
+            photonView.RPC("RpcSendSectionMessage", RpcTarget.AllViaServer, sectionMessage);
+            photonView.RPC("RpcStartGameMessageToAll", RpcTarget.AllViaServer);
         }
         public void CallRpcGameControlToAll(int role1, int role2, float timerToAll, float totalTime, string message, string sectionMessage)
         {
-            _pv.RPC("RpcGameControl", RpcTarget.AllViaServer, role1, role2);
-            _pv.RPC("RpcSyncTimer", RpcTarget.AllViaServer, timerToAll, totalTime);
-            _pv.RPC("RpcSendMessage", RpcTarget.AllViaServer, message);
-            _pv.RPC("RpcSendSectionMessage", RpcTarget.AllViaServer, sectionMessage);
+            photonView.RPC("RpcGameControl", RpcTarget.AllViaServer, role1, role2);
+            photonView.RPC("RpcSyncTimer", RpcTarget.AllViaServer, timerToAll, totalTime);
+            photonView.RPC("RpcSendMessage", RpcTarget.AllViaServer, message);
+            photonView.RPC("RpcSendSectionMessage", RpcTarget.AllViaServer, sectionMessage);
         }
 
         public void CallRpcRecorderControlToAll(int maxVotePlayer)
         {
-            _pv.RPC("RpcSendDeadPlayer", RpcTarget.AllViaServer, maxVotePlayer);
+            photonView.RPC("RpcSendDeadPlayer", RpcTarget.AllViaServer, maxVotePlayer);
         }
-        
+
         public void CallRpcRecorderEnableToAll(List<int> playerList)
         {
             var o = new MemoryStream(); //Create something to hold the data
             var bf = new BinaryFormatter(); //Create a formatter
             bf.Serialize(o, playerList);
             var data = Convert.ToBase64String(o.GetBuffer()); //Convert the data to a string
-            _pv.RPC("RpcRecorderEnableToAll", RpcTarget.AllViaServer, data);
+            photonView.RPC("RpcRecorderEnableToAll", RpcTarget.AllViaServer, data);
         }
 
         public void CallRpcSyncPlayerRoleToAll(List<int> playerList, List<int> roleList)
@@ -207,22 +163,22 @@ namespace Werewolf.Game
             var roleBF = new BinaryFormatter(); //Create a formatter
             roleBF.Serialize(roleObject, roleList);
             var roleData = Convert.ToBase64String(roleObject.GetBuffer()); //Convert the data to a string
-            _pv.RPC("RpcSyncPlayerRoleToAll", RpcTarget.AllViaServer, playerData, roleData);
+            photonView.RPC("RpcSyncPlayerRoleToAll", RpcTarget.AllViaServer, playerData, roleData);
         }
 
         public void CallRpcSendMyVote(int role, int myvote)
         {
-            _pv.RPC("RpcSendMyVote", RpcTarget.MasterClient, role, myvote);
+            photonView.RPC("RpcSendMyVote", RpcTarget.MasterClient, role, myvote);
         }
 
         public void CallRpcSeerTime(bool seerTime)
         {
-            _pv.RPC("RpcSeerTime", RpcTarget.AllViaServer, seerTime);
+            photonView.RPC("RpcSeerTime", RpcTarget.AllViaServer, seerTime);
         }
 
         public void CallRpcEndGame(bool endGame, string message)
         {
-            _pv.RPC("RpcEndGame", RpcTarget.AllViaServer, endGame, message);
+            photonView.RPC("RpcEndGame", RpcTarget.AllViaServer, endGame, message);
         }
 
         //others/all will received at the same location
@@ -340,7 +296,7 @@ namespace Werewolf.Game
         private void RpcStartGameMessageToAll(PhotonMessageInfo info)
         {
             StartGame();
-        }    
+        }
 
         [PunRPC] //send role to player to confirm action of player
         void RpcGameControl(int _role1, int _role2, PhotonMessageInfo info)
@@ -398,12 +354,12 @@ namespace Werewolf.Game
                     Debug.LogWarning($"Gamflow received votedPlayer: {votedPlayer}, werewolfCount: {werewolfCount}, voted: {allVoted}");
                     //votedPlayer = 0;
                 }
-                else if(_role == roleList[2])
+                else if (_role == roleList[2])
                 {
                     voting(_role, _myvote);
                     //voted = true;
                 }
-                else if(_role == roleList[3])
+                else if (_role == roleList[3])
                 {
                     voting(_role, _myvote);
                     //voted = true;
@@ -416,7 +372,7 @@ namespace Werewolf.Game
                 Debug.LogWarning($"Gamflow received votedPlayer: {votedPlayer}, playerCount: {playerCount}, voted: {allVoted}");
                 //votedPlayer = 0;
             }
-            
+
         }
 
         [PunRPC]  //Send SeerTime to all players
@@ -436,7 +392,7 @@ namespace Werewolf.Game
             endGame = _endGame;
             Debug.LogWarning($"Gameflow received bool End Game Updated! {endGame} {_endGame}, message: {message}, {_message}");
         }
-        
+
 
         //vote system
         void voting(int _role, int _myvote) //add vote in to dictionary
@@ -477,7 +433,7 @@ namespace Werewolf.Game
                     maxVotePlayer = dictItem.Key;
                     maxVoteCount = 1;
                 }
-                else if(maxVote == dictItem.Value.ToList().Count)  // check how many player have max votes
+                else if (maxVote == dictItem.Value.ToList().Count)  // check how many player have max votes
                 {
                     maxVoteCount += 1;
                     maxVotePlayer = 0;  //no player should be eject
@@ -504,7 +460,7 @@ namespace Werewolf.Game
         //day vote
         void voteSystem(int _role, int _myvote, int totalVotes)
         {
-            if (_myvote !=0)
+            if (_myvote != 0)
             {
                 votedPlayer += 1; // count how many player voted
                 voting(_role, _myvote);
@@ -516,14 +472,13 @@ namespace Werewolf.Game
                 voteEnd();
             }
         }
-        
+
         #endregion
 
         #region Unity Callbacks
         public void Awake()
         {
             Instance = this;
-            _pv = this.gameObject.GetComponent<PhotonView>();
 
             //random ActorNumber 1 to 6 for assign character,
             System.Random rnd = new();
@@ -569,7 +524,7 @@ namespace Werewolf.Game
 
             //timeText = GameObject.Find("Text (TMP)-Time").GetComponent<TextMeshProUGUI>();
             //timeText.SetText(sectionTime.ToString("#.0"));
-            
+
             voteProgressBar = GameObject.Find("VoteProgressbar").GetComponent<Progressbar>();
             // You Need To Re-Set Your Total Time When Stage Is Change 
             // Otherwise The Bar Will Not Show Correctly
@@ -577,7 +532,7 @@ namespace Werewolf.Game
 
             messageText = GameObject.Find("Text (TMP)-ResultMessage").GetComponent<TextMeshProUGUI>();
             //messageText = GameObject.Find("Text (TMP)-NotifyMessage").GetComponent<TextMeshProUGUI>();
-            
+
             //messageText.SetText("Player X is dead, here is the last message!");
             sectionMessageText = GameObject.Find("Text (TMP)-SectionMessage").GetComponent<TextMeshProUGUI>();
             //sectionMessageText.SetText("Section: X Turn \nTimer: X s");
@@ -604,367 +559,10 @@ namespace Werewolf.Game
             Debug.LogWarning($" Gameflow playerList: {result}\n");
             Debug.Log("PhotonNetwork.CountOfPlayers: " + PhotonNetwork.CountOfPlayers);  // no update
 
+            // TODO: 
             if (PhotonNetwork.IsMasterClient) // && PhotonNetwork.CountOfPlayers > 1)
             {
-                //if (!syncList)
-                //{
-                //    _gm.CallRpcSyncPlayerRoleToAll(playerList, roleList);
-                //    syncList = true;
-                //}
-                playerCount = 0;
-                //playerCount = PhotonNetwork.PlayerList.Count;
-                //playerList.Clear();
-                foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
-                {
-                    //playerList.Add(player.ActorNumber);
-                    Debug.Log("Gameflow foreach player ActorNumber: " + player.ActorNumber);
-                    playerCount += 1;
-                }
-                Debug.LogWarning("Gameflow update player: " + playerCount);
-                if(playerCount >= 1)
-                {
-                    float timerToAll = sectionTime - timer;  //send section timer to all player
-                    //Debug.Log($"Timer: timerToAll: {timerToAll}, sectionTime: {sectionTime}, timer: {timer}");
-                    if (dayTurn == false)  // At night
-                    {
-                        switch (character)
-                        {
-                            case Character.SHOWROLE:
-                                sectionMessage = $"Section: SHOWROLE Turn\nTimer: {(int)timerToAll} s";
-                                _gm.CallRpcSyncPlayerRoleToAll(playerList, roleList);
-                                _gm.CallRpcStartGameToAll((int)SpeechSeq.NOTIFYTIME, 0, timerToAll, sectionTime, sectionMessage);
-                                //_gm.CallRpcGameControlToAll((int)SpeechSeq.deadTime, 0, timerToAll, sectionTime, message, sectionMessage);
-                                if (timer >= sectionTime)
-                                {
-                                    timer = 0;
-                                    character = Character.WEREWOLF;
-                                    _gm.CallRpcSyncDayNightTimeToAll(nightTime);  //sync time to daylight
-                                }
-                                break;
-                            case Character.ENDGAME:
-                                sectionMessage = $"";
-                                _gm.CallRpcSyncPlayerRoleToAll(playerList, roleList);
-                                _gm.CallRpcStartGameToAll((int)SpeechSeq.NOTIFYTIME, 0, timerToAll, sectionTime, sectionMessage);
-                                if (timer >= sectionTime)
-                                {
-                                    timer = 0;
-                                    character = Character.WEREWOLF;
-                                    _gm.CallRpcSyncDayNightTimeToAll(nightTime);  //sync time to daylight
-                                }
-                                break;
-                            case Character.WEREWOLF:
-                                timerToAll = sectionTime * 4 - timer;
-                                sectionMessage = $"Section: Werewolf Turn\nTimer: {(int)timerToAll} s";
-                                _gm.CallRpcGameControlToAll(roleList[0], roleList[1], timerToAll, sectionTime * 4, message, sectionMessage);
-                                if (playerList.Contains(roleList[0]) || playerList.Contains(roleList[1]))
-                                {
-                                    if (timer >= sectionTime * 4) // || allVoted)
-                                    {
-                                        timer = 0;
-                                        character = Character.SEER;
-                                        if (voteDict.Count > 0)  //vote for kill
-                                        {
-                                            voteEnd();
-                                        }
-                                        votedPlayer = 0;
-                                        voted = false;
-                                        allVoted = false;
-                                        Debug.Log($" Gameflow werewolf voted: {voted}, allVoted{allVoted}");
-                                    }
-                                }
-                                else if (timer >= sectionTime * 4)
-                                {
-                                    timer = 0;
-                                    character = Character.SEER;
-                                    Debug.Log($" Gameflow skip: WEREWOLF\n");
-                                }  
-                                break;
-                            case Character.SEER:
-                                sectionMessage = $"Section: Seer Turn\nTimer: {(int)timerToAll} s";
-                                _gm.CallRpcGameControlToAll(roleList[2], 0, timerToAll, sectionTime, message, sectionMessage);
-                                if (playerList.Contains(roleList[2]))
-                                {
-                                    //_gm.CallRpcSeerTime(seerTime);
-                                    if (timer >= sectionTime)
-                                    {
-                                        Debug.Log($"Gameflow received: seerTime {seerTime}, voted: {voted}");
-                                        if (seerTime == false)
-                                        {
-                                            timer = 0;
-                                            sectionTime = sectionTime / 6;
-                                            seerTime = true;
-                                            _gm.CallRpcSeerTime(seerTime);
-                                            Debug.Log($"Gameflow received: seerTime false {seerTime}, voted: {voted}");
-                                            if (voteDict.Count > 0) foreach (var dictItem in voteDict) seerSelected = dictItem.Key;
-                                            else seerSelected = 0;
-                                            if (seerSelected == roleList[0] || seerSelected == roleList[1])
-                                            {
-                                                message = $"Player {seerSelected} is Werewolf";
-                                            }
-                                            else if (seerSelected == roleList[2]) //Seer
-                                            {
-                                                message = $"Player {seerSelected} is not Werewolf";
-                                            }
-                                            else if (seerSelected == roleList[3])  //Savior
-                                            {
-                                                message = $"Player {seerSelected} is not Werewolf";
-                                            }
-                                            else if(seerSelected == roleList[4] || seerSelected == roleList[5])  //Villager
-                                            {
-                                                message = $"Player {seerSelected} is not Werewolf";
-                                            }
-                                            else message = "no one has been selected!";
-                                            voted = false;
-                                        }
-                                        else
-                                        {
-                                            timer = 0;
-                                            character = Character.SAVIOR;
-                                            seerTime = false;
-                                            sectionTime = sectionTime * 6;
-                                            _gm.CallRpcSeerTime(seerTime);
-                                            voteDict = new();  //reset dict
-                                            Debug.Log($"Gameflow received: seerTime true {seerTime}, voted: {voted}");
-                                        }
-                                    }
-                                }
-                                else if (timer >= sectionTime)
-                                {
-                                    timer = 0;
-                                    seerTime = false;
-                                    character = Character.SAVIOR;
-                                    Debug.Log($" Gameflow skip: SEER\n");
-                                }
-                                break;
-                            case Character.SAVIOR:
-                                sectionMessage = $"Section: Savior Turn\nTimer: {(int)timerToAll} s";
-                                _gm.CallRpcGameControlToAll(roleList[3], 0, timerToAll, sectionTime, message, sectionMessage);
-                                if (playerList.Contains(roleList[3]))
-                                {
-                                    if (timer >= sectionTime)
-                                    {
-                                        timer = 0;
-                                        character = Character.VILLAGER;
-                                        if (voteDict.Count > 0) foreach (var dictItem in voteDict) saviorSelected = dictItem.Key;
-                                        else saviorSelected = 0;
-                                        if (maxVotePlayer == saviorSelected || maxVotePlayer == 0)
-                                        {
-                                            maxVotePlayer = 0;
-                                            message = "no one dead tonight";
-                                        }
-                                        else
-                                        {
-                                            message = $"Player {maxVotePlayer} was dead tonight!";
-                                            Debug.Log($"Player {maxVotePlayer} was dead tonight!");
-                                            playerList.Remove(maxVotePlayer);
-                                            if (PhotonNetwork.LocalPlayer.ActorNumber == maxVotePlayer) PlayerDead();
-                                            _voteUI.ButtonDisable(maxVotePlayer);
-                                            _gm.CallRpcSyncPlayerRoleToAll(playerList, roleList);
-                                            maxVotePlayer = 0;
-                                        }
-                                        voteMessage = "";
-                                        voteDict = new();
-                                        Debug.Log($"Gameflow: votemessage {voteMessage}, message {message}");
-                                        voted = false;
-                                        _gm.CallRpcRecorderEnableToAll(playerList);
-                                    }
-                                }
-                                else if (timer >= sectionTime)
-                                {
-                                    timer = 0;
-                                    character = Character.VILLAGER;
-                                    if (maxVotePlayer > 0)
-                                    {
-                                        playerList.Remove(maxVotePlayer);
-                                        if (PhotonNetwork.LocalPlayer.ActorNumber == maxVotePlayer) PlayerDead();
-                                        message = $"Player {maxVotePlayer} was dead tonight!";
-                                        Debug.Log($"elseif Player {maxVotePlayer} was dead tonight!");
-                                        _voteUI.ButtonDisable(maxVotePlayer);
-                                        _gm.CallRpcSyncPlayerRoleToAll(playerList, roleList);
-                                        maxVotePlayer = 0;
-                                    }
-                                    voteMessage = "";
-                                    voteDict = new();
-                                    _gm.CallRpcRecorderEnableToAll(playerList);
-                                    Debug.Log($" Gameflow skip: SAVIOR\n");
-                                }
-                                break;
-                            case Character.VILLAGER:  // used to announce dead message
-                                sectionMessage = $"Section: dead time \nTimer: {(int)timerToAll} s";
-                                _gm.CallRpcGameControlToAll((int)SpeechSeq.NOTIFYTIME, 0, timerToAll, sectionTime, message, sectionMessage);
-                                if (timer >= sectionTime/2)
-                                {
-                                    timer = 0;
-                                    character = Character.WEREWOLF;
-                                    dayTurn = true;
-                                    //message = "no one dead tonight";
-                                    _gm.CallRpcSyncDayNightTimeToAll(dayTime);  //sync time to daylight
-                                    EndGameCheck();
-                                }
-                                break;
-                        }
-                    }
-                    else  //at daytime
-                    {
-                        switch (speechSeq)  // Speech in sequence from  player 1 to player 6
-                        {
-                            case SpeechSeq.PLAYER1:
-                                sectionMessage = $"Section: Player1 Turn \nTimer: {(int)timerToAll} s";
-                                if (playerList.Contains((int)SpeechSeq.PLAYER1))
-                                {
-                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER1, 0, timerToAll, sectionTime, message, sectionMessage);
-                                    if (timer >= sectionTime)
-                                    {
-                                        timer = 0;
-                                        speechSeq = SpeechSeq.PLAYER2;
-                                    }
-                                }
-                                else
-                                {
-                                    timer = 0;
-                                    speechSeq = SpeechSeq.PLAYER2;
-                                }
-                                break;
-                            case SpeechSeq.PLAYER2:
-                                sectionMessage = $"Section: Player2 Turn \nTimer: {(int)timerToAll} s";
-                                if (playerList.Contains((int)SpeechSeq.PLAYER2))
-                                {
-                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER2, 0, timerToAll, sectionTime, message, sectionMessage);
-                                    if (timer >= sectionTime)
-                                    {
-                                        timer = 0;
-                                        speechSeq = SpeechSeq.PLAYER3;
-                                    }
-                                }
-                                else
-                                {
-                                    timer = 0;
-                                    speechSeq = SpeechSeq.PLAYER3;
-                                }
-                                break;
-                            case SpeechSeq.PLAYER3:
-                                sectionMessage = $"Section: Player3 Turn \nTimer: {(int)timerToAll} s";
-                                if (playerList.Contains((int)SpeechSeq.PLAYER3))
-                                {
-                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER3, 0, timerToAll, sectionTime, message, sectionMessage);
-                                    if (timer >= sectionTime)
-                                    {
-                                        timer = 0;
-                                        speechSeq = SpeechSeq.PLAYER4;
-                                    }
-                                }
-                                else
-                                {
-                                    timer = 0;
-                                    speechSeq = SpeechSeq.PLAYER4;
-                                }
-                                break;
-                            case SpeechSeq.PLAYER4:
-                                sectionMessage = $"Section: Player4 Turn \nTimer: {(int)timerToAll} s";
-                                if (playerList.Contains((int)SpeechSeq.PLAYER4))
-                                {
-                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER4, 0, timerToAll, sectionTime, message, sectionMessage);
-                                    if (timer >= sectionTime)
-                                    {
-                                        timer = 0;
-                                        speechSeq = SpeechSeq.PLAYER5;
-                                    }
-                                }
-                                else
-                                {
-                                    timer = 0;
-                                    speechSeq = SpeechSeq.PLAYER5;
-                                }
-                                break;
-                            case SpeechSeq.PLAYER5:
-                                sectionMessage = $"Section: Player5 Turn \nTimer: {(int)timerToAll} s";
-                                if (playerList.Contains((int)SpeechSeq.PLAYER5))
-                                {
-                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER5, 0, timerToAll, sectionTime, message, sectionMessage);
-                                    if (timer >= sectionTime)
-                                    {
-                                        timer = 0;
-                                        speechSeq = SpeechSeq.PLAYER6;
-                                    }
-                                }
-                                else
-                                {
-                                    timer = 0;
-                                    speechSeq = SpeechSeq.PLAYER6;
-                                }
-                                break;
-                            case SpeechSeq.PLAYER6:
-                                sectionMessage = $"Section: Player6 Turn \nTimer: {(int)timerToAll} s";
-                                if (playerList.Contains((int)SpeechSeq.PLAYER6))
-                                {
-                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER6, 0, timerToAll, sectionTime, message, sectionMessage);
-                                    if (timer >= sectionTime)
-                                    {
-                                        timer = 0;
-                                        speechSeq = SpeechSeq.VOTETIME;
-                                    }
-                                }
-                                else
-                                {
-                                    timer = 0;
-                                    speechSeq = SpeechSeq.VOTETIME;
-                                }
-                                break;
-                            case SpeechSeq.VOTETIME:
-                                sectionMessage = $"Section: Voting Time \nTimer: {(int)timerToAll} s";
-                                _gm.CallRpcGameControlToAll((int)SpeechSeq.VOTETIME, 0, timerToAll, sectionTime, message, sectionMessage);
-                                if (timer >= sectionTime || allVoted)
-                                {
-                                    timer = 0;
-                                    speechSeq = SpeechSeq.NOTIFYTIME;
-                                    if (voteDict.Count > 0)
-                                    {
-                                        voteEnd();
-                                    }
-                                    votedPlayer = 0;
-                                    if (maxVotePlayer == 0)
-                                    {
-                                        message = $"{voteMessage}No one was ejected!";
-                                    }
-                                    else
-                                    {
-                                        message = $"{voteMessage}Player {maxVotePlayer} was ejected, here is the last message!";
-                                        playerList.Remove(maxVotePlayer);
-                                        //if(PhotonNetwork.LocalPlayer.ActorNumber == maxVotePlayer) PlayerDead();
-                                        _voteUI.ButtonDisable(maxVotePlayer);
-                                        _gm.CallRpcSyncPlayerRoleToAll(playerList, roleList);
-                                        //maxVotePlayer = 0;
-                                        Debug.Log($"Gameflow votetime: {voteMessage}Player {maxVotePlayer} was ejected, here is the last message!");
-                                    }
-                                    voteMessage = "";
-                                    Debug.Log($"Gameflow: votemessage {voteMessage}, message: {message}");
-                                    voted = false;
-                                    allVoted = false;
-                                    _gm.CallRpcRecorderControlToAll(maxVotePlayer);
-                                    //maxVotePlayer = 0;
-                                }
-                                break;
-                            case SpeechSeq.NOTIFYTIME:
-                                sectionMessage = $"Section: Ejection \nTimer: {(int)timerToAll} s";
-                                _gm.CallRpcGameControlToAll((int)SpeechSeq.NOTIFYTIME, 0, timerToAll, sectionTime, message, sectionMessage);
-                                _gm.CallRpcRecorderControlToAll(maxVotePlayer);
-                                if (timer >= sectionTime)
-                                {
-                                    timer = 0;
-                                    speechSeq = SpeechSeq.PLAYER1;
-                                    dayTurn = false;
-                                    localDead = false;
-                                    if (PhotonNetwork.LocalPlayer.ActorNumber == maxVotePlayer) PlayerDead();
-                                    maxVotePlayer = 0;
-                                    _gm.CallRpcSyncDayNightTimeToAll(nightTime); //sync time to night
-                                    _gm.CallRpcRecorderEnableToAll(playerList);
-                                    EndGameCheck();
-                                }
-                                break;
-                    }
-                    }
-                    timer += Time.deltaTime;
-                }
+                ProceedGameLogic();
             }
 
             // player action 
@@ -1001,9 +599,9 @@ namespace Werewolf.Game
                         voteUI.SetActive(false);
                         Debug.Log("Gameflow update: Night Seer Time! ");
                     }
-                    else if(!voted)
+                    else if (!voted)
                     {
-                        Debug.Log("Gameflow update: NIGHT my turn not voted! "); 
+                        Debug.Log("Gameflow update: NIGHT my turn not voted! ");
                         notifyUI.SetActive(false);
                         voteUI.SetActive(true);
                     }
@@ -1021,7 +619,7 @@ namespace Werewolf.Game
                     notifyUI.SetActive(false);
                     voteUI.SetActive(false);
                 }
-                
+
             }
             else  //at daytime
             {
@@ -1060,19 +658,365 @@ namespace Werewolf.Game
                     //speaker.SetActive(false);
                 }
             }
-            
+
         }
+
+        private void ProceedGameLogic()
+        {
+            float timerToAll = sectionTime - timer;  //send section timer to all player
+                                                     //Debug.Log($"Timer: timerToAll: {timerToAll}, sectionTime: {sectionTime}, timer: {timer}");
+            if (dayTurn == false)  // At night
+            {
+                switch (character)
+                {
+                    case Character.SHOWROLE:
+                        sectionMessage = $"Section: SHOWROLE Turn\nTimer: {(int)timerToAll} s";
+                        _gm.CallRpcSyncPlayerRoleToAll(playerList, roleList);
+                        _gm.CallRpcStartGameToAll((int)SpeechSeq.NOTIFYTIME, 0, timerToAll, sectionTime, sectionMessage);
+                        //_gm.CallRpcGameControlToAll((int)SpeechSeq.deadTime, 0, timerToAll, sectionTime, message, sectionMessage);
+                        if (timer >= sectionTime)
+                        {
+                            timer = 0;
+                            character = Character.WEREWOLF;
+                            _gm.CallRpcSyncDayNightTimeToAll(nightTime);  //sync time to daylight
+                        }
+                        break;
+                    case Character.ENDGAME:
+                        sectionMessage = $"";
+                        _gm.CallRpcSyncPlayerRoleToAll(playerList, roleList);
+                        _gm.CallRpcStartGameToAll((int)SpeechSeq.NOTIFYTIME, 0, timerToAll, sectionTime, sectionMessage);
+                        if (timer >= sectionTime)
+                        {
+                            timer = 0;
+                            character = Character.WEREWOLF;
+                            _gm.CallRpcSyncDayNightTimeToAll(nightTime);  //sync time to daylight
+                        }
+                        break;
+                    case Character.WEREWOLF:
+                        timerToAll = sectionTime * 4 - timer;
+                        sectionMessage = $"Section: Werewolf Turn\nTimer: {(int)timerToAll} s";
+                        _gm.CallRpcGameControlToAll(roleList[0], roleList[1], timerToAll, sectionTime * 4, message, sectionMessage);
+                        if (playerList.Contains(roleList[0]) || playerList.Contains(roleList[1]))
+                        {
+                            if (timer >= sectionTime * 4) // || allVoted)
+                            {
+                                timer = 0;
+                                character = Character.SEER;
+                                if (voteDict.Count > 0)  //vote for kill
+                                {
+                                    voteEnd();
+                                }
+                                votedPlayer = 0;
+                                voted = false;
+                                allVoted = false;
+                                Debug.Log($" Gameflow werewolf voted: {voted}, allVoted{allVoted}");
+                            }
+                        }
+                        else if (timer >= sectionTime * 4)
+                        {
+                            timer = 0;
+                            character = Character.SEER;
+                            Debug.Log($" Gameflow skip: WEREWOLF\n");
+                        }
+                        break;
+                    case Character.SEER:
+                        sectionMessage = $"Section: Seer Turn\nTimer: {(int)timerToAll} s";
+                        _gm.CallRpcGameControlToAll(roleList[2], 0, timerToAll, sectionTime, message, sectionMessage);
+                        if (playerList.Contains(roleList[2]))
+                        {
+                            //_gm.CallRpcSeerTime(seerTime);
+                            if (timer >= sectionTime)
+                            {
+                                Debug.Log($"Gameflow received: seerTime {seerTime}, voted: {voted}");
+                                if (seerTime == false)
+                                {
+                                    timer = 0;
+                                    sectionTime = sectionTime / 6;
+                                    seerTime = true;
+                                    _gm.CallRpcSeerTime(seerTime);
+                                    Debug.Log($"Gameflow received: seerTime false {seerTime}, voted: {voted}");
+                                    if (voteDict.Count > 0) foreach (var dictItem in voteDict) seerSelected = dictItem.Key;
+                                    else seerSelected = 0;
+                                    if (seerSelected == roleList[0] || seerSelected == roleList[1])
+                                    {
+                                        message = $"Player {seerSelected} is Werewolf";
+                                    }
+                                    else if (seerSelected == roleList[2]) //Seer
+                                    {
+                                        message = $"Player {seerSelected} is not Werewolf";
+                                    }
+                                    else if (seerSelected == roleList[3])  //Savior
+                                    {
+                                        message = $"Player {seerSelected} is not Werewolf";
+                                    }
+                                    else if (seerSelected == roleList[4] || seerSelected == roleList[5])  //Villager
+                                    {
+                                        message = $"Player {seerSelected} is not Werewolf";
+                                    }
+                                    else message = "no one has been selected!";
+                                    voted = false;
+                                }
+                                else
+                                {
+                                    timer = 0;
+                                    character = Character.SAVIOR;
+                                    seerTime = false;
+                                    sectionTime = sectionTime * 6;
+                                    _gm.CallRpcSeerTime(seerTime);
+                                    voteDict = new();  //reset dict
+                                    Debug.Log($"Gameflow received: seerTime true {seerTime}, voted: {voted}");
+                                }
+                            }
+                        }
+                        else if (timer >= sectionTime)
+                        {
+                            timer = 0;
+                            seerTime = false;
+                            character = Character.SAVIOR;
+                            Debug.Log($" Gameflow skip: SEER\n");
+                        }
+                        break;
+                    case Character.SAVIOR:
+                        sectionMessage = $"Section: Savior Turn\nTimer: {(int)timerToAll} s";
+                        _gm.CallRpcGameControlToAll(roleList[3], 0, timerToAll, sectionTime, message, sectionMessage);
+                        if (playerList.Contains(roleList[3]))
+                        {
+                            if (timer >= sectionTime)
+                            {
+                                timer = 0;
+                                character = Character.VILLAGER;
+                                if (voteDict.Count > 0) foreach (var dictItem in voteDict) saviorSelected = dictItem.Key;
+                                else saviorSelected = 0;
+                                if (maxVotePlayer == saviorSelected || maxVotePlayer == 0)
+                                {
+                                    maxVotePlayer = 0;
+                                    message = "no one dead tonight";
+                                }
+                                else
+                                {
+                                    message = $"Player {maxVotePlayer} was dead tonight!";
+                                    Debug.Log($"Player {maxVotePlayer} was dead tonight!");
+                                    playerList.Remove(maxVotePlayer);
+                                    if (PhotonNetwork.LocalPlayer.ActorNumber == maxVotePlayer) PlayerDead();
+                                    _voteUI.ButtonDisable(maxVotePlayer);
+                                    _gm.CallRpcSyncPlayerRoleToAll(playerList, roleList);
+                                    maxVotePlayer = 0;
+                                }
+                                voteMessage = "";
+                                voteDict = new();
+                                Debug.Log($"Gameflow: votemessage {voteMessage}, message {message}");
+                                voted = false;
+                                _gm.CallRpcRecorderEnableToAll(playerList);
+                            }
+                        }
+                        else if (timer >= sectionTime)
+                        {
+                            timer = 0;
+                            character = Character.VILLAGER;
+                            if (maxVotePlayer > 0)
+                            {
+                                playerList.Remove(maxVotePlayer);
+                                if (PhotonNetwork.LocalPlayer.ActorNumber == maxVotePlayer) PlayerDead();
+                                message = $"Player {maxVotePlayer} was dead tonight!";
+                                Debug.Log($"elseif Player {maxVotePlayer} was dead tonight!");
+                                _voteUI.ButtonDisable(maxVotePlayer);
+                                _gm.CallRpcSyncPlayerRoleToAll(playerList, roleList);
+                                maxVotePlayer = 0;
+                            }
+                            voteMessage = "";
+                            voteDict = new();
+                            _gm.CallRpcRecorderEnableToAll(playerList);
+                            Debug.Log($" Gameflow skip: SAVIOR\n");
+                        }
+                        break;
+                    case Character.VILLAGER:  // used to announce dead message
+                        sectionMessage = $"Section: dead time \nTimer: {(int)timerToAll} s";
+                        _gm.CallRpcGameControlToAll((int)SpeechSeq.NOTIFYTIME, 0, timerToAll, sectionTime, message, sectionMessage);
+                        if (timer >= sectionTime / 2)
+                        {
+                            timer = 0;
+                            character = Character.WEREWOLF;
+                            dayTurn = true;
+                            //message = "no one dead tonight";
+                            _gm.CallRpcSyncDayNightTimeToAll(dayTime);  //sync time to daylight
+                            EndGameCheck();
+                        }
+                        break;
+                }
+            }
+            else  //at daytime
+            {
+                switch (speechSeq)  // Speech in sequence from  player 1 to player 6
+                {
+                    case SpeechSeq.PLAYER1:
+                        sectionMessage = $"Section: Player1 Turn \nTimer: {(int)timerToAll} s";
+                        if (playerList.Contains((int)SpeechSeq.PLAYER1))
+                        {
+                            _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER1, 0, timerToAll, sectionTime, message, sectionMessage);
+                            if (timer >= sectionTime)
+                            {
+                                timer = 0;
+                                speechSeq = SpeechSeq.PLAYER2;
+                            }
+                        }
+                        else
+                        {
+                            timer = 0;
+                            speechSeq = SpeechSeq.PLAYER2;
+                        }
+                        break;
+                    case SpeechSeq.PLAYER2:
+                        sectionMessage = $"Section: Player2 Turn \nTimer: {(int)timerToAll} s";
+                        if (playerList.Contains((int)SpeechSeq.PLAYER2))
+                        {
+                            _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER2, 0, timerToAll, sectionTime, message, sectionMessage);
+                            if (timer >= sectionTime)
+                            {
+                                timer = 0;
+                                speechSeq = SpeechSeq.PLAYER3;
+                            }
+                        }
+                        else
+                        {
+                            timer = 0;
+                            speechSeq = SpeechSeq.PLAYER3;
+                        }
+                        break;
+                    case SpeechSeq.PLAYER3:
+                        sectionMessage = $"Section: Player3 Turn \nTimer: {(int)timerToAll} s";
+                        if (playerList.Contains((int)SpeechSeq.PLAYER3))
+                        {
+                            _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER3, 0, timerToAll, sectionTime, message, sectionMessage);
+                            if (timer >= sectionTime)
+                            {
+                                timer = 0;
+                                speechSeq = SpeechSeq.PLAYER4;
+                            }
+                        }
+                        else
+                        {
+                            timer = 0;
+                            speechSeq = SpeechSeq.PLAYER4;
+                        }
+                        break;
+                    case SpeechSeq.PLAYER4:
+                        sectionMessage = $"Section: Player4 Turn \nTimer: {(int)timerToAll} s";
+                        if (playerList.Contains((int)SpeechSeq.PLAYER4))
+                        {
+                            _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER4, 0, timerToAll, sectionTime, message, sectionMessage);
+                            if (timer >= sectionTime)
+                            {
+                                timer = 0;
+                                speechSeq = SpeechSeq.PLAYER5;
+                            }
+                        }
+                        else
+                        {
+                            timer = 0;
+                            speechSeq = SpeechSeq.PLAYER5;
+                        }
+                        break;
+                    case SpeechSeq.PLAYER5:
+                        sectionMessage = $"Section: Player5 Turn \nTimer: {(int)timerToAll} s";
+                        if (playerList.Contains((int)SpeechSeq.PLAYER5))
+                        {
+                            _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER5, 0, timerToAll, sectionTime, message, sectionMessage);
+                            if (timer >= sectionTime)
+                            {
+                                timer = 0;
+                                speechSeq = SpeechSeq.PLAYER6;
+                            }
+                        }
+                        else
+                        {
+                            timer = 0;
+                            speechSeq = SpeechSeq.PLAYER6;
+                        }
+                        break;
+                    case SpeechSeq.PLAYER6:
+                        sectionMessage = $"Section: Player6 Turn \nTimer: {(int)timerToAll} s";
+                        if (playerList.Contains((int)SpeechSeq.PLAYER6))
+                        {
+                            _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER6, 0, timerToAll, sectionTime, message, sectionMessage);
+                            if (timer >= sectionTime)
+                            {
+                                timer = 0;
+                                speechSeq = SpeechSeq.VOTETIME;
+                            }
+                        }
+                        else
+                        {
+                            timer = 0;
+                            speechSeq = SpeechSeq.VOTETIME;
+                        }
+                        break;
+                    case SpeechSeq.VOTETIME:
+                        sectionMessage = $"Section: Voting Time \nTimer: {(int)timerToAll} s";
+                        _gm.CallRpcGameControlToAll((int)SpeechSeq.VOTETIME, 0, timerToAll, sectionTime, message, sectionMessage);
+                        if (timer >= sectionTime || allVoted)
+                        {
+                            timer = 0;
+                            speechSeq = SpeechSeq.NOTIFYTIME;
+                            if (voteDict.Count > 0)
+                            {
+                                voteEnd();
+                            }
+                            votedPlayer = 0;
+                            if (maxVotePlayer == 0)
+                            {
+                                message = $"{voteMessage}No one was ejected!";
+                            }
+                            else
+                            {
+                                message = $"{voteMessage}Player {maxVotePlayer} was ejected, here is the last message!";
+                                playerList.Remove(maxVotePlayer);
+                                //if(PhotonNetwork.LocalPlayer.ActorNumber == maxVotePlayer) PlayerDead();
+                                _voteUI.ButtonDisable(maxVotePlayer);
+                                _gm.CallRpcSyncPlayerRoleToAll(playerList, roleList);
+                                //maxVotePlayer = 0;
+                                Debug.Log($"Gameflow votetime: {voteMessage}Player {maxVotePlayer} was ejected, here is the last message!");
+                            }
+                            voteMessage = "";
+                            Debug.Log($"Gameflow: votemessage {voteMessage}, message: {message}");
+                            voted = false;
+                            allVoted = false;
+                            _gm.CallRpcRecorderControlToAll(maxVotePlayer);
+                            //maxVotePlayer = 0;
+                        }
+                        break;
+                    case SpeechSeq.NOTIFYTIME:
+                        sectionMessage = $"Section: Ejection \nTimer: {(int)timerToAll} s";
+                        _gm.CallRpcGameControlToAll((int)SpeechSeq.NOTIFYTIME, 0, timerToAll, sectionTime, message, sectionMessage);
+                        _gm.CallRpcRecorderControlToAll(maxVotePlayer);
+                        if (timer >= sectionTime)
+                        {
+                            timer = 0;
+                            speechSeq = SpeechSeq.PLAYER1;
+                            dayTurn = false;
+                            localDead = false;
+                            if (PhotonNetwork.LocalPlayer.ActorNumber == maxVotePlayer) PlayerDead();
+                            maxVotePlayer = 0;
+                            _gm.CallRpcSyncDayNightTimeToAll(nightTime); //sync time to night
+                            _gm.CallRpcRecorderEnableToAll(playerList);
+                            EndGameCheck();
+                        }
+                        break;
+                }
+            }
+            timer += Time.deltaTime;
+        }
+
         private void StartGame()
         {
             if (PhotonNetwork.LocalPlayer.ActorNumber == roleList[0] || PhotonNetwork.LocalPlayer.ActorNumber == roleList[1])
             {
                 message = $"Hi {PhotonNetwork.LocalPlayer.NickName}, you are Player {PhotonNetwork.LocalPlayer.ActorNumber}, you role is Werewolf!\n Please kill all special roles or all villagers by voting at night or day to Win!";
             }
-            else if(PhotonNetwork.LocalPlayer.ActorNumber == roleList[2])
+            else if (PhotonNetwork.LocalPlayer.ActorNumber == roleList[2])
             {
                 message = $"Hi {PhotonNetwork.LocalPlayer.NickName}, you are Player {PhotonNetwork.LocalPlayer.ActorNumber}, you role is Seer!\n Please select a suspicious werewolf at night to confirm and help villager eject all werewolf at voting turn to Win!";
             }
-            else if(PhotonNetwork.LocalPlayer.ActorNumber == roleList[3])
+            else if (PhotonNetwork.LocalPlayer.ActorNumber == roleList[3])
             {
                 message = $"Hi {PhotonNetwork.LocalPlayer.NickName}, you are Player {PhotonNetwork.LocalPlayer.ActorNumber}, you role is Savior!\n Please select a suspicious victim at night to protect and help villager eject all werewolf at voting turn to Win!";
             }
@@ -1082,12 +1026,12 @@ namespace Werewolf.Game
             }
             messageText.SetText($"{message}");
             Debug.Log($"Gameflow start message: {message}");
-            Debug.Log($"Gameflow start message nick name: {PhotonNetwork.LocalPlayer.NickName}"); 
+            Debug.Log($"Gameflow start message nick name: {PhotonNetwork.LocalPlayer.NickName}");
         }
 
         private void EndGameCheck()
         {
-            if(!(playerList.Contains(roleList[0]) || playerList.Contains(roleList[1])))
+            if (!(playerList.Contains(roleList[0]) || playerList.Contains(roleList[1])))
             {
                 endGame = true;
                 message = $"All werewolfs dead, villagers win! ";

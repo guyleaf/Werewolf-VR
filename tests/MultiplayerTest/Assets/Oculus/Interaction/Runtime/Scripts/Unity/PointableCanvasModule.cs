@@ -23,6 +23,7 @@ using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.Assertions;
 using System;
+using System.Collections.Concurrent;
 
 namespace Oculus.Interaction
 {
@@ -82,7 +83,7 @@ namespace Oculus.Interaction
             Instance?.RemovePointerCanvas(pointerCanvas);
         }
 
-        private Dictionary<int, Pointer> _pointerMap = new Dictionary<int, Pointer>();
+        private ConcurrentDictionary<int, Pointer> _pointerMap = new ConcurrentDictionary<int, Pointer>();
         private List<RaycastResult> _raycastResultCache = new List<RaycastResult>();
         private List<Pointer> _pointersForDeletion = new List<Pointer>();
         private Dictionary<IPointableCanvas, Action<PointerEvent>> _pointerCanvasActionMap =
@@ -112,7 +113,7 @@ namespace Oculus.Interaction
                 ClearPointerSelection(pointer.PointerEventData);
                 pointer.MarkForDeletion();
                 _pointersForDeletion.Add(pointer);
-                _pointerMap.Remove(pointerID);
+                _pointerMap.TryRemove(pointerID, out var _);
             }
         }
 
@@ -126,11 +127,11 @@ namespace Oculus.Interaction
                     pointer = new Pointer(canvas);
                     pointer.PointerEventData = new PointerEventData(eventSystem);
                     pointer.SetPosition(evt.Pose.position);
-                    _pointerMap.Add(evt.Identifier, pointer);
+                    _pointerMap.TryAdd(evt.Identifier, pointer);
                     break;
                 case PointerEventType.Unhover:
                     pointer = _pointerMap[evt.Identifier];
-                    _pointerMap.Remove(evt.Identifier);
+                    _pointerMap.TryRemove(evt.Identifier, out var _);
                     pointer.MarkForDeletion();
                     _pointersForDeletion.Add(pointer);
                     break;
@@ -150,7 +151,7 @@ namespace Oculus.Interaction
                     break;
                 case PointerEventType.Cancel:
                     pointer = _pointerMap[evt.Identifier];
-                    _pointerMap.Remove(evt.Identifier);
+                    _pointerMap.TryRemove(evt.Identifier, out var _);
                     ClearPointerSelection(pointer.PointerEventData);
                     pointer.MarkForDeletion();
                     _pointersForDeletion.Add(pointer);

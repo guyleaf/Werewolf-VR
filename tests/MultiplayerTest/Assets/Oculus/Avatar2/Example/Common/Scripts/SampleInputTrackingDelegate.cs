@@ -13,7 +13,7 @@ public class SampleInputTrackingDelegate : OvrAvatarInputTrackingDelegate
 {
 
 #if USING_XR_SDK
-    private OVRCameraRig _ovrCameraRig = null;
+    private readonly OVRCameraRig _ovrCameraRig = null;
 #endif
 
 #if USING_XR_SDK

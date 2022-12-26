@@ -13,14 +13,13 @@ GameObject:
   - component: {fileID: 1762331867713484158}
   - component: {fileID: 5361939993033866985}
   - component: {fileID: 484185666568157151}
-  - component: {fileID: 1762331867713484153}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7535442053085370741
 Transform:
   m_ObjectHideFlags: 0
@@ -102,21 +101,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _creationInfo:
-    features: 1398
+    features: 1406
     renderFilters:
       lodFlags: 31
       manifestationFlags: 2
       viewFlags: 3
       subMeshInclusionFlags: 2047
-  _activeView: -1
+      highQualityFlags: 0
+  _activeView: 2
   _activeManifestation: 2
   _activeSubMeshes: 2047
   _activeSubMeshesIncludeUntyped: 1
+  _activeHighQuality: 0
   _bodyTracking: {fileID: 0}
   _facePoseBehavior: {fileID: 0}
   _eyePoseBehavior: {fileID: 0}
   _lipSync: {fileID: 0}
-  _criticalJointTypes: 
+  _criticalJointTypes: 0f0000001d00000031000000
+  _useExperimentalFeatures: -1
   _debugDrawing:
     drawTrackingPose: 0
     drawBoneNames: 0
@@ -157,30 +159,21 @@ MonoBehaviour:
   _hidden: 0
   useRenderLods: 1
   _isLocal: 1
-  _highQuality: 0
+  _gm: {fileID: 0}
+  OnUserAvatarFoundEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUserAvatarNotFoundEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _autoLoad: 1
   _assets:
   - source: 0
     path: 0
   _underscorePostfix: 1
   _overridePostfix: 
   _autoCdnRetry: 1
-  _autoCheckChanges: 0
-  _changeCheckInterval: 8
+  _autoCheckChanges: 1
+  _changeCheckInterval: 30
   _debugDrawGazePos: 0
   _debugDrawGazePosColor: {r: 1, g: 0, b: 1, a: 1}
-  shaderGrayToSolidColorBlend_: 0.7
-  shaderDesatBlend_: 0
-  shaderSolidColor_: {r: 0.12941177, g: 0.19607843, b: 0.3882353, a: 0}
---- !u!114 &1762331867713484153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1483079080672437652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d00f31856fb236141987a82513bda53b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _followOnStart: 0
