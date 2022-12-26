@@ -70,6 +70,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4870205409715631024, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
+      propertyPath: _ovrLogLevel
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870205409715631024, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: ShaderManager
       value: 
       objectReference: {fileID: 3255524752947273972}
@@ -151,7 +155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7652054073463162907, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: MotionSmoothing
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7652054073463162907, guid: f11d19b383e9e94489eacb1f0b55e99b, type: 3}
       propertyPath: SourceMorphFormat

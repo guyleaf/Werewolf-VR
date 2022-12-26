@@ -13,7 +13,7 @@ using Photon.Pun;
 using UnityEngine.Assertions;
 
 using System.Linq;
-
+using Werewolf.Game;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -22,7 +22,19 @@ namespace Werewolf.Player
 {
     public class PlayerAvatarEntity : OvrAvatarEntity, IPunObservable
     {
+        public GameManager _gm;
+        public static float deltaTime;  // get time consume of a frame
+        private float timer = 0;
+        private float recTimer = 0;
+        private bool _sync = false;
+        private bool _recSync = false;
+        private LightManager dayTimer;
+        private bool _isMasterClient;
+        private int playerCount;
+        private List<int> playerList = new(){1, 2, 3, 4, 5, 6};
+        private List<int> roleList = new();
         private const string logScope = "playerAvatar";
+
         public enum AssetSource
         {
             /// Load from one of the preloaded .zip files
@@ -90,10 +102,13 @@ namespace Werewolf.Player
 
         private PhotonView _photonView;
 
-        private readonly List<byte[]> _streamedDataList = new();
+        private List<byte[]> _streamedDataList = new();
+
+        private List<float> _streamedTimeList = new();
 
         protected override void Awake()
         {
+            
             InitializeAvatarEntity();
             base.Awake();
             // OvrAvatarEntity.Awake calls OvrAvatarEntity.CreateEntity sets eye and face tracking contexts (which asks user permission).
@@ -109,6 +124,20 @@ namespace Werewolf.Player
 
         protected virtual IEnumerator Start()
         {
+/*            OvrAvatarLog.LogError("Force the build console open...");
+            _gm = GameObject.FindObjectOfType<GameManager>();
+            dayTimer = GameObject.FindObjectOfType<LightManager>();
+            _isMasterClient = PhotonNetwork.IsMasterClient;
+            playerCount = PhotonNetwork.CountOfPlayers;
+            System.Random rnd = new();
+            var rndNum = playerList.OrderBy(item => rnd.Next());
+            OvrAvatarLog.LogError("player roleList type: " + rndNum.GetType());
+            foreach (int role in rndNum)
+            {
+                OvrAvatarLog.LogError("player role: " + role);
+                roleList.Add(role);
+            }*/
+
             if (_autoLoad)
             {
                 if (PhotonNetwork.InRoom)
@@ -166,11 +195,12 @@ namespace Werewolf.Player
         {
             SetIsLocal(true);
             _creationInfo.features = CAPI.ovrAvatar2EntityFeatures.Preset_Default | CAPI.ovrAvatar2EntityFeatures.Rendering_ObjectSpaceTransforms;
-            // var playerInputManager = FindObjectOfType<PlayerAvatarInput>();
-            // SetBodyTracking(playerInputManager);
-            // var lipSyncInput = FindObjectOfType<OvrAvatarLipSyncContext>();
-            // SetLipSync(lipSyncInput);
-            gameObject.name = $"{viewId}_LocalAvatar";
+            var playerInputManager = FindObjectOfType<PlayerAvatarInput2>();
+            SetBodyTracking(playerInputManager);
+            var lipSyncInput = FindObjectOfType<OvrAvatarLipSyncContext>();
+            SetLipSync(lipSyncInput);
+            // gameObject.name = $"{viewId}_LocalAvatar";
+            gameObject.name = $"LocalAvatar";
         }
 
         private void InitializeRemoteAvatar(int viewId)
@@ -205,7 +235,7 @@ namespace Werewolf.Player
             var path = new string[1];
             foreach (var asset in _assets)
             {
-                bool isFromZip = (asset.source == AssetSource.Zip);
+                bool isFromZip = asset.source == AssetSource.Zip;
 
                 string assetPostfix = (_underscorePostfix ? "_" : "")
                     + OvrAvatarManager.Instance.GetPlatformGLBPostfix(isFromZip)
@@ -533,18 +563,53 @@ namespace Werewolf.Player
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
+            // TODO: use a better way to check avatar state 
             if (CurrentState == AvatarState.UserAvatar)
             {
                 if (stream.IsWriting)
                 {
                     var data = RecordStreamData(activeStreamLod);
                     stream.SendNext(data);
+/*                    if (_isMasterClient)
+                    {
+                        //stream.SendNext(timer);
+                        //OvrAvatarLog.LogError("Send timer: " + timer.ToString("0.00"));
+                        stream.SendNext(_sync);
+                        //OvrAvatarLog.LogError("Send sync: " + _sync);
+                        //if (_sync)
+                        //{
+                        //    dayTimer.TimeOfDay = 0;
+                        //    _sync = false;
+                        //}
+                    }
+                    stream.SendNext(timer);
+                    OvrAvatarLog.LogError("Send timer: " + timer.ToString("0.00"));*/
                 }
                 else
                 {
                     _streamedDataList.Add((byte[])stream.ReceiveNext());
+                    // ApplyStreamData(memStream.ToArray());
+                    /*                    timer = (float)stream.ReceiveNext();
+                                        OvrAvatarLog.LogError("Received timer: " + timer.ToString("0.00"));*/
+                    //recTimer = (float)stream.ReceiveNext();
+                    //OvrAvatarLog.LogError("Received timer: " + recTimer.ToString("0.00"));
+                    //if (!_isMasterClient) { 
+                    //    _recSync = (bool)stream.ReceiveNext();
+                    //    OvrAvatarLog.LogError("Received sync: " + _recSync);
+                    //}
                 }
             }
+            // using var memStream = new MemoryStream();
+/*            if (stream.IsWriting)
+            {
+                stream.SendNext(timer);
+                OvrAvatarLog.LogError("Send timer: " + timer.ToString("0.00"));
+            }
+            else
+            {
+                this.timer = (float)stream.ReceiveNext();
+                OvrAvatarLog.LogError("Received timer: " + this.timer.ToString("0.00"));
+            }*/
         }
 
         #endregion
@@ -559,6 +624,59 @@ namespace Werewolf.Player
                 ApplyStreamData(firstBytesInList);
                 _streamedDataList.RemoveAt(0);
             }
+
+/*            if (_isMasterClient)
+            {
+                if (timer > 500  && PhotonNetwork.CurrentRoom.Players.Count > 1)
+                {
+                    timer = 0;
+                    _gm.CallRpcSendMessageToAll(750);  //timer
+                    //_gm.CallRpcSendMessageToOthers(true);  //timer
+                    //dayTimer.TimeOfDay = 0;
+                    //timer = 0;
+                }
+                
+            
+                if (playerCount != PhotonNetwork.CountOfPlayers)
+                {
+                    playerCount = PhotonNetwork.CountOfPlayers;
+                    playerList.Clear();
+                    foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
+                    {
+                        playerList.Add(player.ActorNumber);
+                    }
+                }
+
+                foreach (int role in roleList)
+                {
+                    //werewolf:
+                    _gm.CallRpcSendMessageToAll(role);
+                }
+            }
+            timer += Time.deltaTime;*/
+            /*if (_photonView.IsMine)
+            {
+                timer += Time.deltaTime;
+                OvrAvatarLog.LogError("Timer: " + timer.ToString("0.00"));  //LogInfo, LogError
+                if (timer > 30)
+                {
+                    timer = 0;
+                    _sync = true;
+                }
+            }
+            else
+            {
+                //timer = recTimer;
+                //OvrAvatarLog.LogError("recTimer: " + recTimer.ToString("0.00"));  //LogInfo, LogError
+                if (_recSync)
+                {
+                    timer = 0;
+                    dayTimer.TimeOfDay = 0;
+                    OvrAvatarLog.LogError("reset Timer: " + timer.ToString("0.00"));  //LogInfo, LogError
+                    OvrAvatarLog.LogError("reset sync: " + _recSync);
+                }
+
+            }*/
         }
 
         #endregion

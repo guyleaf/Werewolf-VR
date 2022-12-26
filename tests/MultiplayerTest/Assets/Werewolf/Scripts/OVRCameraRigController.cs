@@ -20,7 +20,7 @@ namespace Werewolf.Player
 	/// <summary>
 	/// Camera work. Follow a target
 	/// </summary>
-	public class OVRCameraRigController : MonoBehaviour
+	public class CameraController : MonoBehaviour
 	{
         #region Private Fields
 
@@ -35,7 +35,10 @@ namespace Werewolf.Player
 
         private void Start()
         {
+            var ovrCameraRig = FindObjectOfType<OVRCameraRig>();
+            Assert.IsTrue(ovrCameraRig, "The OVRCameraRig component is not found.");
 
+            _cameraTransform = ovrCameraRig.transform;
         }
 
         private void LateUpdate()
@@ -63,11 +66,6 @@ namespace Werewolf.Player
 		/// </summary>
 		public void OnStartFollowing()
 		{
-            // TODO: Change following method, not in runtime to find OVRCameraRig
-            var ovrCameraRig = FindObjectOfType<OVRCameraRig>();
-            Assert.IsTrue(ovrCameraRig, "The OVRCameraRig component is not found.");
-
-            _cameraTransform = ovrCameraRig.transform;
             _isFollowing = true;
             // we don't smooth anything, we go straight to the right camera shot
             Follow();
@@ -93,6 +91,12 @@ namespace Werewolf.Player
 			playerAvatarEntity.OnDefaultAvatarLoadedEvent.RemoveListener(OpenCamera);
             playerAvatarEntity.OnUserAvatarLoadedEvent.RemoveListener(OpenCamera);
         }
+
+		public void OnStopFollowing()
+		{
+			_isFollowing = false;
+		}
+
 		#endregion
 	}
 }

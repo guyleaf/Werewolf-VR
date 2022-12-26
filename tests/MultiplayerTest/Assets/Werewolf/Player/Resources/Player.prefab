@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _creationInfo:
-    features: 1398
+    features: 1406
     renderFilters:
       lodFlags: 31
       manifestationFlags: 2
@@ -154,11 +154,12 @@ MonoBehaviour:
   OnLoadFailedEvent:
     m_PersistentCalls:
       m_Calls: []
-  SkinningType: 3
+  SkinningType: 0
   MotionSmoothingSettings: 0
   _hidden: 0
   useRenderLods: 1
   _isLocal: 1
+  _gm: {fileID: 0}
   OnUserAvatarFoundEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -168,11 +169,11 @@ MonoBehaviour:
   _autoLoad: 1
   _assets:
   - source: 0
-    path: 5
+    path: 0
   _underscorePostfix: 1
   _overridePostfix: 
   _autoCdnRetry: 1
-  _autoCheckChanges: 0
-  _changeCheckInterval: 8
+  _autoCheckChanges: 1
+  _changeCheckInterval: 30
   _debugDrawGazePos: 0
   _debugDrawGazePosColor: {r: 1, g: 0, b: 1, a: 1}

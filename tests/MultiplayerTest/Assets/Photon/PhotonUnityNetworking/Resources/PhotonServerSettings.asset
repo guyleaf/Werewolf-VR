@@ -42,6 +42,24 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
+  - RpcSendMessage
+  - RpcSyncTimer
+  - RpcOwnTimer
+  - RpcGameControl
+  - RpcBlackScreen
+  - RpcSyncDayNight
+  - RpcEndVoted
+  - RpcSendMyVote
+  - RpcSyncDayNightTimer
+  - RpcEndGame
+  - RpcSendDeadPlayer
+  - RpcSeerTime
+  - RpcSendSectionMessage
+  - RpcRecorderEnableToAll
+  - RpcSyncPlayerRoleToAll
+  - RpcShowRole
+  - RpcStartGameToAll
+  - RpcStartGameMessageToAll
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -6,13 +6,13 @@ public class LightManager : MonoBehaviour
     [SerializeField, Header("Managed Objects")] private Light DirectionalLight = null;
     [SerializeField] private LightPreset DayNightPreset, LampPreset;
     private List<Light> SpotLights = new List<Light>();
-
-    [SerializeField, Range(0, 1440), Header("Modifiers"), Tooltip("The game's current time of day")] private float TimeOfDay;
+    public const int endDay = 10000;
+    [SerializeField, Range(0, endDay), Header("Modifiers"), Tooltip("The game's current time of day")] public float TimeOfDay;
     [SerializeField, Tooltip("Angle to rotate the sun")] private float SunDirection = 170f;
     [SerializeField, Tooltip("How fast time will go")] private float TimeMultiplier = 1;
     [SerializeField] private bool ControlLights = true;
 
-    private const float inverseDayLength = 1f / 1440f;
+    private const float inverseDayLength = 1f / (float)endDay;
 
     /// <summary>
     /// On project start, if controlLights is true, collect all non-directional lights in the current scene and place in a list
@@ -51,7 +51,7 @@ public class LightManager : MonoBehaviour
             return;
 
         TimeOfDay = TimeOfDay + (Time.deltaTime * TimeMultiplier);
-        TimeOfDay = TimeOfDay % 1440;
+        TimeOfDay = TimeOfDay % endDay;
         UpdateLighting(TimeOfDay * inverseDayLength);
     }
 

@@ -67,6 +67,7 @@ namespace Werewolf.Lobby
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                PhotonNetwork.CurrentRoom.IsOpen = false;
                 PhotonNetwork.LoadLevel(Metadata.Scenes.Game);
             }
         }
