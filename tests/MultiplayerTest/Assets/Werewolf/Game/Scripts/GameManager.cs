@@ -53,7 +53,8 @@ namespace Werewolf.Game
         private bool deadTime = false;
         private bool localDead = false;
         public bool endGame = false;
-        public float sectionTime = 15;
+        public float sectionTime;
+
         private enum Character
         {
             SHOWROLE,
@@ -153,10 +154,10 @@ namespace Werewolf.Game
             _pv.RPC("RpcSyncDayNight", RpcTarget.AllBufferedViaServer, dayTurn);  // send Day or night message to clients
         }
 
-        public void CallRpcGameControlToAll(int role1, int role2, float timerToAll, string message, string sectionMessage)
+        public void CallRpcGameControlToAll(int role1, int role2, float timerToAll, float totalTime, string message, string sectionMessage)
         {
             _pv.RPC("RpcGameControl", RpcTarget.AllViaServer, role1, role2);
-            _pv.RPC("RpcSyncTimer", RpcTarget.AllViaServer, timerToAll);
+            _pv.RPC("RpcSyncTimer", RpcTarget.AllViaServer, timerToAll, totalTime);
             _pv.RPC("RpcSendMessage", RpcTarget.AllViaServer, message);
             _pv.RPC("RpcSendSectionMessage", RpcTarget.AllViaServer, sectionMessage);
         }
@@ -220,11 +221,12 @@ namespace Werewolf.Game
         }
 
         [PunRPC] //send timer to players
-        void RpcSyncTimer(float timerToAll, PhotonMessageInfo info)
+        void RpcSyncTimer(float timerToAll, float totalTime, PhotonMessageInfo info)
         {
-            // Debug.Log($"Gameflow received timer: {timerToAll}");
-            // timeText.SetText(((int)timerToAll).ToString());
+            Debug.Log($"Gameflow received timer: {timerToAll}, totalTime: {totalTime}");
+            //timeText.SetText(((int)timerToAll).ToString());
             voteProgressBar.remainTime = timerToAll;
+            voteProgressBar.totalTime = totalTime;
         }
 
         [PunRPC] //send first message to players
@@ -240,9 +242,9 @@ namespace Werewolf.Game
         }
 
         [PunRPC] //send section message to players
-        void RpcSendSectionMessage(string _message, PhotonMessageInfo info)
+        void RpcSendSectionMessage(string _sectionMessage, PhotonMessageInfo info)
         {
-            sectionMessageText.SetText($"{_message}");
+            sectionMessageText.SetText($"{_sectionMessage}");
         }
 
         [PunRPC] //send enable recorder to player
@@ -496,7 +498,7 @@ namespace Werewolf.Game
                 Debug.Log("player role: " + role);
                 roleList.Add(role);
             }*/
-            roleList = new() { 5, 3, 1, 2, 4, 6 };
+            roleList = new() { 1, 3, 5, 2, 4, 6 };
         }
 
         // Start is called before the first frame update
@@ -507,8 +509,10 @@ namespace Werewolf.Game
             _gm = GameObject.FindObjectOfType<GameManager>();
             _voteUI = GameObject.FindObjectOfType<ButtonClick>();
             dayTimer = GameObject.FindObjectOfType<LightManager>();
+            sectionTime = 30;
             dayTime = (int)(sectionTime * 600);
             nightTime = (int)(sectionTime * 230);
+            Debug.Log($"Timer: sectionTime: {sectionTime}, timer: {timer}");
             //dayTimer.end = dayTime + nightTime;
             //_isMasterClient = PhotonNetwork.IsMasterClient;
             //playerCount = PhotonNetwork.CountOfPlayers;
@@ -524,12 +528,12 @@ namespace Werewolf.Game
             endGameUI = GameObject.Find("EndGame UI");
             blackScreen = GameObject.Find("Black Screen");
 
-            // timeText = GameObject.Find("Text (TMP)-Time").GetComponent<TextMeshProUGUI>();
-            // timeText.SetText(sectionTime.ToString("#.0"));
+            //timeText = GameObject.Find("Text (TMP)-Time").GetComponent<TextMeshProUGUI>();
+            //timeText.SetText(sectionTime.ToString("#.0"));
             
             voteProgressBar = GameObject.Find("VoteProgressbar").GetComponent<Progressbar>();
             // You Need To Re-Set Your Total Time When Stage Is Change 
-            // Otherwise The Bra Will Not Show Correctly
+            // Otherwise The Bar Will Not Show Correctly
             voteProgressBar.totalTime = 30;
 
             messageText = GameObject.Find("Text (TMP)-ResultMessage").GetComponent<TextMeshProUGUI>();
@@ -580,12 +584,8 @@ namespace Werewolf.Game
                 Debug.LogWarning("Gameflow update player: " + playerCount);
                 if(playerCount >= 1)
                 {
-/*                    if (!syncTime)
-                    {
-                        _gm.CallRpcSyncDayNightTimeToAll(nightTime); //sync time to night
-                        syncTime = true;
-                    }*/
                     float timerToAll = sectionTime - timer;  //send section timer to all player
+                    Debug.Log($"Timer: timerToAll: {timerToAll}, sectionTime: {sectionTime}, timer: {timer}");
                     if (dayTurn == false)  // At night
                     {
                         switch (character)
@@ -594,7 +594,7 @@ namespace Werewolf.Game
                                 sectionMessage = $"Section: SHOWROLE Turn\nTimer: {(int)timerToAll} s";
                                 _gm.CallRpcSyncPlayerRoleToAll(playerList, roleList);
                                 _gm.startGame();
-                                _gm.CallRpcGameControlToAll((int)SpeechSeq.deadTime, 0, timerToAll, message, sectionMessage);
+                                _gm.CallRpcGameControlToAll((int)SpeechSeq.deadTime, 0, timerToAll, sectionTime, message, sectionMessage);
                                 if (timer >= sectionTime)
                                 {
                                     timer = 0;
@@ -603,11 +603,12 @@ namespace Werewolf.Game
                                 }
                                 break;
                             case Character.WEREWOLF:
+                                timerToAll = sectionTime * 4 - timer;
                                 sectionMessage = $"Section: Werewolf Turn\nTimer: {(int)timerToAll} s";
-                                _gm.CallRpcGameControlToAll(roleList[0], roleList[1], timerToAll, message, sectionMessage);
+                                _gm.CallRpcGameControlToAll(roleList[0], roleList[1], timerToAll, sectionTime * 4, message, sectionMessage);
                                 if (playerList.Contains(roleList[0]) || playerList.Contains(roleList[1]))
                                 {
-                                    if (timer >= sectionTime) // || allVoted)
+                                    if (timer >= sectionTime * 4) // || allVoted)
                                     {
                                         timer = 0;
                                         character = Character.SEER;
@@ -621,7 +622,7 @@ namespace Werewolf.Game
                                         Debug.Log($" Gameflow werewolf voted: {voted}, allVoted{allVoted}");
                                     }
                                 }
-                                else if (timer >= sectionTime)
+                                else if (timer >= sectionTime * 4)
                                 {
                                     timer = 0;
                                     character = Character.SEER;
@@ -630,7 +631,7 @@ namespace Werewolf.Game
                                 break;
                             case Character.SEER:
                                 sectionMessage = $"Section: Seer Turn\nTimer: {(int)timerToAll} s";
-                                _gm.CallRpcGameControlToAll(roleList[2], 0, timerToAll, message, sectionMessage);
+                                _gm.CallRpcGameControlToAll(roleList[2], 0, timerToAll, sectionTime, message, sectionMessage);
                                 if (playerList.Contains(roleList[2]))
                                 {
                                     //_gm.CallRpcSeerTime(seerTime);
@@ -639,7 +640,8 @@ namespace Werewolf.Game
                                         Debug.Log($"Gameflow received: seerTime {seerTime}, voted: {voted}");
                                         if (seerTime == false)
                                         {
-                                            timer = sectionTime / 2;
+                                            timer = 0;
+                                            sectionTime = sectionTime / 2;
                                             seerTime = true;
                                             _gm.CallRpcSeerTime(seerTime);
                                             Debug.Log($"Gameflow received: seerTime false {seerTime}, voted: {voted}");
@@ -669,6 +671,7 @@ namespace Werewolf.Game
                                             timer = 0;
                                             character = Character.SAVIOR;
                                             seerTime = false;
+                                            sectionTime = sectionTime * 2;
                                             _gm.CallRpcSeerTime(seerTime);
                                             voteDict = new();  //reset dict
                                             Debug.Log($"Gameflow received: seerTime true {seerTime}, voted: {voted}");
@@ -685,7 +688,7 @@ namespace Werewolf.Game
                                 break;
                             case Character.SAVIOR:
                                 sectionMessage = $"Section: Savior Turn\nTimer: {(int)timerToAll} s";
-                                _gm.CallRpcGameControlToAll(roleList[3], 0, timerToAll, message, sectionMessage);
+                                _gm.CallRpcGameControlToAll(roleList[3], 0, timerToAll, sectionTime, message, sectionMessage);
                                 if (playerList.Contains(roleList[3]))
                                 {
                                     if (timer >= sectionTime)
@@ -730,7 +733,7 @@ namespace Werewolf.Game
                                 break;
                             case Character.VILLAGER:  // used to announce dead message
                                 sectionMessage = $"Section: dead time \nTimer: {(int)timerToAll} s";
-                                _gm.CallRpcGameControlToAll((int)SpeechSeq.deadTime, 0, timerToAll, message, sectionMessage);
+                                _gm.CallRpcGameControlToAll((int)SpeechSeq.deadTime, 0, timerToAll, sectionTime, message, sectionMessage);
                                 if (timer >= sectionTime/2)
                                 {
                                     timer = 0;
@@ -751,7 +754,7 @@ namespace Werewolf.Game
                                 sectionMessage = $"Section: Player1 Turn \nTimer: {(int)timerToAll} s";
                                 if (playerList.Contains((int)SpeechSeq.PLAYER1))
                                 {
-                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER1, 0, timerToAll, message, sectionMessage);
+                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER1, 0, timerToAll, sectionTime, message, sectionMessage);
                                     if (timer >= sectionTime)
                                     {
                                         timer = 0;
@@ -768,7 +771,7 @@ namespace Werewolf.Game
                                 sectionMessage = $"Section: Player2 Turn \nTimer: {(int)timerToAll} s";
                                 if (playerList.Contains((int)SpeechSeq.PLAYER2))
                                 {
-                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER2, 0, timerToAll, message, sectionMessage);
+                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER2, 0, timerToAll, sectionTime, message, sectionMessage);
                                     if (timer >= sectionTime)
                                     {
                                         timer = 0;
@@ -785,7 +788,7 @@ namespace Werewolf.Game
                                 sectionMessage = $"Section: Player3 Turn \nTimer: {(int)timerToAll} s";
                                 if (playerList.Contains((int)SpeechSeq.PLAYER3))
                                 {
-                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER3, 0, timerToAll, message, sectionMessage);
+                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER3, 0, timerToAll, sectionTime, message, sectionMessage);
                                     if (timer >= sectionTime)
                                     {
                                         timer = 0;
@@ -802,7 +805,7 @@ namespace Werewolf.Game
                                 sectionMessage = $"Section: Player4 Turn \nTimer: {(int)timerToAll} s";
                                 if (playerList.Contains((int)SpeechSeq.PLAYER4))
                                 {
-                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER4, 0, timerToAll, message, sectionMessage);
+                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER4, 0, timerToAll, sectionTime, message, sectionMessage);
                                     if (timer >= sectionTime)
                                     {
                                         timer = 0;
@@ -819,7 +822,7 @@ namespace Werewolf.Game
                                 sectionMessage = $"Section: Player5 Turn \nTimer: {(int)timerToAll} s";
                                 if (playerList.Contains((int)SpeechSeq.PLAYER5))
                                 {
-                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER5, 0, timerToAll, message, sectionMessage);
+                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER5, 0, timerToAll, sectionTime, message, sectionMessage);
                                     if (timer >= sectionTime)
                                     {
                                         timer = 0;
@@ -836,7 +839,7 @@ namespace Werewolf.Game
                                 sectionMessage = $"Section: Player6 Turn \nTimer: {(int)timerToAll} s";
                                 if (playerList.Contains((int)SpeechSeq.PLAYER6))
                                 {
-                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER6, 0, timerToAll, message, sectionMessage);
+                                    _gm.CallRpcGameControlToAll((int)SpeechSeq.PLAYER6, 0, timerToAll, sectionTime, message, sectionMessage);
                                     if (timer >= sectionTime)
                                     {
                                         timer = 0;
@@ -851,7 +854,7 @@ namespace Werewolf.Game
                                 break;
                             case SpeechSeq.voteTime:
                                 sectionMessage = $"Section: Voting Time \nTimer: {(int)timerToAll} s";
-                                _gm.CallRpcGameControlToAll((int)SpeechSeq.voteTime, 0, timerToAll, message, sectionMessage);
+                                _gm.CallRpcGameControlToAll((int)SpeechSeq.voteTime, 0, timerToAll, sectionTime, message, sectionMessage);
                                 if (timer >= sectionTime || allVoted)
                                 {
                                     timer = 0;
@@ -881,7 +884,7 @@ namespace Werewolf.Game
                                 break;
                             case SpeechSeq.deadTime:
                                 sectionMessage = $"Section: Ejection \nTimer: {(int)timerToAll} s";
-                                _gm.CallRpcGameControlToAll((int)SpeechSeq.deadTime, 0, timerToAll, message, sectionMessage);
+                                _gm.CallRpcGameControlToAll((int)SpeechSeq.deadTime, 0, timerToAll, sectionTime, message, sectionMessage);
                                 if (timer >= sectionTime)
                                 {
                                     timer = 0;
@@ -946,7 +949,7 @@ namespace Werewolf.Game
                 else
                 {
                     Debug.Log("Gameflow update: NIGHT not my turn! black screen set");
-                    blackScreen.SetActive(true);
+                    //blackScreen.SetActive(true);
                     notifyUI.SetActive(false);
                     voteUI.SetActive(false);
                 }

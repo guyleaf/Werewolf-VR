@@ -23,7 +23,7 @@ public class SkipSection : MonoBehaviour
 	void TaskOnClick(int num)
 	{
 		Debug.Log($"You have clicked the button! {num} ");
-		_gm.timer = _gm.sectionTime;
+		_gm.timer = _gm.sectionTime * 4;
 	}
 
 }
