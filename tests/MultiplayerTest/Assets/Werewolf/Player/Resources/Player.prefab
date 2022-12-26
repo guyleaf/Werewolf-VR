@@ -159,6 +159,13 @@ MonoBehaviour:
   _hidden: 0
   useRenderLods: 1
   _isLocal: 1
+  OnUserAvatarFoundEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUserAvatarNotFoundEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  _autoLoad: 1
   _assets:
   - source: 0
     path: 5
@@ -169,6 +176,3 @@ MonoBehaviour:
   _changeCheckInterval: 8
   _debugDrawGazePos: 0
   _debugDrawGazePosColor: {r: 1, g: 0, b: 1, a: 1}
-  shaderGrayToSolidColorBlend_: 0.7
-  shaderDesatBlend_: 0
-  shaderSolidColor_: {r: 0.12941177, g: 0.19607843, b: 0.3882353, a: 0}

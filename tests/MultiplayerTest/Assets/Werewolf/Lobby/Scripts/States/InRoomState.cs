@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Werewolf.Lobby
 {
-    public class InRoomState : BaseLobbyState
+    public sealed class InRoomState : BaseLobbyState
     {
         private void RecoverConnection(LobbyManager manager)
         {
@@ -52,6 +52,23 @@ namespace Werewolf.Lobby
             var uICollection = manager.UICollection;
             uICollection.LoadingUI.SetActive(true);
             uICollection.RoomUI.SetActive(false);
+        }
+
+        public override void OnLeaveRoom(LobbyManager manager)
+        {
+            var uICollection = manager.UICollection;
+            uICollection.LoadingUI.SetActive(true);
+            uICollection.RoomUI.SetActive(false);
+            PhotonNetwork.LeaveRoom();
+            manager.SwitchState(manager.InLobbyState);
+        }
+
+        public override void OnEnterGame(LobbyManager manager)
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.LoadLevel(Metadata.Scenes.Game);
+            }
         }
 
         public override void OnPlayerEnteredRoom(LobbyManager manager, Photon.Realtime.Player newPlayer)

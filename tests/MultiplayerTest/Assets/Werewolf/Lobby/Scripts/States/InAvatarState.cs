@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Werewolf.Lobby
 {
-    public class InAvatarState : BaseLobbyState
+    public sealed class InAvatarState : BaseLobbyState
     {
         private bool _isAvatarEditorOpened = false;
 

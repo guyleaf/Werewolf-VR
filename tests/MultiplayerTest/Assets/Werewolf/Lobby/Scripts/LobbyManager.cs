@@ -13,7 +13,7 @@ using System;
 
 namespace Werewolf.Lobby
 {
-    [System.Serializable]
+    [Serializable]
     public struct UICollection
     {
         public GameObject LoadingUI;
@@ -43,6 +43,10 @@ namespace Werewolf.Lobby
         private PlayerAvatarEntity _playerAvatarEntity;
 
         [SerializeField]
+        private byte _maxPlayers = 6;
+
+        [Header("Development Only")]
+        [SerializeField]
         private bool _jumpToLobby = false;
 
         private BaseLobbyState _state;
@@ -56,7 +60,7 @@ namespace Werewolf.Lobby
 
         public InAvatarState InAvatarState => new();
 
-        public InLobbyState InLobbyState => new();
+        public InLobbyState InLobbyState => new(_maxPlayers);
 
         public InRoomState InRoomState => new();
 
@@ -189,6 +193,16 @@ namespace Werewolf.Lobby
         public void OnCreateRoom()
         {
             _state.OnCreateRoom(this);
+        }
+
+        public void OnLeaveRoom()
+        {
+            _state.OnLeaveRoom(this);
+        }
+
+        public void OnEnterGame()
+        {
+            _state.OnEnterGame(this);
         }
 
         public void SwitchState(BaseLobbyState state)

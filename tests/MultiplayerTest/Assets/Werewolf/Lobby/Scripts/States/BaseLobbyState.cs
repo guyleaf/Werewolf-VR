@@ -62,6 +62,14 @@ namespace Werewolf.Lobby
         {
         }
 
+        public virtual void OnLeaveRoom(LobbyManager manager)
+        {
+        }
+
+        public virtual void OnEnterGame(LobbyManager manager)
+        {
+        }
+
         public virtual void OnPlayerEnteredRoom(LobbyManager manager, Photon.Realtime.Player newPlayer)
         {
         }

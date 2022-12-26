@@ -5,14 +5,15 @@ using System.Linq;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
-using Werewolf.UI;
 
 namespace Werewolf.Lobby
 {
-    public class InLobbyState : BaseLobbyState
+    public sealed class InLobbyState : BaseLobbyState
     {
         private readonly TypedLobby lobby = new("Werewolf-VR", LobbyType.Default);
         private readonly RandomNameGeneratorLibrary.PlaceNameGenerator generator = new();
+
+        private readonly byte maxPlayers;
 
         private IEnumerator Connect()
         {
@@ -28,6 +29,7 @@ namespace Werewolf.Lobby
             }
 
             PhotonNetwork.NickName = MetaPlatform.UserName;
+            PhotonNetwork.AutomaticallySyncScene = true;
         }
 
         private void RecoverConnection(LobbyManager manager)
@@ -44,6 +46,12 @@ namespace Werewolf.Lobby
             var uICollection = manager.UICollection;
             uICollection.LoadingUI.SetActive(!on);
             uICollection.LobbyUI.SetActive(on);
+        }
+
+        
+        public InLobbyState(byte maxPlayers)
+        {
+            this.maxPlayers = maxPlayers;
         }
 
         public override void Update(LobbyManager manager)
@@ -141,7 +149,7 @@ namespace Werewolf.Lobby
             var roomName = generator.GenerateRandomPlaceName();
             var roomOptions = new RoomOptions
             {
-                MaxPlayers = 6,
+                MaxPlayers = this.maxPlayers,
                 PlayerTtl = 10000,
                 EmptyRoomTtl = 100,
                 PublishUserId = true

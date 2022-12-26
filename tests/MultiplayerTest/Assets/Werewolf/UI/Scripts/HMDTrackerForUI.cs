@@ -9,7 +9,7 @@ namespace Werewolf.UI
     public class HMDTrackerForUI : MonoBehaviour
     {
         [SerializeField]
-        private Vector3 _offset = Vector3.zero;
+        private Vector3 _positionOffset = Vector3.zero;
 
         [SerializeField]
         private float _smoothTime = 0.3f;
@@ -61,7 +61,7 @@ namespace Werewolf.UI
             // TODO: Provide options for locking specific axis.
 
             var oldPosition = _canvasTransform.position;
-            var desiredPosition = _cameraTransform.TransformPoint(_offset);
+            var desiredPosition = _cameraTransform.TransformPoint(_positionOffset);
 
             // if (Mathf.Abs(desiredPosition.y - oldPosition.y) < 0.5f)
             // {
@@ -74,6 +74,7 @@ namespace Werewolf.UI
             // var desiredRotation = new Quaternion(0f, _cameraTransform.rotation.y, 0f, _cameraTransform.rotation.w);
             var desiredRotation = _cameraTransform.rotation;
             desiredRotation.x = 0f;
+            desiredRotation.z -= 0.015f;
             _canvasTransform.rotation = Quaternion.Lerp(_canvasTransform.rotation, desiredRotation, _smoothTime / Time.deltaTime);
         }
 

@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Werewolf/Scenes/Lobby.unity
+    guid: c39bb998624db744fab38eb087922939
+  - enabled: 1
     path: Assets/Werewolf/Scenes/Map1.unity
     guid: 29b378afa5fa7bd4fbc0e370cce0426c
   - enabled: 0
@@ -20,9 +23,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Oculus/Avatar2/Example/Scenes/NetworkLoopbackExample/NetworkLoopbackExample.unity
     guid: 0b80808d555493f42937ca45e5970ce7
-  - enabled: 1
-    path: Assets/Werewolf/Scenes/Lobby.unity
-    guid: c39bb998624db744fab38eb087922939
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 3593fc4ccbadf9940bb0e7e1d561759d, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1203839905691e84f8fec6ffb4eea21e, type: 2}

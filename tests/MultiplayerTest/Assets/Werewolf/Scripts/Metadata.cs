@@ -21,5 +21,10 @@ namespace Werewolf
         {
             public const string IsEnteredLobbyBefore = "IsEnteredLobbyBefore";
         }
+
+        public static class Scenes
+        {
+            public const string Game = "Map1";
+        }
     }
 }
