@@ -116,6 +116,12 @@ namespace Werewolf.Player
 			playerAvatarEntity.OnDefaultAvatarLoadedEvent.RemoveListener(OpenCamera);
             playerAvatarEntity.OnUserAvatarLoadedEvent.RemoveListener(OpenCamera);
         }
+
+		public void OnStopFollowing()
+		{
+			_isFollowing = false;
+		}
+
 		#endregion
 	}
 }

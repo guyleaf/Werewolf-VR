@@ -14,6 +14,7 @@ namespace Werewolf
 {
     public class PlayerSpawner : MonoBehaviour
     {
+        public GameObject localAvatar;
         private const string logScope = "PlayerSpawner";
 
         [Tooltip("The prefab to use for representing the player")]
@@ -86,7 +87,7 @@ namespace Werewolf
             var playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
             Debug.AssertFormat(_spawnPoints.Count >= playerCount, $"{logScope}: No spawn points available.");
             var transform = _spawnPoints[playerCount - 1].transform;
-            PhotonNetwork.Instantiate(_playerPrefab.name, transform.position + _spawnPointOffsets, transform.rotation, 0, new object[] { (Int64)userId });
+            localAvatar = PhotonNetwork.Instantiate(_playerPrefab.name, transform.position + _spawnPointOffsets, transform.rotation, 0, new object[] { (Int64)userId });
             //_gm.localAvatar = GameObject.Find($"{gameObject.name}");
             //_gm.speaker = GameObject.Find($"{gameObject.name}/Speaker(Clone)");
         }

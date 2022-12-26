@@ -58,6 +58,8 @@ MonoBehaviour:
   - RpcRecorderEnableToAll
   - RpcSyncPlayerRoleToAll
   - RpcShowRole
+  - RpcStartGameToAll
+  - RpcStartGameMessageToAll
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
