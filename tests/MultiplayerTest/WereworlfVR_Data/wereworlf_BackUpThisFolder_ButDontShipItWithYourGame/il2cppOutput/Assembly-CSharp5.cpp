@@ -9641,6 +9641,121 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2D
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
+void OnInputValueUpdatedHandler_Invoke_m7E21A5212F69EF78530575EB87C2070A5218D910_Multicast(OnInputValueUpdatedHandler_t9932DA53E5AF8C3CE296A5076CAF0211B98CCDAB* __this, String_t* ___value0, const RuntimeMethod* method)
+{
+	il2cpp_array_size_t length = __this->___delegates_13->max_length;
+	Delegate_t** delegatesToInvoke = reinterpret_cast<Delegate_t**>(__this->___delegates_13->GetAddressAtUnchecked(0));
+	for (il2cpp_array_size_t i = 0; i < length; i++)
+	{
+		OnInputValueUpdatedHandler_t9932DA53E5AF8C3CE296A5076CAF0211B98CCDAB* currentDelegate = reinterpret_cast<OnInputValueUpdatedHandler_t9932DA53E5AF8C3CE296A5076CAF0211B98CCDAB*>(delegatesToInvoke[i]);
+		typedef void (*FunctionPointerType) (RuntimeObject*, String_t*, const RuntimeMethod*);
+		((FunctionPointerType)currentDelegate->___invoke_impl_1)((Il2CppObject*)currentDelegate->___method_code_6, ___value0, reinterpret_cast<RuntimeMethod*>(currentDelegate->___method_3));
+	}
+}
+void OnInputValueUpdatedHandler_Invoke_m7E21A5212F69EF78530575EB87C2070A5218D910_OpenInst(OnInputValueUpdatedHandler_t9932DA53E5AF8C3CE296A5076CAF0211B98CCDAB* __this, String_t* ___value0, const RuntimeMethod* method)
+{
+	NullCheck(___value0);
+	typedef void (*FunctionPointerType) (String_t*, const RuntimeMethod*);
+	((FunctionPointerType)__this->___method_ptr_0)(___value0, method);
+}
+void OnInputValueUpdatedHandler_Invoke_m7E21A5212F69EF78530575EB87C2070A5218D910_OpenStatic(OnInputValueUpdatedHandler_t9932DA53E5AF8C3CE296A5076CAF0211B98CCDAB* __this, String_t* ___value0, const RuntimeMethod* method)
+{
+	typedef void (*FunctionPointerType) (String_t*, const RuntimeMethod*);
+	((FunctionPointerType)__this->___method_ptr_0)(___value0, method);
+}
+void OnInputValueUpdatedHandler_Invoke_m7E21A5212F69EF78530575EB87C2070A5218D910_OpenStaticInvoker(OnInputValueUpdatedHandler_t9932DA53E5AF8C3CE296A5076CAF0211B98CCDAB* __this, String_t* ___value0, const RuntimeMethod* method)
+{
+	InvokerActionInvoker1< String_t* >::Invoke(__this->___method_ptr_0, method, NULL, ___value0);
+}
+void OnInputValueUpdatedHandler_Invoke_m7E21A5212F69EF78530575EB87C2070A5218D910_ClosedStaticInvoker(OnInputValueUpdatedHandler_t9932DA53E5AF8C3CE296A5076CAF0211B98CCDAB* __this, String_t* ___value0, const RuntimeMethod* method)
+{
+	InvokerActionInvoker2< RuntimeObject*, String_t* >::Invoke(__this->___method_ptr_0, method, NULL, __this->___m_target_2, ___value0);
+}
+IL2CPP_EXTERN_C  void DelegatePInvokeWrapper_OnInputValueUpdatedHandler_t9932DA53E5AF8C3CE296A5076CAF0211B98CCDAB (OnInputValueUpdatedHandler_t9932DA53E5AF8C3CE296A5076CAF0211B98CCDAB* __this, String_t* ___value0, const RuntimeMethod* method)
+{
+	typedef void (DEFAULT_CALL *PInvokeFunc)(char*);
+	PInvokeFunc il2cppPInvokeFunc = reinterpret_cast<PInvokeFunc>(il2cpp_codegen_get_reverse_pinvoke_function_ptr(__this));
+	// Marshaling of parameter '___value0' to native representation
+	char* ____value0_marshaled = NULL;
+	____value0_marshaled = il2cpp_codegen_marshal_string(___value0);
+
+	// Native function invocation
+	il2cppPInvokeFunc(____value0_marshaled);
+
+	// Marshaling cleanup of parameter '___value0' native representation
+	il2cpp_codegen_marshal_free(____value0_marshaled);
+	____value0_marshaled = NULL;
+
+}
+// System.Void VRUiKits.Utils.KeyboardManager/OnInputValueUpdatedHandler::.ctor(System.Object,System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OnInputValueUpdatedHandler__ctor_m3C92B2CDC66952BF99E3FB07910E16FA0C19879E (OnInputValueUpdatedHandler_t9932DA53E5AF8C3CE296A5076CAF0211B98CCDAB* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) 
+{
+	__this->___method_ptr_0 = il2cpp_codegen_get_virtual_call_method_pointer((RuntimeMethod*)___method1);
+	__this->___method_3 = ___method1;
+	__this->___m_target_2 = ___object0;
+	Il2CppCodeGenWriteBarrier((void**)(&__this->___m_target_2), (void*)___object0);
+	int parameterCount = il2cpp_codegen_method_parameter_count((RuntimeMethod*)___method1);
+	__this->___method_code_6 = (intptr_t)__this;
+	if (MethodIsStatic((RuntimeMethod*)___method1))
+	{
+		bool isOpen = parameterCount == 1;
+		if (il2cpp_codegen_call_method_via_invoker((RuntimeMethod*)___method1))
+			if (isOpen)
+				__this->___invoke_impl_1 = (intptr_t)&OnInputValueUpdatedHandler_Invoke_m7E21A5212F69EF78530575EB87C2070A5218D910_OpenStaticInvoker;
+			else
+				__this->___invoke_impl_1 = (intptr_t)&OnInputValueUpdatedHandler_Invoke_m7E21A5212F69EF78530575EB87C2070A5218D910_ClosedStaticInvoker;
+		else
+			if (isOpen)
+				__this->___invoke_impl_1 = (intptr_t)&OnInputValueUpdatedHandler_Invoke_m7E21A5212F69EF78530575EB87C2070A5218D910_OpenStatic;
+			else
+				{
+					__this->___invoke_impl_1 = (intptr_t)__this->___method_ptr_0;
+					__this->___method_code_6 = (intptr_t)__this->___m_target_2;
+				}
+	}
+	else
+	{
+		bool isOpen = parameterCount == 0;
+		if (isOpen)
+		{
+			__this->___invoke_impl_1 = (intptr_t)&OnInputValueUpdatedHandler_Invoke_m7E21A5212F69EF78530575EB87C2070A5218D910_OpenInst;
+		}
+		else
+		{
+			if (___object0 == NULL)
+				il2cpp_codegen_raise_exception(il2cpp_codegen_get_argument_exception(NULL, "Delegate to an instance method cannot have null 'this'."), NULL);
+			__this->___invoke_impl_1 = (intptr_t)__this->___method_ptr_0;
+			__this->___method_code_6 = (intptr_t)__this->___m_target_2;
+		}
+	}
+	__this->___extra_arg_5 = (intptr_t)&OnInputValueUpdatedHandler_Invoke_m7E21A5212F69EF78530575EB87C2070A5218D910_Multicast;
+}
+// System.Void VRUiKits.Utils.KeyboardManager/OnInputValueUpdatedHandler::Invoke(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OnInputValueUpdatedHandler_Invoke_m7E21A5212F69EF78530575EB87C2070A5218D910 (OnInputValueUpdatedHandler_t9932DA53E5AF8C3CE296A5076CAF0211B98CCDAB* __this, String_t* ___value0, const RuntimeMethod* method) 
+{
+	typedef void (*FunctionPointerType) (RuntimeObject*, String_t*, const RuntimeMethod*);
+	((FunctionPointerType)__this->___invoke_impl_1)((Il2CppObject*)__this->___method_code_6, ___value0, reinterpret_cast<RuntimeMethod*>(__this->___method_3));
+}
+// System.IAsyncResult VRUiKits.Utils.KeyboardManager/OnInputValueUpdatedHandler::BeginInvoke(System.String,System.AsyncCallback,System.Object)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* OnInputValueUpdatedHandler_BeginInvoke_m0F46DFF29E338C037DB81590889796CB31AD8D07 (OnInputValueUpdatedHandler_t9932DA53E5AF8C3CE296A5076CAF0211B98CCDAB* __this, String_t* ___value0, AsyncCallback_t7FEF460CBDCFB9C5FA2EF776984778B9A4145F4C* ___callback1, RuntimeObject* ___object2, const RuntimeMethod* method) 
+{
+	void *__d_args[2] = {0};
+	__d_args[0] = ___value0;
+	return (RuntimeObject*)il2cpp_codegen_delegate_begin_invoke((RuntimeDelegate*)__this, __d_args, (RuntimeDelegate*)___callback1, (RuntimeObject*)___object2);
+}
+// System.Void VRUiKits.Utils.KeyboardManager/OnInputValueUpdatedHandler::EndInvoke(System.IAsyncResult)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void OnInputValueUpdatedHandler_EndInvoke_m78D113806C11C04C5398B2C19F278B7CF8FE2D46 (OnInputValueUpdatedHandler_t9932DA53E5AF8C3CE296A5076CAF0211B98CCDAB* __this, RuntimeObject* ___result0, const RuntimeMethod* method) 
+{
+	il2cpp_codegen_delegate_end_invoke((Il2CppAsyncResult*) ___result0, 0);
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
 // System.Void VRUiKits.Utils.KeyboardManager/<>c::.cctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__cctor_m766B25D7E83860F680FF707460D60F5C39F38AA2 (const RuntimeMethod* method) 
 {
