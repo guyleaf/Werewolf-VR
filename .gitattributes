@@ -1,6 +1,5 @@
 ## Unity ##
 * -text
-
 *.cs diff=csharp text eol=lf
 *.cginc text eol=lf
 *.shader text eol=lf
@@ -49,3 +48,4 @@
 *.lxo filter=lfs diff=lfs merge=lfs
 *.dylib filter=lfs diff=lfs merge=lfs
 *.bundle filter=lfs diff=lfs merge=lfs
+*.cubemap filter=lfs diff=lfs merge=lfs
