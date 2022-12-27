@@ -50,7 +50,10 @@ namespace Werewolf
             _spawnPoints.AddRange(GameObject.FindGameObjectsWithTag(Metadata.Tags.Respawn));
             Debug.LogFormat($"{logScope}: We are instantiating player.");
 
-            StartCoroutine(DistributeSpawnPoints());
+            if (PhotonNetwork.IsMasterClient)
+            {
+                StartCoroutine(DistributeSpawnPoints());
+            }
         }
 
         #endregion
