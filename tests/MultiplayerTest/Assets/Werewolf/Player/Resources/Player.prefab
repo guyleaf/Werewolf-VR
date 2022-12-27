@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1762331867713484158}
   - component: {fileID: 5361939993033866985}
   - component: {fileID: 484185666568157151}
+  - component: {fileID: -1909375977924349748}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -177,3 +178,15 @@ MonoBehaviour:
   _changeCheckInterval: 30
   _debugDrawGazePos: 0
   _debugDrawGazePosColor: {r: 1, g: 0, b: 1, a: 1}
+--- !u!114 &-1909375977924349748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483079080672437652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0e2fe6cd2fb0b4686e14a8ca35bfff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

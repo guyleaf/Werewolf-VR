@@ -52,7 +52,7 @@ namespace Werewolf.UI
             ResetCounter();
             leaveButton.interactable = true;
             isFull = false;
-#if DEVELOPMENT_MODE
+#if UNITY_EDITOR
             startButton.gameObject.SetActive(true);
 #else
             startButton.gameObject.SetActive(false);
@@ -68,9 +68,8 @@ namespace Werewolf.UI
             {
                 var numOfPlayers = currentRoom.PlayerCount;
                 var numOfMaxPlayers = currentRoom.MaxPlayers;
-                var color = Color.Lerp(Color.red, Color.green, numOfPlayers);
-                var colorHex = ColorUtility.ToHtmlStringRGBA(color);
-                playerText.text = $"Players: <color=#{colorHex}>{numOfPlayers}</color>/<color=green>{numOfMaxPlayers}</color>";
+
+                playerText.text = $"Players: <color=red>{numOfPlayers}</color>/<color=green>{numOfMaxPlayers}</color>";
                 roomText.text = $"Room Name: {currentRoom.Name}";
 
                 isFull = numOfPlayers == numOfMaxPlayers;

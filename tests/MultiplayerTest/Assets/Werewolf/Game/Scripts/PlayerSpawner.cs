@@ -14,16 +14,13 @@ using UnityEngine.Assertions;
 using UnityEngine.UIElements;
 using Werewolf.Game;
 
+using System.Linq;
+using Werewolf.Player;
+
 namespace Werewolf
 {
-    public class PlayerSpawner : MonoBehaviourPunCallbacks, IOnEventCallback
+    public class PlayerSpawner : MonoBehaviourPunCallbacks
     {
-        public GameObject localAvatar;
-        private static class EventCodes
-        {
-            public const byte InstantiatePlayer = 1;
-        }
-
         private const string logScope = "PlayerSpawner";
 
         [Tooltip("The prefab to use for representing the player")]
@@ -37,7 +34,7 @@ namespace Werewolf
         [Tooltip("A list of spawn points. It will collect all gameobjects with a tag 'Respawn'.")]
         [SerializeField]
         private List<GameObject> _spawnPoints = new();
-        private GameManager _gm;
+
         #region Unity Callbacks
 
         private void Awake()
@@ -53,77 +50,44 @@ namespace Werewolf
             _spawnPoints.AddRange(GameObject.FindGameObjectsWithTag(Metadata.Tags.Respawn));
             Debug.LogFormat($"{logScope}: We are instantiating player.");
 
-            StartCoroutine(GetUserIdFromOculus());
-        }
-
-        #endregion
-
-        #region Photon Callbacks
-
-        public void OnEvent(EventData photonEvent)
-        {
-            var eventCode = photonEvent.Code;
-
-            switch (eventCode)
-            {
-                case EventCodes.InstantiatePlayer:
-                    InstantiatePlayer();
-                    break;
-                default:
-                    break;
-            }
+            StartCoroutine(DistributeSpawnPoints());
         }
 
         #endregion
 
         #region Private Callbacks
 
-        private IEnumerator GetUserIdFromOculus()
+        private IEnumerator DistributeSpawnPoints()
         {
-            if (OvrPlatformInit.status == OvrPlatformInitStatus.NotStarted)
+            var playerList = PhotonNetwork.PlayerList;
+            var playerCount = playerList.Count();
+            for (var i = 0; i < playerCount; i++)
             {
-                OvrPlatformInit.InitializeOvrPlatform();
+                var player = playerList[i];
+                photonView.RPC(nameof(RpcInstantiatePlayer), player, i);
+                yield return new WaitForEndOfFrame();
             }
-
-            while (OvrPlatformInit.status != OvrPlatformInitStatus.Succeeded)
-            {
-                if (OvrPlatformInit.status == OvrPlatformInitStatus.Failed)
-                {
-                    Debug.LogError("OVR Platform failed to initialise");
-                    yield break;
-                }
-                yield return null;
-            }
-
-            var userId = "0";
-            bool getUserIdComplete = false;
-            Users.GetLoggedInUser().OnComplete(message =>
-            {
-                if (message.IsError)
-                {
-                    Debug.LogError("Getting Logged in user error " + message.GetError());
-                }
-                else
-                {
-                    userId = message.Data.ID.ToString();
-                }
-                getUserIdComplete = true;
-            });
-
-            while (!getUserIdComplete || !PhotonNetwork.InRoom) { yield return null; }
-
-            var playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
-            Debug.AssertFormat(_spawnPoints.Count >= playerCount, $"{logScope}: No spawn points available.");
-            var transform = _spawnPoints[playerCount - 1].transform;
-            localAvatar = PhotonNetwork.Instantiate(_playerPrefab.name, transform.position + _spawnPointOffsets, transform.rotation, 0, new object[] { userId });
-            //_gm.localAvatar = GameObject.Find($"{gameObject.name}");
-            //_gm.speaker = GameObject.Find($"{gameObject.name}/Speaker(Clone)");
-            // PhotonNetwork.LocalPlayer.TagObject = PhotonNetwork.Instantiate(_playerPrefab.name, transform.position + _spawnPointOffsets, transform.rotation, 0, new object[] { userId });
         }
 
-        private void InstantiatePlayer()
+        private IEnumerator InstantiatePlayer(int spawnIndex)
         {
-            // PhotonNetwork.Instantiate(_playerPrefab.name, transform.position + _spawnPointOffsets, transform.rotation, 0, new object[] { (Int64)userId });
+            if (!MetaPlatform.IsUserLoggedIn)
+            {
+                yield return MetaPlatform.Instance.LogIn();
+            }
+
+            var userId = MetaPlatform.UserId.ToString();
+            var transform = _spawnPoints[spawnIndex].transform;
+            var player = PhotonNetwork.Instantiate(_playerPrefab.name, transform.position + _spawnPointOffsets, transform.rotation, 0, new object[] { userId });
+            var camera = player.GetComponent<CameraController>();
+            camera.OnStartFollowing();
+            PhotonNetwork.LocalPlayer.TagObject = player;
+        }
+
+        [PunRPC]
+        private void RpcInstantiatePlayer(int spawnIndex, PhotonMessageInfo info)
+        {
+            StartCoroutine(InstantiatePlayer(spawnIndex));
         }
 
         #endregion
