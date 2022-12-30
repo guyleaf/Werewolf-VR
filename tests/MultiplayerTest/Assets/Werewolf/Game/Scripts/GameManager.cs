@@ -52,6 +52,7 @@ namespace Werewolf.Game
         public CameraController _playerCamera;
         public ButtonClick _voteUI;
         public GameObject voteUI, blackScreen, hudUI, notifyUI, endGameUI, localAvatar, voice;
+        public GameObject humanWin, werewolfWin;
         public Recorder recorder;
         private bool action;
         private bool syncList = false;
@@ -224,7 +225,7 @@ namespace Werewolf.Game
             numOfClientsReady++;
             if (PhotonNetwork.IsMasterClient)
             {
-                Debug.LogWarning("Number of clients ready: " + numOfClientsReady);
+                Debug.LogWarning($"Number of clients ready: {numOfClientsReady}, MaxPlayers: {PhotonNetwork.CurrentRoom.MaxPlayers}");
                 if (numOfClientsReady == PhotonNetwork.CurrentRoom.MaxPlayers)
                 {
                     CallRpcClientsAreAllReadyToAll();
@@ -409,34 +410,39 @@ namespace Werewolf.Game
         [PunRPC]  //receive vote from others to MasterClient, used in buttonClick script
         public void RpcSendMyVote(int _role, int _myvote, PhotonMessageInfo info)
         {
+            Debug.LogWarning($"Gameflow received _role: {_role}, _myvote: {_myvote}");
             if (dayTurn == false)  //night
             {
                 if (_role == roleList[0] || _role == roleList[1])
                 {
-                    if (playerList.Contains(roleList[0])) werewolfCount = 1;
-                    else werewolfCount = 0;
+                    werewolfCount = 0;
+                    if (playerList.Contains(roleList[0])) werewolfCount += 1;
                     if (playerList.Contains(roleList[1])) werewolfCount += 1;
-                    voteSystem(_role, _myvote, werewolfCount);
+                    VoteSystem(_role, _myvote, werewolfCount);
                     if (votedPlayer == werewolfCount) allVoted = true;
-                    Debug.LogWarning($"Gamflow received votedPlayer: {votedPlayer}, werewolfCount: {werewolfCount}, voted: {allVoted}");
+                    Debug.LogWarning($"Gameflow received _role: {_role}, roleList[0]: {roleList[0]}, roleList[1]: {roleList[1]}");
+                    Debug.LogWarning($"Gameflow received votedPlayer: {votedPlayer}, werewolfCount: {werewolfCount}, allVoted: {allVoted}");
                     //votedPlayer = 0;
                 }
                 else if (_role == roleList[2])
                 {
+                    Debug.LogWarning($"Gameflow received _role: {_role}, roleList[2]: {roleList[2]}");
                     voting(_role, _myvote);
                     //voted = true;
                 }
                 else if (_role == roleList[3])
                 {
+                    Debug.LogWarning($"Gameflow received _role: {_role}, roleList[3]: {roleList[3]}");
                     voting(_role, _myvote);
                     //voted = true;
                 }
+                //Debug.LogWarning($"Gameflow received votedPlayer: {votedPlayer}, werewolfCount: {werewolfCount}, voted: {allVoted}");
             }
             else  //day
             {
-                voteSystem(_role, _myvote, playerCount);
+                VoteSystem(_role, _myvote, playerCount);
                 if (votedPlayer == playerCount) allVoted = true;
-                Debug.LogWarning($"Gamflow received votedPlayer: {votedPlayer}, playerCount: {playerCount}, voted: {allVoted}");
+                Debug.LogWarning($"Gameflow received votedPlayer: {votedPlayer}, playerCount: {playerCount}, voted: {allVoted}");
                 //votedPlayer = 0;
             }
 
@@ -480,7 +486,7 @@ namespace Werewolf.Game
         }
 
         //calculate votes and eject
-        void voteEnd(int maxVote = 0, int maxVoteCount = 0)
+        void VoteEnd(int maxVote = 0, int maxVoteCount = 0)
         {
             maxVotePlayer = 0;
             foreach (var dictItem in voteDict)  //voteDict: key(player), value(voted player)
@@ -509,7 +515,7 @@ namespace Werewolf.Game
 
             //check vote over half player or not, if so, eject player
             int halfPlayer = (int)Math.Round(votedPlayer / 2.0f, 0, MidpointRounding.AwayFromZero);
-            Debug.LogWarning($"Gameflow received dict maxVote{maxVote},  halfPlayer: {halfPlayer}, maxVotePlayer: {maxVotePlayer}");
+            Debug.LogWarning($"Gameflow received dict maxVote {maxVote},  halfPlayer: {halfPlayer}, maxVotePlayer: {maxVotePlayer}");
             if (maxVote >= halfPlayer && maxVotePlayer > 0)  // player have more or equal to half of vote and maxVotePlayer != 0, eject player
             {
                 Debug.LogWarning($"Gameflow received dict Player {maxVotePlayer} have {maxVote} votes, he/she will be ejected!");
@@ -525,8 +531,9 @@ namespace Werewolf.Game
             //votedPlayer = 0;
         }
         //day vote
-        void voteSystem(int _role, int _myvote, int totalVotes)
+        void VoteSystem(int _role, int _myvote, int totalVotes)
         {
+            Debug.LogWarning($"Gameflow received vote, _role {_role},  _myvote {_myvote}, totalVotes {totalVotes}");
             if (_myvote != 0)
             {
                 votedPlayer += 1; // count how many player voted
@@ -536,7 +543,7 @@ namespace Werewolf.Game
             Debug.LogWarning($"Gameflow received dict totalVotes {totalVotes} have votedPlayer {votedPlayer}");
             if (totalVotes == votedPlayer)  // if all player voted
             {
-                voteEnd();
+                VoteEnd();
             }
         }
 
@@ -810,12 +817,13 @@ namespace Werewolf.Game
                                 character = Character.SEER;
                                 if (voteDict.Count > 0)  //vote for kill
                                 {
-                                    voteEnd();
+                                    VoteEnd();
+                                    voteDict = new();
                                 }
                                 votedPlayer = 0;
                                 voted = false;
                                 allVoted = false;
-                                Debug.Log($" Gameflow werewolf voted: {voted}, allVoted{allVoted}");
+                                Debug.Log($" Gameflow werewolf voted: {voted}, allVoted {allVoted}");
                             }
                         }
                         else if (timer >= sectionTime * 4)
@@ -824,6 +832,7 @@ namespace Werewolf.Game
                             character = Character.SEER;
                             Debug.Log($" Gameflow skip: WEREWOLF\n");
                         }
+
                         break;
                     case Character.SEER:
                         sectionMessage = $"Section: Seer Turn\nTimer: {(int)timerToAll} s";
@@ -843,6 +852,7 @@ namespace Werewolf.Game
                                     Debug.Log($"Gameflow received: seerTime false {seerTime}, voted: {voted}");
                                     if (voteDict.Count > 0) foreach (var dictItem in voteDict) seerSelected = dictItem.Key;
                                     else seerSelected = 0;
+                                    Debug.Log($"Gameflow updated: seerSelected:{seerSelected}, maxVotePlayer: {maxVotePlayer}");
                                     if (seerSelected == roleList[0] || seerSelected == roleList[1])
                                     {
                                         message = $"Player {seerSelected} is Werewolf";
@@ -861,6 +871,7 @@ namespace Werewolf.Game
                                     }
                                     else message = "no one has been selected!";
                                     voted = false;
+                                    Debug.Log($"Gameflow received message:{message}");
                                 }
                                 else
                                 {
@@ -893,15 +904,17 @@ namespace Werewolf.Game
                                 character = Character.VILLAGER;
                                 if (voteDict.Count > 0) foreach (var dictItem in voteDict) saviorSelected = dictItem.Key;
                                 else saviorSelected = 0;
+                                Debug.Log($"Gameflow updated: saviorSelected:{saviorSelected}, maxVotePlayer: {maxVotePlayer}");
                                 if (maxVotePlayer == saviorSelected || maxVotePlayer == 0)
                                 {
                                     maxVotePlayer = 0;
                                     message = "no one dead tonight";
+                                    Debug.Log($"Gameflow updated: no one dead tonight!");
                                 }
                                 else
                                 {
                                     message = $"Player {maxVotePlayer} was dead tonight!";
-                                    Debug.Log($"Player {maxVotePlayer} was dead tonight!");
+                                    Debug.Log($"Gameflow updated: Player {maxVotePlayer} was dead tonight!");
                                     playerList.Remove(maxVotePlayer);
                                     // if (PhotonNetwork.LocalPlayer.ActorNumber == maxVotePlayer) PlayerDead();
                                     _gm.CallRpcSendDeadPlayerToAll(maxVotePlayer);
@@ -911,7 +924,7 @@ namespace Werewolf.Game
                                 }
                                 voteMessage = "";
                                 voteDict = new();
-                                Debug.Log($"Gameflow: votemessage {voteMessage}, message {message}");
+                                Debug.Log($"Gameflow updated: votemessage {voteMessage}, message {message}");
                                 voted = false;
                                 _gm.CallRpcRecorderEnableToAll(playerList);
                             }
@@ -925,7 +938,7 @@ namespace Werewolf.Game
                                 playerList.Remove(maxVotePlayer);
                                 // if (PhotonNetwork.LocalPlayer.ActorNumber == maxVotePlayer) PlayerDead();
                                 message = $"Player {maxVotePlayer} was dead tonight!";
-                                Debug.Log($"elseif Player {maxVotePlayer} was dead tonight!");
+                                Debug.Log($"Gameflow updated: elseif Player {maxVotePlayer} was dead tonight!");
                                 _gm.CallRpcSendDeadPlayerToAll(maxVotePlayer);
                                 _voteUI.ButtonDisable(maxVotePlayer);
                                 _gm.CallRpcSyncPlayerRoleToAll(playerList, roleList);
@@ -1067,7 +1080,7 @@ namespace Werewolf.Game
                             speechSeq = SpeechSeq.NOTIFYTIME;
                             if (voteDict.Count > 0)
                             {
-                                voteEnd();
+                                VoteEnd();
                             }
                             votedPlayer = 0;
                             if (maxVotePlayer == 0)
@@ -1089,6 +1102,7 @@ namespace Werewolf.Game
                             voted = false;
                             allVoted = false;
                             _gm.CallRpcRecorderControlToAll(maxVotePlayer);
+                            voteDict = new();
                             //maxVotePlayer = 0;
                         }
                         break;
@@ -1146,18 +1160,24 @@ namespace Werewolf.Game
             {
                 endGame = true;
                 message = $"All werewolfs dead, villagers win! ";
+                humanWin.SetActive(false);
+                werewolfWin.SetActive(true);
                 Debug.Log("All werewolfs dead, villagers win! ");
             }
             else if (!(playerList.Contains(roleList[2]) || playerList.Contains(roleList[3])))
             {
                 endGame = true;
                 message = $"All special roles dead, werewolf win! ";
+                humanWin.SetActive(true);
+                werewolfWin.SetActive(false);
                 Debug.Log("All special roles dead, werewolf win! ");
             }
             else if (!(playerList.Contains(roleList[4]) || playerList.Contains(roleList[5])))
             {
                 endGame = true;
                 message = $"All villagers dead, werewolf win! ";
+                humanWin.SetActive(true);
+                werewolfWin.SetActive(false);
                 Debug.Log("All villagers dead, werewolf win! ");
             }
             _gm.CallRpcEndGame(endGame, message);
