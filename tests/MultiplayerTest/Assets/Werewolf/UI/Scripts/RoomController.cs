@@ -69,9 +69,6 @@ namespace Werewolf.UI
                 var numOfPlayers = currentRoom.PlayerCount;
                 var numOfMaxPlayers = currentRoom.MaxPlayers;
 
-                playerText.text = $"Players: <color=red>{numOfPlayers}</color>/<color=green>{numOfMaxPlayers}</color>";
-                roomText.text = $"Room Name: {currentRoom.Name}";
-
                 isFull = numOfPlayers == numOfMaxPlayers;
                 if (isFull)
                 {
@@ -84,6 +81,10 @@ namespace Werewolf.UI
                     leaveButton.interactable = true;
                     ResetCounter();
                 }
+
+                var color = isFull ? "green" : "red";
+                playerText.text = $"Players: <color={color}>{numOfPlayers}</color>/<color=green>{numOfMaxPlayers}</color>";
+                roomText.text = $"Room Name: {currentRoom.Name}";
             }
         }
 

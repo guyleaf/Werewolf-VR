@@ -40,6 +40,11 @@ namespace Werewolf.Lobby
         {
             Debug.Log("Enter InRoomState");
 
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.CurrentRoom.IsOpen = true;
+            }
+
             var uICollection = manager.UICollection;
             uICollection.LoadingUI.SetActive(false);
             uICollection.AvatarUI.SetActive(false);
@@ -59,7 +64,7 @@ namespace Werewolf.Lobby
             var uICollection = manager.UICollection;
             uICollection.LoadingUI.SetActive(true);
             uICollection.RoomUI.SetActive(false);
-            PhotonNetwork.LeaveRoom();
+            PhotonNetwork.LeaveRoom(false);
             manager.SwitchState(manager.InLobbyState);
         }
 

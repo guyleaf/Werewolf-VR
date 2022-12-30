@@ -1,6 +1,7 @@
 using Photon.Realtime;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Werewolf.UI
 {
@@ -28,6 +29,9 @@ namespace Werewolf.UI
         public void UpdateInfo(RoomInfo info)
         {
             this.info = info;
+            var button = GetComponent<Button>();
+            button.interactable = info.IsOpen;
+
             if (info.IsOpen)
             {
                 statusText.text = "ON";

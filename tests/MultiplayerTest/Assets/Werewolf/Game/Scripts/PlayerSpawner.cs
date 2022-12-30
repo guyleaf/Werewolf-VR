@@ -47,7 +47,8 @@ namespace Werewolf
         private void Start()
         {
             // TODO: Consider across scenes?
-            _spawnPoints.AddRange(GameObject.FindGameObjectsWithTag(Metadata.Tags.Respawn));
+            // _spawnPoints.AddRange(GameObject.FindGameObjectsWithTag(Metadata.Tags.Respawn));
+
             Debug.LogFormat($"{logScope}: We are instantiating player.");
 
             if (PhotonNetwork.IsMasterClient)
