@@ -58490,6 +58490,10 @@ extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize9268;
 const Il2CppTypeDefinitionSizes g_typeDefinitionSize9268 = { sizeof(Il2CppComObject), -1, 0, 0 };
 extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize9269;
 const Il2CppTypeDefinitionSizes g_typeDefinitionSize9269 = { sizeof(__Il2CppComDelegate_tD0DD2BBA6AC8F151D32B6DFD02F6BDA339F8DC4D), -1, 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize9270;
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize9270 = { sizeof(Il2CppFullySharedGenericAny), -1, 0, 0 };
+extern const Il2CppTypeDefinitionSizes g_typeDefinitionSize9271;
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize9271 = { sizeof(Il2CppFullySharedGenericStruct)+ sizeof(RuntimeObject), -1, 0, 0 };
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif

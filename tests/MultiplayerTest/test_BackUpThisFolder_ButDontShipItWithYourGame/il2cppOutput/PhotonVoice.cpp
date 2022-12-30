@@ -130,6 +130,17 @@ struct InterfaceFuncInvoker0
 		return ((Func)invokeData.methodPtr)(obj, invokeData.method);
 	}
 };
+template <typename T1>
+struct InvokerActionInvoker1;
+template <typename T1>
+struct InvokerActionInvoker1<T1*>
+{
+	static inline void Invoke (Il2CppMethodPointer methodPtr, const RuntimeMethod* method, void* obj, T1* p1)
+	{
+		void* params[1] = { p1 };
+		method->invoker_method(methodPtr, method, obj, params, params[0]);
+	}
+};
 
 // System.Action`1<Photon.Voice.FrameOut`1<System.Single>>
 struct Action_1_t4B5244A7D75171D94BEAE3074BB3625987C5AE84;
@@ -139,8 +150,6 @@ struct Action_1_t10DCB0C07D0D3C565CEACADC80D1152B35A45F6C;
 struct Action_1_tD73BC7FEF1671B01BA9C93C20E8C741DB8DEFCFD;
 // System.Action`1<ExitGames.Client.Photon.EventData>
 struct Action_1_t1B5115AA4265AE1C83F3EC48593F86230AF07295;
-// System.Action`1<System.Object>
-struct Action_1_t6F9EB113EB3F16226AEF811A2744F4111C116C87;
 // System.Action`1<ExitGames.Client.Photon.OperationResponse>
 struct Action_1_t3A1DE9227396F3C161EEABEA4147808A86558826;
 // System.Action`1<Photon.Realtime.RegionHandler>
@@ -153,16 +162,18 @@ struct Action_1_t310F18CB4338A2740CA701F160C62E2C3198E66A;
 struct Action_1_t8567C9C86A4F384D0A5DD2E75B392F263E3C7229;
 // System.Action`1<System.String>
 struct Action_1_t3CB5D1A819C3ED3F99E9E39F890F18633253949A;
+// System.Action`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99;
 // System.Action`2<System.Single[],System.Int32>
 struct Action_2_tC78B65C70619C5DA82BEEF8B33BCC3F4FAADB7DC;
 // System.Action`2<Photon.Realtime.ClientState,Photon.Realtime.ClientState>
 struct Action_2_t3EC2669A751FDF2FFFA36356EC41244433164490;
-// System.Action`2<System.Int32Enum,System.Int32Enum>
-struct Action_2_t43544BAAB4CC69E54228A3389CC3D57A805208A2;
-// System.Action`2<System.Object,System.Int32>
-struct Action_2_tAC461AE4F7B507965CE2E6A32853473F8C02CD75;
+// System.Action`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Action_2_t1D42C7D8DCD2DEB7C556FB3783F0EDAFF694E5E8;
 // Photon.Voice.AudioSyncBuffer`1<System.Single>
 struct AudioSyncBuffer_1_t596027B62B56951C5A88C8E64385500600018704;
+// Photon.Voice.AudioSyncBuffer`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct AudioSyncBuffer_1_tB92C8860370B545FE7E2133D5EFDEEA06EB806AD;
 // System.Collections.Generic.Dictionary`2<UnityEngine.AudioSpeakerMode,System.Int32>
 struct Dictionary_2_t90D8FB6128EC2CFF20D39F4C62B601435A7DF01B;
 // System.Collections.Generic.Dictionary`2<System.Byte,System.Int32>
@@ -183,18 +194,20 @@ struct Dictionary_2_t773C42CA748B22AFB473FAB0E78E4607520F48A6;
 struct Dictionary_2_t9FA6D82CAFC18769F7515BB51D1C56DAE09381C3;
 // System.Collections.Generic.Dictionary`2<System.Int32,System.Text.Encoding>
 struct Dictionary_2_t87EDE08B2E48F793A22DE50D6B3CC2E7EBB2DB54;
-// System.Collections.Generic.Dictionary`2<System.Int32Enum,System.Int32>
-struct Dictionary_2_tFCDE91BDD0207A67521C455FD60B9EAA6E0E6B62;
 // System.Collections.Generic.Dictionary`2<System.String,System.Globalization.CultureInfo>
 struct Dictionary_2_tE1603CE612C16451D1E56FF4D4859D4FE4087C28;
 // System.Collections.Generic.Dictionary`2<System.String,System.Object>
 struct Dictionary_2_tA348003A3C1CEFB3096E9D2A0BC7F1AC8EC4F710;
+// System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E;
 // Photon.Voice.FactoryPrimitiveArrayPool`1<System.Int16>
 struct FactoryPrimitiveArrayPool_1_tB055A6ACC068A4C7F8EFC1044FC41318895C11DC;
 // Photon.Voice.FactoryPrimitiveArrayPool`1<System.Single>
 struct FactoryPrimitiveArrayPool_1_tA8D0BF61C8C68AE9A7CB48A34477EE922C3DE819;
 // Photon.Voice.FrameOut`1<System.Single>
 struct FrameOut_1_tE1D253183799A33EB68D1E188B90F1E04064CE5D;
+// Photon.Voice.FrameOut`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct FrameOut_1_t3D7805A654659F9E3DDCC2FA050121D485076639;
 // Photon.Voice.Framer`1<System.Int16>
 struct Framer_1_t2248AB183633142E9ECB9AF3887CD0BCFBC53E49;
 // Photon.Voice.Framer`1<System.Single>
@@ -203,8 +216,8 @@ struct Framer_1_t16E279F64AC5E7960C414BC32A949C3201DE3D3F;
 struct Func_1_t7748833627297E42C5F5E294D4EF6457E839B5D7;
 // System.Func`1<Photon.Voice.IAudioDesc>
 struct Func_1_t70BAAB9F1D00714988C7BA974AF43D14365CBD68;
-// System.Func`1<System.Object>
-struct Func_1_tD5C081AE11746B200C711DD48DBEB00E3A9276D4;
+// System.Func`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Func_1_tBB8824FA8746333BFFF3AB3CE4A41B58450AF431;
 // System.Collections.Generic.HashSet`1<System.Object>
 struct HashSet_1_t2F33BEB06EEA4A872E2FAF464382422AA39AE885;
 // Photon.Voice.IAudioOut`1<System.Single>
@@ -231,8 +244,6 @@ struct List_1_t56C399170B8C69EBC036B77887F390023096B41E;
 struct List_1_t5D8363CA3072E22D576E4A89AE3FBA73294733CB;
 // System.Collections.Generic.List`1<Photon.Realtime.FriendInfo>
 struct List_1_tAF836F2F45E5E36A0C7B30A5B2C2B8FED009605F;
-// System.Collections.Generic.List`1<System.Object>
-struct List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D;
 // System.Collections.Generic.List`1<Photon.Voice.Unity.Recorder>
 struct List_1_tBFD6B7B62FB7763BC57224ED666A855ACCD05536;
 // System.Collections.Generic.List`1<Photon.Realtime.Region>
@@ -245,10 +256,14 @@ struct List_1_t823310AB4F398AE467887CC898545B689B70003F;
 struct List_1_t581C6CC97545A3BE378779CD0B20D123D6DCF950;
 // System.Collections.Generic.List`1<Photon.Realtime.TypedLobbyInfo>
 struct List_1_t9502060F404ACB6B9ACF04BFA5D0DFC653142A15;
+// System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A;
 // Photon.Voice.LocalVoiceFramed`1<System.Int16>
 struct LocalVoiceFramed_1_tFA780290F30CCA1685CC3DD270208285A1BDE685;
 // Photon.Voice.LocalVoiceFramed`1<System.Single>
 struct LocalVoiceFramed_1_t413190758F8F973F0B050AB3B41D39DB9D3EA903;
+// Photon.Voice.LocalVoiceFramed`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct LocalVoiceFramed_1_t9022133ABBB14A7AA01EFE47DAE203FEA4C40E18;
 // ExitGames.Client.Photon.Pool`1<ExitGames.Client.Photon.ParameterDictionary>
 struct Pool_1_t47635E10016E83A1E327B583977D1F043544FB48;
 // Photon.Voice.PrimitiveArrayPool`1<System.Single>
@@ -263,6 +278,8 @@ struct Queue_1_t9BA80EF655597EC91F8BA37831960B5B70540B02;
 struct TempoUp_1_t4D1A45F5BC362BF7EB40E2CE6E4D15A9569AF5B6;
 // Photon.Voice.AudioUtil/ToneAudioReader`1<System.Single>
 struct ToneAudioReader_1_tE87A7B87FE140B2223CA4C08A8D346B13D0B7646;
+// Photon.Voice.AudioUtil/ToneAudioReader`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct ToneAudioReader_1_t6E9B4C21A0AFC541DDD01FC022F857D18A5FEFD7;
 // System.Collections.Generic.Dictionary`2/ValueCollection<UnityEngine.AudioSpeakerMode,System.Int32>
 struct ValueCollection_t4F40BD3B135156B0208318B982F959CC5ADC6E38;
 // System.Collections.Generic.Dictionary`2/ValueCollection<System.String,System.Object>
@@ -283,6 +300,8 @@ struct EntryU5BU5D_t233BB24ED01E2D8D65B0651D54B8E3AD125CAF96;
 struct IProcessor_1U5BU5D_tB97140E3248149AFBFD3EA7A2255773A7B0E83CF;
 // Photon.Voice.IProcessor`1<System.Single>[]
 struct IProcessor_1U5BU5D_t4489D87F9BE5F6BA2448AAE87280B23C8585C147;
+// Photon.Voice.IProcessor`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>[]
+struct IProcessor_1U5BU5D_t6D762F9A1F2EE15169E16E475015310C7C652B5A;
 // Photon.Voice.IOS.AudioSessionCategoryOption[]
 struct AudioSessionCategoryOptionU5BU5D_tDE452C63A96D619A3AE7D328A5E074AA02BC9867;
 // System.Byte[]
@@ -321,6 +340,8 @@ struct TypeU5BU5D_t97234E1129B564EB38B8D85CAC2AD8B5B9522FFB;
 struct VoiceConnectionU5BU5D_tF90797187743A41D892BFE2C7415E8951059CB7D;
 // Photon.Voice.Unity.VoiceLogger[]
 struct VoiceLoggerU5BU5D_t2EAAFCE8EAC2A25FE8F16DDF75F3FCD04D846410;
+// Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType[]
+struct __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC;
 // System.Action
 struct Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07;
 // Photon.Voice.Unity.AndroidAudioInParameters
@@ -1018,6 +1039,7 @@ struct SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C;
 struct SpeakerU5BU5D_t219347C6659D7D19D460CE8790C5F285F35C1589;
 struct VoiceConnectionU5BU5D_tF90797187743A41D892BFE2C7415E8951059CB7D;
 struct VoiceLoggerU5BU5D_t2EAAFCE8EAC2A25FE8F16DDF75F3FCD04D846410;
+struct __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC;
 
 IL2CPP_EXTERN_C_BEGIN
 IL2CPP_EXTERN_C_END
@@ -1120,15 +1142,15 @@ struct Dictionary_2_tA348003A3C1CEFB3096E9D2A0BC7F1AC8EC4F710  : public RuntimeO
 	RuntimeObject* ____syncRoot_9;
 };
 
-// System.EmptyArray`1<System.Object>
-struct EmptyArray_1_tDF0DD7256B115243AA6BD5558417387A734240EE  : public RuntimeObject
+// System.EmptyArray`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct EmptyArray_1_tF69A5F6BAD1150A16C4C98B346D6122FE3751C80  : public RuntimeObject
 {
 };
 
-struct EmptyArray_1_tDF0DD7256B115243AA6BD5558417387A734240EE_StaticFields
+struct EmptyArray_1_tF69A5F6BAD1150A16C4C98B346D6122FE3751C80_StaticFields
 {
 	// T[] System.EmptyArray`1::Value
-	ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ___Value_0;
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* ___Value_0;
 };
 
 // Photon.Voice.FrameOut`1<System.Single>
@@ -1136,6 +1158,15 @@ struct FrameOut_1_tE1D253183799A33EB68D1E188B90F1E04064CE5D  : public RuntimeObj
 {
 	// T[] Photon.Voice.FrameOut`1::<Buf>k__BackingField
 	SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C* ___U3CBufU3Ek__BackingField_0;
+	// System.Boolean Photon.Voice.FrameOut`1::<EndOfStream>k__BackingField
+	bool ___U3CEndOfStreamU3Ek__BackingField_1;
+};
+
+// Photon.Voice.FrameOut`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct FrameOut_1_t3D7805A654659F9E3DDCC2FA050121D485076639  : public RuntimeObject
+{
+	// T[] Photon.Voice.FrameOut`1::<Buf>k__BackingField
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* ___U3CBufU3Ek__BackingField_0;
 	// System.Boolean Photon.Voice.FrameOut`1::<EndOfStream>k__BackingField
 	bool ___U3CEndOfStreamU3Ek__BackingField_1;
 };
@@ -1172,25 +1203,6 @@ struct List_1_tAF836F2F45E5E36A0C7B30A5B2C2B8FED009605F_StaticFields
 {
 	// T[] System.Collections.Generic.List`1::s_emptyArray
 	FriendInfoU5BU5D_tE89DA4050769F5D540A0B2AAD187F6560FBFB0BD* ___s_emptyArray_5;
-};
-
-// System.Collections.Generic.List`1<System.Object>
-struct List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D  : public RuntimeObject
-{
-	// T[] System.Collections.Generic.List`1::_items
-	ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ____items_1;
-	// System.Int32 System.Collections.Generic.List`1::_size
-	int32_t ____size_2;
-	// System.Int32 System.Collections.Generic.List`1::_version
-	int32_t ____version_3;
-	// System.Object System.Collections.Generic.List`1::_syncRoot
-	RuntimeObject* ____syncRoot_4;
-};
-
-struct List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D_StaticFields
-{
-	// T[] System.Collections.Generic.List`1::s_emptyArray
-	ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ___s_emptyArray_5;
 };
 
 // System.Collections.Generic.List`1<Photon.Voice.Unity.Recorder>
@@ -1248,6 +1260,25 @@ struct List_1_t581C6CC97545A3BE378779CD0B20D123D6DCF950_StaticFields
 {
 	// T[] System.Collections.Generic.List`1::s_emptyArray
 	SpeakerU5BU5D_t219347C6659D7D19D460CE8790C5F285F35C1589* ___s_emptyArray_5;
+};
+
+// System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A  : public RuntimeObject
+{
+	// T[] System.Collections.Generic.List`1::_items
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* ____items_1;
+	// System.Int32 System.Collections.Generic.List`1::_size
+	int32_t ____size_2;
+	// System.Int32 System.Collections.Generic.List`1::_version
+	int32_t ____version_3;
+	// System.Object System.Collections.Generic.List`1::_syncRoot
+	RuntimeObject* ____syncRoot_4;
+};
+
+struct List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A_StaticFields
+{
+	// T[] System.Collections.Generic.List`1::s_emptyArray
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* ___s_emptyArray_5;
 };
 
 // Photon.Voice.Unity.AndroidAudioInParameters
@@ -3377,11 +3408,6 @@ struct Action_1_t10DCB0C07D0D3C565CEACADC80D1152B35A45F6C  : public MulticastDel
 {
 };
 
-// System.Action`1<System.Object>
-struct Action_1_t6F9EB113EB3F16226AEF811A2744F4111C116C87  : public MulticastDelegate_t
-{
-};
-
 // System.Action`1<ExitGames.Client.Photon.OperationResponse>
 struct Action_1_t3A1DE9227396F3C161EEABEA4147808A86558826  : public MulticastDelegate_t
 {
@@ -3407,6 +3433,11 @@ struct Action_1_t3CB5D1A819C3ED3F99E9E39F890F18633253949A  : public MulticastDel
 {
 };
 
+// System.Action`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99  : public MulticastDelegate_t
+{
+};
+
 // System.Action`2<System.Single[],System.Int32>
 struct Action_2_tC78B65C70619C5DA82BEEF8B33BCC3F4FAADB7DC  : public MulticastDelegate_t
 {
@@ -3427,8 +3458,8 @@ struct Func_1_t70BAAB9F1D00714988C7BA974AF43D14365CBD68  : public MulticastDeleg
 {
 };
 
-// System.Func`1<System.Object>
-struct Func_1_tD5C081AE11746B200C711DD48DBEB00E3A9276D4  : public MulticastDelegate_t
+// System.Func`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Func_1_tBB8824FA8746333BFFF3AB3CE4A41B58450AF431  : public MulticastDelegate_t
 {
 };
 
@@ -4381,80 +4412,85 @@ struct ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031  : public RuntimeArr
 		m_Items[index] = value;
 	}
 };
+// Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType[]
+struct __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC  : public RuntimeArray
+{
+	ALIGN_FIELD (8) uint8_t m_Items[1];
+
+	inline uint8_t* GetAddressAt(il2cpp_array_size_t index)
+	{
+		IL2CPP_ARRAY_BOUNDS_CHECK(index, (uint32_t)(this)->max_length);
+		return m_Items + il2cpp_array_calc_byte_offset(this, index);
+	}
+	inline uint8_t* GetAddressAtUnchecked(il2cpp_array_size_t index)
+	{
+		return m_Items + il2cpp_array_calc_byte_offset(this, index);
+	}
+};
 
 
-// T UnityEngine.Component::GetComponent<System.Object>()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* Component_GetComponent_TisRuntimeObject_m7181F81CAEC2CF53F5D2BC79B7425C16E1F80D33_gshared (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, const RuntimeMethod* method) ;
-// T[] System.Array::Empty<System.Object>()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_gshared_inline (const RuntimeMethod* method) ;
-// System.Void System.Action`1<System.Single>::.ctor(System.Object,System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_1__ctor_m770CD2F8BB65F2EDA5128CA2F96D71C35B23E859_gshared (Action_1_t310F18CB4338A2740CA701F160C62E2C3198E66A* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
-// System.Void System.Func`1<System.Object>::.ctor(System.Object,System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Func_1__ctor_m663374A863E492A515BE9626B6F0E444991834E8_gshared (Func_1_tD5C081AE11746B200C711DD48DBEB00E3A9276D4* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
-// TResult System.Func`1<System.Object>::Invoke()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* Func_1_Invoke_m1412272198DFA4066C83206E5B43353AF10A2EEE_gshared_inline (Func_1_tD5C081AE11746B200C711DD48DBEB00E3A9276D4* __this, const RuntimeMethod* method) ;
-// System.Void System.Action`1<System.Single>::Invoke(T)
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_1_Invoke_mA8F89FB04FEA0F48A4F22EC84B5F9ADB2914341F_gshared_inline (Action_1_t310F18CB4338A2740CA701F160C62E2C3198E66A* __this, float ___obj0, const RuntimeMethod* method) ;
-// System.Void Photon.Voice.AudioUtil/ToneAudioReader`1<System.Single>::.ctor(System.Func`1<System.Double>,System.Double,System.Int32,System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ToneAudioReader_1__ctor_m56DC6DE7286F3B0C5D3E424216D11DADD608CF6A_gshared (ToneAudioReader_1_tE87A7B87FE140B2223CA4C08A8D346B13D0B7646* __this, Func_1_t7748833627297E42C5F5E294D4EF6457E839B5D7* ___clockSec0, double ___frequency1, int32_t ___samplingRate2, int32_t ___channels3, const RuntimeMethod* method) ;
-// System.Void System.Action`1<System.Object>::.ctor(System.Object,System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_1__ctor_m2E1DFA67718FC1A0B6E5DFEB78831FFE9C059EB4_gshared (Action_1_t6F9EB113EB3F16226AEF811A2744F4111C116C87* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
-// System.Void System.Action`1<System.Object>::Invoke(T)
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_1_Invoke_mF2422B2DD29F74CE66F791C3F68E288EC7C3DB9E_gshared_inline (Action_1_t6F9EB113EB3F16226AEF811A2744F4111C116C87* __this, RuntimeObject* ___obj0, const RuntimeMethod* method) ;
-// T[] Photon.Voice.FrameOut`1<System.Single>::get_Buf()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C* FrameOut_1_get_Buf_mD21AC55D18CE61CAEF7A037E5C825B3EBA21A0B5_gshared_inline (FrameOut_1_tE1D253183799A33EB68D1E188B90F1E04064CE5D* __this, const RuntimeMethod* method) ;
-// System.Boolean Photon.Voice.FrameOut`1<System.Single>::get_EndOfStream()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool FrameOut_1_get_EndOfStream_m0EED4A0C92E8372184F42BAFD6E82BC1AD41FEB5_gshared_inline (FrameOut_1_tE1D253183799A33EB68D1E188B90F1E04064CE5D* __this, const RuntimeMethod* method) ;
-// System.Void Photon.Voice.AudioSyncBuffer`1<System.Single>::.ctor(System.Int32,Photon.Voice.ILogger,System.String,System.Boolean)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioSyncBuffer_1__ctor_m2F4C95BC6D0EBB4A3DB7BC56F20B6CCE121B7B9B_gshared (AudioSyncBuffer_1_t596027B62B56951C5A88C8E64385500600018704* __this, int32_t ___playDelayMs0, RuntimeObject* ___logger1, String_t* ___logPrefix2, bool ___debugInfo3, const RuntimeMethod* method) ;
-// System.Void Photon.Voice.AudioSyncBuffer`1<System.Single>::Read(T[],System.Int32,System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioSyncBuffer_1_Read_mB0B8763113F25AF38B3BB8C7DBC20C6618D1F976_gshared (AudioSyncBuffer_1_t596027B62B56951C5A88C8E64385500600018704* __this, SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C* ___outBuf0, int32_t ___outChannels1, int32_t ___outSampleRate2, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1<System.Object>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, const RuntimeMethod* method) ;
-// System.Void System.Action`2<System.Int32Enum,System.Int32Enum>::.ctor(System.Object,System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_2__ctor_mEBF3FAD6176B0ABD7207DA4D7239671D972C82E6_gshared (Action_2_t43544BAAB4CC69E54228A3389CC3D57A805208A2* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
-// T System.Collections.Generic.List`1<System.Object>::get_Item(System.Int32)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* List_1_get_Item_m33561245D64798C2AB07584C0EC4F240E4839A38_gshared (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, int32_t ___index0, const RuntimeMethod* method) ;
-// System.Int32 System.Collections.Generic.List`1<System.Object>::get_Count()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t List_1_get_Count_m4407E4C389F22B8CEC282C15D56516658746C383_gshared_inline (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, const RuntimeMethod* method) ;
+// T UnityEngine.Component::GetComponent<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Component_GetComponent_TisIl2CppFullySharedGenericAny_m47CBDD147982125387F078ABBFDAAB92D397A6C2_gshared (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// T[] System.Array::Empty<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* Array_Empty_TisIl2CppFullySharedGenericAny_m244E2A51B33F845A2093F0862FBCE502E4FDD868_gshared_inline (const RuntimeMethod* method) ;
+// System.Void System.Action`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor(System.Object,System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_1__ctor_m685A441EC9FAC9D554B26FA83A08F4BEF96DFF0E_gshared (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
+// System.Void System.Func`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor(System.Object,System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Func_1__ctor_mC73A4FCEBBAB90CB7B7AB16321F3F98FBBF12596_gshared (Func_1_tBB8824FA8746333BFFF3AB3CE4A41B58450AF431* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
+// TResult System.Func`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Invoke()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Func_1_Invoke_m35CBC166F464B8A1169583672025E6D64211856C_gshared_inline (Func_1_tBB8824FA8746333BFFF3AB3CE4A41B58450AF431* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Void System.Action`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Invoke(T)
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_1_Invoke_m5A038831CEB84A7E374FE59D43444412629F833F_gshared_inline (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___obj0, const RuntimeMethod* method) ;
+// System.Void Photon.Voice.AudioUtil/ToneAudioReader`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor(System.Func`1<System.Double>,System.Double,System.Int32,System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ToneAudioReader_1__ctor_mDEB6A1E6C25F805AC43B25AA6337D52C66A41BBB_gshared (ToneAudioReader_1_t6E9B4C21A0AFC541DDD01FC022F857D18A5FEFD7* __this, Func_1_t7748833627297E42C5F5E294D4EF6457E839B5D7* ___clockSec0, double ___frequency1, int32_t ___samplingRate2, int32_t ___channels3, const RuntimeMethod* method) ;
+// T[] Photon.Voice.FrameOut`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Buf()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* FrameOut_1_get_Buf_m7BB7B509D57FF8CE6C0C8EFDC25D4F6862C2B5E5_gshared_inline (FrameOut_1_t3D7805A654659F9E3DDCC2FA050121D485076639* __this, const RuntimeMethod* method) ;
+// System.Boolean Photon.Voice.FrameOut`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_EndOfStream()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool FrameOut_1_get_EndOfStream_m6C7231C704679F86C300483ED35818B88B8D3CE0_gshared_inline (FrameOut_1_t3D7805A654659F9E3DDCC2FA050121D485076639* __this, const RuntimeMethod* method) ;
+// System.Void Photon.Voice.AudioSyncBuffer`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor(System.Int32,Photon.Voice.ILogger,System.String,System.Boolean)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioSyncBuffer_1__ctor_m2D51DBE7A16732891683F5A6AF5344D71FD6C0C3_gshared (AudioSyncBuffer_1_tB92C8860370B545FE7E2133D5EFDEEA06EB806AD* __this, int32_t ___playDelayMs0, RuntimeObject* ___logger1, String_t* ___logPrefix2, bool ___debugInfo3, const RuntimeMethod* method) ;
+// System.Void Photon.Voice.AudioSyncBuffer`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Read(T[],System.Int32,System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioSyncBuffer_1_Read_m711C1F3A979494F3C403C93EC667C32DADF46DD3_gshared (AudioSyncBuffer_1_tB92C8860370B545FE7E2133D5EFDEEA06EB806AD* __this, __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* ___outBuf0, int32_t ___outChannels1, int32_t ___outSampleRate2, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, const RuntimeMethod* method) ;
+// System.Void System.Action`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor(System.Object,System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_2__ctor_m8E9B7F6EE50FEF26FF7537F554B4F5E434F70550_gshared (Action_2_t1D42C7D8DCD2DEB7C556FB3783F0EDAFF694E5E8* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
+// T System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Item(System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void List_1_get_Item_m6E4BA37C1FB558E4A62AE4324212E45D09C5C937_gshared (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, int32_t ___index0, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Int32 System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Count()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t List_1_get_Count_mD2ED26ACAF3BAF386FFEA83893BA51DB9FD8BA30_gshared_inline (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, const RuntimeMethod* method) ;
 // T UnityEngine.Object::Instantiate<System.Object>(T)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* Object_Instantiate_TisRuntimeObject_m90A1E6C4C2B445D2E848DB75C772D1B95AAC046A_gshared (RuntimeObject* ___original0, const RuntimeMethod* method) ;
-// T[] UnityEngine.GameObject::GetComponentsInChildren<System.Object>(System.Boolean)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* GameObject_GetComponentsInChildren_TisRuntimeObject_m511E687BF2424F8D832EA2EAA459870887FB9540_gshared (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, bool ___includeInactive0, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1<System.Object>::Add(T)
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Add_mEBCF994CC3814631017F46A387B1A192ED6C85C7_gshared_inline (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, RuntimeObject* ___item0, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.List`1<System.Object>::Clear()
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Clear_m16C1F2C61FED5955F10EB36BC1CB2DF34B128994_gshared_inline (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.List`1<System.Object>::Contains(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool List_1_Contains_m4C9139C2A6B23E9343D3F87807B32C6E2CFE660D_gshared (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, RuntimeObject* ___item0, const RuntimeMethod* method) ;
-// System.Boolean System.Collections.Generic.List`1<System.Object>::Remove(T)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool List_1_Remove_m4DFA48F4CEB9169601E75FC28517C5C06EFA5AD7_gshared (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, RuntimeObject* ___item0, const RuntimeMethod* method) ;
-// T UnityEngine.GameObject::GetComponent<System.Object>()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* GameObject_GetComponent_TisRuntimeObject_m6EAED4AA356F0F48288F67899E5958792395563B_gshared (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, const RuntimeMethod* method) ;
+// T[] UnityEngine.GameObject::GetComponentsInChildren<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>(System.Boolean)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* GameObject_GetComponentsInChildren_TisIl2CppFullySharedGenericAny_mE619FF82D1099A3B6ADAD0FF12F3A05E06C32C24_gshared (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, bool ___includeInactive0, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Add(T)
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Add_mD4F3498FBD3BDD3F03CBCFB38041CBAC9C28CAFC_gshared_inline (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Clear()
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Clear_mD615D1BCB2C9DD91DAD86A2F9E5CF1DFFCBF7925_gshared_inline (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, const RuntimeMethod* method) ;
+// System.Boolean System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Contains(T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool List_1_Contains_m8DA550B703DFB328B69C4712064C667D7CA33DF1_gshared (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) ;
+// System.Boolean System.Collections.Generic.List`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Remove(T)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool List_1_Remove_m9BCE8CEF94E6F2BF8624D65214FF4F3CA686D60C_gshared (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) ;
+// T UnityEngine.GameObject::GetComponent<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameObject_GetComponent_TisIl2CppFullySharedGenericAny_m1122128E432233EB251AECF734E2B72A42A2C194_gshared (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
 // T[] UnityEngine.Object::FindObjectsOfType<System.Object>()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* Object_FindObjectsOfType_TisRuntimeObject_m0B4DF4B8AB4C71E0F471BC9D0440B40844DA221D_gshared (const RuntimeMethod* method) ;
 // T UnityEngine.GameObject::AddComponent<System.Object>()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* GameObject_AddComponent_TisRuntimeObject_m69B93700FACCF372F5753371C6E8FB780800B824_gshared (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, const RuntimeMethod* method) ;
-// TValue System.Collections.Generic.Dictionary`2<System.Int32Enum,System.Int32>::get_Item(TKey)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Dictionary_2_get_Item_m978CAD767E166B6BD2E111732F513A1398B0B974_gshared (Dictionary_2_tFCDE91BDD0207A67521C455FD60B9EAA6E0E6B62* __this, int32_t ___key0, const RuntimeMethod* method) ;
-// System.Void Photon.Voice.LocalVoiceFramed`1<System.Int16>::AddPostProcessor(Photon.Voice.IProcessor`1<T>[])
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LocalVoiceFramed_1_AddPostProcessor_mBA7A7E3F2CCA1B9C2C71BB4C64A0C3ACEFF35FDE_gshared (LocalVoiceFramed_1_tFA780290F30CCA1685CC3DD270208285A1BDE685* __this, IProcessor_1U5BU5D_tB97140E3248149AFBFD3EA7A2255773A7B0E83CF* ___processors0, const RuntimeMethod* method) ;
-// System.Void Photon.Voice.LocalVoiceFramed`1<System.Int16>::RemoveProcessor(Photon.Voice.IProcessor`1<T>[])
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LocalVoiceFramed_1_RemoveProcessor_mEAA62DC1B7CA51D2660E696471777E3426DDA196_gshared (LocalVoiceFramed_1_tFA780290F30CCA1685CC3DD270208285A1BDE685* __this, IProcessor_1U5BU5D_tB97140E3248149AFBFD3EA7A2255773A7B0E83CF* ___processors0, const RuntimeMethod* method) ;
+// TValue System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Item(TKey)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_get_Item_m2E96908E9716367701CD737FA54C884EB2A8C3EA_gshared (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___key0, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Void Photon.Voice.LocalVoiceFramed`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::AddPostProcessor(Photon.Voice.IProcessor`1<T>[])
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LocalVoiceFramed_1_AddPostProcessor_mEC0081F9A56CB2DE47AE437A8ADC4C8EADAC2E0F_gshared (LocalVoiceFramed_1_t9022133ABBB14A7AA01EFE47DAE203FEA4C40E18* __this, IProcessor_1U5BU5D_t6D762F9A1F2EE15169E16E475015310C7C652B5A* ___processors0, const RuntimeMethod* method) ;
+// System.Void Photon.Voice.LocalVoiceFramed`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::RemoveProcessor(Photon.Voice.IProcessor`1<T>[])
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LocalVoiceFramed_1_RemoveProcessor_m1B5E1BA8C50F664F1CA2892AF561A4C9D0646AB4_gshared (LocalVoiceFramed_1_t9022133ABBB14A7AA01EFE47DAE203FEA4C40E18* __this, IProcessor_1U5BU5D_t6D762F9A1F2EE15169E16E475015310C7C652B5A* ___processors0, const RuntimeMethod* method) ;
 // T UnityEngine.Object::FindObjectOfType<System.Object>()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* Object_FindObjectOfType_TisRuntimeObject_m02DFBF011F3B59F777A5E521DB2A116DD496E968_gshared (const RuntimeMethod* method) ;
-// System.Void System.Action`2<System.Object,System.Int32>::.ctor(System.Object,System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_2__ctor_m07C6392BB276FFCCFD4E495842992EA26FA44882_gshared (Action_2_tAC461AE4F7B507965CE2E6A32853473F8C02CD75* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Int32Enum,System.Int32>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2__ctor_m2E03E419C7EAE999D440A625A0C6110AF2EB0F86_gshared (Dictionary_2_tFCDE91BDD0207A67521C455FD60B9EAA6E0E6B62* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Int32Enum,System.Int32>::Add(TKey,TValue)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_Add_mDDC87F07779BF25B3A4D29BE8B2C0992C42ADFDD_gshared (Dictionary_2_tFCDE91BDD0207A67521C455FD60B9EAA6E0E6B62* __this, int32_t ___key0, int32_t ___value1, const RuntimeMethod* method) ;
-// System.Void Photon.Voice.LocalVoiceFramed`1<System.Single>::AddPostProcessor(Photon.Voice.IProcessor`1<T>[])
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LocalVoiceFramed_1_AddPostProcessor_mA107426BC5100CB1EAD5AD61A7CDD6932A580DEF_gshared (LocalVoiceFramed_1_t413190758F8F973F0B050AB3B41D39DB9D3EA903* __this, IProcessor_1U5BU5D_t4489D87F9BE5F6BA2448AAE87280B23C8585C147* ___processors0, const RuntimeMethod* method) ;
-// System.Void System.Action`1<System.Boolean>::Invoke(T)
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_1_Invoke_m69C8773D6967F3B224777183E24EA621CE056F8F_gshared_inline (Action_1_t10DCB0C07D0D3C565CEACADC80D1152B35A45F6C* __this, bool ___obj0, const RuntimeMethod* method) ;
-// T[] UnityEngine.Component::GetComponents<System.Object>()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* Component_GetComponents_TisRuntimeObject_m35447B0B07F9C06A1AF846E482EC6FEB09D2436F_gshared (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2__ctor_m7745B6ED71E47C95E1BFCE647C4F026A404C668F_gshared (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E* __this, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Add(TKey,TValue)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_Add_m54D479280472DEA042DB3933AF547E666B017333_gshared (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___key0, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___value1, const RuntimeMethod* method) ;
+// T[] UnityEngine.Component::GetComponents<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* Component_GetComponents_TisIl2CppFullySharedGenericAny_mD0F0A24D99D5E839646E6037D7E2DE05A9E1B67D_gshared (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, const RuntimeMethod* method) ;
 
 // System.Boolean System.String::IsNullOrEmpty(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool String_IsNullOrEmpty_mEA9E3FB005AC28FE02E69FCF95A7B8456192B478 (String_t* ___value0, const RuntimeMethod* method) ;
@@ -4483,14 +4519,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VoiceComponent_Awake_m6AC34084B90505F406
 // T UnityEngine.Component::GetComponent<Photon.Voice.Unity.Recorder>()
 inline Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* Component_GetComponent_TisRecorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C_mECA6EB5AAF0FDD9910AD00AE2EEAC68986BB1395 (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, const RuntimeMethod* method)
 {
-	return ((  Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* (*) (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*, const RuntimeMethod*))Component_GetComponent_TisRuntimeObject_m7181F81CAEC2CF53F5D2BC79B7425C16E1F80D33_gshared)(__this, method);
+	Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* il2cppRetVal;
+	((  void (*) (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Component_GetComponent_TisIl2CppFullySharedGenericAny_m47CBDD147982125387F078ABBFDAAB92D397A6C2_gshared)((Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // Photon.Voice.ILogger Photon.Voice.Unity.VoiceComponent::get_Logger()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* VoiceComponent_get_Logger_mC64FBDB8EB5AF8DA71142ECE8B6963BAC484FC40 (VoiceComponent_t453054E310D019B00B0571863F2C5E66DA8629FF* __this, const RuntimeMethod* method) ;
 // T[] System.Array::Empty<System.Object>()
 inline ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_inline (const RuntimeMethod* method)
 {
-	return ((  ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* (*) (const RuntimeMethod*))Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_gshared_inline)(method);
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* il2cppRetVal = ((  __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* (*) (const RuntimeMethod*))Array_Empty_TisIl2CppFullySharedGenericAny_m244E2A51B33F845A2093F0862FBCE502E4FDD868_gshared_inline)(method);
+	return (ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918*)il2cppRetVal;
 }
 // System.Void System.Action::.ctor(System.Object,System.IntPtr)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action__ctor_mBDC7B0B4A3F583B64C2896F01BDED360772F67DC (Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
@@ -4557,7 +4596,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass117_0__ctor_m975F31
 // System.Void System.Action`1<System.Single>::.ctor(System.Object,System.IntPtr)
 inline void Action_1__ctor_m770CD2F8BB65F2EDA5128CA2F96D71C35B23E859 (Action_1_t310F18CB4338A2740CA701F160C62E2C3198E66A* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Action_1_t310F18CB4338A2740CA701F160C62E2C3198E66A*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_1__ctor_m770CD2F8BB65F2EDA5128CA2F96D71C35B23E859_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_1__ctor_m685A441EC9FAC9D554B26FA83A08F4BEF96DFF0E_gshared)((Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*)__this, ___object0, ___method1, method);
 }
 // System.Void Photon.Voice.LocalVoice::RemoveSelf()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LocalVoice_RemoveSelf_m1A612ACE8DBA1D5A9F539ECD1919B2A2FAB20F43 (LocalVoice_t4FB5D04C1B69E04C83BD6A67C9B63F6A84BA14F5* __this, const RuntimeMethod* method) ;
@@ -4606,14 +4645,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Func_1_t70BAAB9F1D00714988C7BA974AF43D14365CB
 // System.Void System.Func`1<Photon.Voice.IAudioDesc>::.ctor(System.Object,System.IntPtr)
 inline void Func_1__ctor_m642C03B0FFBFB11F37FBF10A30C92712FEB07017 (Func_1_t70BAAB9F1D00714988C7BA974AF43D14365CBD68* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Func_1_t70BAAB9F1D00714988C7BA974AF43D14365CBD68*, RuntimeObject*, intptr_t, const RuntimeMethod*))Func_1__ctor_m663374A863E492A515BE9626B6F0E444991834E8_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Func_1_tBB8824FA8746333BFFF3AB3CE4A41B58450AF431*, RuntimeObject*, intptr_t, const RuntimeMethod*))Func_1__ctor_mC73A4FCEBBAB90CB7B7AB16321F3F98FBBF12596_gshared)((Func_1_tBB8824FA8746333BFFF3AB3CE4A41B58450AF431*)__this, ___object0, ___method1, method);
 }
 // System.Void Photon.Voice.Unity.Recorder::set_InputFactory(System.Func`1<Photon.Voice.IAudioDesc>)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Recorder_set_InputFactory_mD22EEE0D5522D5EE2977B86750E2911A2CFE5250 (Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* __this, Func_1_t70BAAB9F1D00714988C7BA974AF43D14365CBD68* ___value0, const RuntimeMethod* method) ;
 // TResult System.Func`1<Photon.Voice.IAudioDesc>::Invoke()
 inline RuntimeObject* Func_1_Invoke_mD8FDEFD868D882D6E03F2C11AA570F5AAAB1D233_inline (Func_1_t70BAAB9F1D00714988C7BA974AF43D14365CBD68* __this, const RuntimeMethod* method)
 {
-	return ((  RuntimeObject* (*) (Func_1_t70BAAB9F1D00714988C7BA974AF43D14365CBD68*, const RuntimeMethod*))Func_1_Invoke_m1412272198DFA4066C83206E5B43353AF10A2EEE_gshared_inline)(__this, method);
+	RuntimeObject* il2cppRetVal;
+	((  void (*) (Func_1_tBB8824FA8746333BFFF3AB3CE4A41B58450AF431*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Func_1_Invoke_m35CBC166F464B8A1169583672025E6D64211856C_gshared_inline)((Func_1_tBB8824FA8746333BFFF3AB3CE4A41B58450AF431*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Int32 Photon.Voice.Unity.Recorder::get_Bitrate()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Recorder_get_Bitrate_m28E278F7DD598F46477667A4E4E4F42A1ED2563E (Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* __this, const RuntimeMethod* method) ;
@@ -4624,7 +4665,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR VoiceInfo_t24C5680EF3DC3C51FBB108E737403E2BE6
 // T UnityEngine.Component::GetComponent<Photon.Voice.Unity.WebRtcAudioDsp>()
 inline WebRtcAudioDsp_tEF226D8EA919F9406027AA52F322F52ECB9E285E* Component_GetComponent_TisWebRtcAudioDsp_tEF226D8EA919F9406027AA52F322F52ECB9E285E_m0D46A199460A2D537EA95F6DE089FE6D65897C7A (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, const RuntimeMethod* method)
 {
-	return ((  WebRtcAudioDsp_tEF226D8EA919F9406027AA52F322F52ECB9E285E* (*) (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*, const RuntimeMethod*))Component_GetComponent_TisRuntimeObject_m7181F81CAEC2CF53F5D2BC79B7425C16E1F80D33_gshared)(__this, method);
+	WebRtcAudioDsp_tEF226D8EA919F9406027AA52F322F52ECB9E285E* il2cppRetVal;
+	((  void (*) (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Component_GetComponent_TisIl2CppFullySharedGenericAny_m47CBDD147982125387F078ABBFDAAB92D397A6C2_gshared)((Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void Photon.Voice.Unity.WebRtcAudioDsp::AdjustVoiceInfo(Photon.Voice.VoiceInfo&,Photon.Voice.AudioSampleType&)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void WebRtcAudioDsp_AdjustVoiceInfo_mD89566A1AC0A44FA97F1C49FCB1D4EF92003F29E (WebRtcAudioDsp_tEF226D8EA919F9406027AA52F322F52ECB9E285E* __this, VoiceInfo_t24C5680EF3DC3C51FBB108E737403E2BE60BB404* ___voiceInfo0, int32_t* ___st1, const RuntimeMethod* method) ;
@@ -4661,14 +4704,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Object__ctor_mE837C6B9FA8C6D5D109F4B2EC8
 // System.Void System.Action`1<System.Single>::Invoke(T)
 inline void Action_1_Invoke_mA8F89FB04FEA0F48A4F22EC84B5F9ADB2914341F_inline (Action_1_t310F18CB4338A2740CA701F160C62E2C3198E66A* __this, float ___obj0, const RuntimeMethod* method)
 {
-	((  void (*) (Action_1_t310F18CB4338A2740CA701F160C62E2C3198E66A*, float, const RuntimeMethod*))Action_1_Invoke_mA8F89FB04FEA0F48A4F22EC84B5F9ADB2914341F_gshared_inline)(__this, ___obj0, method);
+	((  void (*) (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Action_1_Invoke_m5A038831CEB84A7E374FE59D43444412629F833F_gshared_inline)((Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*)__this, (Il2CppFullySharedGenericAny)&___obj0, method);
 }
 // System.Void Photon.Voice.Unity.Recorder/<>c::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__ctor_m3A0F4FD587672116B21F6F241CF11ED6CB2527DB (U3CU3Ec_t7DC17B03BBF88D9612C68E5BAE945975C30D6DA2* __this, const RuntimeMethod* method) ;
 // System.Void Photon.Voice.AudioUtil/ToneAudioReader`1<System.Single>::.ctor(System.Func`1<System.Double>,System.Double,System.Int32,System.Int32)
 inline void ToneAudioReader_1__ctor_m56DC6DE7286F3B0C5D3E424216D11DADD608CF6A (ToneAudioReader_1_tE87A7B87FE140B2223CA4C08A8D346B13D0B7646* __this, Func_1_t7748833627297E42C5F5E294D4EF6457E839B5D7* ___clockSec0, double ___frequency1, int32_t ___samplingRate2, int32_t ___channels3, const RuntimeMethod* method)
 {
-	((  void (*) (ToneAudioReader_1_tE87A7B87FE140B2223CA4C08A8D346B13D0B7646*, Func_1_t7748833627297E42C5F5E294D4EF6457E839B5D7*, double, int32_t, int32_t, const RuntimeMethod*))ToneAudioReader_1__ctor_m56DC6DE7286F3B0C5D3E424216D11DADD608CF6A_gshared)(__this, ___clockSec0, ___frequency1, ___samplingRate2, ___channels3, method);
+	((  void (*) (ToneAudioReader_1_t6E9B4C21A0AFC541DDD01FC022F857D18A5FEFD7*, Func_1_t7748833627297E42C5F5E294D4EF6457E839B5D7*, double, int32_t, int32_t, const RuntimeMethod*))ToneAudioReader_1__ctor_mDEB6A1E6C25F805AC43B25AA6337D52C66A41BBB_gshared)((ToneAudioReader_1_t6E9B4C21A0AFC541DDD01FC022F857D18A5FEFD7*)__this, ___clockSec0, ___frequency1, ___samplingRate2, ___channels3, method);
 }
 // System.Boolean UnityEngine.Behaviour::get_enabled()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Behaviour_get_enabled_mAAC9F15E9EBF552217A5AE2681589CC0BFA300C1 (Behaviour_t01970CFBBA658497AE30F311C447DB0440BAB7FA* __this, const RuntimeMethod* method) ;
@@ -4687,7 +4730,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Delegate_t* Delegate_Remove_m8B7DD5661308FA97
 // System.Void System.Action`1<Photon.Voice.FrameOut`1<System.Single>>::.ctor(System.Object,System.IntPtr)
 inline void Action_1__ctor_mEC461CE983739CB41BB6A618F1882B8BC3E6CC8A (Action_1_t4B5244A7D75171D94BEAE3074BB3625987C5AE84* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Action_1_t4B5244A7D75171D94BEAE3074BB3625987C5AE84*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_1__ctor_m2E1DFA67718FC1A0B6E5DFEB78831FFE9C059EB4_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_1__ctor_m685A441EC9FAC9D554B26FA83A08F4BEF96DFF0E_gshared)((Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*)__this, ___object0, ___method1, method);
 }
 // System.Void Photon.Voice.RemoteVoiceOptions::SetOutput(System.Action`1<Photon.Voice.FrameOut`1<System.Single>>)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RemoteVoiceOptions_SetOutput_m1D8335B78DC7DFCD68167FBDFABF2E9B15CA6E9B (RemoteVoiceOptions_t480D399F5C1ECAFCFCA8A6EF906617D9F6B8F604* __this, Action_1_t4B5244A7D75171D94BEAE3074BB3625987C5AE84* ___output0, const RuntimeMethod* method) ;
@@ -4698,7 +4741,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_Invoke_m7126A54DACA72
 // System.Void System.Action`1<Photon.Voice.FrameOut`1<System.Single>>::Invoke(T)
 inline void Action_1_Invoke_m7E44B5D44325CD17B903897A8358D10A8AFE5ECF_inline (Action_1_t4B5244A7D75171D94BEAE3074BB3625987C5AE84* __this, FrameOut_1_tE1D253183799A33EB68D1E188B90F1E04064CE5D* ___obj0, const RuntimeMethod* method)
 {
-	((  void (*) (Action_1_t4B5244A7D75171D94BEAE3074BB3625987C5AE84*, FrameOut_1_tE1D253183799A33EB68D1E188B90F1E04064CE5D*, const RuntimeMethod*))Action_1_Invoke_mF2422B2DD29F74CE66F791C3F68E288EC7C3DB9E_gshared_inline)(__this, ___obj0, method);
+	((  void (*) (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Action_1_Invoke_m5A038831CEB84A7E374FE59D43444412629F833F_gshared_inline)((Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*)__this, (Il2CppFullySharedGenericAny)___obj0, method);
 }
 // System.String System.String::Format(System.String,System.Object[])
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_Format_m918500C1EFB475181349A79989BB79BB36102894 (String_t* ___format0, ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* ___args1, const RuntimeMethod* method) ;
@@ -4713,7 +4756,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Speaker_set_RestartOnDeviceChange_mCF01C
 // T UnityEngine.Component::GetComponent<UnityEngine.AudioSource>()
 inline AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* Component_GetComponent_TisAudioSource_t871AC2272F896738252F04EE949AEF5B241D3299_m42DA4DEA19EB60D80CBED7413ADEB27FA033C77B (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, const RuntimeMethod* method)
 {
-	return ((  AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* (*) (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*, const RuntimeMethod*))Component_GetComponent_TisRuntimeObject_m7181F81CAEC2CF53F5D2BC79B7425C16E1F80D33_gshared)(__this, method);
+	AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* il2cppRetVal;
+	((  void (*) (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Component_GetComponent_TisIl2CppFullySharedGenericAny_m47CBDD147982125387F078ABBFDAAB92D397A6C2_gshared)((Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void Photon.Voice.Unity.UnityAudioOut::.ctor(UnityEngine.AudioSource,Photon.Voice.AudioOutDelayControl/PlayDelayConfig,Photon.Voice.ILogger,System.String,System.Boolean)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnityAudioOut__ctor_m7FA47C12B4C15B5E26FAA5056F4DD6F618D323EF (UnityAudioOut_t17060DFCF09F58B928718942CFBE1E65D8EB253B* __this, AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* ___audioSource0, PlayDelayConfig_t7E2F00F08A8F2A3D47AFDD64347913B6409871E2 ___playDelayConfig1, RuntimeObject* ___logger2, String_t* ___logPrefix3, bool ___debugInfo4, const RuntimeMethod* method) ;
@@ -4738,19 +4783,20 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Action_1_t8567C9C86A4F384D0A5DD2E
 // System.Void System.Action`1<Photon.Voice.Unity.Speaker>::Invoke(T)
 inline void Action_1_Invoke_m2B57F8105A8585B47FBCBBE5E214C1334C26C3A0_inline (Action_1_t8567C9C86A4F384D0A5DD2E75B392F263E3C7229* __this, Speaker_tBD124E6AEFF169667A9441881B3A98F122AE4ADE* ___obj0, const RuntimeMethod* method)
 {
-	((  void (*) (Action_1_t8567C9C86A4F384D0A5DD2E75B392F263E3C7229*, Speaker_tBD124E6AEFF169667A9441881B3A98F122AE4ADE*, const RuntimeMethod*))Action_1_Invoke_mF2422B2DD29F74CE66F791C3F68E288EC7C3DB9E_gshared_inline)(__this, ___obj0, method);
+	((  void (*) (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Action_1_Invoke_m5A038831CEB84A7E374FE59D43444412629F833F_gshared_inline)((Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*)__this, (Il2CppFullySharedGenericAny)___obj0, method);
 }
 // System.Void Photon.Voice.Unity.Speaker::Unlink()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Speaker_Unlink_mB4B872775FBDD964B32063CA9E4291546FE715EB (Speaker_tBD124E6AEFF169667A9441881B3A98F122AE4ADE* __this, const RuntimeMethod* method) ;
 // T[] Photon.Voice.FrameOut`1<System.Single>::get_Buf()
 inline SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C* FrameOut_1_get_Buf_mD21AC55D18CE61CAEF7A037E5C825B3EBA21A0B5_inline (FrameOut_1_tE1D253183799A33EB68D1E188B90F1E04064CE5D* __this, const RuntimeMethod* method)
 {
-	return ((  SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C* (*) (FrameOut_1_tE1D253183799A33EB68D1E188B90F1E04064CE5D*, const RuntimeMethod*))FrameOut_1_get_Buf_mD21AC55D18CE61CAEF7A037E5C825B3EBA21A0B5_gshared_inline)(__this, method);
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* il2cppRetVal = ((  __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* (*) (FrameOut_1_t3D7805A654659F9E3DDCC2FA050121D485076639*, const RuntimeMethod*))FrameOut_1_get_Buf_m7BB7B509D57FF8CE6C0C8EFDC25D4F6862C2B5E5_gshared_inline)((FrameOut_1_t3D7805A654659F9E3DDCC2FA050121D485076639*)__this, method);
+	return (SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C*)il2cppRetVal;
 }
 // System.Boolean Photon.Voice.FrameOut`1<System.Single>::get_EndOfStream()
 inline bool FrameOut_1_get_EndOfStream_m0EED4A0C92E8372184F42BAFD6E82BC1AD41FEB5_inline (FrameOut_1_tE1D253183799A33EB68D1E188B90F1E04064CE5D* __this, const RuntimeMethod* method)
 {
-	return ((  bool (*) (FrameOut_1_tE1D253183799A33EB68D1E188B90F1E04064CE5D*, const RuntimeMethod*))FrameOut_1_get_EndOfStream_m0EED4A0C92E8372184F42BAFD6E82BC1AD41FEB5_gshared_inline)(__this, method);
+	return ((  bool (*) (FrameOut_1_t3D7805A654659F9E3DDCC2FA050121D485076639*, const RuntimeMethod*))FrameOut_1_get_EndOfStream_m6C7231C704679F86C300483ED35818B88B8D3CE0_gshared_inline)((FrameOut_1_t3D7805A654659F9E3DDCC2FA050121D485076639*)__this, method);
 }
 // System.Int32 Photon.Voice.VoiceInfo::get_SamplingRate()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t VoiceInfo_get_SamplingRate_mB35BF119B634916F78FF136465AD6E3FDFE834C8_inline (VoiceInfo_t24C5680EF3DC3C51FBB108E737403E2BE60BB404* __this, const RuntimeMethod* method) ;
@@ -4763,14 +4809,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RemoteVoiceLink_remove_RemoteVoiceRemove
 // System.Void Photon.Voice.AudioSyncBuffer`1<System.Single>::.ctor(System.Int32,Photon.Voice.ILogger,System.String,System.Boolean)
 inline void AudioSyncBuffer_1__ctor_m2F4C95BC6D0EBB4A3DB7BC56F20B6CCE121B7B9B (AudioSyncBuffer_1_t596027B62B56951C5A88C8E64385500600018704* __this, int32_t ___playDelayMs0, RuntimeObject* ___logger1, String_t* ___logPrefix2, bool ___debugInfo3, const RuntimeMethod* method)
 {
-	((  void (*) (AudioSyncBuffer_1_t596027B62B56951C5A88C8E64385500600018704*, int32_t, RuntimeObject*, String_t*, bool, const RuntimeMethod*))AudioSyncBuffer_1__ctor_m2F4C95BC6D0EBB4A3DB7BC56F20B6CCE121B7B9B_gshared)(__this, ___playDelayMs0, ___logger1, ___logPrefix2, ___debugInfo3, method);
+	((  void (*) (AudioSyncBuffer_1_tB92C8860370B545FE7E2133D5EFDEEA06EB806AD*, int32_t, RuntimeObject*, String_t*, bool, const RuntimeMethod*))AudioSyncBuffer_1__ctor_m2D51DBE7A16732891683F5A6AF5344D71FD6C0C3_gshared)((AudioSyncBuffer_1_tB92C8860370B545FE7E2133D5EFDEEA06EB806AD*)__this, ___playDelayMs0, ___logger1, ___logPrefix2, ___debugInfo3, method);
 }
 // System.Int32 UnityEngine.AudioSettings::get_outputSampleRate()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t AudioSettings_get_outputSampleRate_mEACF8FD7BFDFBD76EB8FC7E438B3AF19DB57BC6D (const RuntimeMethod* method) ;
 // System.Void Photon.Voice.AudioSyncBuffer`1<System.Single>::Read(T[],System.Int32,System.Int32)
 inline void AudioSyncBuffer_1_Read_mB0B8763113F25AF38B3BB8C7DBC20C6618D1F976 (AudioSyncBuffer_1_t596027B62B56951C5A88C8E64385500600018704* __this, SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C* ___outBuf0, int32_t ___outChannels1, int32_t ___outSampleRate2, const RuntimeMethod* method)
 {
-	((  void (*) (AudioSyncBuffer_1_t596027B62B56951C5A88C8E64385500600018704*, SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C*, int32_t, int32_t, const RuntimeMethod*))AudioSyncBuffer_1_Read_mB0B8763113F25AF38B3BB8C7DBC20C6618D1F976_gshared)(__this, ___outBuf0, ___outChannels1, ___outSampleRate2, method);
+	((  void (*) (AudioSyncBuffer_1_tB92C8860370B545FE7E2133D5EFDEEA06EB806AD*, __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC*, int32_t, int32_t, const RuntimeMethod*))AudioSyncBuffer_1_Read_m711C1F3A979494F3C403C93EC667C32DADF46DD3_gshared)((AudioSyncBuffer_1_tB92C8860370B545FE7E2133D5EFDEEA06EB806AD*)__this, (__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC*)___outBuf0, ___outChannels1, ___outSampleRate2, method);
 }
 // System.Void Photon.Voice.Unity.Speaker::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Speaker__ctor_m7EA276186548601E493430228551B6F8FAB26D8D (Speaker_tBD124E6AEFF169667A9441881B3A98F122AE4ADE* __this, const RuntimeMethod* method) ;
@@ -4793,17 +4839,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Environment_get_TickCount_m183BFCF001
 // System.Void System.Collections.Generic.List`1<Photon.Voice.Unity.RemoteVoiceLink>::.ctor()
 inline void List_1__ctor_mE1ED14235E27E4E6A0C64DC57C895D639C9BBCE6 (List_1_t823310AB4F398AE467887CC898545B689B70003F* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t823310AB4F398AE467887CC898545B689B70003F*, const RuntimeMethod*))List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<Photon.Voice.Unity.Speaker>::.ctor()
 inline void List_1__ctor_m6EBC8A82EAD64E4F1EE355C3F6988777EE0BE12E (List_1_t581C6CC97545A3BE378779CD0B20D123D6DCF950* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t581C6CC97545A3BE378779CD0B20D123D6DCF950*, const RuntimeMethod*))List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<Photon.Voice.Unity.Recorder>::.ctor()
 inline void List_1__ctor_mEE8F42A185E586D02B2D81D5FFAC6FA1033F4FD6 (List_1_tBFD6B7B62FB7763BC57224ED666A855ACCD05536* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_tBFD6B7B62FB7763BC57224ED666A855ACCD05536*, const RuntimeMethod*))List_1__ctor_m7F078BB342729BDF11327FD89D7872265328F690_gshared)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1__ctor_m0AFBAEA7EC427E32CC9CA267B1930DC5DF67A374_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void Photon.Realtime.ConnectionHandler::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ConnectionHandler__ctor_mEA7C67FBE750BA76ADB7068B51C572A76AE85AFA (ConnectionHandler_t94DB2DB95E1E5AC42D211A71B3829706DCF6ECB4* __this, const RuntimeMethod* method) ;
@@ -4824,14 +4870,14 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void VoiceClient_set_OnRemoteVoic
 // System.Void System.Action`2<Photon.Realtime.ClientState,Photon.Realtime.ClientState>::.ctor(System.Object,System.IntPtr)
 inline void Action_2__ctor_m914229254E2DD1066D0E81418D2410B78F40DEBB (Action_2_t3EC2669A751FDF2FFFA36356EC41244433164490* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Action_2_t3EC2669A751FDF2FFFA36356EC41244433164490*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_2__ctor_mEBF3FAD6176B0ABD7207DA4D7239671D972C82E6_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Action_2_t1D42C7D8DCD2DEB7C556FB3783F0EDAFF694E5E8*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_2__ctor_m8E9B7F6EE50FEF26FF7537F554B4F5E434F70550_gshared)((Action_2_t1D42C7D8DCD2DEB7C556FB3783F0EDAFF694E5E8*)__this, ___object0, ___method1, method);
 }
 // System.Void Photon.Realtime.LoadBalancingClient::add_StateChanged(System.Action`2<Photon.Realtime.ClientState,Photon.Realtime.ClientState>)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LoadBalancingClient_add_StateChanged_mA6384FF2BBFAD74989F27734C0A2251F6F470EB9 (LoadBalancingClient_tC710D2A97D5ACB31FCA10E3D3A3266DBE89373A4* __this, Action_2_t3EC2669A751FDF2FFFA36356EC41244433164490* ___value0, const RuntimeMethod* method) ;
 // System.Void System.Action`1<ExitGames.Client.Photon.OperationResponse>::.ctor(System.Object,System.IntPtr)
 inline void Action_1__ctor_m85851BA92AE6400B715C7DCC17C10DC245B53980 (Action_1_t3A1DE9227396F3C161EEABEA4147808A86558826* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Action_1_t3A1DE9227396F3C161EEABEA4147808A86558826*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_1__ctor_m2E1DFA67718FC1A0B6E5DFEB78831FFE9C059EB4_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_1__ctor_m685A441EC9FAC9D554B26FA83A08F4BEF96DFF0E_gshared)((Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*)__this, ___object0, ___method1, method);
 }
 // System.Void Photon.Realtime.LoadBalancingClient::add_OpResponseReceived(System.Action`1<ExitGames.Client.Photon.OperationResponse>)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LoadBalancingClient_add_OpResponseReceived_m76ECBF9267D759927564F64FAE55B72E34FE548E (LoadBalancingClient_tC710D2A97D5ACB31FCA10E3D3A3266DBE89373A4* __this, Action_1_t3A1DE9227396F3C161EEABEA4147808A86558826* ___value0, const RuntimeMethod* method) ;
@@ -4872,7 +4918,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* VoiceConnection_get_BestRegionSumma
 // T System.Collections.Generic.List`1<Photon.Voice.Unity.RemoteVoiceLink>::get_Item(System.Int32)
 inline RemoteVoiceLink_tC6B459D4BE83C680417FE28AAA063F8163D7F4E4* List_1_get_Item_m9E67F63BBF6D83758AF4EE6F15F2D8E2233CE7C3 (List_1_t823310AB4F398AE467887CC898545B689B70003F* __this, int32_t ___index0, const RuntimeMethod* method)
 {
-	return ((  RemoteVoiceLink_tC6B459D4BE83C680417FE28AAA063F8163D7F4E4* (*) (List_1_t823310AB4F398AE467887CC898545B689B70003F*, int32_t, const RuntimeMethod*))List_1_get_Item_m33561245D64798C2AB07584C0EC4F240E4839A38_gshared)(__this, ___index0, method);
+	RemoteVoiceLink_tC6B459D4BE83C680417FE28AAA063F8163D7F4E4* il2cppRetVal;
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, int32_t, Il2CppFullySharedGenericAny*, const RuntimeMethod*))List_1_get_Item_m6E4BA37C1FB558E4A62AE4324212E45D09C5C937_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, ___index0, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Object Photon.Voice.VoiceInfo::get_UserData()
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* VoiceInfo_get_UserData_mE49DA945FA1476FF3AD239DB23B02E84F8533B1A_inline (VoiceInfo_t24C5680EF3DC3C51FBB108E737403E2BE60BB404* __this, const RuntimeMethod* method) ;
@@ -4881,7 +4929,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VoiceConnection_LinkSpeaker_mEBC940ADB92
 // System.Int32 System.Collections.Generic.List`1<Photon.Voice.Unity.RemoteVoiceLink>::get_Count()
 inline int32_t List_1_get_Count_m539C678DF0588C7448A4CCC08124324E41184AD8_inline (List_1_t823310AB4F398AE467887CC898545B689B70003F* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (List_1_t823310AB4F398AE467887CC898545B689B70003F*, const RuntimeMethod*))List_1_get_Count_m4407E4C389F22B8CEC282C15D56516658746C383_gshared_inline)(__this, method);
+	return ((  int32_t (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1_get_Count_mD2ED26ACAF3BAF386FFEA83893BA51DB9FD8BA30_gshared_inline)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void Photon.Realtime.ConnectionHandler::Awake()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ConnectionHandler_Awake_m0E0C6AD9790B13CB1E47F666B14879B117E54004 (ConnectionHandler_t94DB2DB95E1E5AC42D211A71B3829706DCF6ECB4* __this, const RuntimeMethod* method) ;
@@ -4892,7 +4940,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Object_DontDestroyOnLoad_m4B70C3AEF886C1
 // T UnityEngine.Component::GetComponent<Photon.Realtime.SupportLogger>()
 inline SupportLogger_t853FFDC016DE6BEBBC2DBBF6EA668299E4C524DD* Component_GetComponent_TisSupportLogger_t853FFDC016DE6BEBBC2DBBF6EA668299E4C524DD_m8035182544A8E9822A2E4A3219FBAF54DD43C53F (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, const RuntimeMethod* method)
 {
-	return ((  SupportLogger_t853FFDC016DE6BEBBC2DBBF6EA668299E4C524DD* (*) (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*, const RuntimeMethod*))Component_GetComponent_TisRuntimeObject_m7181F81CAEC2CF53F5D2BC79B7425C16E1F80D33_gshared)(__this, method);
+	SupportLogger_t853FFDC016DE6BEBBC2DBBF6EA668299E4C524DD* il2cppRetVal;
+	((  void (*) (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Component_GetComponent_TisIl2CppFullySharedGenericAny_m47CBDD147982125387F078ABBFDAAB92D397A6C2_gshared)((Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void Photon.Realtime.SupportLogger::set_Client(Photon.Realtime.LoadBalancingClient)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SupportLogger_set_Client_m516EEF1AC5B8F2EA206BCA29CE2A2F3D0EFD560C (SupportLogger_t853FFDC016DE6BEBBC2DBBF6EA668299E4C524DD* __this, LoadBalancingClient_tC710D2A97D5ACB31FCA10E3D3A3266DBE89373A4* ___value0, const RuntimeMethod* method) ;
@@ -4926,12 +4976,13 @@ inline GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* Object_Instantiate_
 // T[] UnityEngine.GameObject::GetComponentsInChildren<Photon.Voice.Unity.Speaker>(System.Boolean)
 inline SpeakerU5BU5D_t219347C6659D7D19D460CE8790C5F285F35C1589* GameObject_GetComponentsInChildren_TisSpeaker_tBD124E6AEFF169667A9441881B3A98F122AE4ADE_mA9524F6BC7165524B8B7309D08A255879BB24AD5 (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, bool ___includeInactive0, const RuntimeMethod* method)
 {
-	return ((  SpeakerU5BU5D_t219347C6659D7D19D460CE8790C5F285F35C1589* (*) (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*, bool, const RuntimeMethod*))GameObject_GetComponentsInChildren_TisRuntimeObject_m511E687BF2424F8D832EA2EAA459870887FB9540_gshared)(__this, ___includeInactive0, method);
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* il2cppRetVal = ((  __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* (*) (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*, bool, const RuntimeMethod*))GameObject_GetComponentsInChildren_TisIl2CppFullySharedGenericAny_mE619FF82D1099A3B6ADAD0FF12F3A05E06C32C24_gshared)((GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*)__this, ___includeInactive0, method);
+	return (SpeakerU5BU5D_t219347C6659D7D19D460CE8790C5F285F35C1589*)il2cppRetVal;
 }
 // System.Void System.Action`1<Photon.Voice.Unity.Speaker>::.ctor(System.Object,System.IntPtr)
 inline void Action_1__ctor_m38EDB08C8F1E0C25255FB4492C6F311B1CD6B80B (Action_1_t8567C9C86A4F384D0A5DD2E75B392F263E3C7229* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Action_1_t8567C9C86A4F384D0A5DD2E75B392F263E3C7229*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_1__ctor_m2E1DFA67718FC1A0B6E5DFEB78831FFE9C059EB4_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_1__ctor_m685A441EC9FAC9D554B26FA83A08F4BEF96DFF0E_gshared)((Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*)__this, ___object0, ___method1, method);
 }
 // System.Void Photon.Voice.Unity.Speaker::set_OnRemoteVoiceRemoveAction(System.Action`1<Photon.Voice.Unity.Speaker>)
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Speaker_set_OnRemoteVoiceRemoveAction_m2C650FE4EABE6B732B978A1F69DFE1BB5A1AB661_inline (Speaker_tBD124E6AEFF169667A9441881B3A98F122AE4ADE* __this, Action_1_t8567C9C86A4F384D0A5DD2E75B392F263E3C7229* ___value0, const RuntimeMethod* method) ;
@@ -4950,12 +5001,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RemoteVoiceLink__ctor_m7F29DCB0CBE634480
 // System.Void System.Collections.Generic.List`1<Photon.Voice.Unity.RemoteVoiceLink>::Add(T)
 inline void List_1_Add_mA22EA766E2E65BABC5D1D3937AD3E7EA6E92224E_inline (List_1_t823310AB4F398AE467887CC898545B689B70003F* __this, RemoteVoiceLink_tC6B459D4BE83C680417FE28AAA063F8163D7F4E4* ___item0, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t823310AB4F398AE467887CC898545B689B70003F*, RemoteVoiceLink_tC6B459D4BE83C680417FE28AAA063F8163D7F4E4*, const RuntimeMethod*))List_1_Add_mEBCF994CC3814631017F46A387B1A192ED6C85C7_gshared_inline)(__this, ___item0, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))List_1_Add_mD4F3498FBD3BDD3F03CBCFB38041CBAC9C28CAFC_gshared_inline)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.Void System.Action`1<Photon.Voice.Unity.RemoteVoiceLink>::Invoke(T)
 inline void Action_1_Invoke_mF27CBE0F3B8CD82875BF91544AC6FC04E35C975D_inline (Action_1_tEDBE6144CEB293C0905C68B84BB211D3950274B3* __this, RemoteVoiceLink_tC6B459D4BE83C680417FE28AAA063F8163D7F4E4* ___obj0, const RuntimeMethod* method)
 {
-	((  void (*) (Action_1_tEDBE6144CEB293C0905C68B84BB211D3950274B3*, RemoteVoiceLink_tC6B459D4BE83C680417FE28AAA063F8163D7F4E4*, const RuntimeMethod*))Action_1_Invoke_mF2422B2DD29F74CE66F791C3F68E288EC7C3DB9E_gshared_inline)(__this, ___obj0, method);
+	((  void (*) (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Action_1_Invoke_m5A038831CEB84A7E374FE59D43444412629F833F_gshared_inline)((Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*)__this, (Il2CppFullySharedGenericAny)___obj0, method);
 }
 // System.String System.String::Format(System.String,System.Object,System.Object)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_Format_mFB7DA489BD99F4670881FF50EC017BFB0A5C0987 (String_t* ___format0, RuntimeObject* ___arg01, RuntimeObject* ___arg12, const RuntimeMethod* method) ;
@@ -4964,7 +5015,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VoiceComponent_set_Name_mC0C36F6F8CB8EC3
 // T System.Collections.Generic.List`1<Photon.Voice.Unity.Recorder>::get_Item(System.Int32)
 inline Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* List_1_get_Item_m9376606FF3439D5A818E92617300B8099BEB2044 (List_1_tBFD6B7B62FB7763BC57224ED666A855ACCD05536* __this, int32_t ___index0, const RuntimeMethod* method)
 {
-	return ((  Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* (*) (List_1_tBFD6B7B62FB7763BC57224ED666A855ACCD05536*, int32_t, const RuntimeMethod*))List_1_get_Item_m33561245D64798C2AB07584C0EC4F240E4839A38_gshared)(__this, ___index0, method);
+	Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* il2cppRetVal;
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, int32_t, Il2CppFullySharedGenericAny*, const RuntimeMethod*))List_1_get_Item_m6E4BA37C1FB558E4A62AE4324212E45D09C5C937_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, ___index0, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Boolean Photon.Voice.Unity.Recorder::get_RecordWhenJoined()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Recorder_get_RecordWhenJoined_mE6AAAC832684963EEE8EE5CD99F2FAD2D11A4799 (Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* __this, const RuntimeMethod* method) ;
@@ -4973,12 +5026,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Recorder_set_RecordingEnabled_mC3AE50280
 // System.Int32 System.Collections.Generic.List`1<Photon.Voice.Unity.Recorder>::get_Count()
 inline int32_t List_1_get_Count_mC7A7DD5F940A36F0C391E34CAA59996ACA73E0D3_inline (List_1_tBFD6B7B62FB7763BC57224ED666A855ACCD05536* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (List_1_tBFD6B7B62FB7763BC57224ED666A855ACCD05536*, const RuntimeMethod*))List_1_get_Count_m4407E4C389F22B8CEC282C15D56516658746C383_gshared_inline)(__this, method);
+	return ((  int32_t (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1_get_Count_mD2ED26ACAF3BAF386FFEA83893BA51DB9FD8BA30_gshared_inline)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.Void System.Collections.Generic.List`1<Photon.Voice.Unity.RemoteVoiceLink>::Clear()
 inline void List_1_Clear_mE4E49827D3C492EB4185EEDAF4E2623EDCD529BA_inline (List_1_t823310AB4F398AE467887CC898545B689B70003F* __this, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t823310AB4F398AE467887CC898545B689B70003F*, const RuntimeMethod*))List_1_Clear_m16C1F2C61FED5955F10EB36BC1CB2DF34B128994_gshared_inline)(__this, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, const RuntimeMethod*))List_1_Clear_mD615D1BCB2C9DD91DAD86A2F9E5CF1DFFCBF7925_gshared_inline)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, method);
 }
 // System.String Photon.Realtime.RegionHandler::get_SummaryToCache()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* RegionHandler_get_SummaryToCache_m313FB26DCB72FB6D25EC366E51AF4118F8CD3722 (RegionHandler_tF76A25E25C3BF915FDFBEA81372D9D7858087EBB* __this, const RuntimeMethod* method) ;
@@ -5003,38 +5056,38 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Speaker_Link_m8EC66A568517A0B2A712AE9A4C
 // System.Void System.Collections.Generic.List`1<Photon.Voice.Unity.Speaker>::Add(T)
 inline void List_1_Add_mBFD77B970A5FC9153D0A27B70B2AC968F9E2BFF0_inline (List_1_t581C6CC97545A3BE378779CD0B20D123D6DCF950* __this, Speaker_tBD124E6AEFF169667A9441881B3A98F122AE4ADE* ___item0, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_t581C6CC97545A3BE378779CD0B20D123D6DCF950*, Speaker_tBD124E6AEFF169667A9441881B3A98F122AE4ADE*, const RuntimeMethod*))List_1_Add_mEBCF994CC3814631017F46A387B1A192ED6C85C7_gshared_inline)(__this, ___item0, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))List_1_Add_mD4F3498FBD3BDD3F03CBCFB38041CBAC9C28CAFC_gshared_inline)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.Boolean System.Collections.Generic.List`1<Photon.Voice.Unity.Recorder>::Contains(T)
 inline bool List_1_Contains_mB34D20F6CB07A22FA26079CB2C702E1ABAC22DE9 (List_1_tBFD6B7B62FB7763BC57224ED666A855ACCD05536* __this, Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* ___item0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (List_1_tBFD6B7B62FB7763BC57224ED666A855ACCD05536*, Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C*, const RuntimeMethod*))List_1_Contains_m4C9139C2A6B23E9343D3F87807B32C6E2CFE660D_gshared)(__this, ___item0, method);
+	return ((  bool (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))List_1_Contains_m8DA550B703DFB328B69C4712064C667D7CA33DF1_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.Boolean Photon.Voice.Unity.Recorder::Init(Photon.Voice.Unity.VoiceConnection)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Recorder_Init_mC050B8C9352040C70437376FE85EA0C36E51D203 (Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* __this, VoiceConnection_tB1A14C698697002D8D57FA47F332A44E7E294DB3* ___connection0, const RuntimeMethod* method) ;
 // System.Void System.Collections.Generic.List`1<Photon.Voice.Unity.Recorder>::Add(T)
 inline void List_1_Add_m1684F153ECC2E04B38602F7305E76B3F36AC4258_inline (List_1_tBFD6B7B62FB7763BC57224ED666A855ACCD05536* __this, Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* ___item0, const RuntimeMethod* method)
 {
-	((  void (*) (List_1_tBFD6B7B62FB7763BC57224ED666A855ACCD05536*, Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C*, const RuntimeMethod*))List_1_Add_mEBCF994CC3814631017F46A387B1A192ED6C85C7_gshared_inline)(__this, ___item0, method);
+	((  void (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))List_1_Add_mD4F3498FBD3BDD3F03CBCFB38041CBAC9C28CAFC_gshared_inline)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.Boolean Photon.Voice.Unity.Recorder::Deinit(Photon.Voice.Unity.VoiceConnection)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Recorder_Deinit_m6060F1CBC13ADEDE5F8A37FF57F6974773F52235 (Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* __this, VoiceConnection_tB1A14C698697002D8D57FA47F332A44E7E294DB3* ___connection0, const RuntimeMethod* method) ;
 // System.Boolean System.Collections.Generic.List`1<Photon.Voice.Unity.Recorder>::Remove(T)
 inline bool List_1_Remove_mF75A0D4F7499D17236D541194775CB4D0455D1CD (List_1_tBFD6B7B62FB7763BC57224ED666A855ACCD05536* __this, Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* ___item0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (List_1_tBFD6B7B62FB7763BC57224ED666A855ACCD05536*, Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C*, const RuntimeMethod*))List_1_Remove_m4DFA48F4CEB9169601E75FC28517C5C06EFA5AD7_gshared)(__this, ___item0, method);
+	return ((  bool (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))List_1_Remove_m9BCE8CEF94E6F2BF8624D65214FF4F3CA686D60C_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.String UnityEngine.Object::get_name()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* Object_get_name_mAC2F6B897CF1303BA4249B4CB55271AFACBB6392 (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C* __this, const RuntimeMethod* method) ;
 // System.Boolean System.Collections.Generic.List`1<Photon.Voice.Unity.RemoteVoiceLink>::Remove(T)
 inline bool List_1_Remove_m06254DD97C65045E1457A36E44A44E685BCCB696 (List_1_t823310AB4F398AE467887CC898545B689B70003F* __this, RemoteVoiceLink_tC6B459D4BE83C680417FE28AAA063F8163D7F4E4* ___item0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (List_1_t823310AB4F398AE467887CC898545B689B70003F*, RemoteVoiceLink_tC6B459D4BE83C680417FE28AAA063F8163D7F4E4*, const RuntimeMethod*))List_1_Remove_m4DFA48F4CEB9169601E75FC28517C5C06EFA5AD7_gshared)(__this, ___item0, method);
+	return ((  bool (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))List_1_Remove_m9BCE8CEF94E6F2BF8624D65214FF4F3CA686D60C_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.Boolean System.Collections.Generic.List`1<Photon.Voice.Unity.Speaker>::Remove(T)
 inline bool List_1_Remove_mB2D35F2D159F6AF052CF3FACEFDB9A8C80D9BF7A (List_1_t581C6CC97545A3BE378779CD0B20D123D6DCF950* __this, Speaker_tBD124E6AEFF169667A9441881B3A98F122AE4ADE* ___item0, const RuntimeMethod* method)
 {
-	return ((  bool (*) (List_1_t581C6CC97545A3BE378779CD0B20D123D6DCF950*, Speaker_tBD124E6AEFF169667A9441881B3A98F122AE4ADE*, const RuntimeMethod*))List_1_Remove_m4DFA48F4CEB9169601E75FC28517C5C06EFA5AD7_gshared)(__this, ___item0, method);
+	return ((  bool (*) (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))List_1_Remove_m9BCE8CEF94E6F2BF8624D65214FF4F3CA686D60C_gshared)((List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A*)__this, (Il2CppFullySharedGenericAny)___item0, method);
 }
 // System.Void UnityEngine.Object::set_name(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Object_set_name_mC79E6DC8FFD72479C90F0C4CC7F42A0FEAF5AE47 (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C* __this, String_t* ___value0, const RuntimeMethod* method) ;
@@ -5063,7 +5116,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LoggerImpl_Log_mD624AF92588E23CE00E575D0
 // T UnityEngine.GameObject::GetComponent<Photon.Voice.Unity.VoiceLogger>()
 inline VoiceLogger_t43ABA98917D5D00D8121A67D03DDB5EDB721F0D7* GameObject_GetComponent_TisVoiceLogger_t43ABA98917D5D00D8121A67D03DDB5EDB721F0D7_m4C2603206ABDE00D4367D668F4F55DECD9EF9A73 (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, const RuntimeMethod* method)
 {
-	return ((  VoiceLogger_t43ABA98917D5D00D8121A67D03DDB5EDB721F0D7* (*) (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*, const RuntimeMethod*))GameObject_GetComponent_TisRuntimeObject_m6EAED4AA356F0F48288F67899E5958792395563B_gshared)(__this, method);
+	VoiceLogger_t43ABA98917D5D00D8121A67D03DDB5EDB721F0D7* il2cppRetVal;
+	((  void (*) (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))GameObject_GetComponent_TisIl2CppFullySharedGenericAny_m1122128E432233EB251AECF734E2B72A42A2C194_gshared)((GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // UnityEngine.Transform UnityEngine.Transform::get_parent()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* Transform_get_parent_m65354E28A4C94EC00EBCF03532F7B0718380791E (Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* __this, const RuntimeMethod* method) ;
@@ -5120,7 +5175,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t AudioSettings_get_speakerMode_mE38A6F
 // TValue System.Collections.Generic.Dictionary`2<UnityEngine.AudioSpeakerMode,System.Int32>::get_Item(TKey)
 inline int32_t Dictionary_2_get_Item_mE1EAE63741F89D9073AE1DA271B31315758A9F14 (Dictionary_2_t90D8FB6128EC2CFF20D39F4C62B601435A7DF01B* __this, int32_t ___key0, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (Dictionary_2_t90D8FB6128EC2CFF20D39F4C62B601435A7DF01B*, int32_t, const RuntimeMethod*))Dictionary_2_get_Item_m978CAD767E166B6BD2E111732F513A1398B0B974_gshared)(__this, ___key0, method);
+	int32_t il2cppRetVal;
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Dictionary_2_get_Item_m2E96908E9716367701CD737FA54C884EB2A8C3EA_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)&___key0, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void Photon.Voice.WebRTCAudioProcessor::OnAudioOutFrameFloat(System.Single[])
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void WebRTCAudioProcessor_OnAudioOutFrameFloat_m43B319E8861C6F37C9A68AA3A6BFB423A09B8556 (WebRTCAudioProcessor_t953EFD6C29AD078174DF3C421006EA446A40EF50* __this, SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C* ___data0, const RuntimeMethod* method) ;
@@ -5139,7 +5196,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void WebRTCAudioProcessor__ctor_m64EB2A018F5A
 // System.Void Photon.Voice.LocalVoiceFramed`1<System.Int16>::AddPostProcessor(Photon.Voice.IProcessor`1<T>[])
 inline void LocalVoiceFramed_1_AddPostProcessor_mBA7A7E3F2CCA1B9C2C71BB4C64A0C3ACEFF35FDE (LocalVoiceFramed_1_tFA780290F30CCA1685CC3DD270208285A1BDE685* __this, IProcessor_1U5BU5D_tB97140E3248149AFBFD3EA7A2255773A7B0E83CF* ___processors0, const RuntimeMethod* method)
 {
-	((  void (*) (LocalVoiceFramed_1_tFA780290F30CCA1685CC3DD270208285A1BDE685*, IProcessor_1U5BU5D_tB97140E3248149AFBFD3EA7A2255773A7B0E83CF*, const RuntimeMethod*))LocalVoiceFramed_1_AddPostProcessor_mBA7A7E3F2CCA1B9C2C71BB4C64A0C3ACEFF35FDE_gshared)(__this, ___processors0, method);
+	((  void (*) (LocalVoiceFramed_1_t9022133ABBB14A7AA01EFE47DAE203FEA4C40E18*, IProcessor_1U5BU5D_t6D762F9A1F2EE15169E16E475015310C7C652B5A*, const RuntimeMethod*))LocalVoiceFramed_1_AddPostProcessor_mEC0081F9A56CB2DE47AE437A8ADC4C8EADAC2E0F_gshared)((LocalVoiceFramed_1_t9022133ABBB14A7AA01EFE47DAE203FEA4C40E18*)__this, (IProcessor_1U5BU5D_t6D762F9A1F2EE15169E16E475015310C7C652B5A*)___processors0, method);
 }
 // System.Void Photon.Voice.Unity.WebRtcAudioDsp::setOutputListener(System.Boolean)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void WebRtcAudioDsp_setOutputListener_m5D6BA23E6AC9AE3E777F727249F0233A2D13554E (WebRtcAudioDsp_tEF226D8EA919F9406027AA52F322F52ECB9E285E* __this, bool ___set0, const RuntimeMethod* method) ;
@@ -5148,7 +5205,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void WebRTCAudioProcessor_Dispose_m93761C7348
 // System.Void Photon.Voice.LocalVoiceFramed`1<System.Int16>::RemoveProcessor(Photon.Voice.IProcessor`1<T>[])
 inline void LocalVoiceFramed_1_RemoveProcessor_mEAA62DC1B7CA51D2660E696471777E3426DDA196 (LocalVoiceFramed_1_tFA780290F30CCA1685CC3DD270208285A1BDE685* __this, IProcessor_1U5BU5D_tB97140E3248149AFBFD3EA7A2255773A7B0E83CF* ___processors0, const RuntimeMethod* method)
 {
-	((  void (*) (LocalVoiceFramed_1_tFA780290F30CCA1685CC3DD270208285A1BDE685*, IProcessor_1U5BU5D_tB97140E3248149AFBFD3EA7A2255773A7B0E83CF*, const RuntimeMethod*))LocalVoiceFramed_1_RemoveProcessor_mEAA62DC1B7CA51D2660E696471777E3426DDA196_gshared)(__this, ___processors0, method);
+	((  void (*) (LocalVoiceFramed_1_t9022133ABBB14A7AA01EFE47DAE203FEA4C40E18*, IProcessor_1U5BU5D_t6D762F9A1F2EE15169E16E475015310C7C652B5A*, const RuntimeMethod*))LocalVoiceFramed_1_RemoveProcessor_m1B5E1BA8C50F664F1CA2892AF561A4C9D0646AB4_gshared)((LocalVoiceFramed_1_t9022133ABBB14A7AA01EFE47DAE203FEA4C40E18*)__this, (IProcessor_1U5BU5D_t6D762F9A1F2EE15169E16E475015310C7C652B5A*)___processors0, method);
 }
 // T UnityEngine.Object::FindObjectOfType<UnityEngine.AudioListener>()
 inline AudioListener_t1D629CE9BC079C8ECDE8F822616E8A8E319EAE35* Object_FindObjectOfType_TisAudioListener_t1D629CE9BC079C8ECDE8F822616E8A8E319EAE35_mFDA0D604F7239642B39B6010674A936ADD544912 (const RuntimeMethod* method)
@@ -5158,12 +5215,14 @@ inline AudioListener_t1D629CE9BC079C8ECDE8F822616E8A8E319EAE35* Object_FindObjec
 // T UnityEngine.GameObject::GetComponent<Photon.Voice.Unity.AudioOutCapture>()
 inline AudioOutCapture_t2ECCD8EAC3FBB9F4A72080A036D6A0765A12124F* GameObject_GetComponent_TisAudioOutCapture_t2ECCD8EAC3FBB9F4A72080A036D6A0765A12124F_mF37F89E86DAFA8A9A939070E3C9B4E6C3BE92E6E (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, const RuntimeMethod* method)
 {
-	return ((  AudioOutCapture_t2ECCD8EAC3FBB9F4A72080A036D6A0765A12124F* (*) (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*, const RuntimeMethod*))GameObject_GetComponent_TisRuntimeObject_m6EAED4AA356F0F48288F67899E5958792395563B_gshared)(__this, method);
+	AudioOutCapture_t2ECCD8EAC3FBB9F4A72080A036D6A0765A12124F* il2cppRetVal;
+	((  void (*) (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))GameObject_GetComponent_TisIl2CppFullySharedGenericAny_m1122128E432233EB251AECF734E2B72A42A2C194_gshared)((GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void System.Action`2<System.Single[],System.Int32>::.ctor(System.Object,System.IntPtr)
 inline void Action_2__ctor_m9FC593FA3F86A95622E1049877FEA95C8E14E918 (Action_2_tC78B65C70619C5DA82BEEF8B33BCC3F4FAADB7DC* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Action_2_tC78B65C70619C5DA82BEEF8B33BCC3F4FAADB7DC*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_2__ctor_m07C6392BB276FFCCFD4E495842992EA26FA44882_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Action_2_t1D42C7D8DCD2DEB7C556FB3783F0EDAFF694E5E8*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_2__ctor_m8E9B7F6EE50FEF26FF7537F554B4F5E434F70550_gshared)((Action_2_t1D42C7D8DCD2DEB7C556FB3783F0EDAFF694E5E8*)__this, ___object0, ___method1, method);
 }
 // System.Void Photon.Voice.Unity.AudioOutCapture::remove_OnAudioFrame(System.Action`2<System.Single[],System.Int32>)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioOutCapture_remove_OnAudioFrame_m86AE5B978E42FF7EDEF6799F50D90330667132C3 (AudioOutCapture_t2ECCD8EAC3FBB9F4A72080A036D6A0765A12124F* __this, Action_2_tC78B65C70619C5DA82BEEF8B33BCC3F4FAADB7DC* ___value0, const RuntimeMethod* method) ;
@@ -5205,19 +5264,21 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void WebRTCAudioProcessor_set_Bypass_m2779AA8
 // System.Void System.Collections.Generic.Dictionary`2<UnityEngine.AudioSpeakerMode,System.Int32>::.ctor()
 inline void Dictionary_2__ctor_mF1981F3CBFE153F71C9A861229474D07A1C31DD7 (Dictionary_2_t90D8FB6128EC2CFF20D39F4C62B601435A7DF01B* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_t90D8FB6128EC2CFF20D39F4C62B601435A7DF01B*, const RuntimeMethod*))Dictionary_2__ctor_m2E03E419C7EAE999D440A625A0C6110AF2EB0F86_gshared)(__this, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, const RuntimeMethod*))Dictionary_2__ctor_m7745B6ED71E47C95E1BFCE647C4F026A404C668F_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, method);
 }
 // System.Void System.Collections.Generic.Dictionary`2<UnityEngine.AudioSpeakerMode,System.Int32>::Add(TKey,TValue)
 inline void Dictionary_2_Add_mBAC9BC9A57B4D2A221AD0DC384A0F36E25B4405F (Dictionary_2_t90D8FB6128EC2CFF20D39F4C62B601435A7DF01B* __this, int32_t ___key0, int32_t ___value1, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_t90D8FB6128EC2CFF20D39F4C62B601435A7DF01B*, int32_t, int32_t, const RuntimeMethod*))Dictionary_2_Add_mDDC87F07779BF25B3A4D29BE8B2C0992C42ADFDD_gshared)(__this, ___key0, ___value1, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Dictionary_2_Add_m54D479280472DEA042DB3933AF547E666B017333_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)&___key0, (Il2CppFullySharedGenericAny)&___value1, method);
 }
 // System.Boolean Photon.Realtime.LoadBalancingClient::get_IsConnected()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool LoadBalancingClient_get_IsConnected_mD98F9FFFBEFD1932A0898268507DFBE9BEE41257 (LoadBalancingClient_tC710D2A97D5ACB31FCA10E3D3A3266DBE89373A4* __this, const RuntimeMethod* method) ;
 // T UnityEngine.Component::GetComponent<Photon.Voice.Unity.VoiceConnection>()
 inline VoiceConnection_tB1A14C698697002D8D57FA47F332A44E7E294DB3* Component_GetComponent_TisVoiceConnection_tB1A14C698697002D8D57FA47F332A44E7E294DB3_mC02525F212FBAB52EA4209DB8C6FD548825C81D4 (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, const RuntimeMethod* method)
 {
-	return ((  VoiceConnection_tB1A14C698697002D8D57FA47F332A44E7E294DB3* (*) (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*, const RuntimeMethod*))Component_GetComponent_TisRuntimeObject_m7181F81CAEC2CF53F5D2BC79B7425C16E1F80D33_gshared)(__this, method);
+	VoiceConnection_tB1A14C698697002D8D57FA47F332A44E7E294DB3* il2cppRetVal;
+	((  void (*) (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Component_GetComponent_TisIl2CppFullySharedGenericAny_m47CBDD147982125387F078ABBFDAAB92D397A6C2_gshared)((Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void Photon.Realtime.LoadBalancingClient::AddCallbackTarget(System.Object)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LoadBalancingClient_AddCallbackTarget_mF98AF4F5A8EF6794C9038C50C619B03EC7FB22B8 (LoadBalancingClient_tC710D2A97D5ACB31FCA10E3D3A3266DBE89373A4* __this, RuntimeObject* ___target0, const RuntimeMethod* method) ;
@@ -5254,7 +5315,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MicAmplifierFloat__ctor_mE3519854E3CAD8D
 // System.Void Photon.Voice.LocalVoiceFramed`1<System.Single>::AddPostProcessor(Photon.Voice.IProcessor`1<T>[])
 inline void LocalVoiceFramed_1_AddPostProcessor_mA107426BC5100CB1EAD5AD61A7CDD6932A580DEF (LocalVoiceFramed_1_t413190758F8F973F0B050AB3B41D39DB9D3EA903* __this, IProcessor_1U5BU5D_t4489D87F9BE5F6BA2448AAE87280B23C8585C147* ___processors0, const RuntimeMethod* method)
 {
-	((  void (*) (LocalVoiceFramed_1_t413190758F8F973F0B050AB3B41D39DB9D3EA903*, IProcessor_1U5BU5D_t4489D87F9BE5F6BA2448AAE87280B23C8585C147*, const RuntimeMethod*))LocalVoiceFramed_1_AddPostProcessor_mA107426BC5100CB1EAD5AD61A7CDD6932A580DEF_gshared)(__this, ___processors0, method);
+	((  void (*) (LocalVoiceFramed_1_t9022133ABBB14A7AA01EFE47DAE203FEA4C40E18*, IProcessor_1U5BU5D_t6D762F9A1F2EE15169E16E475015310C7C652B5A*, const RuntimeMethod*))LocalVoiceFramed_1_AddPostProcessor_mEC0081F9A56CB2DE47AE437A8ADC4C8EADAC2E0F_gshared)((LocalVoiceFramed_1_t9022133ABBB14A7AA01EFE47DAE203FEA4C40E18*)__this, (IProcessor_1U5BU5D_t6D762F9A1F2EE15169E16E475015310C7C652B5A*)___processors0, method);
 }
 // System.Void Photon.Voice.Unity.UtilityScripts.MicAmplifierShort::.ctor(System.Single)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MicAmplifierShort__ctor_m97C39B8B40262EA26A7BD5B0DEC164DA84089DFB (MicAmplifierShort_t4E8F1CAD589505EF83AA0FE4F10DE29B1EBF84AE* __this, float ___amplificationFactor0, const RuntimeMethod* method) ;
@@ -5269,7 +5330,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR float MicAmplifierShort_get_Ampli
 // System.Void System.Action`1<System.Boolean>::Invoke(T)
 inline void Action_1_Invoke_m69C8773D6967F3B224777183E24EA621CE056F8F_inline (Action_1_t10DCB0C07D0D3C565CEACADC80D1152B35A45F6C* __this, bool ___obj0, const RuntimeMethod* method)
 {
-	((  void (*) (Action_1_t10DCB0C07D0D3C565CEACADC80D1152B35A45F6C*, bool, const RuntimeMethod*))Action_1_Invoke_m69C8773D6967F3B224777183E24EA621CE056F8F_gshared_inline)(__this, ___obj0, method);
+	((  void (*) (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Action_1_Invoke_m5A038831CEB84A7E374FE59D43444412629F833F_gshared_inline)((Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*)__this, (Il2CppFullySharedGenericAny)&___obj0, method);
 }
 // System.Void Photon.Voice.Unity.UtilityScripts.MicrophonePermission::InitVoice()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MicrophonePermission_InitVoice_mF9BDEADC69712528E75E82A767D26898DAD82EBA (MicrophonePermission_tF032E900139930232B9458C214EFA9500137B29C* __this, const RuntimeMethod* method) ;
@@ -5282,7 +5343,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PermissionCallbacks__ctor_m91B14BBBC8913
 // System.Void System.Action`1<System.String>::.ctor(System.Object,System.IntPtr)
 inline void Action_1__ctor_m9DC2953C55C4D7D4B7BEFE03D84DA1F9362D652C (Action_1_t3CB5D1A819C3ED3F99E9E39F890F18633253949A* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Action_1_t3CB5D1A819C3ED3F99E9E39F890F18633253949A*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_1__ctor_m2E1DFA67718FC1A0B6E5DFEB78831FFE9C059EB4_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_1__ctor_m685A441EC9FAC9D554B26FA83A08F4BEF96DFF0E_gshared)((Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*)__this, ___object0, ___method1, method);
 }
 // System.Void UnityEngine.Android.PermissionCallbacks::add_PermissionDenied(System.Action`1<System.String>)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PermissionCallbacks_add_PermissionDenied_mE0B2826463785B050C999C70F443FCC3822563D0 (PermissionCallbacks_t6C5002298E6649261FCB52C244695459E5C9890F* __this, Action_1_t3CB5D1A819C3ED3F99E9E39F890F18633253949A* ___value0, const RuntimeMethod* method) ;
@@ -5295,7 +5356,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Permission_RequestUserPermission_m7B8E81
 // T[] UnityEngine.Component::GetComponents<Photon.Voice.Unity.VoiceConnection>()
 inline VoiceConnectionU5BU5D_tF90797187743A41D892BFE2C7415E8951059CB7D* Component_GetComponents_TisVoiceConnection_tB1A14C698697002D8D57FA47F332A44E7E294DB3_mA5F2B99787B95FCF402D2156B559B5A7C0C87FB8 (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, const RuntimeMethod* method)
 {
-	return ((  VoiceConnectionU5BU5D_tF90797187743A41D892BFE2C7415E8951059CB7D* (*) (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*, const RuntimeMethod*))Component_GetComponents_TisRuntimeObject_m35447B0B07F9C06A1AF846E482EC6FEB09D2436F_gshared)(__this, method);
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* il2cppRetVal = ((  __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* (*) (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*, const RuntimeMethod*))Component_GetComponents_TisIl2CppFullySharedGenericAny_mD0F0A24D99D5E839646E6037D7E2DE05A9E1B67D_gshared)((Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*)__this, method);
+	return (VoiceConnectionU5BU5D_tF90797187743A41D892BFE2C7415E8951059CB7D*)il2cppRetVal;
 }
 // System.Void UnityEngine.Debug::LogError(System.Object,UnityEngine.Object)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Debug_LogError_m94F967AB31244EACE68C3BE1DD85B69ED3334C0E (RuntimeObject* ___message0, Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C* ___context1, const RuntimeMethod* method) ;
@@ -5306,7 +5368,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void WindowFunction__ctor_m31D7B6C221D9A078AE
 // T[] System.Array::Empty<UnityEngine.GUILayoutOption>()
 inline GUILayoutOptionU5BU5D_t24AB80AB9355D784F2C65E12A4D0CC2E0C914CA2* Array_Empty_TisGUILayoutOption_t8B0AA056521747053A3176FCC43E9C3608940A14_mC7F345AC4C0CA86560FAA00174268F70FBBE577F_inline (const RuntimeMethod* method)
 {
-	return ((  GUILayoutOptionU5BU5D_t24AB80AB9355D784F2C65E12A4D0CC2E0C914CA2* (*) (const RuntimeMethod*))Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_gshared_inline)(method);
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* il2cppRetVal = ((  __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* (*) (const RuntimeMethod*))Array_Empty_TisIl2CppFullySharedGenericAny_m244E2A51B33F845A2093F0862FBCE502E4FDD868_gshared_inline)(method);
+	return (GUILayoutOptionU5BU5D_t24AB80AB9355D784F2C65E12A4D0CC2E0C914CA2*)il2cppRetVal;
 }
 // UnityEngine.Rect UnityEngine.GUILayout::Window(System.Int32,UnityEngine.Rect,UnityEngine.GUI/WindowFunction,System.String,UnityEngine.GUILayoutOption[])
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Rect_tA04E0F8A1830E767F40FB27ECD8D309303571F0D GUILayout_Window_mF2F1C1620706F70E59FAAA4882967AB589FF9059 (int32_t ___id0, Rect_tA04E0F8A1830E767F40FB27ECD8D309303571F0D ___screenRect1, WindowFunction_t0067B6F174FD5BEC3E869A38C2319BA8EE85D550* ___func2, String_t* ___text3, GUILayoutOptionU5BU5D_t24AB80AB9355D784F2C65E12A4D0CC2E0C914CA2* ___options4, const RuntimeMethod* method) ;
@@ -5429,7 +5492,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Debug_Log_m87A9A3C761FF5C43ED8A53B16190A
 // System.Void System.Action`1<Photon.Voice.Unity.RemoteVoiceLink>::.ctor(System.Object,System.IntPtr)
 inline void Action_1__ctor_mB3E258E7E69A94ABCD9F825A08390A0A0F894CBC (Action_1_tEDBE6144CEB293C0905C68B84BB211D3950274B3* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Action_1_tEDBE6144CEB293C0905C68B84BB211D3950274B3*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_1__ctor_m2E1DFA67718FC1A0B6E5DFEB78831FFE9C059EB4_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*, RuntimeObject*, intptr_t, const RuntimeMethod*))Action_1__ctor_m685A441EC9FAC9D554B26FA83A08F4BEF96DFF0E_gshared)((Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99*)__this, ___object0, ___method1, method);
 }
 // System.Void Photon.Voice.Unity.VoiceConnection::add_RemoteVoiceAdded(System.Action`1<Photon.Voice.Unity.RemoteVoiceLink>)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VoiceConnection_add_RemoteVoiceAdded_mD443595196101F37DCA64BECD59E820CB96A687E (VoiceConnection_tB1A14C698697002D8D57FA47F332A44E7E294DB3* __this, Action_1_tEDBE6144CEB293C0905C68B84BB211D3950274B3* ___value0, const RuntimeMethod* method) ;
@@ -5474,7 +5537,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void WaveWriter_Write_m5A8BEC7FE6C84386DA8981
 // T UnityEngine.GameObject::GetComponent<Photon.Voice.Unity.Recorder>()
 inline Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* GameObject_GetComponent_TisRecorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C_mB4C50BC933D594F749D7A62BFF9EA6E8362D54EF (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, const RuntimeMethod* method)
 {
-	return ((  Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* (*) (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*, const RuntimeMethod*))GameObject_GetComponent_TisRuntimeObject_m6EAED4AA356F0F48288F67899E5958792395563B_gshared)(__this, method);
+	Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* il2cppRetVal;
+	((  void (*) (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))GameObject_GetComponent_TisIl2CppFullySharedGenericAny_m1122128E432233EB251AECF734E2B72A42A2C194_gshared)((GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.Void Photon.Voice.Unity.Recorder::set_SourceType(Photon.Voice.Unity.Recorder/InputSourceType)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Recorder_set_SourceType_m2DBF84AF542E7662A4302A0D20399C7FC5E1E13D (Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* __this, int32_t ___value0, const RuntimeMethod* method) ;
@@ -23855,38 +23920,34 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Player_tC864A64FC55FA6E30EFD6B6FF
 		return L_0;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* Array_Empty_TisRuntimeObject_mFB8A63D602BB6974D31E20300D9EB89C6FE7C278_gshared_inline (const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* Array_Empty_TisIl2CppFullySharedGenericAny_m244E2A51B33F845A2093F0862FBCE502E4FDD868_gshared_inline (const RuntimeMethod* method) 
 {
+	il2cpp_rgctx_method_init(method);
 	{
-		il2cpp_codegen_runtime_class_init_inline(il2cpp_rgctx_data(method->rgctx_data, 0));
-		ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_0 = ((EmptyArray_1_tDF0DD7256B115243AA6BD5558417387A734240EE_StaticFields*)il2cpp_codegen_static_fields_for(il2cpp_rgctx_data(method->rgctx_data, 0)))->___Value_0;
+		il2cpp_codegen_runtime_class_init_inline(il2cpp_rgctx_data(method->rgctx_data, 2));
+		__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* L_0 = ((EmptyArray_1_tF69A5F6BAD1150A16C4C98B346D6122FE3751C80_StaticFields*)il2cpp_codegen_static_fields_for(il2cpp_rgctx_data(method->rgctx_data, 2)))->___Value_0;
 		return L_0;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* Func_1_Invoke_m1412272198DFA4066C83206E5B43353AF10A2EEE_gshared_inline (Func_1_tD5C081AE11746B200C711DD48DBEB00E3A9276D4* __this, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Func_1_Invoke_m35CBC166F464B8A1169583672025E6D64211856C_gshared_inline (Func_1_tBB8824FA8746333BFFF3AB3CE4A41B58450AF431* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) 
 {
-	typedef RuntimeObject* (*FunctionPointerType) (RuntimeObject*, const RuntimeMethod*);
-	return ((FunctionPointerType)__this->___invoke_impl_1)((Il2CppObject*)__this->___method_code_6, reinterpret_cast<RuntimeMethod*>(__this->___method_3));
+	typedef void (*FunctionPointerType) (RuntimeObject*, Il2CppFullySharedGenericAny*, const RuntimeMethod*);
+	((FunctionPointerType)__this->___invoke_impl_1)((Il2CppObject*)__this->___method_code_6, il2cppRetVal, reinterpret_cast<RuntimeMethod*>(__this->___method_3));
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_1_Invoke_mA8F89FB04FEA0F48A4F22EC84B5F9ADB2914341F_gshared_inline (Action_1_t310F18CB4338A2740CA701F160C62E2C3198E66A* __this, float ___obj0, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_1_Invoke_m5A038831CEB84A7E374FE59D43444412629F833F_gshared_inline (Action_1_t923A20D1D4F6B55B2ED5AE21B90F1A0CE0450D99* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___obj0, const RuntimeMethod* method) 
 {
-	typedef void (*FunctionPointerType) (RuntimeObject*, float, const RuntimeMethod*);
+	typedef void (*FunctionPointerType) (RuntimeObject*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*);
 	((FunctionPointerType)__this->___invoke_impl_1)((Il2CppObject*)__this->___method_code_6, ___obj0, reinterpret_cast<RuntimeMethod*>(__this->___method_3));
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_1_Invoke_mF2422B2DD29F74CE66F791C3F68E288EC7C3DB9E_gshared_inline (Action_1_t6F9EB113EB3F16226AEF811A2744F4111C116C87* __this, RuntimeObject* ___obj0, const RuntimeMethod* method) 
-{
-	typedef void (*FunctionPointerType) (RuntimeObject*, RuntimeObject*, const RuntimeMethod*);
-	((FunctionPointerType)__this->___invoke_impl_1)((Il2CppObject*)__this->___method_code_6, ___obj0, reinterpret_cast<RuntimeMethod*>(__this->___method_3));
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C* FrameOut_1_get_Buf_mD21AC55D18CE61CAEF7A037E5C825B3EBA21A0B5_gshared_inline (FrameOut_1_tE1D253183799A33EB68D1E188B90F1E04064CE5D* __this, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR __Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* FrameOut_1_get_Buf_m7BB7B509D57FF8CE6C0C8EFDC25D4F6862C2B5E5_gshared_inline (FrameOut_1_t3D7805A654659F9E3DDCC2FA050121D485076639* __this, const RuntimeMethod* method) 
 {
 	{
 		// public T[] Buf { get; private set; }
-		SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C* L_0 = (SingleU5BU5D_t89DEFE97BCEDB5857010E79ECE0F52CF6E93B87C*)__this->___U3CBufU3Ek__BackingField_0;
+		__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* L_0 = (__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC*)__this->___U3CBufU3Ek__BackingField_0;
 		return L_0;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool FrameOut_1_get_EndOfStream_m0EED4A0C92E8372184F42BAFD6E82BC1AD41FEB5_gshared_inline (FrameOut_1_tE1D253183799A33EB68D1E188B90F1E04064CE5D* __this, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool FrameOut_1_get_EndOfStream_m6C7231C704679F86C300483ED35818B88B8D3CE0_gshared_inline (FrameOut_1_t3D7805A654659F9E3DDCC2FA050121D485076639* __this, const RuntimeMethod* method) 
 {
 	{
 		// public bool EndOfStream { get; private set; } // stream interrupted but may be resumed, flush the output
@@ -23894,26 +23955,31 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool FrameOut_1_get_EndOfStream_m
 		return L_0;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t List_1_get_Count_m4407E4C389F22B8CEC282C15D56516658746C383_gshared_inline (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t List_1_get_Count_mD2ED26ACAF3BAF386FFEA83893BA51DB9FD8BA30_gshared_inline (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, const RuntimeMethod* method) 
 {
 	{
 		int32_t L_0 = (int32_t)__this->____size_2;
 		return L_0;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Add_mEBCF994CC3814631017F46A387B1A192ED6C85C7_gshared_inline (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, RuntimeObject* ___item0, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Add_mD4F3498FBD3BDD3F03CBCFB38041CBAC9C28CAFC_gshared_inline (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___item0, const RuntimeMethod* method) 
 {
-	ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* V_0 = NULL;
+	// sizeof(T)
+	const uint32_t SizeOf_T_t664E2061A913AF1FEE499655BC64F0FDE10D2A5E = il2cpp_codegen_sizeof(il2cpp_rgctx_data(method->klass->rgctx_data, 9));
+	// T
+	const Il2CppFullySharedGenericAny L_8 = alloca(SizeOf_T_t664E2061A913AF1FEE499655BC64F0FDE10D2A5E);
+	const Il2CppFullySharedGenericAny L_9 = L_8;
+	__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* V_0 = NULL;
 	int32_t V_1 = 0;
 	{
 		int32_t L_0 = (int32_t)__this->____version_3;
 		__this->____version_3 = ((int32_t)il2cpp_codegen_add(L_0, 1));
-		ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_1 = (ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918*)__this->____items_1;
+		__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* L_1 = (__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC*)__this->____items_1;
 		V_0 = L_1;
 		int32_t L_2 = (int32_t)__this->____size_2;
 		V_1 = L_2;
 		int32_t L_3 = V_1;
-		ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_4 = V_0;
+		__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* L_4 = V_0;
 		NullCheck(L_4);
 		if ((!(((uint32_t)L_3) < ((uint32_t)((int32_t)(((RuntimeArray*)L_4)->max_length))))))
 		{
@@ -23923,46 +23989,49 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Add_mEBCF994CC3814631
 	{
 		int32_t L_5 = V_1;
 		__this->____size_2 = ((int32_t)il2cpp_codegen_add(L_5, 1));
-		ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_6 = V_0;
+		__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* L_6 = V_0;
 		int32_t L_7 = V_1;
-		RuntimeObject* L_8 = ___item0;
+		il2cpp_codegen_memcpy(L_8, (il2cpp_codegen_class_is_value_type(il2cpp_rgctx_data(method->klass->rgctx_data, 9)) ? ___item0 : &___item0), SizeOf_T_t664E2061A913AF1FEE499655BC64F0FDE10D2A5E);
 		NullCheck(L_6);
-		(L_6)->SetAt(static_cast<il2cpp_array_size_t>(L_7), (RuntimeObject*)L_8);
+		il2cpp_codegen_memcpy((L_6)->GetAddressAt(static_cast<il2cpp_array_size_t>(L_7)), L_8, SizeOf_T_t664E2061A913AF1FEE499655BC64F0FDE10D2A5E);
+		Il2CppCodeGenWriteBarrierForClass(il2cpp_rgctx_data(method->klass->rgctx_data, 9), (void**)(L_6)->GetAddressAt(static_cast<il2cpp_array_size_t>(L_7)), (void*)L_8);
 		return;
 	}
 
 IL_0034:
 	{
-		RuntimeObject* L_9 = ___item0;
-		((  void (*) (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D*, RuntimeObject*, const RuntimeMethod*))il2cpp_codegen_get_method_pointer(il2cpp_rgctx_method(method->klass->rgctx_data, 11)))(__this, L_9, il2cpp_rgctx_method(method->klass->rgctx_data, 11));
+		il2cpp_codegen_memcpy(L_9, (il2cpp_codegen_class_is_value_type(il2cpp_rgctx_data(method->klass->rgctx_data, 9)) ? ___item0 : &___item0), SizeOf_T_t664E2061A913AF1FEE499655BC64F0FDE10D2A5E);
+		InvokerActionInvoker1< Il2CppFullySharedGenericAny >::Invoke(il2cpp_codegen_get_direct_method_pointer(il2cpp_rgctx_method(method->klass->rgctx_data, 14)), il2cpp_rgctx_method(method->klass->rgctx_data, 14), __this, (il2cpp_codegen_class_is_value_type(il2cpp_rgctx_data(method->klass->rgctx_data, 9)) ? L_9: *(void**)L_9));
 		return;
 	}
 }
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Clear_m16C1F2C61FED5955F10EB36BC1CB2DF34B128994_gshared_inline (List_1_tA239CB83DE5615F348BB0507E45F490F4F7C9A8D* __this, const RuntimeMethod* method) 
+IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void List_1_Clear_mD615D1BCB2C9DD91DAD86A2F9E5CF1DFFCBF7925_gshared_inline (List_1_tDBA89B0E21BAC58CFBD3C1F76E4668E3B562761A* __this, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
 	{
 		int32_t L_0 = (int32_t)__this->____version_3;
 		__this->____version_3 = ((int32_t)il2cpp_codegen_add(L_0, 1));
-		if (!true)
+		bool L_1;
+		L_1 = il2cpp_codegen_is_reference_or_contains_references(il2cpp_rgctx_method(method->klass->rgctx_data, 25));
+		if (!L_1)
 		{
 			goto IL_0035;
 		}
 	}
 	{
-		int32_t L_1 = (int32_t)__this->____size_2;
-		V_0 = L_1;
+		int32_t L_2 = (int32_t)__this->____size_2;
+		V_0 = L_2;
 		__this->____size_2 = 0;
-		int32_t L_2 = V_0;
-		if ((((int32_t)L_2) <= ((int32_t)0)))
+		int32_t L_3 = V_0;
+		if ((((int32_t)L_3) <= ((int32_t)0)))
 		{
 			goto IL_003c;
 		}
 	}
 	{
-		ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_3 = (ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918*)__this->____items_1;
-		int32_t L_4 = V_0;
-		Array_Clear_m50BAA3751899858B097D3FF2ED31F284703FE5CB((RuntimeArray*)L_3, 0, L_4, NULL);
+		__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC* L_4 = (__Il2CppFullySharedGenericTypeU5BU5D_tCAB6D060972DD49223A834B7EEFEB9FE2D003BEC*)__this->____items_1;
+		int32_t L_5 = V_0;
+		Array_Clear_m50BAA3751899858B097D3FF2ED31F284703FE5CB((RuntimeArray*)L_4, 0, L_5, NULL);
 		return;
 	}
 
@@ -23975,9 +24044,4 @@ IL_003c:
 	{
 		return;
 	}
-}
-IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Action_1_Invoke_m69C8773D6967F3B224777183E24EA621CE056F8F_gshared_inline (Action_1_t10DCB0C07D0D3C565CEACADC80D1152B35A45F6C* __this, bool ___obj0, const RuntimeMethod* method) 
-{
-	typedef void (*FunctionPointerType) (RuntimeObject*, bool, const RuntimeMethod*);
-	((FunctionPointerType)__this->___invoke_impl_1)((Il2CppObject*)__this->___method_code_6, ___obj0, reinterpret_cast<RuntimeMethod*>(__this->___method_3));
 }

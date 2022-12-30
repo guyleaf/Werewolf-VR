@@ -1160,24 +1160,24 @@ namespace Werewolf.Game
             {
                 endGame = true;
                 message = $"All werewolfs dead, villagers win! ";
-                humanWin.SetActive(false);
-                werewolfWin.SetActive(true);
+                humanWin.SetActive(true);
+                werewolfWin.SetActive(false);
                 Debug.Log("All werewolfs dead, villagers win! ");
             }
             else if (!(playerList.Contains(roleList[2]) || playerList.Contains(roleList[3])))
             {
                 endGame = true;
                 message = $"All special roles dead, werewolf win! ";
-                humanWin.SetActive(true);
-                werewolfWin.SetActive(false);
+                humanWin.SetActive(false);
+                werewolfWin.SetActive(true);
                 Debug.Log("All special roles dead, werewolf win! ");
             }
             else if (!(playerList.Contains(roleList[4]) || playerList.Contains(roleList[5])))
             {
                 endGame = true;
                 message = $"All villagers dead, werewolf win! ";
-                humanWin.SetActive(true);
-                werewolfWin.SetActive(false);
+                humanWin.SetActive(false);
+                werewolfWin.SetActive(true);
                 Debug.Log("All villagers dead, werewolf win! ");
             }
             _gm.CallRpcEndGame(endGame, message);

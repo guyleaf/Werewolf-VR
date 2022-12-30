@@ -70,32 +70,30 @@ struct InterfaceFuncInvoker0
 struct Callback_t2A94A02223801D94F04E26BD852435B464FD6E9F;
 // Oculus.Platform.Message`1/Callback<Oculus.Platform.Models.MatchmakingEnqueueResultAndRoom>
 struct Callback_t72DB7FF146D5C7395B3AA83899244DD1E38A2E75;
-// Oculus.Platform.Message`1/Callback<System.Object>
-struct Callback_t80E1E12B0A5397910E616CA65BFEA673FF16934D;
 // Oculus.Platform.Message`1/Callback<Oculus.Platform.Models.Room>
 struct Callback_t9EC7A0EE57CE64F769946FF4B8F38764C84FD764;
 // Oculus.Platform.Message`1/Callback<Oculus.Platform.Models.User>
 struct Callback_t8CDD7D3925F3AD3B67E2295158D4299A831742F8;
-// Oculus.Platform.Models.DeserializableList`1<System.Object>
-struct DeserializableList_1_tF03B8C48A736E5705A86C89209212CD695949C09;
+// Oculus.Platform.Message`1/Callback<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Callback_t1D121EF8E0E73338B89C4419644D6DACA979DB96;
 // Oculus.Platform.Models.DeserializableList`1<Oculus.Platform.Models.User>
 struct DeserializableList_1_t8C90B7850D74427EC10029BF2CB1D443047B8FC8;
+// Oculus.Platform.Models.DeserializableList`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct DeserializableList_1_t95FA7D839008BC76F9D50C2560853173DAC4B7B4;
 // System.Collections.Generic.Dictionary`2<System.Int32,System.Text.Encoding>
 struct Dictionary_2_t87EDE08B2E48F793A22DE50D6B3CC2E7EBB2DB54;
-// System.Collections.Generic.Dictionary`2<System.Object,System.Int32>
-struct Dictionary_2_t5C96F4B6841710A9013966F76224BAE01FB4B4D1;
-// System.Collections.Generic.Dictionary`2<System.Object,System.Object>
-struct Dictionary_2_t14FE4A752A83D53771C584E4C8D14E01F2AFD7BA;
 // System.Collections.Generic.Dictionary`2<System.String,System.Int32>
 struct Dictionary_2_t5C8F46F5D57502270DD9E1DA8303B23C7FE85588;
 // System.Collections.Generic.Dictionary`2<System.String,System.Object>
 struct Dictionary_2_tA348003A3C1CEFB3096E9D2A0BC7F1AC8EC4F710;
 // System.Collections.Generic.Dictionary`2<System.String,System.String>
 struct Dictionary_2_t46B2DB028096FA2B828359E52F37F3105A83AD83;
-// System.Collections.Generic.IEnumerator`1<System.Object>
-struct IEnumerator_1_t43D2E4BA9246755F293DFA74F001FB1A70A648FD;
+// System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E;
 // System.Collections.Generic.IEnumerator`1<Oculus.Platform.Models.User>
 struct IEnumerator_1_tE626E5F857E8F1F61ADCDEA37411C8A3FB964F07;
+// System.Collections.Generic.IEnumerator`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct IEnumerator_1_t75CB2681E18F7F2791528FA2CA60361FDB5DA08D;
 // System.Collections.Generic.IEqualityComparer`1<System.String>
 struct IEqualityComparer_1_tAE94C8F24AD5B94D4EE85CA9FC59E3409D41CAF7;
 // System.Collections.Generic.Dictionary`2/KeyCollection<System.String,System.Int32>
@@ -110,22 +108,22 @@ struct List_1_tB50E56B21736F2DC9837A4E83456632A7789B539;
 struct Message_1_t8D3371E3AC395F37DBE65CD290E32DC3711A9767;
 // Oculus.Platform.Message`1<Oculus.Platform.Models.MatchmakingEnqueueResultAndRoom>
 struct Message_1_t3EACAAD86B74B63EFA639D646AFEFB75703066D5;
-// Oculus.Platform.Message`1<System.Object>
-struct Message_1_tC4674D49302BAB6183CEF95D099A5F93211019CB;
 // Oculus.Platform.Message`1<Oculus.Platform.Models.Room>
 struct Message_1_t6712B041CB9A6E0826F5AB64DF7897242DBC6CCD;
 // Oculus.Platform.Message`1<Oculus.Platform.Models.User>
 struct Message_1_tB77F82F1F4550955CAB92DBFEB260790E37A308A;
+// Oculus.Platform.Message`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Message_1_t8BF76F99FB79AB5D2F9555ED887A26898E8E8FE5;
 // Oculus.Platform.Request`1<Oculus.Platform.Models.MatchmakingEnqueueResult>
 struct Request_1_t032FC07496E4AC093857E050A2BF5CEFB37C7905;
 // Oculus.Platform.Request`1<Oculus.Platform.Models.MatchmakingEnqueueResultAndRoom>
 struct Request_1_t960E9EFA160E1208CC8E31836AE78BA72EA1E52D;
-// Oculus.Platform.Request`1<System.Object>
-struct Request_1_t4CB96621592A20B180089ED17BA12AE8564AF53F;
 // Oculus.Platform.Request`1<Oculus.Platform.Models.Room>
 struct Request_1_t3F874A2FE55A781BF568AD7106B9CD8FCBD16DAE;
 // Oculus.Platform.Request`1<Oculus.Platform.Models.User>
 struct Request_1_tDEBBCEA56ECDB50CF2277C79EB69671802236259;
+// Oculus.Platform.Request`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>
+struct Request_1_tDC85CDEACDE9B0DBEFC991012E57156A7EB1BC0E;
 // System.Threading.Tasks.Task`1<System.Int32>
 struct Task_1_t4C228DE57804012969575431CFF12D57C875552D;
 // UnityEngine.UI.CoroutineTween.TweenRunner`1<UnityEngine.UI.CoroutineTween.ColorTween>
@@ -1723,26 +1721,22 @@ struct CriterionU5BU5D_t86F7E9BD8AFAA5376A45FED00E791D14A04B3DAA  : public Runti
 };
 
 
-// System.Void Oculus.Platform.Message`1/Callback<System.Object>::.ctor(System.Object,System.IntPtr)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Callback__ctor_mDDF8A95AA3B0FC55E738A76A86EEE75A5CCD53EA_gshared (Callback_t80E1E12B0A5397910E616CA65BFEA673FF16934D* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
-// T UnityEngine.Component::GetComponent<System.Object>()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* Component_GetComponent_TisRuntimeObject_m7181F81CAEC2CF53F5D2BC79B7425C16E1F80D33_gshared (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, const RuntimeMethod* method) ;
-// Oculus.Platform.Request`1<T> Oculus.Platform.Request`1<System.Object>::OnComplete(Oculus.Platform.Message`1/Callback<T>)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Request_1_t4CB96621592A20B180089ED17BA12AE8564AF53F* Request_1_OnComplete_m3838B2B4AB8C028A7CAF31EAFFA0D849EF990B18_gshared (Request_1_t4CB96621592A20B180089ED17BA12AE8564AF53F* __this, Callback_t80E1E12B0A5397910E616CA65BFEA673FF16934D* ___callback0, const RuntimeMethod* method) ;
-// T Oculus.Platform.Message`1<System.Object>::get_Data()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* Message_1_get_Data_mD1E64D6ED8A65C626BADB30710BCF145A526E86B_gshared (Message_1_tC4674D49302BAB6183CEF95D099A5F93211019CB* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Object,System.Object>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2__ctor_m5B32FBC624618211EB461D59CFBB10E987FD1329_gshared (Dictionary_2_t14FE4A752A83D53771C584E4C8D14E01F2AFD7BA* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Object,System.Object>::Add(TKey,TValue)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_Add_m93FFFABE8FCE7FA9793F0915E2A8842C7CD0C0C1_gshared (Dictionary_2_t14FE4A752A83D53771C584E4C8D14E01F2AFD7BA* __this, RuntimeObject* ___key0, RuntimeObject* ___value1, const RuntimeMethod* method) ;
-// System.Collections.Generic.IEnumerator`1<T> Oculus.Platform.Models.DeserializableList`1<System.Object>::GetEnumerator()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* DeserializableList_1_GetEnumerator_m5BD9919C68A9CE0BAD70A5138DED5B35B59E6DC8_gshared (DeserializableList_1_tF03B8C48A736E5705A86C89209212CD695949C09* __this, const RuntimeMethod* method) ;
-// System.Int32 Oculus.Platform.Models.DeserializableList`1<System.Object>::get_Count()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t DeserializableList_1_get_Count_m8D2A16F510FEBC66136C64012BC482ED2007B478_gshared (DeserializableList_1_tF03B8C48A736E5705A86C89209212CD695949C09* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Object,System.Int32>::.ctor()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2__ctor_m517E7F9D104FEAE6646EABDDC9C852510E86077C_gshared (Dictionary_2_t5C96F4B6841710A9013966F76224BAE01FB4B4D1* __this, const RuntimeMethod* method) ;
-// System.Void System.Collections.Generic.Dictionary`2<System.Object,System.Int32>::Add(TKey,TValue)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_Add_m63897227AFA7035F1772315ABBBE7FD0A250E10C_gshared (Dictionary_2_t5C96F4B6841710A9013966F76224BAE01FB4B4D1* __this, RuntimeObject* ___key0, int32_t ___value1, const RuntimeMethod* method) ;
+// System.Void Oculus.Platform.Message`1/Callback<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor(System.Object,System.IntPtr)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Callback__ctor_m3688FAD98A2DA33F67D80182FA8C5601409F0EA8_gshared (Callback_t1D121EF8E0E73338B89C4419644D6DACA979DB96* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method) ;
+// T UnityEngine.Component::GetComponent<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Component_GetComponent_TisIl2CppFullySharedGenericAny_m47CBDD147982125387F078ABBFDAAB92D397A6C2_gshared (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// Oculus.Platform.Request`1<T> Oculus.Platform.Request`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::OnComplete(Oculus.Platform.Message`1/Callback<T>)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Request_1_tDC85CDEACDE9B0DBEFC991012E57156A7EB1BC0E* Request_1_OnComplete_m41607DE002C2C81D82A7A63934C2A4348FA0A6B7_gshared (Request_1_tDC85CDEACDE9B0DBEFC991012E57156A7EB1BC0E* __this, Callback_t1D121EF8E0E73338B89C4419644D6DACA979DB96* ___callback0, const RuntimeMethod* method) ;
+// T Oculus.Platform.Message`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Data()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Message_1_get_Data_m14D7BB9E73AD2FCFE890A03645F969AABE4C3A63_gshared (/*Oculus.Platform.Message`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>*/Message_1_t8BF76F99FB79AB5D2F9555ED887A26898E8E8FE5* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::.ctor()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2__ctor_m7745B6ED71E47C95E1BFCE647C4F026A404C668F_gshared (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E* __this, const RuntimeMethod* method) ;
+// System.Void System.Collections.Generic.Dictionary`2<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType,Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::Add(TKey,TValue)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Dictionary_2_Add_m54D479280472DEA042DB3933AF547E666B017333_gshared (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E* __this, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___key0, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny ___value1, const RuntimeMethod* method) ;
+// System.Collections.Generic.IEnumerator`1<T> Oculus.Platform.Models.DeserializableList`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::GetEnumerator()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* DeserializableList_1_GetEnumerator_m5D009FCC01295B4201E534DA1A5DC025A77D825B_gshared (DeserializableList_1_t95FA7D839008BC76F9D50C2560853173DAC4B7B4* __this, const RuntimeMethod* method) ;
+// System.Int32 Oculus.Platform.Models.DeserializableList`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>::get_Count()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t DeserializableList_1_get_Count_m095B1930960A236EDF1E7AF5BBD6815FB262FF10_gshared (DeserializableList_1_t95FA7D839008BC76F9D50C2560853173DAC4B7B4* __this, const RuntimeMethod* method) ;
 
 // System.Void System.IO.MemoryStream::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MemoryStream__ctor_m8F3BAE0B48E65BAA13C52FB020E502B3EA22CA6B (MemoryStream_tAAED1B42172E3390584E4194308AB878E786AAC2* __this, const RuntimeMethod* method) ;
@@ -1777,7 +1771,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Core_Initialize_m5BD81A79C2D03CD9D898841
 // System.Void Oculus.Platform.Message`1/Callback<Oculus.Platform.Models.Room>::.ctor(System.Object,System.IntPtr)
 inline void Callback__ctor_mAE45A9D93694865CD8DB5339ADCC337C59156D68 (Callback_t9EC7A0EE57CE64F769946FF4B8F38764C84FD764* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Callback_t9EC7A0EE57CE64F769946FF4B8F38764C84FD764*, RuntimeObject*, intptr_t, const RuntimeMethod*))Callback__ctor_mDDF8A95AA3B0FC55E738A76A86EEE75A5CCD53EA_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Callback_t1D121EF8E0E73338B89C4419644D6DACA979DB96*, RuntimeObject*, intptr_t, const RuntimeMethod*))Callback__ctor_m3688FAD98A2DA33F67D80182FA8C5601409F0EA8_gshared)((Callback_t1D121EF8E0E73338B89C4419644D6DACA979DB96*)__this, ___object0, ___method1, method);
 }
 // System.Void Oculus.Platform.Rooms::SetUpdateNotificationCallback(Oculus.Platform.Message`1/Callback<Oculus.Platform.Models.Room>)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Rooms_SetUpdateNotificationCallback_m91DAA806DCBE29A0DE31EB9C324F66DA9DD8BCEF (Callback_t9EC7A0EE57CE64F769946FF4B8F38764C84FD764* ___callback0, const RuntimeMethod* method) ;
@@ -1788,7 +1782,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DataEntry_checkEntitlement_mEB4952576422
 // T UnityEngine.Component::GetComponent<UnityEngine.UI.InputField>()
 inline InputField_tABEA115F23FBD374EBE80D4FAC1D15BD6E37A140* Component_GetComponent_TisInputField_tABEA115F23FBD374EBE80D4FAC1D15BD6E37A140_m08978F3683B8CCF83910BA8BB0A4F786A6361896 (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3* __this, const RuntimeMethod* method)
 {
-	return ((  InputField_tABEA115F23FBD374EBE80D4FAC1D15BD6E37A140* (*) (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*, const RuntimeMethod*))Component_GetComponent_TisRuntimeObject_m7181F81CAEC2CF53F5D2BC79B7425C16E1F80D33_gshared)(__this, method);
+	InputField_tABEA115F23FBD374EBE80D4FAC1D15BD6E37A140* il2cppRetVal;
+	((  void (*) (Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Component_GetComponent_TisIl2CppFullySharedGenericAny_m47CBDD147982125387F078ABBFDAAB92D397A6C2_gshared)((Component_t39FBE53E5EFCF4409111FB22C15FF73717632EC3*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.String UnityEngine.UI.InputField::get_text()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* InputField_get_text_m6E0796350FF559505E4DF17311803962699D6704 (InputField_tABEA115F23FBD374EBE80D4FAC1D15BD6E37A140* __this, const RuntimeMethod* method) ;
@@ -1847,17 +1843,20 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Request_1_tDEBBCEA56ECDB50CF2277C79EB69671802
 // System.Void Oculus.Platform.Message`1/Callback<Oculus.Platform.Models.User>::.ctor(System.Object,System.IntPtr)
 inline void Callback__ctor_mB705EE9E657BDB540DDF61815511B7604D8E3B4C (Callback_t8CDD7D3925F3AD3B67E2295158D4299A831742F8* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Callback_t8CDD7D3925F3AD3B67E2295158D4299A831742F8*, RuntimeObject*, intptr_t, const RuntimeMethod*))Callback__ctor_mDDF8A95AA3B0FC55E738A76A86EEE75A5CCD53EA_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Callback_t1D121EF8E0E73338B89C4419644D6DACA979DB96*, RuntimeObject*, intptr_t, const RuntimeMethod*))Callback__ctor_m3688FAD98A2DA33F67D80182FA8C5601409F0EA8_gshared)((Callback_t1D121EF8E0E73338B89C4419644D6DACA979DB96*)__this, ___object0, ___method1, method);
 }
 // Oculus.Platform.Request`1<T> Oculus.Platform.Request`1<Oculus.Platform.Models.User>::OnComplete(Oculus.Platform.Message`1/Callback<T>)
 inline Request_1_tDEBBCEA56ECDB50CF2277C79EB69671802236259* Request_1_OnComplete_mCCFD1D1B76E7B35E1D34C2A82D5F36DA33CB707E (Request_1_tDEBBCEA56ECDB50CF2277C79EB69671802236259* __this, Callback_t8CDD7D3925F3AD3B67E2295158D4299A831742F8* ___callback0, const RuntimeMethod* method)
 {
-	return ((  Request_1_tDEBBCEA56ECDB50CF2277C79EB69671802236259* (*) (Request_1_tDEBBCEA56ECDB50CF2277C79EB69671802236259*, Callback_t8CDD7D3925F3AD3B67E2295158D4299A831742F8*, const RuntimeMethod*))Request_1_OnComplete_m3838B2B4AB8C028A7CAF31EAFFA0D849EF990B18_gshared)(__this, ___callback0, method);
+	Request_1_tDC85CDEACDE9B0DBEFC991012E57156A7EB1BC0E* il2cppRetVal = ((  Request_1_tDC85CDEACDE9B0DBEFC991012E57156A7EB1BC0E* (*) (Request_1_tDC85CDEACDE9B0DBEFC991012E57156A7EB1BC0E*, Callback_t1D121EF8E0E73338B89C4419644D6DACA979DB96*, const RuntimeMethod*))Request_1_OnComplete_m41607DE002C2C81D82A7A63934C2A4348FA0A6B7_gshared)((Request_1_tDC85CDEACDE9B0DBEFC991012E57156A7EB1BC0E*)__this, (Callback_t1D121EF8E0E73338B89C4419644D6DACA979DB96*)___callback0, method);
+	return (Request_1_tDEBBCEA56ECDB50CF2277C79EB69671802236259*)il2cppRetVal;
 }
 // T Oculus.Platform.Message`1<Oculus.Platform.Models.User>::get_Data()
 inline User_t63181B96DDD1EF4D5FDBE2E12C0A1510AF51F6F4* Message_1_get_Data_m45982A65EE77ACDB145388C84BD877AA377188D8 (Message_1_tB77F82F1F4550955CAB92DBFEB260790E37A308A* __this, const RuntimeMethod* method)
 {
-	return ((  User_t63181B96DDD1EF4D5FDBE2E12C0A1510AF51F6F4* (*) (Message_1_tB77F82F1F4550955CAB92DBFEB260790E37A308A*, const RuntimeMethod*))Message_1_get_Data_mD1E64D6ED8A65C626BADB30710BCF145A526E86B_gshared)(__this, method);
+	User_t63181B96DDD1EF4D5FDBE2E12C0A1510AF51F6F4* il2cppRetVal;
+	((  void (*) (/*Oculus.Platform.Message`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>*/Message_1_t8BF76F99FB79AB5D2F9555ED887A26898E8E8FE5*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Message_1_get_Data_m14D7BB9E73AD2FCFE890A03645F969AABE4C3A63_gshared)((Message_1_t8BF76F99FB79AB5D2F9555ED887A26898E8E8FE5*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.String System.String::Concat(System.String,System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_Concat_m9E3155FB84015C823606188F53B47CB44C444991 (String_t* ___str00, String_t* ___str11, const RuntimeMethod* method) ;
@@ -1866,17 +1865,20 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Request_1_t960E9EFA160E1208CC8E31836AE78BA72E
 // System.Void Oculus.Platform.Message`1/Callback<Oculus.Platform.Models.MatchmakingEnqueueResultAndRoom>::.ctor(System.Object,System.IntPtr)
 inline void Callback__ctor_m42FB3BC4C5F799AAB256CA92E9D85BC0F64FF1E4 (Callback_t72DB7FF146D5C7395B3AA83899244DD1E38A2E75* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Callback_t72DB7FF146D5C7395B3AA83899244DD1E38A2E75*, RuntimeObject*, intptr_t, const RuntimeMethod*))Callback__ctor_mDDF8A95AA3B0FC55E738A76A86EEE75A5CCD53EA_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Callback_t1D121EF8E0E73338B89C4419644D6DACA979DB96*, RuntimeObject*, intptr_t, const RuntimeMethod*))Callback__ctor_m3688FAD98A2DA33F67D80182FA8C5601409F0EA8_gshared)((Callback_t1D121EF8E0E73338B89C4419644D6DACA979DB96*)__this, ___object0, ___method1, method);
 }
 // Oculus.Platform.Request`1<T> Oculus.Platform.Request`1<Oculus.Platform.Models.MatchmakingEnqueueResultAndRoom>::OnComplete(Oculus.Platform.Message`1/Callback<T>)
 inline Request_1_t960E9EFA160E1208CC8E31836AE78BA72EA1E52D* Request_1_OnComplete_m4CAA2EC5158C552515E1479BCDE9643D8DFA2EED (Request_1_t960E9EFA160E1208CC8E31836AE78BA72EA1E52D* __this, Callback_t72DB7FF146D5C7395B3AA83899244DD1E38A2E75* ___callback0, const RuntimeMethod* method)
 {
-	return ((  Request_1_t960E9EFA160E1208CC8E31836AE78BA72EA1E52D* (*) (Request_1_t960E9EFA160E1208CC8E31836AE78BA72EA1E52D*, Callback_t72DB7FF146D5C7395B3AA83899244DD1E38A2E75*, const RuntimeMethod*))Request_1_OnComplete_m3838B2B4AB8C028A7CAF31EAFFA0D849EF990B18_gshared)(__this, ___callback0, method);
+	Request_1_tDC85CDEACDE9B0DBEFC991012E57156A7EB1BC0E* il2cppRetVal = ((  Request_1_tDC85CDEACDE9B0DBEFC991012E57156A7EB1BC0E* (*) (Request_1_tDC85CDEACDE9B0DBEFC991012E57156A7EB1BC0E*, Callback_t1D121EF8E0E73338B89C4419644D6DACA979DB96*, const RuntimeMethod*))Request_1_OnComplete_m41607DE002C2C81D82A7A63934C2A4348FA0A6B7_gshared)((Request_1_tDC85CDEACDE9B0DBEFC991012E57156A7EB1BC0E*)__this, (Callback_t1D121EF8E0E73338B89C4419644D6DACA979DB96*)___callback0, method);
+	return (Request_1_t960E9EFA160E1208CC8E31836AE78BA72EA1E52D*)il2cppRetVal;
 }
 // T Oculus.Platform.Message`1<Oculus.Platform.Models.MatchmakingEnqueueResultAndRoom>::get_Data()
 inline MatchmakingEnqueueResultAndRoom_t1BB12CB3554190BD1698DAEB3FFAE937BDB99DCF* Message_1_get_Data_m3ABFAAD6443C0AB559739DE8A37DE5C1C2DF2503 (Message_1_t3EACAAD86B74B63EFA639D646AFEFB75703066D5* __this, const RuntimeMethod* method)
 {
-	return ((  MatchmakingEnqueueResultAndRoom_t1BB12CB3554190BD1698DAEB3FFAE937BDB99DCF* (*) (Message_1_t3EACAAD86B74B63EFA639D646AFEFB75703066D5*, const RuntimeMethod*))Message_1_get_Data_mD1E64D6ED8A65C626BADB30710BCF145A526E86B_gshared)(__this, method);
+	MatchmakingEnqueueResultAndRoom_t1BB12CB3554190BD1698DAEB3FFAE937BDB99DCF* il2cppRetVal;
+	((  void (*) (/*Oculus.Platform.Message`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>*/Message_1_t8BF76F99FB79AB5D2F9555ED887A26898E8E8FE5*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Message_1_get_Data_m14D7BB9E73AD2FCFE890A03645F969AABE4C3A63_gshared)((Message_1_t8BF76F99FB79AB5D2F9555ED887A26898E8E8FE5*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // System.String System.UInt64::ToString()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* UInt64_ToString_mD3AAE57EA18A6779F5A17E4F91C900A231EB0A6F (uint64_t* __this, const RuntimeMethod* method) ;
@@ -1885,46 +1887,51 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CustomQuery__ctor_m42DA97765E8CCC9AEDB5D
 // System.Void System.Collections.Generic.Dictionary`2<System.String,System.Object>::.ctor()
 inline void Dictionary_2__ctor_mC4F3DF292BAD88F4BF193C49CD689FAEBC4570A9 (Dictionary_2_tA348003A3C1CEFB3096E9D2A0BC7F1AC8EC4F710* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_tA348003A3C1CEFB3096E9D2A0BC7F1AC8EC4F710*, const RuntimeMethod*))Dictionary_2__ctor_m5B32FBC624618211EB461D59CFBB10E987FD1329_gshared)(__this, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, const RuntimeMethod*))Dictionary_2__ctor_m7745B6ED71E47C95E1BFCE647C4F026A404C668F_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, method);
 }
 // System.Void System.Collections.Generic.Dictionary`2<System.String,System.Object>::Add(TKey,TValue)
 inline void Dictionary_2_Add_m5875DF2ACE933D734119C088B2E7C9C63F49B443 (Dictionary_2_tA348003A3C1CEFB3096E9D2A0BC7F1AC8EC4F710* __this, String_t* ___key0, RuntimeObject* ___value1, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_tA348003A3C1CEFB3096E9D2A0BC7F1AC8EC4F710*, String_t*, RuntimeObject*, const RuntimeMethod*))Dictionary_2_Add_m93FFFABE8FCE7FA9793F0915E2A8842C7CD0C0C1_gshared)(__this, ___key0, ___value1, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Dictionary_2_Add_m54D479280472DEA042DB3933AF547E666B017333_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)___key0, (Il2CppFullySharedGenericAny)___value1, method);
 }
 // Oculus.Platform.Request`1<Oculus.Platform.Models.MatchmakingEnqueueResult> Oculus.Platform.Matchmaking::Enqueue(System.String,Oculus.Platform.Matchmaking/CustomQuery)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Request_1_t032FC07496E4AC093857E050A2BF5CEFB37C7905* Matchmaking_Enqueue_m27942904DAB9818122976C0D1C5339162DBA327F (String_t* ___pool0, CustomQuery_tD60F68A013CBAFC791A532E0FE921F372715E340* ___customQueryData1, const RuntimeMethod* method) ;
 // System.Void Oculus.Platform.Message`1/Callback<Oculus.Platform.Models.MatchmakingEnqueueResult>::.ctor(System.Object,System.IntPtr)
 inline void Callback__ctor_mE9CBF36D1FEBC4581E577BE5D3DBE3CC2C4691F6 (Callback_t2A94A02223801D94F04E26BD852435B464FD6E9F* __this, RuntimeObject* ___object0, intptr_t ___method1, const RuntimeMethod* method)
 {
-	((  void (*) (Callback_t2A94A02223801D94F04E26BD852435B464FD6E9F*, RuntimeObject*, intptr_t, const RuntimeMethod*))Callback__ctor_mDDF8A95AA3B0FC55E738A76A86EEE75A5CCD53EA_gshared)(__this, ___object0, ___method1, method);
+	((  void (*) (Callback_t1D121EF8E0E73338B89C4419644D6DACA979DB96*, RuntimeObject*, intptr_t, const RuntimeMethod*))Callback__ctor_m3688FAD98A2DA33F67D80182FA8C5601409F0EA8_gshared)((Callback_t1D121EF8E0E73338B89C4419644D6DACA979DB96*)__this, ___object0, ___method1, method);
 }
 // Oculus.Platform.Request`1<T> Oculus.Platform.Request`1<Oculus.Platform.Models.MatchmakingEnqueueResult>::OnComplete(Oculus.Platform.Message`1/Callback<T>)
 inline Request_1_t032FC07496E4AC093857E050A2BF5CEFB37C7905* Request_1_OnComplete_mDFB58EBF0B3765367190E9F05BB8A08FB9D8E993 (Request_1_t032FC07496E4AC093857E050A2BF5CEFB37C7905* __this, Callback_t2A94A02223801D94F04E26BD852435B464FD6E9F* ___callback0, const RuntimeMethod* method)
 {
-	return ((  Request_1_t032FC07496E4AC093857E050A2BF5CEFB37C7905* (*) (Request_1_t032FC07496E4AC093857E050A2BF5CEFB37C7905*, Callback_t2A94A02223801D94F04E26BD852435B464FD6E9F*, const RuntimeMethod*))Request_1_OnComplete_m3838B2B4AB8C028A7CAF31EAFFA0D849EF990B18_gshared)(__this, ___callback0, method);
+	Request_1_tDC85CDEACDE9B0DBEFC991012E57156A7EB1BC0E* il2cppRetVal = ((  Request_1_tDC85CDEACDE9B0DBEFC991012E57156A7EB1BC0E* (*) (Request_1_tDC85CDEACDE9B0DBEFC991012E57156A7EB1BC0E*, Callback_t1D121EF8E0E73338B89C4419644D6DACA979DB96*, const RuntimeMethod*))Request_1_OnComplete_m41607DE002C2C81D82A7A63934C2A4348FA0A6B7_gshared)((Request_1_tDC85CDEACDE9B0DBEFC991012E57156A7EB1BC0E*)__this, (Callback_t1D121EF8E0E73338B89C4419644D6DACA979DB96*)___callback0, method);
+	return (Request_1_t032FC07496E4AC093857E050A2BF5CEFB37C7905*)il2cppRetVal;
 }
 // T Oculus.Platform.Message`1<Oculus.Platform.Models.Room>::get_Data()
 inline Room_t0FE13D1487F6CC3D1F413766BECE7EA63BDFBD2C* Message_1_get_Data_mC0B4BB9BBDD1FDDF09D9483CA214772B743461F6 (Message_1_t6712B041CB9A6E0826F5AB64DF7897242DBC6CCD* __this, const RuntimeMethod* method)
 {
-	return ((  Room_t0FE13D1487F6CC3D1F413766BECE7EA63BDFBD2C* (*) (Message_1_t6712B041CB9A6E0826F5AB64DF7897242DBC6CCD*, const RuntimeMethod*))Message_1_get_Data_mD1E64D6ED8A65C626BADB30710BCF145A526E86B_gshared)(__this, method);
+	Room_t0FE13D1487F6CC3D1F413766BECE7EA63BDFBD2C* il2cppRetVal;
+	((  void (*) (/*Oculus.Platform.Message`1<Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType>*/Message_1_t8BF76F99FB79AB5D2F9555ED887A26898E8E8FE5*, Il2CppFullySharedGenericAny*, const RuntimeMethod*))Message_1_get_Data_m14D7BB9E73AD2FCFE890A03645F969AABE4C3A63_gshared)((Message_1_t8BF76F99FB79AB5D2F9555ED887A26898E8E8FE5*)__this, (Il2CppFullySharedGenericAny*)&il2cppRetVal, method);
+	return il2cppRetVal;
 }
 // Oculus.Platform.Request`1<Oculus.Platform.Models.Room> Oculus.Platform.Rooms::Join(System.UInt64,System.Boolean)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Request_1_t3F874A2FE55A781BF568AD7106B9CD8FCBD16DAE* Rooms_Join_m4D5EF33AC82309B4A8DE9F00D95FA12E66AFCE8D (uint64_t ___roomID0, bool ___subscribeToUpdates1, const RuntimeMethod* method) ;
 // Oculus.Platform.Request`1<T> Oculus.Platform.Request`1<Oculus.Platform.Models.Room>::OnComplete(Oculus.Platform.Message`1/Callback<T>)
 inline Request_1_t3F874A2FE55A781BF568AD7106B9CD8FCBD16DAE* Request_1_OnComplete_mD9378F7C06B8C4996C73AA6D62F289AD4D5A4889 (Request_1_t3F874A2FE55A781BF568AD7106B9CD8FCBD16DAE* __this, Callback_t9EC7A0EE57CE64F769946FF4B8F38764C84FD764* ___callback0, const RuntimeMethod* method)
 {
-	return ((  Request_1_t3F874A2FE55A781BF568AD7106B9CD8FCBD16DAE* (*) (Request_1_t3F874A2FE55A781BF568AD7106B9CD8FCBD16DAE*, Callback_t9EC7A0EE57CE64F769946FF4B8F38764C84FD764*, const RuntimeMethod*))Request_1_OnComplete_m3838B2B4AB8C028A7CAF31EAFFA0D849EF990B18_gshared)(__this, ___callback0, method);
+	Request_1_tDC85CDEACDE9B0DBEFC991012E57156A7EB1BC0E* il2cppRetVal = ((  Request_1_tDC85CDEACDE9B0DBEFC991012E57156A7EB1BC0E* (*) (Request_1_tDC85CDEACDE9B0DBEFC991012E57156A7EB1BC0E*, Callback_t1D121EF8E0E73338B89C4419644D6DACA979DB96*, const RuntimeMethod*))Request_1_OnComplete_m41607DE002C2C81D82A7A63934C2A4348FA0A6B7_gshared)((Request_1_tDC85CDEACDE9B0DBEFC991012E57156A7EB1BC0E*)__this, (Callback_t1D121EF8E0E73338B89C4419644D6DACA979DB96*)___callback0, method);
+	return (Request_1_t3F874A2FE55A781BF568AD7106B9CD8FCBD16DAE*)il2cppRetVal;
 }
 // System.Collections.Generic.IEnumerator`1<T> Oculus.Platform.Models.DeserializableList`1<Oculus.Platform.Models.User>::GetEnumerator()
 inline RuntimeObject* DeserializableList_1_GetEnumerator_m3EC3D6F7434A1D3224CEF4CEE07093C949C22D93 (DeserializableList_1_t8C90B7850D74427EC10029BF2CB1D443047B8FC8* __this, const RuntimeMethod* method)
 {
-	return ((  RuntimeObject* (*) (DeserializableList_1_t8C90B7850D74427EC10029BF2CB1D443047B8FC8*, const RuntimeMethod*))DeserializableList_1_GetEnumerator_m5BD9919C68A9CE0BAD70A5138DED5B35B59E6DC8_gshared)(__this, method);
+	RuntimeObject* il2cppRetVal = ((  RuntimeObject* (*) (DeserializableList_1_t95FA7D839008BC76F9D50C2560853173DAC4B7B4*, const RuntimeMethod*))DeserializableList_1_GetEnumerator_m5D009FCC01295B4201E534DA1A5DC025A77D825B_gshared)((DeserializableList_1_t95FA7D839008BC76F9D50C2560853173DAC4B7B4*)__this, method);
+	return (RuntimeObject*)il2cppRetVal;
 }
 // System.Int32 Oculus.Platform.Models.DeserializableList`1<Oculus.Platform.Models.User>::get_Count()
 inline int32_t DeserializableList_1_get_Count_m167B8885DF16235DCF7955316266415BBADB49D9 (DeserializableList_1_t8C90B7850D74427EC10029BF2CB1D443047B8FC8* __this, const RuntimeMethod* method)
 {
-	return ((  int32_t (*) (DeserializableList_1_t8C90B7850D74427EC10029BF2CB1D443047B8FC8*, const RuntimeMethod*))DeserializableList_1_get_Count_m8D2A16F510FEBC66136C64012BC482ED2007B478_gshared)(__this, method);
+	return ((  int32_t (*) (DeserializableList_1_t95FA7D839008BC76F9D50C2560853173DAC4B7B4*, const RuntimeMethod*))DeserializableList_1_get_Count_m095B1930960A236EDF1E7AF5BBD6815FB262FF10_gshared)((DeserializableList_1_t95FA7D839008BC76F9D50C2560853173DAC4B7B4*)__this, method);
 }
 // System.String System.String::Concat(System.String,System.String,System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_Concat_m8855A6DE10F84DA7F4EC113CADDB59873A25573B (String_t* ___str00, String_t* ___str11, String_t* ___str22, const RuntimeMethod* method) ;
@@ -1951,12 +1958,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Request_t0773858FF1AC67C0D8B43058CC7119DDD120
 // System.Void System.Collections.Generic.Dictionary`2<System.String,System.Int32>::.ctor()
 inline void Dictionary_2__ctor_mA3C3860EDE2CDD08BBD68C389377BC89D029D968 (Dictionary_2_t5C8F46F5D57502270DD9E1DA8303B23C7FE85588* __this, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_t5C8F46F5D57502270DD9E1DA8303B23C7FE85588*, const RuntimeMethod*))Dictionary_2__ctor_m517E7F9D104FEAE6646EABDDC9C852510E86077C_gshared)(__this, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, const RuntimeMethod*))Dictionary_2__ctor_m7745B6ED71E47C95E1BFCE647C4F026A404C668F_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, method);
 }
 // System.Void System.Collections.Generic.Dictionary`2<System.String,System.Int32>::Add(TKey,TValue)
 inline void Dictionary_2_Add_m2FE98C9C3763E31D7CB55207ED3A46B33BF64883 (Dictionary_2_t5C8F46F5D57502270DD9E1DA8303B23C7FE85588* __this, String_t* ___key0, int32_t ___value1, const RuntimeMethod* method)
 {
-	((  void (*) (Dictionary_2_t5C8F46F5D57502270DD9E1DA8303B23C7FE85588*, String_t*, int32_t, const RuntimeMethod*))Dictionary_2_Add_m63897227AFA7035F1772315ABBBE7FD0A250E10C_gshared)(__this, ___key0, ___value1, method);
+	((  void (*) (Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, /*Unity.IL2CPP.Metadata.__Il2CppFullySharedGenericType*/Il2CppFullySharedGenericAny, const RuntimeMethod*))Dictionary_2_Add_m54D479280472DEA042DB3933AF547E666B017333_gshared)((Dictionary_2_t5C32AF17A5801FB3109E5B0E622BA8402A04E08E*)__this, (Il2CppFullySharedGenericAny)___key0, (Il2CppFullySharedGenericAny)&___value1, method);
 }
 // Oculus.Platform.Request Oculus.Platform.Matchmaking::ReportResultsInsecure(System.UInt64,System.Collections.Generic.Dictionary`2<System.String,System.Int32>)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Request_t0773858FF1AC67C0D8B43058CC7119DDD1202D3B* Matchmaking_ReportResultsInsecure_mC8F1B5BD784967EE51FA85362F2AFE14D00D6D2D (uint64_t ___roomID0, Dictionary_2_t5C8F46F5D57502270DD9E1DA8303B23C7FE85588* ___data1, const RuntimeMethod* method) ;
