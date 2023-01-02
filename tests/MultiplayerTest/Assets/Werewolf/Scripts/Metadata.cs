@@ -24,6 +24,7 @@ namespace Werewolf
 
         public static class Scenes
         {
+            public const string Lobby = "Lobby";
             public const string Game = "Map1";
         }
     }

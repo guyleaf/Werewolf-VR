@@ -60,6 +60,10 @@ MonoBehaviour:
   - RpcShowRole
   - RpcStartGameToAll
   - RpcStartGameMessageToAll
+  - RpcClientIsReady
+  - RpcClientsAreAllReady
+  - RpcInstantiatePlayer
+  - RpcSendRecorderControl
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

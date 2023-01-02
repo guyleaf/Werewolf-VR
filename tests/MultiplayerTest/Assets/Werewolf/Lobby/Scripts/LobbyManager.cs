@@ -105,6 +105,11 @@ namespace Werewolf.Lobby
         {
             _state.OnApplicationPause(this, isPaused);
         }
+
+        void OnApplicationQuit()
+        {
+            PlayerPrefs.DeleteAll();
+        }
         #endregion
 
         #region Photon Callbacks

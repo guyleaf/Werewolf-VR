@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using Werewolf.Game;
+using Photon.Pun;
 
 namespace VoteUI.Btn
 {
@@ -64,7 +65,7 @@ namespace VoteUI.Btn
 			Debug.Log($"Enter button! {buttonNum} ");
 			voteUI.SetActive(false);
 			_gm.voted = true;
-			_gm.CallRpcSendMyVote(_gm.actorNumber, buttonNum);
+			_gm.CallRpcSendMyVote(PhotonNetwork.LocalPlayer.ActorNumber, buttonNum);
 			buttonNum = 0; //defacult skip
 		}
 

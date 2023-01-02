@@ -15,14 +15,14 @@ public class SkipSection : MonoBehaviour
 	{
 		buttonSkip = GameObject.Find("ButtonCircleSkipSection");
 		btnSkip = buttonSkip.GetComponent<Button>();
-		btnSkip.onClick.AddListener(delegate () { TaskOnClick(0); });  // skip button
+		btnSkip.onClick.AddListener(delegate () { TaskOnClick(); });  // skip button
 
 		_gm = GameObject.FindObjectOfType<GameManager>();
 	}
 
-	void TaskOnClick(int num)
+	void TaskOnClick()
 	{
-		Debug.Log($"You have clicked the button! {num} ");
+		Debug.Log($"You have clicked the button skip! ");
 		_gm.timer = _gm.sectionTime * 4;
 	}
 

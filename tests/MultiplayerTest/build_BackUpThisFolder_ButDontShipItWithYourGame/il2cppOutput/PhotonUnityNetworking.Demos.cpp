@@ -1864,6 +1864,8 @@ struct PhotonNetwork_tBF04D378B56DDA80F9DB8E08DF87D5B532C22B99_StaticFields
 	Dictionary_2_t47C3B85708CBFB02F30AF23A5D4092EC2DAD8636* ___serializeViewBatches_75;
 	// Photon.Realtime.RegionHandler Photon.Pun.PhotonNetwork::_cachedRegionHandler
 	RegionHandler_tF76A25E25C3BF915FDFBEA81372D9D7858087EBB* ____cachedRegionHandler_80;
+	// System.String Photon.Pun.PhotonNetwork::isMasterClient
+	String_t* ___isMasterClient_81;
 };
 
 // Photon.Pun.PhotonStream
