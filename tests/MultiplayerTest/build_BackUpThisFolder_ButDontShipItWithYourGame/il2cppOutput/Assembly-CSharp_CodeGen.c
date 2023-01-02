@@ -1599,8 +1599,8 @@ extern void SectionFaceToCamera_Update_m77289E512A142577E2711CCD1E520054C51ACA36
 extern void SectionFaceToCamera__ctor_mE21015AABB42EEA3605EB7D17BB3C9E1B75713B3 (void);
 // 0x00000321 System.Void SkipSection::Start()
 extern void SkipSection_Start_m0BA7DA978978B0B29812DA1616AC00230B579A35 (void);
-// 0x00000322 System.Void SkipSection::TaskOnClick(System.Int32)
-extern void SkipSection_TaskOnClick_mC0159E87907C0AA8F5BE41D199773E316040C451 (void);
+// 0x00000322 System.Void SkipSection::TaskOnClick()
+extern void SkipSection_TaskOnClick_mB94B3091AAE789725924F5F40991E2402ABEA563 (void);
 // 0x00000323 System.Void SkipSection::.ctor()
 extern void SkipSection__ctor_m30D59C7AE57F7157E21E1FDACBCFA0D0E172CE5C (void);
 // 0x00000324 System.Void SkipSection::<Start>b__3_0()
@@ -2439,10 +2439,10 @@ extern void GameManager_RpcSeerTime_m0D085DFAC848D279D3722FA854ADBBC5ED400A04 (v
 extern void GameManager_RpcEndGame_m3EF0478052A68CC1B6A8606C063314ED24923BB0 (void);
 // 0x000004C9 System.Void Werewolf.Game.GameManager::voting(System.Int32,System.Int32)
 extern void GameManager_voting_m612110FF950B4CCB66F21266A3C05D71B2B5265F (void);
-// 0x000004CA System.Void Werewolf.Game.GameManager::voteEnd(System.Int32,System.Int32)
-extern void GameManager_voteEnd_m103CCB01E8D084AA677A4418C37AC7EDBF8740DF (void);
-// 0x000004CB System.Void Werewolf.Game.GameManager::voteSystem(System.Int32,System.Int32,System.Int32)
-extern void GameManager_voteSystem_m66F96F9DA191308779E41A3B49950189DF11376B (void);
+// 0x000004CA System.Void Werewolf.Game.GameManager::VoteEnd(System.Int32,System.Int32)
+extern void GameManager_VoteEnd_mD1DAFB1F31C00123B4155563080F8CFD2D6F195D (void);
+// 0x000004CB System.Void Werewolf.Game.GameManager::VoteSystem(System.Int32,System.Int32,System.Int32)
+extern void GameManager_VoteSystem_m315697A4E30DEB2DE5C4E27FECB800F6464FDC50 (void);
 // 0x000004CC System.Void Werewolf.Game.GameManager::OnApplicationQuit()
 extern void GameManager_OnApplicationQuit_m80BF547AB83BD1E31F8769EB1B8FF19491849DAB (void);
 // 0x000004CD System.Void Werewolf.Game.GameManager::OnApplicationPause(System.Boolean)
@@ -6306,7 +6306,7 @@ static Il2CppMethodPointer s_methodPointers[2782] =
 	SectionFaceToCamera_Update_m77289E512A142577E2711CCD1E520054C51ACA36,
 	SectionFaceToCamera__ctor_mE21015AABB42EEA3605EB7D17BB3C9E1B75713B3,
 	SkipSection_Start_m0BA7DA978978B0B29812DA1616AC00230B579A35,
-	SkipSection_TaskOnClick_mC0159E87907C0AA8F5BE41D199773E316040C451,
+	SkipSection_TaskOnClick_mB94B3091AAE789725924F5F40991E2402ABEA563,
 	SkipSection__ctor_m30D59C7AE57F7157E21E1FDACBCFA0D0E172CE5C,
 	SkipSection_U3CStartU3Eb__3_0_m0605A7A097E96A33FDAA0147B30F52702C88B07D,
 	ChatController_OnEnable_m025CE203564D82A1CDCE5E5719DB07E29811D0B7,
@@ -6730,8 +6730,8 @@ static Il2CppMethodPointer s_methodPointers[2782] =
 	GameManager_RpcSeerTime_m0D085DFAC848D279D3722FA854ADBBC5ED400A04,
 	GameManager_RpcEndGame_m3EF0478052A68CC1B6A8606C063314ED24923BB0,
 	GameManager_voting_m612110FF950B4CCB66F21266A3C05D71B2B5265F,
-	GameManager_voteEnd_m103CCB01E8D084AA677A4418C37AC7EDBF8740DF,
-	GameManager_voteSystem_m66F96F9DA191308779E41A3B49950189DF11376B,
+	GameManager_VoteEnd_mD1DAFB1F31C00123B4155563080F8CFD2D6F195D,
+	GameManager_VoteSystem_m315697A4E30DEB2DE5C4E27FECB800F6464FDC50,
 	GameManager_OnApplicationQuit_m80BF547AB83BD1E31F8769EB1B8FF19491849DAB,
 	GameManager_OnApplicationPause_mD8ADFC5316B40962342F73122788CCE7E46DA360,
 	GameManager_Awake_m2377AC2B2F351C2F914FB848294D7C9C3D72D17C,
@@ -9098,7 +9098,7 @@ static const int32_t s_InvokerIndices[2782] =
 	2718,
 	2718,
 	2718,
-	2419,
+	2718,
 	2718,
 	2718,
 	2718,

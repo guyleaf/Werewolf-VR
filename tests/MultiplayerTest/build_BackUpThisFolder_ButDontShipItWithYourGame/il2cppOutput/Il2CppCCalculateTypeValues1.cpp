@@ -47625,58 +47625,62 @@ struct GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6  : public MonoBehav
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___localAvatar_31;
 	// UnityEngine.GameObject Werewolf.Game.GameManager::voice
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___voice_32;
+	// UnityEngine.GameObject Werewolf.Game.GameManager::humanWin
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___humanWin_33;
+	// UnityEngine.GameObject Werewolf.Game.GameManager::werewolfWin
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___werewolfWin_34;
 	// Photon.Voice.Unity.Recorder Werewolf.Game.GameManager::recorder
-	Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* ___recorder_33;
+	Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* ___recorder_35;
 	// System.Boolean Werewolf.Game.GameManager::action
-	bool ___action_34;
+	bool ___action_36;
 	// System.Boolean Werewolf.Game.GameManager::syncList
-	bool ___syncList_35;
+	bool ___syncList_37;
 	// System.Boolean Werewolf.Game.GameManager::seerTime
-	bool ___seerTime_36;
+	bool ___seerTime_38;
 	// System.Boolean Werewolf.Game.GameManager::broadCast
-	bool ___broadCast_37;
+	bool ___broadCast_39;
 	// System.Boolean Werewolf.Game.GameManager::deadTime
-	bool ___deadTime_38;
+	bool ___deadTime_40;
 	// System.Boolean Werewolf.Game.GameManager::localDead
-	bool ___localDead_39;
+	bool ___localDead_41;
 	// System.Boolean Werewolf.Game.GameManager::endGame
-	bool ___endGame_40;
+	bool ___endGame_42;
 	// System.Single Werewolf.Game.GameManager::sectionTime
-	float ___sectionTime_41;
+	float ___sectionTime_43;
 	// System.Boolean Werewolf.Game.GameManager::areAllClientsReady
-	bool ___areAllClientsReady_42;
+	bool ___areAllClientsReady_44;
 	// System.Int32 Werewolf.Game.GameManager::numOfClientsReady
-	int32_t ___numOfClientsReady_43;
+	int32_t ___numOfClientsReady_45;
 	// Photon.Voice.PUN.PunVoiceClient Werewolf.Game.GameManager::punVoiceClient
-	PunVoiceClient_tDCCDF79EA73DB2F09FFF216BBC6FF55C1F8202A1* ___punVoiceClient_44;
+	PunVoiceClient_tDCCDF79EA73DB2F09FFF216BBC6FF55C1F8202A1* ___punVoiceClient_46;
 	// Werewolf.Game.GameManager/Character Werewolf.Game.GameManager::character
-	int32_t ___character_45;
+	int32_t ___character_47;
 	// Werewolf.Game.GameManager/SpeechSeq Werewolf.Game.GameManager::speechSeq
-	int32_t ___speechSeq_46;
+	int32_t ___speechSeq_48;
 	// System.String Werewolf.Game.GameManager::message
-	String_t* ___message_47;
+	String_t* ___message_49;
 	// System.String Werewolf.Game.GameManager::sectionMessage
-	String_t* ___sectionMessage_48;
+	String_t* ___sectionMessage_50;
 	// System.String Werewolf.Game.GameManager::voteMessage
-	String_t* ___voteMessage_49;
+	String_t* ___voteMessage_51;
 	// System.Collections.Generic.Dictionary`2<System.Int32,System.Collections.Generic.List`1<System.Int32>> Werewolf.Game.GameManager::voteDict
-	Dictionary_2_t9899279A2990FB86A896C58A3F27F8E1705785C3* ___voteDict_50;
+	Dictionary_2_t9899279A2990FB86A896C58A3F27F8E1705785C3* ___voteDict_52;
 	// System.Collections.Generic.List`1<System.Int32> Werewolf.Game.GameManager::voteList
-	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___voteList_51;
+	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___voteList_53;
 	// System.Boolean Werewolf.Game.GameManager::voted
-	bool ___voted_52;
+	bool ___voted_54;
 	// System.Boolean Werewolf.Game.GameManager::allVoted
-	bool ___allVoted_53;
+	bool ___allVoted_55;
 	// System.Int32 Werewolf.Game.GameManager::myvote
-	int32_t ___myvote_54;
+	int32_t ___myvote_56;
 	// System.Int32 Werewolf.Game.GameManager::votedPlayer
-	int32_t ___votedPlayer_55;
+	int32_t ___votedPlayer_57;
 	// System.Int32 Werewolf.Game.GameManager::maxVotePlayer
-	int32_t ___maxVotePlayer_56;
+	int32_t ___maxVotePlayer_58;
 	// System.Int32 Werewolf.Game.GameManager::seerSelected
-	int32_t ___seerSelected_57;
+	int32_t ___seerSelected_59;
 	// System.Int32 Werewolf.Game.GameManager::saviorSelected
-	int32_t ___saviorSelected_58;
+	int32_t ___saviorSelected_60;
 };
 
 struct GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6_StaticFields
@@ -47684,7 +47688,7 @@ struct GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6_StaticFields
 	// System.Single Werewolf.Game.GameManager::deltaTime
 	float ___deltaTime_11;
 	// Werewolf.Game.GameManager Werewolf.Game.GameManager::<Instance>k__BackingField
-	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ___U3CInstanceU3Ek__BackingField_59;
+	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ___U3CInstanceU3Ek__BackingField_61;
 };
 
 // UnityEngine.UI.GraphicRaycaster
