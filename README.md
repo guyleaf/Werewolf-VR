@@ -6,7 +6,7 @@ Unity 版本: 2021.3.10f1(有 bug，建議能升到新版就升到新版)
 
 Platform: Meta Quest App(Android)
 
-VR Device: Meta Quest 1/2
+Supported VR Device: Meta Quest 1/2
 
 [TextMeshPro](https://docs.unity3d.com/Packages/com.unity.textmeshpro@3.0/manual/index.html): 3.0.6
 
