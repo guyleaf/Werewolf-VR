@@ -9,12 +9,17 @@ namespace VoteUI.Btn
 	public class ButtonClick : MonoBehaviour
 	{
 		public GameObject button1, button2, button3, button4, button5, button6, buttonSkip, buttonOK, voteUI;
+
+        public GameObject selectedFrame;
+
 		private int buttonNum = 0; //defacult skip
 		private Button btn1, btn2, btn3, btn4, btn5, btn6;
 		private GameManager _gm;
 
 		void Start()
 		{
+            selectedFrame = GameObject.Find("Selected Frame");
+
 			button1 = GameObject.Find("ButtonCircle1");
 			btn1 = button1.GetComponent<Button>();
 			btn1.onClick.AddListener(delegate () { TaskOnClick(1); });
@@ -54,10 +59,37 @@ namespace VoteUI.Btn
 			_gm = GameObject.FindObjectOfType<GameManager>();
 		}
 
+        void OnEnable()
+        {
+            buttonNum = 0; //defacult skip
+            selectedFrame.SetActive(false);
+        }
+
 		void TaskOnClick(int num)
 		{
 			Debug.Log($"You have clicked the button! {num} ");
 			buttonNum = num;
+            switch (num)
+            {
+                case 1:
+                    button1.GetComponent<SelectedVisual>().Selected();
+                    break;
+                case 2:
+                    button2.GetComponent<SelectedVisual>().Selected();
+                    break;
+                case 3:
+                    button3.GetComponent<SelectedVisual>().Selected();
+                    break;
+                case 4:
+                    button4.GetComponent<SelectedVisual>().Selected();
+                    break;
+                case 5:
+                    button5.GetComponent<SelectedVisual>().Selected();
+                    break;
+                case 6:
+                    button6.GetComponent<SelectedVisual>().Selected();
+                    break;
+            }
 		}
 
 		void TaskOnClickEnter()
@@ -87,7 +119,6 @@ namespace VoteUI.Btn
                     break;
                 case 5:
                     btn5.interactable = false;
-
                     break;
                 case 6:
                     btn6.interactable = false;

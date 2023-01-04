@@ -26,5 +26,6 @@ public class SelectedVisual : MonoBehaviour
     public void Selected()
     {
         selectedVisual.transform.position = this.transform.position;
+        selectedVisual.SetActive(true);
     }
 }

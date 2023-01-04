@@ -54,6 +54,9 @@ namespace Werewolf.Game
         public GameObject voteUI, blackScreen, hudUI, notifyUI, endGameUI, localAvatar, voice;
         public GameObject humanWin, werewolfWin;
         public Recorder recorder;
+
+        public GameObject leftHandMesh, rightHandMesh;
+
         private bool action;
         private bool syncList = false;
         private bool seerTime = false;
@@ -288,7 +291,10 @@ namespace Werewolf.Game
             if (PhotonNetwork.LocalPlayer.ActorNumber == _maxVotePlayer)
             {
                 PlayerDead();
+                leftHandMesh.SetActive(true);
+                rightHandMesh.SetActive(true);
             }
+            _voteUI.ButtonDisable(_maxVotePlayer);
             Debug.LogWarning($"Gameflow received maxVotePlayer: {_maxVotePlayer}, myActorNumber{PhotonNetwork.LocalPlayer.ActorNumber}");
         }
 
@@ -618,6 +624,8 @@ namespace Werewolf.Game
             //notifyUI = GameObject.Find("Notify UI");
             endGameUI = GameObject.Find("EndGame UI");
             blackScreen = GameObject.Find("Black Screen");
+            // leftHandMesh = GameObject.Find("l_handMeshNode");
+            // rightHandMesh = GameObject.Find("r_handMeshNode");
 
             //timeText = GameObject.Find("Text (TMP)-Time").GetComponent<TextMeshProUGUI>();
             //timeText.SetText(sectionTime.ToString("#.0"));
@@ -639,6 +647,8 @@ namespace Werewolf.Game
             notifyUI.SetActive(false);
             endGameUI.SetActive(false);
             blackScreen.SetActive(false);
+            leftHandMesh.SetActive(false);
+            rightHandMesh.SetActive(false);
 
             character = Character.SHOWROLE;
             speechSeq = SpeechSeq.PLAYER1;

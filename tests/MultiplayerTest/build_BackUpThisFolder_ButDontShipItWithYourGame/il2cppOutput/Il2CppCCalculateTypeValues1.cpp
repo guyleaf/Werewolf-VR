@@ -38357,22 +38357,24 @@ struct ButtonClick_tFED1029089C16828B943E1FCB32F6A5CCFBB7C36  : public MonoBehav
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___buttonOK_11;
 	// UnityEngine.GameObject VoteUI.Btn.ButtonClick::voteUI
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___voteUI_12;
+	// UnityEngine.GameObject VoteUI.Btn.ButtonClick::selectedFrame
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___selectedFrame_13;
 	// System.Int32 VoteUI.Btn.ButtonClick::buttonNum
-	int32_t ___buttonNum_13;
+	int32_t ___buttonNum_14;
 	// UnityEngine.UI.Button VoteUI.Btn.ButtonClick::btn1
-	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___btn1_14;
+	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___btn1_15;
 	// UnityEngine.UI.Button VoteUI.Btn.ButtonClick::btn2
-	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___btn2_15;
+	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___btn2_16;
 	// UnityEngine.UI.Button VoteUI.Btn.ButtonClick::btn3
-	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___btn3_16;
+	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___btn3_17;
 	// UnityEngine.UI.Button VoteUI.Btn.ButtonClick::btn4
-	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___btn4_17;
+	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___btn4_18;
 	// UnityEngine.UI.Button VoteUI.Btn.ButtonClick::btn5
-	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___btn5_18;
+	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___btn5_19;
 	// UnityEngine.UI.Button VoteUI.Btn.ButtonClick::btn6
-	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___btn6_19;
+	Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* ___btn6_20;
 	// Werewolf.Game.GameManager VoteUI.Btn.ButtonClick::_gm
-	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ____gm_20;
+	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ____gm_21;
 };
 
 // ButtonDownListener
@@ -47631,56 +47633,60 @@ struct GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6  : public MonoBehav
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___werewolfWin_34;
 	// Photon.Voice.Unity.Recorder Werewolf.Game.GameManager::recorder
 	Recorder_t1C736AA65E77CD851B67FCA224A9B72A53DC1F0C* ___recorder_35;
+	// UnityEngine.GameObject Werewolf.Game.GameManager::leftHandMesh
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___leftHandMesh_36;
+	// UnityEngine.GameObject Werewolf.Game.GameManager::rightHandMesh
+	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* ___rightHandMesh_37;
 	// System.Boolean Werewolf.Game.GameManager::action
-	bool ___action_36;
+	bool ___action_38;
 	// System.Boolean Werewolf.Game.GameManager::syncList
-	bool ___syncList_37;
+	bool ___syncList_39;
 	// System.Boolean Werewolf.Game.GameManager::seerTime
-	bool ___seerTime_38;
+	bool ___seerTime_40;
 	// System.Boolean Werewolf.Game.GameManager::broadCast
-	bool ___broadCast_39;
+	bool ___broadCast_41;
 	// System.Boolean Werewolf.Game.GameManager::deadTime
-	bool ___deadTime_40;
+	bool ___deadTime_42;
 	// System.Boolean Werewolf.Game.GameManager::localDead
-	bool ___localDead_41;
+	bool ___localDead_43;
 	// System.Boolean Werewolf.Game.GameManager::endGame
-	bool ___endGame_42;
+	bool ___endGame_44;
 	// System.Single Werewolf.Game.GameManager::sectionTime
-	float ___sectionTime_43;
+	float ___sectionTime_45;
 	// System.Boolean Werewolf.Game.GameManager::areAllClientsReady
-	bool ___areAllClientsReady_44;
+	bool ___areAllClientsReady_46;
 	// System.Int32 Werewolf.Game.GameManager::numOfClientsReady
-	int32_t ___numOfClientsReady_45;
+	int32_t ___numOfClientsReady_47;
 	// Photon.Voice.PUN.PunVoiceClient Werewolf.Game.GameManager::punVoiceClient
-	PunVoiceClient_tDCCDF79EA73DB2F09FFF216BBC6FF55C1F8202A1* ___punVoiceClient_46;
+	PunVoiceClient_tDCCDF79EA73DB2F09FFF216BBC6FF55C1F8202A1* ___punVoiceClient_48;
 	// Werewolf.Game.GameManager/Character Werewolf.Game.GameManager::character
-	int32_t ___character_47;
+	int32_t ___character_49;
 	// Werewolf.Game.GameManager/SpeechSeq Werewolf.Game.GameManager::speechSeq
-	int32_t ___speechSeq_48;
+	int32_t ___speechSeq_50;
 	// System.String Werewolf.Game.GameManager::message
-	String_t* ___message_49;
+	String_t* ___message_51;
 	// System.String Werewolf.Game.GameManager::sectionMessage
-	String_t* ___sectionMessage_50;
+	String_t* ___sectionMessage_52;
 	// System.String Werewolf.Game.GameManager::voteMessage
-	String_t* ___voteMessage_51;
+	String_t* ___voteMessage_53;
 	// System.Collections.Generic.Dictionary`2<System.Int32,System.Collections.Generic.List`1<System.Int32>> Werewolf.Game.GameManager::voteDict
-	Dictionary_2_t9899279A2990FB86A896C58A3F27F8E1705785C3* ___voteDict_52;
+	Dictionary_2_t9899279A2990FB86A896C58A3F27F8E1705785C3* ___voteDict_54;
 	// System.Collections.Generic.List`1<System.Int32> Werewolf.Game.GameManager::voteList
-	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___voteList_53;
+	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___voteList_55;
 	// System.Boolean Werewolf.Game.GameManager::voted
-	bool ___voted_54;
+	bool ___voted_56;
 	// System.Boolean Werewolf.Game.GameManager::allVoted
-	bool ___allVoted_55;
+	bool ___allVoted_57;
 	// System.Int32 Werewolf.Game.GameManager::myvote
-	int32_t ___myvote_56;
+	int32_t ___myvote_58;
 	// System.Int32 Werewolf.Game.GameManager::votedPlayer
-	int32_t ___votedPlayer_57;
+	int32_t ___votedPlayer_59;
 	// System.Int32 Werewolf.Game.GameManager::maxVotePlayer
-	int32_t ___maxVotePlayer_58;
+	int32_t ___maxVotePlayer_60;
 	// System.Int32 Werewolf.Game.GameManager::seerSelected
-	int32_t ___seerSelected_59;
+	int32_t ___seerSelected_61;
 	// System.Int32 Werewolf.Game.GameManager::saviorSelected
-	int32_t ___saviorSelected_60;
+	int32_t ___saviorSelected_62;
 };
 
 struct GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6_StaticFields
@@ -47688,7 +47694,7 @@ struct GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6_StaticFields
 	// System.Single Werewolf.Game.GameManager::deltaTime
 	float ___deltaTime_11;
 	// Werewolf.Game.GameManager Werewolf.Game.GameManager::<Instance>k__BackingField
-	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ___U3CInstanceU3Ek__BackingField_61;
+	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ___U3CInstanceU3Ek__BackingField_63;
 };
 
 // UnityEngine.UI.GraphicRaycaster

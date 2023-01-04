@@ -75,12 +75,13 @@ namespace Werewolf.Lobby
             Assert.IsNotNull(_roomListController);
 
             _state = InAvatarState;
+
+#if UNITY_EDITOR
             if (_jumpToLobby)
             {
                 _state = InLobbyState;
             }
 
-#if UNITY_EDITOR
             PlayerPrefs.DeleteAll();
 #endif
         }
