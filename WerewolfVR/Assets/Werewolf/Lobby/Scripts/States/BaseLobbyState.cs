@@ -88,6 +88,10 @@ namespace Werewolf.Lobby
         {
         }
 
+        public virtual void OnLocalAvatarUsed(LobbyManager manager)
+        {
+        }
+
         public virtual void OnEditAvatar(LobbyManager manager)
         {
             AvatarEditorDeeplink.LaunchAvatarEditor();

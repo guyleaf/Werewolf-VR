@@ -69,6 +69,12 @@ namespace Werewolf.Lobby
             }
         }
 
+        public override void OnLocalAvatarUsed(LobbyManager manager)
+        {
+            IsEnteredLobbyBefore = true;
+            manager.SwitchState(manager.InLobbyState);
+        }
+
         public override void OnAvatarUIContinueButtonClicked(LobbyManager manager)
         {
             IsEnteredLobbyBefore = true;

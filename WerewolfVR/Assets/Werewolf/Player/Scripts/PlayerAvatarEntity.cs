@@ -22,17 +22,6 @@ namespace Werewolf.Player
 {
     public class PlayerAvatarEntity : OvrAvatarEntity, IPunObservable
     {
-        public GameManager _gm;
-        public static float deltaTime;  // get time consume of a frame
-        private float timer = 0;
-        private float recTimer = 0;
-        private bool _sync = false;
-        private bool _recSync = false;
-        private LightManager dayTimer;
-        private bool _isMasterClient;
-        private int playerCount;
-        private List<int> playerList = new(){1, 2, 3, 4, 5, 6};
-        private List<int> roleList = new();
         private const string logScope = "playerAvatar";
 
         public enum AssetSource
@@ -48,6 +37,8 @@ namespace Werewolf.Player
         public AvatarStateEvent OnUserAvatarFoundEvent = new();
 
         public AvatarStateEvent OnUserAvatarNotFoundEvent = new();
+
+        public AvatarStateEvent OnLocalAvatarUsedEvent = new();
 
         [Serializable]
         private struct AssetData
@@ -102,13 +93,10 @@ namespace Werewolf.Player
 
         private PhotonView _photonView;
 
-        private List<byte[]> _streamedDataList = new();
-
-        private List<float> _streamedTimeList = new();
+        private readonly List<byte[]> _streamedDataList = new();
 
         protected override void Awake()
         {
-            
             InitializeAvatarEntity();
             base.Awake();
             // OvrAvatarEntity.Awake calls OvrAvatarEntity.CreateEntity sets eye and face tracking contexts (which asks user permission).
@@ -124,20 +112,6 @@ namespace Werewolf.Player
 
         protected virtual IEnumerator Start()
         {
-/*            OvrAvatarLog.LogError("Force the build console open...");
-            _gm = GameObject.FindObjectOfType<GameManager>();
-            dayTimer = GameObject.FindObjectOfType<LightManager>();
-            _isMasterClient = PhotonNetwork.IsMasterClient;
-            playerCount = PhotonNetwork.CountOfPlayers;
-            System.Random rnd = new();
-            var rndNum = playerList.OrderBy(item => rnd.Next());
-            OvrAvatarLog.LogError("player roleList type: " + rndNum.GetType());
-            foreach (int role in rndNum)
-            {
-                OvrAvatarLog.LogError("player role: " + role);
-                roleList.Add(role);
-            }*/
-
             if (_autoLoad)
             {
                 if (PhotonNetwork.InRoom)
@@ -256,6 +230,8 @@ namespace Werewolf.Player
                     LoadAssetsFromStreamingAssets(path);
                 }
             }
+
+            OnLocalAvatarUsedEvent?.Invoke(this);
         }
 
         private IEnumerator LoadCdnAvatar()
@@ -264,9 +240,7 @@ namespace Werewolf.Player
 
             int totalAttempts = 0;
             bool continueRetries = _autoCdnRetry;
-
             bool hasFoundAvatar = false;
-            bool requestComplete = false;
             do
             {
                 var hasAvatarRequest = OvrAvatarManager.Instance.UserHasAvatarAsync(_userId);
@@ -276,7 +250,6 @@ namespace Werewolf.Player
                 {
                     case OvrAvatarManager.HasAvatarRequestResultCode.HasAvatar:
                         hasFoundAvatar = true;
-                        requestComplete = true;
                         continueRetries = false;
 
                         OnUserAvatarFoundEvent?.Invoke(this);
@@ -290,40 +263,45 @@ namespace Werewolf.Player
                         OnUserAvatarNotFoundEvent?.Invoke(this);
 
                         OvrAvatarLog.LogDebug(
-                            "User has no avatar. Keep retrying."
+                            "User has no avatar. Keep listening."
                             , logScope, this);
                         break;
 
                     case OvrAvatarManager.HasAvatarRequestResultCode.SendFailed:
                         OvrAvatarLog.LogError(
-                            "Unable to send avatar status request."
+                            "Unable to send avatar status request. Keep trying."
                             , logScope, this);
                         break;
 
                     case OvrAvatarManager.HasAvatarRequestResultCode.RequestFailed:
                         OvrAvatarLog.LogError(
-                            "An error occurred while querying avatar status."
+                            "An error occurred while querying avatar status. Keep trying."
                             , logScope, this);
                         break;
 
                     case OvrAvatarManager.HasAvatarRequestResultCode.BadParameter:
                         continueRetries = false;
+                        hasFoundAvatar = false;
 
                         OvrAvatarLog.LogError(
-                            "Attempted to load invalid userId."
+                            "Attempted to load invalid userId. Falling back to local avatar."
                             , logScope, this);
                         break;
 
                     case OvrAvatarManager.HasAvatarRequestResultCode.RequestCancelled:
                         continueRetries = false;
+                        hasFoundAvatar = false;
 
                         OvrAvatarLog.LogInfo(
-                            "HasAvatar request cancelled."
+                            "HasAvatar request cancelled. Falling back to local avatar."
                             , logScope, this);
                         break;
 
                     case OvrAvatarManager.HasAvatarRequestResultCode.UnknownError:
                     default:
+                        continueRetries = false;
+                        hasFoundAvatar = false;
+
                         OvrAvatarLog.LogError(
                             $"An unknown error occurred {hasAvatarRequest.Result}. Falling back to local avatar."
                             , logScope, this);
@@ -339,23 +317,18 @@ namespace Werewolf.Player
                 OvrAvatarLog.LogInfo($"Request Attempts: {totalAttempts}");
             } while (continueRetries);
 
-            if (!requestComplete)
+            if (hasFoundAvatar)
             {
-                OvrAvatarLog.LogError(
-                    $"Unable to query UserHasAvatar {totalAttempts} attempts"
-                    , logScope, this);
+                // Check for changes, user could create one later
+                if (_autoCheckChanges)
+                {
+                    yield return PollForAvatarChange();
+                }
             }
-
-            if (!hasFoundAvatar)
+            else
             {
                 // We cannot find an avatar, use local fallback
                 UserHasNoAvatarFallback();
-            }
-
-            // Check for changes, user could create one later
-            if (_autoCheckChanges && hasFoundAvatar)
-            {
-                yield return PollForAvatarChange();
             }
         }
 
@@ -366,6 +339,12 @@ namespace Werewolf.Player
             {
                 yield return MetaPlatform.Instance.LogIn();
                 _userId = MetaPlatform.UserId;
+
+                if (_userId == 0)
+                {
+                    OvrAvatarLog.LogWarning(
+                        $"Unable to find userId. Use local avatar.", logScope, this);
+                }
             }
         }
 
@@ -570,46 +549,12 @@ namespace Werewolf.Player
                 {
                     var data = RecordStreamData(activeStreamLod);
                     stream.SendNext(data);
-/*                    if (_isMasterClient)
-                    {
-                        //stream.SendNext(timer);
-                        //OvrAvatarLog.LogError("Send timer: " + timer.ToString("0.00"));
-                        stream.SendNext(_sync);
-                        //OvrAvatarLog.LogError("Send sync: " + _sync);
-                        //if (_sync)
-                        //{
-                        //    dayTimer.TimeOfDay = 0;
-                        //    _sync = false;
-                        //}
-                    }
-                    stream.SendNext(timer);
-                    OvrAvatarLog.LogError("Send timer: " + timer.ToString("0.00"));*/
                 }
                 else
                 {
                     _streamedDataList.Add((byte[])stream.ReceiveNext());
-                    // ApplyStreamData(memStream.ToArray());
-                    /*                    timer = (float)stream.ReceiveNext();
-                                        OvrAvatarLog.LogError("Received timer: " + timer.ToString("0.00"));*/
-                    //recTimer = (float)stream.ReceiveNext();
-                    //OvrAvatarLog.LogError("Received timer: " + recTimer.ToString("0.00"));
-                    //if (!_isMasterClient) { 
-                    //    _recSync = (bool)stream.ReceiveNext();
-                    //    OvrAvatarLog.LogError("Received sync: " + _recSync);
-                    //}
                 }
             }
-            // using var memStream = new MemoryStream();
-/*            if (stream.IsWriting)
-            {
-                stream.SendNext(timer);
-                OvrAvatarLog.LogError("Send timer: " + timer.ToString("0.00"));
-            }
-            else
-            {
-                this.timer = (float)stream.ReceiveNext();
-                OvrAvatarLog.LogError("Received timer: " + this.timer.ToString("0.00"));
-            }*/
         }
 
         #endregion
@@ -624,59 +569,6 @@ namespace Werewolf.Player
                 ApplyStreamData(firstBytesInList);
                 _streamedDataList.RemoveAt(0);
             }
-
-/*            if (_isMasterClient)
-            {
-                if (timer > 500  && PhotonNetwork.CurrentRoom.Players.Count > 1)
-                {
-                    timer = 0;
-                    _gm.CallRpcSendMessageToAll(750);  //timer
-                    //_gm.CallRpcSendMessageToOthers(true);  //timer
-                    //dayTimer.TimeOfDay = 0;
-                    //timer = 0;
-                }
-                
-            
-                if (playerCount != PhotonNetwork.CountOfPlayers)
-                {
-                    playerCount = PhotonNetwork.CountOfPlayers;
-                    playerList.Clear();
-                    foreach (Photon.Realtime.Player player in PhotonNetwork.PlayerList)
-                    {
-                        playerList.Add(player.ActorNumber);
-                    }
-                }
-
-                foreach (int role in roleList)
-                {
-                    //werewolf:
-                    _gm.CallRpcSendMessageToAll(role);
-                }
-            }
-            timer += Time.deltaTime;*/
-            /*if (_photonView.IsMine)
-            {
-                timer += Time.deltaTime;
-                OvrAvatarLog.LogError("Timer: " + timer.ToString("0.00"));  //LogInfo, LogError
-                if (timer > 30)
-                {
-                    timer = 0;
-                    _sync = true;
-                }
-            }
-            else
-            {
-                //timer = recTimer;
-                //OvrAvatarLog.LogError("recTimer: " + recTimer.ToString("0.00"));  //LogInfo, LogError
-                if (_recSync)
-                {
-                    timer = 0;
-                    dayTimer.TimeOfDay = 0;
-                    OvrAvatarLog.LogError("reset Timer: " + timer.ToString("0.00"));  //LogInfo, LogError
-                    OvrAvatarLog.LogError("reset sync: " + _recSync);
-                }
-
-            }*/
         }
 
         #endregion

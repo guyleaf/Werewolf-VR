@@ -227,7 +227,7 @@ namespace Oculus.Interaction.Input
         {
             get
             {
-                if (TrackingToWorldTransformer == null)
+                if (TrackingToWorldSpace == null)
                 {
                     return null;
                 }

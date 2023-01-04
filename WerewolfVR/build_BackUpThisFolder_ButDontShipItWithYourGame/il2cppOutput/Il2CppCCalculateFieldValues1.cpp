@@ -8585,119 +8585,117 @@ struct AndroidSysProperties_tF0EF43B9B995C057CCAED6CD670D25E7C59B9061_StaticFiel
 	String_t* ___ExperimentalFeatures_0;
 };
 
-// Werewolf.Player.PlayerAvatarEntity/<GetUserIdFromMeta>d__39
-struct U3CGetUserIdFromMetaU3Ed__39_t28D215D228B70975798ED4F0AD8B8D07433AFFD7  : public RuntimeObject
+// Werewolf.Player.PlayerAvatarEntity/<GetUserIdFromMeta>d__28
+struct U3CGetUserIdFromMetaU3Ed__28_t0C3E7E54D2AD15EDA7B4E67262EA54F3D619967A  : public RuntimeObject
 {
-	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<GetUserIdFromMeta>d__39::<>1__state
+	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<GetUserIdFromMeta>d__28::<>1__state
 	int32_t ___U3CU3E1__state_0;
-	// System.Object Werewolf.Player.PlayerAvatarEntity/<GetUserIdFromMeta>d__39::<>2__current
+	// System.Object Werewolf.Player.PlayerAvatarEntity/<GetUserIdFromMeta>d__28::<>2__current
 	RuntimeObject* ___U3CU3E2__current_1;
-	// Werewolf.Player.PlayerAvatarEntity Werewolf.Player.PlayerAvatarEntity/<GetUserIdFromMeta>d__39::<>4__this
+	// Werewolf.Player.PlayerAvatarEntity Werewolf.Player.PlayerAvatarEntity/<GetUserIdFromMeta>d__28::<>4__this
 	PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B* ___U3CU3E4__this_2;
 };
 
-// Werewolf.Player.PlayerAvatarEntity/<LoadAvatar>d__40
-struct U3CLoadAvatarU3Ed__40_t54290CE9984127CE32C188E2DB73BAE8A6457790  : public RuntimeObject
+// Werewolf.Player.PlayerAvatarEntity/<LoadAvatar>d__29
+struct U3CLoadAvatarU3Ed__29_t8788FA568FBE9DA8A0991A3F797E052DF5813DCF  : public RuntimeObject
 {
-	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<LoadAvatar>d__40::<>1__state
+	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<LoadAvatar>d__29::<>1__state
 	int32_t ___U3CU3E1__state_0;
-	// System.Object Werewolf.Player.PlayerAvatarEntity/<LoadAvatar>d__40::<>2__current
+	// System.Object Werewolf.Player.PlayerAvatarEntity/<LoadAvatar>d__29::<>2__current
 	RuntimeObject* ___U3CU3E2__current_1;
-	// Werewolf.Player.PlayerAvatarEntity Werewolf.Player.PlayerAvatarEntity/<LoadAvatar>d__40::<>4__this
+	// Werewolf.Player.PlayerAvatarEntity Werewolf.Player.PlayerAvatarEntity/<LoadAvatar>d__29::<>4__this
 	PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B* ___U3CU3E4__this_2;
 };
 
-// Werewolf.Player.PlayerAvatarEntity/<LoadAvatar>d__41
-struct U3CLoadAvatarU3Ed__41_tEFD6A78E8729BF9CC14CB161BC27FB35B3BDA93B  : public RuntimeObject
+// Werewolf.Player.PlayerAvatarEntity/<LoadAvatar>d__30
+struct U3CLoadAvatarU3Ed__30_t0453D504A7D3BA918525E802A18AF306F04C6AE0  : public RuntimeObject
 {
-	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<LoadAvatar>d__41::<>1__state
+	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<LoadAvatar>d__30::<>1__state
 	int32_t ___U3CU3E1__state_0;
-	// System.Object Werewolf.Player.PlayerAvatarEntity/<LoadAvatar>d__41::<>2__current
+	// System.Object Werewolf.Player.PlayerAvatarEntity/<LoadAvatar>d__30::<>2__current
 	RuntimeObject* ___U3CU3E2__current_1;
-	// Werewolf.Player.PlayerAvatarEntity Werewolf.Player.PlayerAvatarEntity/<LoadAvatar>d__41::<>4__this
+	// Werewolf.Player.PlayerAvatarEntity Werewolf.Player.PlayerAvatarEntity/<LoadAvatar>d__30::<>4__this
 	PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B* ___U3CU3E4__this_2;
-	// System.UInt64 Werewolf.Player.PlayerAvatarEntity/<LoadAvatar>d__41::userId
+	// System.UInt64 Werewolf.Player.PlayerAvatarEntity/<LoadAvatar>d__30::userId
 	uint64_t ___userId_3;
 };
 
-// Werewolf.Player.PlayerAvatarEntity/<LoadCdnAvatar>d__38
-struct U3CLoadCdnAvatarU3Ed__38_t2B0C3D1942EE50EA7BC2BF6F77B45BA069A2B485  : public RuntimeObject
+// Werewolf.Player.PlayerAvatarEntity/<LoadCdnAvatar>d__27
+struct U3CLoadCdnAvatarU3Ed__27_t3A0AB86E4371890CA37ECDC67A8CFE10C8F33A9F  : public RuntimeObject
 {
-	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<LoadCdnAvatar>d__38::<>1__state
+	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<LoadCdnAvatar>d__27::<>1__state
 	int32_t ___U3CU3E1__state_0;
-	// System.Object Werewolf.Player.PlayerAvatarEntity/<LoadCdnAvatar>d__38::<>2__current
+	// System.Object Werewolf.Player.PlayerAvatarEntity/<LoadCdnAvatar>d__27::<>2__current
 	RuntimeObject* ___U3CU3E2__current_1;
-	// Werewolf.Player.PlayerAvatarEntity Werewolf.Player.PlayerAvatarEntity/<LoadCdnAvatar>d__38::<>4__this
+	// Werewolf.Player.PlayerAvatarEntity Werewolf.Player.PlayerAvatarEntity/<LoadCdnAvatar>d__27::<>4__this
 	PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B* ___U3CU3E4__this_2;
-	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<LoadCdnAvatar>d__38::<totalAttempts>5__2
+	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<LoadCdnAvatar>d__27::<totalAttempts>5__2
 	int32_t ___U3CtotalAttemptsU3E5__2_3;
-	// System.Boolean Werewolf.Player.PlayerAvatarEntity/<LoadCdnAvatar>d__38::<continueRetries>5__3
+	// System.Boolean Werewolf.Player.PlayerAvatarEntity/<LoadCdnAvatar>d__27::<continueRetries>5__3
 	bool ___U3CcontinueRetriesU3E5__3_4;
-	// System.Boolean Werewolf.Player.PlayerAvatarEntity/<LoadCdnAvatar>d__38::<hasFoundAvatar>5__4
+	// System.Boolean Werewolf.Player.PlayerAvatarEntity/<LoadCdnAvatar>d__27::<hasFoundAvatar>5__4
 	bool ___U3ChasFoundAvatarU3E5__4_5;
-	// System.Boolean Werewolf.Player.PlayerAvatarEntity/<LoadCdnAvatar>d__38::<requestComplete>5__5
-	bool ___U3CrequestCompleteU3E5__5_6;
-	// System.Threading.Tasks.Task`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarRequestResultCode> Werewolf.Player.PlayerAvatarEntity/<LoadCdnAvatar>d__38::<hasAvatarRequest>5__6
-	Task_1_t7A345830A44DE8C634017FA1015B87124397D4BF* ___U3ChasAvatarRequestU3E5__6_7;
+	// System.Threading.Tasks.Task`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarRequestResultCode> Werewolf.Player.PlayerAvatarEntity/<LoadCdnAvatar>d__27::<hasAvatarRequest>5__5
+	Task_1_t7A345830A44DE8C634017FA1015B87124397D4BF* ___U3ChasAvatarRequestU3E5__5_6;
 };
 
-// Werewolf.Player.PlayerAvatarEntity/<LoadUser>d__45
-struct U3CLoadUserU3Ed__45_t774577D7F7C7FC56337C2DA1D56C867F017211B6  : public RuntimeObject
+// Werewolf.Player.PlayerAvatarEntity/<LoadUser>d__34
+struct U3CLoadUserU3Ed__34_t806AE9273D9C107D9D577C4F2660357E54D4B629  : public RuntimeObject
 {
-	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<LoadUser>d__45::<>1__state
+	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<LoadUser>d__34::<>1__state
 	int32_t ___U3CU3E1__state_0;
-	// System.Object Werewolf.Player.PlayerAvatarEntity/<LoadUser>d__45::<>2__current
+	// System.Object Werewolf.Player.PlayerAvatarEntity/<LoadUser>d__34::<>2__current
 	RuntimeObject* ___U3CU3E2__current_1;
-	// Werewolf.Player.PlayerAvatarEntity Werewolf.Player.PlayerAvatarEntity/<LoadUser>d__45::<>4__this
+	// Werewolf.Player.PlayerAvatarEntity Werewolf.Player.PlayerAvatarEntity/<LoadUser>d__34::<>4__this
 	PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B* ___U3CU3E4__this_2;
-	// System.Boolean Werewolf.Player.PlayerAvatarEntity/<LoadUser>d__45::loadFallbackOnFailure
+	// System.Boolean Werewolf.Player.PlayerAvatarEntity/<LoadUser>d__34::loadFallbackOnFailure
 	bool ___loadFallbackOnFailure_3;
-	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<LoadUser>d__45::<totalAttempts>5__2
+	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<LoadUser>d__34::<totalAttempts>5__2
 	int32_t ___U3CtotalAttemptsU3E5__2_4;
-	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<LoadUser>d__45::<remainingAttempts>5__3
+	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<LoadUser>d__34::<remainingAttempts>5__3
 	int32_t ___U3CremainingAttemptsU3E5__3_5;
-	// System.Boolean Werewolf.Player.PlayerAvatarEntity/<LoadUser>d__45::<didLoadAvatar>5__4
+	// System.Boolean Werewolf.Player.PlayerAvatarEntity/<LoadUser>d__34::<didLoadAvatar>5__4
 	bool ___U3CdidLoadAvatarU3E5__4_6;
-	// System.Single Werewolf.Player.PlayerAvatarEntity/<LoadUser>d__45::<currentPollingInterval>5__5
+	// System.Single Werewolf.Player.PlayerAvatarEntity/<LoadUser>d__34::<currentPollingInterval>5__5
 	float ___U3CcurrentPollingIntervalU3E5__5_7;
 };
 
-// Werewolf.Player.PlayerAvatarEntity/<LoadUserAvatar>d__36
-struct U3CLoadUserAvatarU3Ed__36_tEB4D85DA7B7FB482639AB371598ACE9EFD9316FD  : public RuntimeObject
+// Werewolf.Player.PlayerAvatarEntity/<LoadUserAvatar>d__25
+struct U3CLoadUserAvatarU3Ed__25_t05A667F466297B6268616A073D1A0D3F210B0F56  : public RuntimeObject
 {
-	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<LoadUserAvatar>d__36::<>1__state
+	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<LoadUserAvatar>d__25::<>1__state
 	int32_t ___U3CU3E1__state_0;
-	// System.Object Werewolf.Player.PlayerAvatarEntity/<LoadUserAvatar>d__36::<>2__current
+	// System.Object Werewolf.Player.PlayerAvatarEntity/<LoadUserAvatar>d__25::<>2__current
 	RuntimeObject* ___U3CU3E2__current_1;
-	// Werewolf.Player.PlayerAvatarEntity Werewolf.Player.PlayerAvatarEntity/<LoadUserAvatar>d__36::<>4__this
+	// Werewolf.Player.PlayerAvatarEntity Werewolf.Player.PlayerAvatarEntity/<LoadUserAvatar>d__25::<>4__this
 	PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B* ___U3CU3E4__this_2;
 };
 
-// Werewolf.Player.PlayerAvatarEntity/<PollForAvatarChange>d__46
-struct U3CPollForAvatarChangeU3Ed__46_t3741EEAB2C509B8A18E235198BE70BC402D8CE6F  : public RuntimeObject
+// Werewolf.Player.PlayerAvatarEntity/<PollForAvatarChange>d__35
+struct U3CPollForAvatarChangeU3Ed__35_tE4453DEBB433EFBAF7F32ABAA04740F2B7DF25FE  : public RuntimeObject
 {
-	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<PollForAvatarChange>d__46::<>1__state
+	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<PollForAvatarChange>d__35::<>1__state
 	int32_t ___U3CU3E1__state_0;
-	// System.Object Werewolf.Player.PlayerAvatarEntity/<PollForAvatarChange>d__46::<>2__current
+	// System.Object Werewolf.Player.PlayerAvatarEntity/<PollForAvatarChange>d__35::<>2__current
 	RuntimeObject* ___U3CU3E2__current_1;
-	// Werewolf.Player.PlayerAvatarEntity Werewolf.Player.PlayerAvatarEntity/<PollForAvatarChange>d__46::<>4__this
+	// Werewolf.Player.PlayerAvatarEntity Werewolf.Player.PlayerAvatarEntity/<PollForAvatarChange>d__35::<>4__this
 	PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B* ___U3CU3E4__this_2;
-	// UnityEngine.WaitForSecondsRealtime Werewolf.Player.PlayerAvatarEntity/<PollForAvatarChange>d__46::<waitForPollInterval>5__2
+	// UnityEngine.WaitForSecondsRealtime Werewolf.Player.PlayerAvatarEntity/<PollForAvatarChange>d__35::<waitForPollInterval>5__2
 	WaitForSecondsRealtime_tA8CE0AAB4B0C872B843E7973637037D17682BA01* ___U3CwaitForPollIntervalU3E5__2_3;
-	// System.Boolean Werewolf.Player.PlayerAvatarEntity/<PollForAvatarChange>d__46::<continueChecking>5__3
+	// System.Boolean Werewolf.Player.PlayerAvatarEntity/<PollForAvatarChange>d__35::<continueChecking>5__3
 	bool ___U3CcontinueCheckingU3E5__3_4;
-	// System.Threading.Tasks.Task`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarChangedRequestResultCode> Werewolf.Player.PlayerAvatarEntity/<PollForAvatarChange>d__46::<checkTask>5__4
+	// System.Threading.Tasks.Task`1<Oculus.Avatar2.OvrAvatarManager/HasAvatarChangedRequestResultCode> Werewolf.Player.PlayerAvatarEntity/<PollForAvatarChange>d__35::<checkTask>5__4
 	Task_1_t3E26BA4FF944DB60FE41DEB3C32DA04781024E8C* ___U3CcheckTaskU3E5__4_5;
 };
 
-// Werewolf.Player.PlayerAvatarEntity/<Start>d__31
-struct U3CStartU3Ed__31_t095E10C5996DBAD0E0AABDE92EE13BF06267BF72  : public RuntimeObject
+// Werewolf.Player.PlayerAvatarEntity/<Start>d__20
+struct U3CStartU3Ed__20_tBCE27DEB27A8EF6DD1240DC85CD7255C9DE2B4F1  : public RuntimeObject
 {
-	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<Start>d__31::<>1__state
+	// System.Int32 Werewolf.Player.PlayerAvatarEntity/<Start>d__20::<>1__state
 	int32_t ___U3CU3E1__state_0;
-	// System.Object Werewolf.Player.PlayerAvatarEntity/<Start>d__31::<>2__current
+	// System.Object Werewolf.Player.PlayerAvatarEntity/<Start>d__20::<>2__current
 	RuntimeObject* ___U3CU3E2__current_1;
-	// Werewolf.Player.PlayerAvatarEntity Werewolf.Player.PlayerAvatarEntity/<Start>d__31::<>4__this
+	// Werewolf.Player.PlayerAvatarEntity Werewolf.Player.PlayerAvatarEntity/<Start>d__20::<>4__this
 	PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B* ___U3CU3E4__this_2;
 };
 
@@ -41726,60 +41724,34 @@ struct PlayerAnimatorManager_tAF98DEF1C22EE268E498944CB09A06F3AED9BC07  : public
 // Werewolf.Player.PlayerAvatarEntity
 struct PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B  : public OvrAvatarEntity_tB79A23C9EEC19A64C00713B7BD5E8CDD7F293FBA
 {
-	// Werewolf.Game.GameManager Werewolf.Player.PlayerAvatarEntity::_gm
-	GameManager_t6A9C2952A4DAF343A1EE0996A7B2610A0B67DEE6* ____gm_93;
-	// System.Single Werewolf.Player.PlayerAvatarEntity::timer
-	float ___timer_95;
-	// System.Single Werewolf.Player.PlayerAvatarEntity::recTimer
-	float ___recTimer_96;
-	// System.Boolean Werewolf.Player.PlayerAvatarEntity::_sync
-	bool ____sync_97;
-	// System.Boolean Werewolf.Player.PlayerAvatarEntity::_recSync
-	bool ____recSync_98;
-	// LightManager Werewolf.Player.PlayerAvatarEntity::dayTimer
-	LightManager_t367FF6C506CFAC316A1E1C89106DF4075BF493FD* ___dayTimer_99;
-	// System.Boolean Werewolf.Player.PlayerAvatarEntity::_isMasterClient
-	bool ____isMasterClient_100;
-	// System.Int32 Werewolf.Player.PlayerAvatarEntity::playerCount
-	int32_t ___playerCount_101;
-	// System.Collections.Generic.List`1<System.Int32> Werewolf.Player.PlayerAvatarEntity::playerList
-	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___playerList_102;
-	// System.Collections.Generic.List`1<System.Int32> Werewolf.Player.PlayerAvatarEntity::roleList
-	List_1_t05915E9237850A58106982B7FE4BC5DA4E872E73* ___roleList_103;
 	// Oculus.Avatar2.OvrAvatarEntity/AvatarStateEvent Werewolf.Player.PlayerAvatarEntity::OnUserAvatarFoundEvent
-	AvatarStateEvent_tB5143A2E95FEFECB6453AC457ECB44F07FCDD737* ___OnUserAvatarFoundEvent_105;
+	AvatarStateEvent_tB5143A2E95FEFECB6453AC457ECB44F07FCDD737* ___OnUserAvatarFoundEvent_94;
 	// Oculus.Avatar2.OvrAvatarEntity/AvatarStateEvent Werewolf.Player.PlayerAvatarEntity::OnUserAvatarNotFoundEvent
-	AvatarStateEvent_tB5143A2E95FEFECB6453AC457ECB44F07FCDD737* ___OnUserAvatarNotFoundEvent_106;
+	AvatarStateEvent_tB5143A2E95FEFECB6453AC457ECB44F07FCDD737* ___OnUserAvatarNotFoundEvent_95;
+	// Oculus.Avatar2.OvrAvatarEntity/AvatarStateEvent Werewolf.Player.PlayerAvatarEntity::OnLocalAvatarUsedEvent
+	AvatarStateEvent_tB5143A2E95FEFECB6453AC457ECB44F07FCDD737* ___OnLocalAvatarUsedEvent_96;
 	// System.Boolean Werewolf.Player.PlayerAvatarEntity::_autoLoad
-	bool ____autoLoad_107;
+	bool ____autoLoad_97;
 	// System.Collections.Generic.List`1<Werewolf.Player.PlayerAvatarEntity/AssetData> Werewolf.Player.PlayerAvatarEntity::_assets
-	List_1_tB14AD461662436B0E9C80860B121EE7D5F73D42B* ____assets_108;
+	List_1_tB14AD461662436B0E9C80860B121EE7D5F73D42B* ____assets_98;
 	// System.Boolean Werewolf.Player.PlayerAvatarEntity::_underscorePostfix
-	bool ____underscorePostfix_109;
+	bool ____underscorePostfix_99;
 	// System.String Werewolf.Player.PlayerAvatarEntity::_overridePostfix
-	String_t* ____overridePostfix_110;
+	String_t* ____overridePostfix_100;
 	// System.Boolean Werewolf.Player.PlayerAvatarEntity::_autoCdnRetry
-	bool ____autoCdnRetry_111;
+	bool ____autoCdnRetry_101;
 	// System.Boolean Werewolf.Player.PlayerAvatarEntity::_autoCheckChanges
-	bool ____autoCheckChanges_112;
+	bool ____autoCheckChanges_102;
 	// System.Single Werewolf.Player.PlayerAvatarEntity::_changeCheckInterval
-	float ____changeCheckInterval_113;
+	float ____changeCheckInterval_103;
 	// System.Boolean Werewolf.Player.PlayerAvatarEntity::_debugDrawGazePos
-	bool ____debugDrawGazePos_114;
+	bool ____debugDrawGazePos_104;
 	// UnityEngine.Color Werewolf.Player.PlayerAvatarEntity::_debugDrawGazePosColor
-	Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ____debugDrawGazePosColor_115;
+	Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ____debugDrawGazePosColor_105;
 	// Photon.Pun.PhotonView Werewolf.Player.PlayerAvatarEntity::_photonView
-	PhotonView_t43F3D22FF3D00F7824E82D741D70F9CB55642E6B* ____photonView_116;
+	PhotonView_t43F3D22FF3D00F7824E82D741D70F9CB55642E6B* ____photonView_106;
 	// System.Collections.Generic.List`1<System.Byte[]> Werewolf.Player.PlayerAvatarEntity::_streamedDataList
-	List_1_tBFF9DD9FFA06F20E74F9D7AD36610BD754D353A4* ____streamedDataList_117;
-	// System.Collections.Generic.List`1<System.Single> Werewolf.Player.PlayerAvatarEntity::_streamedTimeList
-	List_1_t0D1C46FD8DDDE974D93CA4F3474EEC05AF950918* ____streamedTimeList_118;
-};
-
-struct PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B_StaticFields
-{
-	// System.Single Werewolf.Player.PlayerAvatarEntity::deltaTime
-	float ___deltaTime_94;
+	List_1_tBFF9DD9FFA06F20E74F9D7AD36610BD754D353A4* ____streamedDataList_107;
 };
 
 // Oculus.Interaction.PointableCanvas
@@ -50455,31 +50427,31 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5610[2] =
 	static_cast<int32_t>(offsetof(AssetData_tBC38F560DC780504914C352811FD6F0712AA023D, ___source_0)) + static_cast<int32_t>(sizeof(RuntimeObject)),static_cast<int32_t>(offsetof(AssetData_tBC38F560DC780504914C352811FD6F0712AA023D, ___path_1)) + static_cast<int32_t>(sizeof(RuntimeObject)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5611[3] = 
 {
-	static_cast<int32_t>(offsetof(U3CStartU3Ed__31_t095E10C5996DBAD0E0AABDE92EE13BF06267BF72, ___U3CU3E1__state_0)),static_cast<int32_t>(offsetof(U3CStartU3Ed__31_t095E10C5996DBAD0E0AABDE92EE13BF06267BF72, ___U3CU3E2__current_1)),static_cast<int32_t>(offsetof(U3CStartU3Ed__31_t095E10C5996DBAD0E0AABDE92EE13BF06267BF72, ___U3CU3E4__this_2)),};
+	static_cast<int32_t>(offsetof(U3CStartU3Ed__20_tBCE27DEB27A8EF6DD1240DC85CD7255C9DE2B4F1, ___U3CU3E1__state_0)),static_cast<int32_t>(offsetof(U3CStartU3Ed__20_tBCE27DEB27A8EF6DD1240DC85CD7255C9DE2B4F1, ___U3CU3E2__current_1)),static_cast<int32_t>(offsetof(U3CStartU3Ed__20_tBCE27DEB27A8EF6DD1240DC85CD7255C9DE2B4F1, ___U3CU3E4__this_2)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5612[3] = 
 {
-	static_cast<int32_t>(offsetof(U3CLoadUserAvatarU3Ed__36_tEB4D85DA7B7FB482639AB371598ACE9EFD9316FD, ___U3CU3E1__state_0)),static_cast<int32_t>(offsetof(U3CLoadUserAvatarU3Ed__36_tEB4D85DA7B7FB482639AB371598ACE9EFD9316FD, ___U3CU3E2__current_1)),static_cast<int32_t>(offsetof(U3CLoadUserAvatarU3Ed__36_tEB4D85DA7B7FB482639AB371598ACE9EFD9316FD, ___U3CU3E4__this_2)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5613[8] = 
+	static_cast<int32_t>(offsetof(U3CLoadUserAvatarU3Ed__25_t05A667F466297B6268616A073D1A0D3F210B0F56, ___U3CU3E1__state_0)),static_cast<int32_t>(offsetof(U3CLoadUserAvatarU3Ed__25_t05A667F466297B6268616A073D1A0D3F210B0F56, ___U3CU3E2__current_1)),static_cast<int32_t>(offsetof(U3CLoadUserAvatarU3Ed__25_t05A667F466297B6268616A073D1A0D3F210B0F56, ___U3CU3E4__this_2)),};
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5613[7] = 
 {
-	static_cast<int32_t>(offsetof(U3CLoadCdnAvatarU3Ed__38_t2B0C3D1942EE50EA7BC2BF6F77B45BA069A2B485, ___U3CU3E1__state_0)),static_cast<int32_t>(offsetof(U3CLoadCdnAvatarU3Ed__38_t2B0C3D1942EE50EA7BC2BF6F77B45BA069A2B485, ___U3CU3E2__current_1)),static_cast<int32_t>(offsetof(U3CLoadCdnAvatarU3Ed__38_t2B0C3D1942EE50EA7BC2BF6F77B45BA069A2B485, ___U3CU3E4__this_2)),static_cast<int32_t>(offsetof(U3CLoadCdnAvatarU3Ed__38_t2B0C3D1942EE50EA7BC2BF6F77B45BA069A2B485, ___U3CtotalAttemptsU3E5__2_3)),static_cast<int32_t>(offsetof(U3CLoadCdnAvatarU3Ed__38_t2B0C3D1942EE50EA7BC2BF6F77B45BA069A2B485, ___U3CcontinueRetriesU3E5__3_4)),static_cast<int32_t>(offsetof(U3CLoadCdnAvatarU3Ed__38_t2B0C3D1942EE50EA7BC2BF6F77B45BA069A2B485, ___U3ChasFoundAvatarU3E5__4_5)),static_cast<int32_t>(offsetof(U3CLoadCdnAvatarU3Ed__38_t2B0C3D1942EE50EA7BC2BF6F77B45BA069A2B485, ___U3CrequestCompleteU3E5__5_6)),static_cast<int32_t>(offsetof(U3CLoadCdnAvatarU3Ed__38_t2B0C3D1942EE50EA7BC2BF6F77B45BA069A2B485, ___U3ChasAvatarRequestU3E5__6_7)),};
+	static_cast<int32_t>(offsetof(U3CLoadCdnAvatarU3Ed__27_t3A0AB86E4371890CA37ECDC67A8CFE10C8F33A9F, ___U3CU3E1__state_0)),static_cast<int32_t>(offsetof(U3CLoadCdnAvatarU3Ed__27_t3A0AB86E4371890CA37ECDC67A8CFE10C8F33A9F, ___U3CU3E2__current_1)),static_cast<int32_t>(offsetof(U3CLoadCdnAvatarU3Ed__27_t3A0AB86E4371890CA37ECDC67A8CFE10C8F33A9F, ___U3CU3E4__this_2)),static_cast<int32_t>(offsetof(U3CLoadCdnAvatarU3Ed__27_t3A0AB86E4371890CA37ECDC67A8CFE10C8F33A9F, ___U3CtotalAttemptsU3E5__2_3)),static_cast<int32_t>(offsetof(U3CLoadCdnAvatarU3Ed__27_t3A0AB86E4371890CA37ECDC67A8CFE10C8F33A9F, ___U3CcontinueRetriesU3E5__3_4)),static_cast<int32_t>(offsetof(U3CLoadCdnAvatarU3Ed__27_t3A0AB86E4371890CA37ECDC67A8CFE10C8F33A9F, ___U3ChasFoundAvatarU3E5__4_5)),static_cast<int32_t>(offsetof(U3CLoadCdnAvatarU3Ed__27_t3A0AB86E4371890CA37ECDC67A8CFE10C8F33A9F, ___U3ChasAvatarRequestU3E5__5_6)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5614[3] = 
 {
-	static_cast<int32_t>(offsetof(U3CGetUserIdFromMetaU3Ed__39_t28D215D228B70975798ED4F0AD8B8D07433AFFD7, ___U3CU3E1__state_0)),static_cast<int32_t>(offsetof(U3CGetUserIdFromMetaU3Ed__39_t28D215D228B70975798ED4F0AD8B8D07433AFFD7, ___U3CU3E2__current_1)),static_cast<int32_t>(offsetof(U3CGetUserIdFromMetaU3Ed__39_t28D215D228B70975798ED4F0AD8B8D07433AFFD7, ___U3CU3E4__this_2)),};
+	static_cast<int32_t>(offsetof(U3CGetUserIdFromMetaU3Ed__28_t0C3E7E54D2AD15EDA7B4E67262EA54F3D619967A, ___U3CU3E1__state_0)),static_cast<int32_t>(offsetof(U3CGetUserIdFromMetaU3Ed__28_t0C3E7E54D2AD15EDA7B4E67262EA54F3D619967A, ___U3CU3E2__current_1)),static_cast<int32_t>(offsetof(U3CGetUserIdFromMetaU3Ed__28_t0C3E7E54D2AD15EDA7B4E67262EA54F3D619967A, ___U3CU3E4__this_2)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5615[3] = 
 {
-	static_cast<int32_t>(offsetof(U3CLoadAvatarU3Ed__40_t54290CE9984127CE32C188E2DB73BAE8A6457790, ___U3CU3E1__state_0)),static_cast<int32_t>(offsetof(U3CLoadAvatarU3Ed__40_t54290CE9984127CE32C188E2DB73BAE8A6457790, ___U3CU3E2__current_1)),static_cast<int32_t>(offsetof(U3CLoadAvatarU3Ed__40_t54290CE9984127CE32C188E2DB73BAE8A6457790, ___U3CU3E4__this_2)),};
+	static_cast<int32_t>(offsetof(U3CLoadAvatarU3Ed__29_t8788FA568FBE9DA8A0991A3F797E052DF5813DCF, ___U3CU3E1__state_0)),static_cast<int32_t>(offsetof(U3CLoadAvatarU3Ed__29_t8788FA568FBE9DA8A0991A3F797E052DF5813DCF, ___U3CU3E2__current_1)),static_cast<int32_t>(offsetof(U3CLoadAvatarU3Ed__29_t8788FA568FBE9DA8A0991A3F797E052DF5813DCF, ___U3CU3E4__this_2)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5616[4] = 
 {
-	static_cast<int32_t>(offsetof(U3CLoadAvatarU3Ed__41_tEFD6A78E8729BF9CC14CB161BC27FB35B3BDA93B, ___U3CU3E1__state_0)),static_cast<int32_t>(offsetof(U3CLoadAvatarU3Ed__41_tEFD6A78E8729BF9CC14CB161BC27FB35B3BDA93B, ___U3CU3E2__current_1)),static_cast<int32_t>(offsetof(U3CLoadAvatarU3Ed__41_tEFD6A78E8729BF9CC14CB161BC27FB35B3BDA93B, ___U3CU3E4__this_2)),static_cast<int32_t>(offsetof(U3CLoadAvatarU3Ed__41_tEFD6A78E8729BF9CC14CB161BC27FB35B3BDA93B, ___userId_3)),};
+	static_cast<int32_t>(offsetof(U3CLoadAvatarU3Ed__30_t0453D504A7D3BA918525E802A18AF306F04C6AE0, ___U3CU3E1__state_0)),static_cast<int32_t>(offsetof(U3CLoadAvatarU3Ed__30_t0453D504A7D3BA918525E802A18AF306F04C6AE0, ___U3CU3E2__current_1)),static_cast<int32_t>(offsetof(U3CLoadAvatarU3Ed__30_t0453D504A7D3BA918525E802A18AF306F04C6AE0, ___U3CU3E4__this_2)),static_cast<int32_t>(offsetof(U3CLoadAvatarU3Ed__30_t0453D504A7D3BA918525E802A18AF306F04C6AE0, ___userId_3)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5617[8] = 
 {
-	static_cast<int32_t>(offsetof(U3CLoadUserU3Ed__45_t774577D7F7C7FC56337C2DA1D56C867F017211B6, ___U3CU3E1__state_0)),static_cast<int32_t>(offsetof(U3CLoadUserU3Ed__45_t774577D7F7C7FC56337C2DA1D56C867F017211B6, ___U3CU3E2__current_1)),static_cast<int32_t>(offsetof(U3CLoadUserU3Ed__45_t774577D7F7C7FC56337C2DA1D56C867F017211B6, ___U3CU3E4__this_2)),static_cast<int32_t>(offsetof(U3CLoadUserU3Ed__45_t774577D7F7C7FC56337C2DA1D56C867F017211B6, ___loadFallbackOnFailure_3)),static_cast<int32_t>(offsetof(U3CLoadUserU3Ed__45_t774577D7F7C7FC56337C2DA1D56C867F017211B6, ___U3CtotalAttemptsU3E5__2_4)),static_cast<int32_t>(offsetof(U3CLoadUserU3Ed__45_t774577D7F7C7FC56337C2DA1D56C867F017211B6, ___U3CremainingAttemptsU3E5__3_5)),static_cast<int32_t>(offsetof(U3CLoadUserU3Ed__45_t774577D7F7C7FC56337C2DA1D56C867F017211B6, ___U3CdidLoadAvatarU3E5__4_6)),static_cast<int32_t>(offsetof(U3CLoadUserU3Ed__45_t774577D7F7C7FC56337C2DA1D56C867F017211B6, ___U3CcurrentPollingIntervalU3E5__5_7)),};
+	static_cast<int32_t>(offsetof(U3CLoadUserU3Ed__34_t806AE9273D9C107D9D577C4F2660357E54D4B629, ___U3CU3E1__state_0)),static_cast<int32_t>(offsetof(U3CLoadUserU3Ed__34_t806AE9273D9C107D9D577C4F2660357E54D4B629, ___U3CU3E2__current_1)),static_cast<int32_t>(offsetof(U3CLoadUserU3Ed__34_t806AE9273D9C107D9D577C4F2660357E54D4B629, ___U3CU3E4__this_2)),static_cast<int32_t>(offsetof(U3CLoadUserU3Ed__34_t806AE9273D9C107D9D577C4F2660357E54D4B629, ___loadFallbackOnFailure_3)),static_cast<int32_t>(offsetof(U3CLoadUserU3Ed__34_t806AE9273D9C107D9D577C4F2660357E54D4B629, ___U3CtotalAttemptsU3E5__2_4)),static_cast<int32_t>(offsetof(U3CLoadUserU3Ed__34_t806AE9273D9C107D9D577C4F2660357E54D4B629, ___U3CremainingAttemptsU3E5__3_5)),static_cast<int32_t>(offsetof(U3CLoadUserU3Ed__34_t806AE9273D9C107D9D577C4F2660357E54D4B629, ___U3CdidLoadAvatarU3E5__4_6)),static_cast<int32_t>(offsetof(U3CLoadUserU3Ed__34_t806AE9273D9C107D9D577C4F2660357E54D4B629, ___U3CcurrentPollingIntervalU3E5__5_7)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5618[6] = 
 {
-	static_cast<int32_t>(offsetof(U3CPollForAvatarChangeU3Ed__46_t3741EEAB2C509B8A18E235198BE70BC402D8CE6F, ___U3CU3E1__state_0)),static_cast<int32_t>(offsetof(U3CPollForAvatarChangeU3Ed__46_t3741EEAB2C509B8A18E235198BE70BC402D8CE6F, ___U3CU3E2__current_1)),static_cast<int32_t>(offsetof(U3CPollForAvatarChangeU3Ed__46_t3741EEAB2C509B8A18E235198BE70BC402D8CE6F, ___U3CU3E4__this_2)),static_cast<int32_t>(offsetof(U3CPollForAvatarChangeU3Ed__46_t3741EEAB2C509B8A18E235198BE70BC402D8CE6F, ___U3CwaitForPollIntervalU3E5__2_3)),static_cast<int32_t>(offsetof(U3CPollForAvatarChangeU3Ed__46_t3741EEAB2C509B8A18E235198BE70BC402D8CE6F, ___U3CcontinueCheckingU3E5__3_4)),static_cast<int32_t>(offsetof(U3CPollForAvatarChangeU3Ed__46_t3741EEAB2C509B8A18E235198BE70BC402D8CE6F, ___U3CcheckTaskU3E5__4_5)),};
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5619[26] = 
+	static_cast<int32_t>(offsetof(U3CPollForAvatarChangeU3Ed__35_tE4453DEBB433EFBAF7F32ABAA04740F2B7DF25FE, ___U3CU3E1__state_0)),static_cast<int32_t>(offsetof(U3CPollForAvatarChangeU3Ed__35_tE4453DEBB433EFBAF7F32ABAA04740F2B7DF25FE, ___U3CU3E2__current_1)),static_cast<int32_t>(offsetof(U3CPollForAvatarChangeU3Ed__35_tE4453DEBB433EFBAF7F32ABAA04740F2B7DF25FE, ___U3CU3E4__this_2)),static_cast<int32_t>(offsetof(U3CPollForAvatarChangeU3Ed__35_tE4453DEBB433EFBAF7F32ABAA04740F2B7DF25FE, ___U3CwaitForPollIntervalU3E5__2_3)),static_cast<int32_t>(offsetof(U3CPollForAvatarChangeU3Ed__35_tE4453DEBB433EFBAF7F32ABAA04740F2B7DF25FE, ___U3CcontinueCheckingU3E5__3_4)),static_cast<int32_t>(offsetof(U3CPollForAvatarChangeU3Ed__35_tE4453DEBB433EFBAF7F32ABAA04740F2B7DF25FE, ___U3CcheckTaskU3E5__4_5)),};
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5619[15] = 
 {
-	static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____gm_93)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B_StaticFields, ___deltaTime_94)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ___timer_95)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ___recTimer_96)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____sync_97)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____recSync_98)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ___dayTimer_99)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____isMasterClient_100)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ___playerCount_101)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ___playerList_102)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ___roleList_103)),0,static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ___OnUserAvatarFoundEvent_105)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ___OnUserAvatarNotFoundEvent_106)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____autoLoad_107)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____assets_108)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____underscorePostfix_109)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____overridePostfix_110)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____autoCdnRetry_111)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____autoCheckChanges_112)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____changeCheckInterval_113)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____debugDrawGazePos_114)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____debugDrawGazePosColor_115)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____photonView_116)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____streamedDataList_117)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____streamedTimeList_118)),};
+	0,static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ___OnUserAvatarFoundEvent_94)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ___OnUserAvatarNotFoundEvent_95)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ___OnLocalAvatarUsedEvent_96)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____autoLoad_97)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____assets_98)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____underscorePostfix_99)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____overridePostfix_100)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____autoCdnRetry_101)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____autoCheckChanges_102)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____changeCheckInterval_103)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____debugDrawGazePos_104)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____debugDrawGazePosColor_105)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____photonView_106)),static_cast<int32_t>(offsetof(PlayerAvatarEntity_tEBFB4EF81E2E3AAE24A4051575CF7D99DAE1CA1B, ____streamedDataList_107)),};
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable5620[4] = 
 {
 	0,static_cast<int32_t>(offsetof(PlayerAvatarInput_t1021EBB8ABFBCFE0ECAA3ED17D294B7C1CB380C4, ____useOvrCameraRig_8)),static_cast<int32_t>(offsetof(PlayerAvatarInput_t1021EBB8ABFBCFE0ECAA3ED17D294B7C1CB380C4, ____ovrCameraRig_9)),static_cast<int32_t>(offsetof(PlayerAvatarInput_t1021EBB8ABFBCFE0ECAA3ED17D294B7C1CB380C4, ____debugDrawTrackingLocations_10)),};

@@ -8655,6 +8655,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Hand_get_Handedness_m01BCC3ED04310567
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Pose__ctor_m15CA45808A2BBF1956E836D22C387FAB80BED051 (Pose_t06BA69EAA6E9FAF60056D519A87D25F54AFE7971* __this, Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 ___position0, Quaternion_tDA59F214EF07D7700B26E40E562F267AF7306974 ___rotation1, const RuntimeMethod* method) ;
 // Oculus.Interaction.Input.IDataSource`1<Oculus.Interaction.Input.HmdDataAsset> Oculus.Interaction.Input.Hand::get_HmdData()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* Hand_get_HmdData_m310099FF9D4D48A7921F55523009A4AA78DEC131 (Hand_tC61A0092374A077C2B2C040DC5CBF6D768A92B9A* __this, const RuntimeMethod* method) ;
+// UnityEngine.Transform Oculus.Interaction.Input.Hand::get_TrackingToWorldSpace()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* Hand_get_TrackingToWorldSpace_mF7259FC9DEBFFB1CB04B29436E0EC4C2C0B7EF04 (Hand_tC61A0092374A077C2B2C040DC5CBF6D768A92B9A* __this, const RuntimeMethod* method) ;
 // System.Boolean Oculus.Interaction.Input.Hand::IsPoseOriginDisallowed(Oculus.Interaction.Input.PoseOrigin)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Hand_IsPoseOriginDisallowed_mCB9401A5F0266339CBA2E21DFB5F57B2878BE08E (Hand_tC61A0092374A077C2B2C040DC5CBF6D768A92B9A* __this, int32_t ___poseOrigin0, const RuntimeMethod* method) ;
 // System.Void Oculus.Interaction.Input.DataModifier`1<Oculus.Interaction.Input.HandDataAsset>::InjectAllDataModifier(Oculus.Interaction.Input.DataSource`1/UpdateModeFlags<TData>,Oculus.Interaction.Input.IDataSource,Oculus.Interaction.Input.IDataSource`1<TData>,System.Boolean)
@@ -32907,15 +32909,19 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Transform_tB27202C6F4E36D225EE28A13E4D662BF99
 	if (!s_Il2CppMethodInitialized)
 	{
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&ITrackingToWorldTransformer_t193B383D2CCDEDD1521A0197EB476879DD657B2E_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		// if (TrackingToWorldTransformer == null)
-		RuntimeObject* L_0;
-		L_0 = Hand_get_TrackingToWorldTransformer_m271427719289A1806A27815DE85B0A37B07B9837(__this, NULL);
-		if (L_0)
+		// if (TrackingToWorldSpace == null)
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_0;
+		L_0 = Hand_get_TrackingToWorldSpace_mF7259FC9DEBFFB1CB04B29436E0EC4C2C0B7EF04(__this, NULL);
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_1;
+		L_1 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_0, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_1)
 		{
-			goto IL_000a;
+			goto IL_0010;
 		}
 	}
 	{
@@ -32923,15 +32929,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Transform_tB27202C6F4E36D225EE28A13E4D662BF99
 		return (Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1*)NULL;
 	}
 
-IL_000a:
+IL_0010:
 	{
 		// return TrackingToWorldTransformer.Transform;
-		RuntimeObject* L_1;
-		L_1 = Hand_get_TrackingToWorldTransformer_m271427719289A1806A27815DE85B0A37B07B9837(__this, NULL);
-		NullCheck(L_1);
-		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_2;
-		L_2 = InterfaceFuncInvoker0< Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* >::Invoke(0 /* UnityEngine.Transform Oculus.Interaction.Input.ITrackingToWorldTransformer::get_Transform() */, ITrackingToWorldTransformer_t193B383D2CCDEDD1521A0197EB476879DD657B2E_il2cpp_TypeInfo_var, L_1);
-		return L_2;
+		RuntimeObject* L_2;
+		L_2 = Hand_get_TrackingToWorldTransformer_m271427719289A1806A27815DE85B0A37B07B9837(__this, NULL);
+		NullCheck(L_2);
+		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_3;
+		L_3 = InterfaceFuncInvoker0< Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* >::Invoke(0 /* UnityEngine.Transform Oculus.Interaction.Input.ITrackingToWorldTransformer::get_Transform() */, ITrackingToWorldTransformer_t193B383D2CCDEDD1521A0197EB476879DD657B2E_il2cpp_TypeInfo_var, L_2);
+		return L_3;
 	}
 }
 // System.Boolean Oculus.Interaction.Input.Hand::ValidatePose(UnityEngine.Pose&,Oculus.Interaction.Input.PoseOrigin,UnityEngine.Pose&)

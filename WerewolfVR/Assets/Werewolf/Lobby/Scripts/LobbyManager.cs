@@ -181,6 +181,11 @@ namespace Werewolf.Lobby
             _state.OnAvatarNotFound(this);
         }
 
+        public void OnLocalAvatarUsed()
+        {
+            _state.OnLocalAvatarUsed(this);
+        }
+
         public void OnEditAvatar()
         {
             _state.OnEditAvatar(this);
