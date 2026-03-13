@@ -1,4 +1,7 @@
 # Werewolf-VR
+[Final Presentation](https://drive.google.com/file/d/1Gjz7m_T6cOenBZXOeWxcLRQeYIYYZbCr/view?usp=sharing)
+
+[Technical Demo for Interaction SDK + Meta Avatars integration](https://youtu.be/Vx4sypSrYTU?si=B_oGQfVlVkRwmAwM)
 
 ## 環境
 
